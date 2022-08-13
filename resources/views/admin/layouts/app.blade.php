@@ -80,19 +80,11 @@
 
                   </a>
                </li>
-               <li class=" nav-item">
-                  <a class="nav-link text-white {{ $helper->active_link(['reports']) }}" href="/admin/reports">
-                  <i class="material-symbols-outlined opacity-10">show_chart</i>
-      
-                  <span class="nav-link-text ms-2 ps-1"> Reports </span>
-                  </a>
-               </li>
-
 
                <li class="nav-item">
                   <a data-bs-toggle="collapse" href="settings.html#ecommerceExamples" class="nav-link text-white {{ $helper->active_link(['reviews','brands','products','category','discounts','attributes','vouchers']) }}" aria-controls="ecommerceExamples" role="button" aria-expanded="false">
                   <i class="material-symbols-outlined">inventory_2</i>
-                  <span class="nav-link-text ms-2 ps-1">Products</span>
+                  <span class="nav-link-text ms-2 ps-1">Reservations</span>
                   </a>
                   <div class="collapse  {{ $helper->active_link(['brands','engines','products','reviews','category','discounts','attributes','vouchers']) ? 'show' : ''}}" id="ecommerceExamples">
                      <ul class="nav ">
@@ -104,19 +96,6 @@
                            </a>
                         </li>
 
-                        <li class="nav-item ">
-                           <a class="nav-link text-white {{ $helper->active_link(['brands']) }}"  href="{{ route('brands.index') }}">
-                              <span class="sidenav-mini-icon"> C </span>
-                              <span class="sidenav-normal  ms-2  ps-1"> Brands <b class="caret"></b></span>
-                           </a>
-                        </li>
-
-                        <li class="nav-item ">
-                           <a class="nav-link text-white {{ $helper->active_link(['discounts']) }}"  href="{{ route('discounts.index') }}">
-                              <span class="sidenav-mini-icon"> C </span>
-                              <span class="sidenav-normal  ms-2  ps-1"> Discounts <b class="caret"></b></span>
-                           </a>
-                        </li>
 
                         <li class="nav-item ">
                            <a class="nav-link text-white  {{ $helper->active_link(['category']) }}"  href="{{ route('category.index') }}">
@@ -125,26 +104,16 @@
                            </a>
                         </li>
 
-                        <li class="nav-item ">
-                           <a class="nav-link text-white {{ $helper->active_link(['engines']) }}"  href="{{ route('engines.index') }}">
-                              <span class="sidenav-mini-icon"> E </span>
-                              <span class="sidenav-normal  ms-2  ps-1"> Engines <b class="caret"></b></span>
-                           </a>
-                        </li>
+                        
 
                         <li class="nav-item ">
                            <a class="nav-link text-white {{ $helper->active_link(['products']) }}"  href="{{ route('products.index') }}">
                               <span class="sidenav-mini-icon"> P </span>
-                              <span class="sidenav-normal  ms-2  ps-1"> Products <b class="caret"></b></span>
+                              <span class="sidenav-normal  ms-2  ps-1"> Reservations <b class="caret"></b></span>
                            </a>
                         </li>
                         
-                        <li class="nav-item ">
-                           <a class="nav-link text-white {{ $helper->active_link(['vouchers']) }}"  href="{{ route('vouchers.index') }}">
-                              <span class="sidenav-mini-icon"> C </span>
-                              <span class="sidenav-normal  ms-2  ps-1"> Vouchers <b class="caret"></b></span>
-                           </a>
-                        </li>
+                        
 
                         <li class="nav-item ">
                            <a class="nav-link text-white {{ $helper->active_link(['reviews']) }}"  href="/admin/reviews">
@@ -245,19 +214,9 @@
                            <span class="sidenav-normal  ms-2  ps-1"> Permissions </span>
                            </a>
                         </li>
-                        <li class="nav-item ">
-                           <a class="nav-link text-white  {{ $helper->active_link(['location']) }}" href="{{ route('location.index') }}">
-                           <span class="sidenav-mini-icon"> P </span>
-                           <span class="sidenav-normal  ms-2  ps-1"> Location </span>
-                           </a>
-                        </li>
+                       
                         
-                        <li class="nav-item ">
-                           <a class="nav-link text-white   {{ $helper->active_link(['shipping']) }}" href="{{ route('shipping.index') }}" >
-                           <span class="sidenav-mini-icon"> S </span>
-                           <span class="sidenav-normal  ms-2  ps-1"> Shipping </span>
-                           </a>
-                        </li>
+                       
                                              
                      </ul>
                   </div>

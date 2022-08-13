@@ -84,47 +84,7 @@
    </div>
 </div>
 
-<div class="row mt-4">
-   <div class="col-12">
-      <div class="card mb-4">
-         <div class="card-header pb-0">
-            <h6>Top Selling Products</h6>
-         </div>
-         <div class="card-body px-0 pt-0 pb-2">
-            <div class="table-responsive p-0">
-               <table class="table align-items-center mb-0">
-                  <thead>
-                     <tr>
-                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Product</th>
-                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Value</th>
-                     </tr>
-                  </thead>
-                  <tbody>
-                     <tr>
-                        <td>
-                           <div class="d-flex px-3 py-1">
-                              <div>
-                                 <img src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-design-system/assets/img/ecommerce/blue-shoe.jpg" class="avatar me-3" alt="image">
-                              </div>
-                              <div class="d-flex flex-column justify-content-center">
-                                 <h6 class="mb-0 text-sm">Denso Horn	</h6>
-                                 <p class="text-sm font-weight-normal text-secondary mb-0"><span class="text-success">8.232</span> orders</p>
-                              </div>
-                           </div>
-                        </td>
-                        <td>
-                           <p class="text-sm font-weight-normal mb-0">₦17,000</p>
-                        </td>
-                        
-                     </tr>
-                     
-                  </tbody>
-               </table>
-            </div>
-         </div>
-      </div>
-   </div>
-</div>
+
 
 
 
