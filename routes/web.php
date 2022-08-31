@@ -29,10 +29,9 @@ Route::group(['prefix' => 'admin'], function(){
     Route::resource('location','Admin\Location\LocationController',['names'=>'location']);
     Route::resource('engines','Admin\Engines\EnginesController',['names'=>'engines']);
 
-
-    //Route::post('register','Admin\Users\UsersController@create')->name('create.admin.users');
-
     Route::resource('permissions','Admin\Permission\PermissionsController',['names'=>'permissions']);
+    Route::resource('celebrities','Admin\Celeb\CelebrityController',['names'=>'celebrities']);
+
     Route::post('upload/image','Admin\Image\ImagesController@store');
     Route::post('delete/image','Admin\Image\ImagesController@undo');
     Route::post('upload','Admin\Uploads\UploadsController@store');

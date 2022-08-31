@@ -86,15 +86,23 @@
                   <i class="material-symbols-outlined">inventory_2</i>
                   <span class="nav-link-text ms-2 ps-1">Reservations</span>
                   </a>
-                  <div class="collapse  {{ $helper->active_link(['brands','engines','products','reviews','category','discounts','attributes','vouchers']) ? 'show' : ''}}" id="ecommerceExamples">
+                  <div class="collapse  {{ $helper->active_link(['brands','engines','celebrities','reviews','category','discounts','attributes','vouchers']) ? 'show' : ''}}" id="ecommerceExamples">
                      <ul class="nav ">
 
                         <li class="nav-item ">
-                           <a class="nav-link text-white {{ $helper->active_link(['attributes']) }}"  href="{{ route('attributes.index') }}">
-                              <span class="sidenav-mini-icon"> C </span>
-                              <span class="sidenav-normal  ms-2  ps-1"> Attributes <b class="caret"></b></span>
+                           <a class="nav-link text-white {{ $helper->active_link(['celebrities']) }}"  href="{{ route('celebrities.index') }}">
+                              <span class="sidenav-mini-icon"> P </span>
+                              <span class="sidenav-normal  ms-2  ps-1"> Celebrity <b class="caret"></b></span>
                            </a>
                         </li>
+
+                        <li class="nav-item ">
+                           <a class="nav-link text-white {{ $helper->active_link(['products']) }}"  href="{{ route('products.index') }}">
+                              <span class="sidenav-mini-icon"> P </span>
+                              <span class="sidenav-normal  ms-2  ps-1"> Auctions <b class="caret"></b></span>
+                           </a>
+                        </li>
+
 
 
                         <li class="nav-item ">
@@ -103,8 +111,6 @@
                               <span class="sidenav-normal  ms-2  ps-1"> Categories <b class="caret"></b></span>
                            </a>
                         </li>
-
-                        
 
                         <li class="nav-item ">
                            <a class="nav-link text-white {{ $helper->active_link(['products']) }}"  href="{{ route('products.index') }}">
