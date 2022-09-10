@@ -67,18 +67,18 @@
                            >
                      </div>
                   </div>
-                  <div class="col-sm-6 col-12 mt-3">
-                  <div class="input-group input-group-outline">
-                    <label class="form-label">Sales Start  Date</label>
-                      <input name="sale_price_starts" class="form-control datetimepicker" type="text" data-input>
-                    </div>
-                  </div>
-                  <div class="col-sm-6 col-12 mt-3">
-                    <div class="input-group input-group-outline">
-                      <label class="form-label">Sales End  Date</label>
-                      <input name="sale_price_ends"  class="form-control datetimepicker" type="text" data-input>
-                    </div>
-                  </div>
+                    <div class="col-sm-6 col-12 mt-3">
+                     <div class="input-group input-group-outline">
+                     <label class="form-label">Sales Start  Date</label>
+                        <input name="sale_price_starts" class="form-control datetimepicker" type="text" data-input>
+                     </div>
+                     </div>
+                     <div class="col-sm-6 col-12 mt-3">
+                        <div class="input-group input-group-outline">
+                           <label class="form-label">Sales End  Date</label>
+                           <input name="sale_price_ends"  class="form-control datetimepicker" type="text" data-input>
+                        </div>
+                     </div>
               </div>
 
               <div class="row mt-3">

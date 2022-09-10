@@ -13,8 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-
 Route::group(['prefix' => 'admin'], function(){
 
     Route::get('/','Admin\HomeCtrl@index')->name('admin_home');
@@ -31,6 +29,12 @@ Route::group(['prefix' => 'admin'], function(){
 
     Route::resource('permissions','Admin\Permission\PermissionsController',['names'=>'permissions']);
     Route::resource('celebrities','Admin\Celeb\CelebrityController',['names'=>'celebrities']);
+    Route::resource('auctions','Admin\Auction\AuctionsController',['names'=>'auctions']);
+    Route::resource('masterclass','Admin\MasterClass\MasterClassController',['names'=>'masterclass']);
+    Route::resource('bookings','Admin\Booking\BookingController',['names'=>'bookings']);
+
+
+
 
     Route::post('upload/image','Admin\Image\ImagesController@store');
     Route::post('delete/image','Admin\Image\ImagesController@undo');

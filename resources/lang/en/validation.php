@@ -146,10 +146,10 @@ return [
             'unique' => 'Category name already exists',
         ],
         'category_id' => [
-            'unique' => 'Category  already exists',
+            'required' => 'Please select a category',
         ],
-        'category_id' => [
-            'required' => 'Please add 1 or more categories ',
+        'celebrity_id' => [
+            'required' => 'Please select a celebrity',
         ],
         'attribute_name' => [
             'unique' => 'Category name already exists',
@@ -163,6 +163,7 @@ return [
         'images' => [
             'required' => 'Upload ypur images',
         ],
+        
     ],
 
     /*

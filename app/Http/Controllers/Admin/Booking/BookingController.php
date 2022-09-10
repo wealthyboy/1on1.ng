@@ -1,42 +1,38 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Celeb;
+namespace App\Http\Controllers\Admin\Booking;
 
 use App\DataTable\DataTable;
+use App\Models\Category;
 use App\Models\Celebrity;
-use App\Models\User;
+use App\Models\Booking;
 use Illuminate\Http\Request;
-use Maatwebsite\Excel\Facades\Excel;
-use App\Exports\Export;
 
 
-
-class CelebrityController extends DataTable
-{   
-
-    protected $name = 'Celebrities';   
+class BookingController extends DataTable
+{
+    protected $name = 'Bookings';   
     
-    public $createRoute = 'admin.celebrity.create';
+    public $createRoute = 'admin.bookings.create';
 
-    public $modelName = 'celebrity';
+    public $modelName = 'Booking';
 
-    public $updateRoute;
 
     public $allowEdit = true;
 
-    public $storeRoute = 'celebrities.store';
+    public $storeRoute = 'bookings.store';
 
-    public $indexView  = 'admin.celebrity.index';
+    public $indexView  = 'admin.bookings.index';
 
-    public $editView  = 'admin.celebrity.edit';
+    public $editView  = 'admin.bookings.edit';
 
-    public $indexRoute = 'celebrities.index';
+    public $indexRoute = 'bookings.index';
 
     public $storeForm = [
-        'Full name' => [
+        'Auction name' => [
             'type' => 'input',
             'clasess' => '',
-            'name' => 'full_name'
+            'name' => 'name'
         ],
         'Description' => [
             'type' => 'textarea',
@@ -52,39 +48,47 @@ class CelebrityController extends DataTable
 
 
     public $editRoute = [
-        'celebrities.edit',
-        'celebrity'
+        'bookings.edit',
+        'booking'
     ];
 
     public $deleteRoute = [
-        'celebrities.destroy',
-        'celebrity'
+        'bookings.destroy',
+        'booking'
     ];
 
+    public $updateRoute = [
+        'bookings.update',
+        'booking'
+    ];
+
+    
+
     public $storeRouteRules = [
-        'name' => 'required|unique:celebrities|max:255',
+        'name' => 'required|unique:auctions|max:255',
         'description' => 'required'
     ];
 
     public $editRouteRules = [
-        'name' => 'required|unique:celebrities|max:255',
+        'name' => 'required|unique:auctions|max:255',
         'description' => 'required'
     ];
 
     public function __construct()
     {
-    
         parent::__construct();
 
         $this->routeData  = [
             'data' => $this->all(request()),
-            'form' => $this->storeForm
+            'form' => $this->storeForm,
+            'celebrities' => Celebrity::all(),
+            'categories' => Category::parents()->get()
         ];
     }
 
     public function builder()
     {   
-        return Celebrity::query();
+        return Booking::query();
     }
 
 
@@ -93,9 +97,10 @@ class CelebrityController extends DataTable
         return [
           "image",
           "name",
-          "description",
+          "price",
+          "start_date",
+          "end_date",
           "created_at",
         ];
     }
-
 }

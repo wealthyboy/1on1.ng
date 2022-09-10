@@ -133,261 +133,152 @@ function getFile(e, name, model = null, multiple = true) {
 
 
 $(document).ready(function() {
-
-    $(document).on('click', '.delete-panel', function(e) {
-        e.preventDefault()
-        $(this).parent().parent('.variation-panel').remove();
-        $.ajax({
-            type: "delete",
-            url: $(this).attr('href'),
-        }).done(function(response) {
-
-        });
-    })
-
     if (document.querySelector('.datetimepicker')) {
         flatpickr('.datetimepicker', {
-            allowInput: true
+            allowInput: true,
+            enableTime: true,
+            dateFormat: "Y-m-d H:i",
         }); // flatpickr
     }
-
-    $('#heavy_item').on('click', function() {
-        var elements = document.getElementsByClassName("large-items");
-        for (let i = 0; i < elements.length; i++) {
-            elements[i].classList.toggle('d-none')
-        }
-    })
-
-    $(document).find('.remove-section-lagos').on('click', function(e) {
-        let self = $(this);
-        console.log(self.parent().parent())
-    })
-
-    let messages = {}
-
-    let cat = $('input[name="category_id[]"]');
-    let parent_attr = $('.parent-attr')
-
-    cat.on('click', function() {
-        if ($(this).is(':checked') == true) {
-            delete messages.categories;
-            $('.categories').html('')
-        }
-    })
-
-    parent_attr.on('click', function() {
-        if ($(this).is(':checked') == true) {
-            delete messages.attribute;
-            $('.attribute').html('')
-        }
-    })
-
-
-    $('#form-product').on('submit', function() {
-        let no_validate = $('.no-validation')
-        if ($('input[name="category_id[]"]').is(':checked') == false) {
-            messages['categories'] = 'Add categories : Always add parent/child of any category'
-        }
-
-        if (no_validate.is(':checked')) {
-
-            if (parent_attr.is(':checked') == false) {
-                messages['attribute'] = 'Enter make/model and year range for each Car'
-            }
-            // check if car model is checked
-            let models = []
-            $('.parent-attr:checkbox:checked').each(function(i, e) {
-                let self = $(this);
-                let car_model_slug = self.data('slug');
-                let parent_name = self.data('name');
-                if ($('.' + car_model_slug).is(':checked') == false) {
-                    models.push(parent_name.toUpperCase())
-                }
-            });
-
-            if (models.length) {
-                messages['attribute'] = ' Enter model for ' + models.join('&')
-            }
-
-            let year = []
-                // check if car model's engine is checked
-            let car_models = [];
-            $('.car-models:checkbox:checked').each(function(i, e) {
-                let self = $(this);
-                let car_model_slug = self.data('slug');
-                let car_model_name = self.data('name');
-                if (self.hasClass('attribute')) {
-                    if ($('.engine-' + car_model_slug).is(':checked') == false) {
-                        car_models.push(car_model_name.toUpperCase())
-                    }
-
-                    if ($('.Year_from-' + car_model_slug).val() === '' || $('.Year_to-' + car_model_slug).val() === '') {
-                        year.push(car_model_name.toUpperCase())
-                    }
-                }
-            });
-
-            if (year.length) {
-                messages['attribute'] = 'Enter year range for ' + year.join('&')
-            }
-
-            if (car_models.length) {
-                messages['attribute'] = ' Enter engine for ' + car_models.join('&')
-            }
-
-        }
-
-        if (!jQuery.isEmptyObject(messages)) {
-            $('html,body').animate({ scrollTop: 0 }, 'fast');
-            for (const i in messages) {
-                const element = messages[i];
-                $('.' + i).text(element)
-            }
-            return false;
-        }
-
-        let self = $(this)
-        let button = $('#submit-product-form-button')
-        let buttonSpinner = $('#submit-product-form-button .spinner-border')
-        button.attr('disabled', true)
-        buttonSpinner.removeClass('d-none')
-        let bText = $('#submit-product-form-text')
-        bText.text('Saving....');
-        $(".text-danger").remove();
-        let desc = CKEDITOR.instances['phy_description'].getData();
-        let formData = self.serializeArray();
-        formData.push({ name: "phy_desc", value: desc });
-
-        $.ajax({
-            type: self.data('method'),
-            url: self.attr('action'),
-            data: formData
-        }).done(function(response) {
-            window.location.replace('/admin/products');
-        }).catch(function(xhr, status, error) {
-            // error handling
-            button.attr('disabled', false)
-            buttonSpinner.addClass('d-none')
-            let bText = $('#submit-product-form-text')
-            bText.text('Submit');
-            console.log(xhr.responseJSON.errors)
-        });
-
-        //     },
-        // });
-        return false;
-    })
-
-
-    //s.initMaterialWizard();
-
-    setTimeout(function() {
-        $('.card.wizard-card').addClass('active');
-    }, 600);
 });
 
 
-CKEDITOR.replace('phy_description', {
+CKEDITOR.replace('description', {
     height: '200px',
     width: '100%',
-    toolbar: [
-        '/',
-        { name: 'paragraph', groups: ['list', 'indent', ], items: ['BulletedList'] },
-        '/',
-    ]
+    // toolbar: [
+    //     '/',
+    //     { name: 'paragraph', groups: ['list', 'indent', ], items: ['BulletedList'] },
+    //     '/',
+    // ]
 })
 
-var row = 0;
+var Img = {
+    loadImage: function() {},
+    deleteImage: function(opts = {}) {
+        let fileName, activator, parent;
+        $(document).on("click", opts.activator, function(e) {
+            e.preventDefault();
+            activator = $(this);
+            parent = activator.parents(".uploadloaded_image");
+            opts.inputFile;
+            var $el = opts.inputFile.wrap('<form id="clearfiles"></form>');
+            document.getElementById("clearfiles").reset();
+            opts.inputFile.unwrap();
+            let params = {
+                image_url: parent.find("input.stored_image").val(),
+                image_id: activator.data("id"),
+                delete: true,
+            };
+            $.ajax({
+                url: opts.url,
+                type: "POST",
+                data: params,
+                beforeSend: function() {
+                    $(document)
+                        .find("label#main_image-error")
+                        .remove();
+                    parent.find("div.upload-text").addClass("hide");
+                    parent.find("img#stored_image").addClass("hide");
+                    parent.find("div.remove_image").addClass("hide");
+                    parent.append(
+                        '<img id="image_loader" src="/images/loaders/ajax-loader.gif" class="upload_spinner">'
+                    );
+                },
+                success: function(data) {
+                    parent.find("img.upload_spinner").remove();
+                    parent.find("div.upload-text").removeClass("hide");
+                    parent.find("img#stored_image").remove();
+                    parent.find("input.stored_image").val("");
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    parent.find("img.upload_spinner").remove();
+                    //parent.find('div.upload-text').removeClass('hide');
+                    parent.find("img#stored_image").removeClass("hide");
+                    parent.find("div.remove_image").removeClass("hide");
+                },
+            });
+        });
+    },
+    initUploadImage: function(opts = {}) {
+        let fileName, activator, parent;
+        console.log(opts.inputFile)
+        $(document).on("click", opts.activator, function(e) { opts.inputFile.click() })
 
-function addRowLagos() {
-    let html = '<div id="row-' + row + '" class="row dup-lagos my-3 ">';
-    html += '<div class="col-sm-3">';
-    html += '<div class="input-group input-group-outline">';
-    html += '<label class="form-label"> </label>';
-    html += '<select name="condition[lagos][tag][]" id="" class="form-control">';
-    html += '<option value="quantity">Quantity</option>';
-    html += '</select>';
-    html += '</div>';
-    html += '</div>';
-    html += '<div class="col-sm-3">';
-    html += '<div class="input-group input-group-outline">';
-    html += '<label class="form-label"> </label>';
-    html += '<select name="condition[lagos][condition][]" id="" class="form-control">';
-    html += '<option value=">">greater than</option>';
-    html += '<option value="=">Equal to</option>';
-    html += '</select>';
-    html += '</div>';
-    html += '</div>';
-    html += '<div class="col-sm-2">';
-    html += '<div class="input-group input-group-outline">';
-    html += '<label class="form-label"> </label>';
-    html += '<select name="condition[lagos][tag_value][]" id="" class="form-control">';
-    html += '<option value="1">1</option>';
-    html += '<option value="2">2</option>';
-    html += '<option value="3">3</option>';
-    html += '<option value="4">4</option>';
-    html += '<option value="5">5</option>';
-    html += '</select>';
-    html += '</div>';
-    html += '</div>';
-    html += '<div class="col-sm-3">';
-    html += '<div class="input-group input-group-outline">';
-    html += '<label class="form-label"></label>';
-    html += '<input type="text" class="form-control" required placeholder="Price" name="condition[lagos][price][]">';
-    html += '</div>';
-    html += '</div>';
-    html += '<div class="col-sm-1">';
-    html += '<button onclick="$(\'#row-' + row + '\').remove();"  class="remove-section-lagos btn btn-outline-primary btn-sm mb-0" type="button" ><i class="fa fa-trash"></i> </button>';
-    html += '</div>';
-    html += '</div>';
-    $("div.dup-lagos:last").after(html);
-    row++;
-}
+        if (opts.inputFile !== null) {
+            opts.inputFile.on("change", function(e) {
+                parent = $(this).parents(".uploadloaded_image");
+                var image_url = parent.find("input.file_upload_input").val();
+                var image_id = parent.find("input.stored_image_id").val();
+                //Disable the submit button
+                var formData = new FormData();
+                var ins = this.files;
+                var self = $(this);
+                for (var x = 0; x < ins.length; x++) {
+                    if (!ins[x].type.match("image.*")) {
+                        resetFile(opts.inputfile);
+                        proceed = false;
+                        return false;
+                    }
+                    if (ins[x].size > 10000000) {
+                        resetFile(inputfile);
+                        proceed = false;
+                        return;
+                    }
+                    formData.append("file", ins[x]);
+                    formData.append("file_name", fileName);
+                    formData.append("image_url", image_url);
+                    formData.append("image_id", image_id);
+                }
 
+                $.ajax({
+                    url: opts.url,
+                    type: "POST",
+                    data: formData,
+                    beforeSend: function(xhr) {
+                        // opts.inputFile.attr('disabled',true)
+                        //$(opts.activator).addClass('uploading')
+                        $(document)
+                            .find("label#main_image-error")
+                            .remove();
+                        parent.find("div.upload-text").addClass("hide");
+                        parent.find("img#stored_image").remove();
+                        parent.find("div.remove_image").addClass("hide");
+                        parent.append(
+                            '<img id="image_loader" src="/images/loaders/ajax-loader.gif" class="upload_spinner">'
+                        );
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    complete: function() {
+                        //opts.inputFile.attr('disabled',false)
+                        // $(opts.activator).removeClass('uploading')
+                    },
+                    success: function(data) {
+                        let path = $.trim(data.path);
+                        console.log(data);
+                        parent.find("img.upload_spinner").remove();
+                        parent.append(
+                            '<img id="stored_image"  class="img-thumnail" src="' +
+                            path +
+                            '" alt="">'
+                        );
+                        parent.find("div.remove_image").removeClass("hide");
+                        parent.find("input.stored_image").val(path);
+                        parent.find("a.stored_image").val(path);
 
-var out_row = 0;
-
-function addRowOutSideLagos() {
-    let html = '<div id="out_row-' + out_row + '" class="row dup-out-lagos my-3 ">';
-    html += '<div class="col-sm-3">';
-    html += '<div class="input-group input-group-outline">';
-    html += '<label class="form-label"> </label>';
-    html += ' <select name="condition[out_side_lagos][tag][]" id="" class="form-control">';
-    html += '<option value="quantity">Quantity</option>';
-    html += '</select>';
-    html += '</div>';
-    html += '</div>';
-    html += '<div class="col-sm-3">';
-    html += '<div class="input-group input-group-outline">';
-    html += '<label class="form-label"> </label>';
-    html += '<select name="condition[out_side_lagos][condition][]" id="" class="form-control">';
-    html += '<option value=">">greater than</option>';
-    html += '<option value="=">Equal to</option>';
-    html += '</select>';
-    html += '</div>';
-    html += '</div>';
-    html += '<div class="col-sm-2">';
-    html += '<div class="input-group input-group-outline">';
-    html += '<label class="form-label"> </label>';
-    html += '<select name="condition[out_side_lagos][tag_value][]" id="" class="form-control">';
-    html += '<option value="1">1</option>';
-    html += '<option value="2">2</option>';
-    html += '<option value="3">3</option>';
-    html += '<option value="4">4</option>';
-    html += '<option value="5">5</option>';
-    html += '</select>';
-    html += '</div>';
-    html += '</div>';
-    html += '<div class="col-sm-3">';
-    html += '<div class="input-group input-group-outline">';
-    html += '<label class="form-label"></label>';
-    html += '<input type="text" class="form-control" placeholder="Price" required name="condition[out_side_lagos][price][]">';
-    html += '</div>';
-    html += '</div>';
-    html += '<div class="col-sm-1">';
-    html += '<button onclick="$(\'#out_row-' + out_row + '\').remove();"  class="remove-section-lagos btn btn-outline-primary btn-sm mb-0" type="button" ><i class="fa fa-trash"></i> </button>';
-    html += '</div>';
-    html += '</div>';
-    $("div.dup-out-lagos:last").after(html);
-    out_row++;
-}
+                        localStorage.setItem("first_image", path);
+                        let image = localStorage.getItem("first_image");
+                        parent.find("input.stored_image").val(path);
+                    },
+                    error: function(XMLHttpRequest, textStatus, errorThrown) {
+                        parent.find("img.upload_spinner").remove();
+                        parent.find("div.upload-text").removeClass("hide");
+                    },
+                });
+                //return false;
+            });
+        }
+    },
+};

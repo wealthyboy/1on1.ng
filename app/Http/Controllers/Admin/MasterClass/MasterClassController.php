@@ -1,39 +1,34 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Celeb;
+namespace App\Http\Controllers\Admin\MasterClass;
 
 use App\DataTable\DataTable;
+use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Celebrity;
-use App\Models\User;
+use App\Models\MasterClass;
 use Illuminate\Http\Request;
-use Maatwebsite\Excel\Facades\Excel;
-use App\Exports\Export;
 
-
-
-class CelebrityController extends DataTable
-{   
-
-    protected $name = 'Celebrities';   
+class MasterClassController extends DataTable
+{
+    protected $name = 'masterclass';   
     
-    public $createRoute = 'admin.celebrity.create';
+    public $createRoute = 'admin.masterclass.create';
 
-    public $modelName = 'celebrity';
-
-    public $updateRoute;
+    public $modelName = 'MasterClass';
 
     public $allowEdit = true;
 
-    public $storeRoute = 'celebrities.store';
+    public $storeRoute = 'masterclass.store';
 
-    public $indexView  = 'admin.celebrity.index';
+    public $indexView  = 'admin.masterclass.index';
 
-    public $editView  = 'admin.celebrity.edit';
+    public $editView  = 'admin.masterclass.edit';
 
-    public $indexRoute = 'celebrities.index';
+    public $indexRoute = 'masterclass.index';
 
     public $storeForm = [
-        'Full name' => [
+        'Name' => [
             'type' => 'input',
             'clasess' => '',
             'name' => 'full_name'
@@ -52,50 +47,56 @@ class CelebrityController extends DataTable
 
 
     public $editRoute = [
-        'celebrities.edit',
-        'celebrity'
+        'masterclass.edit',
+        'masterclass'
     ];
 
     public $deleteRoute = [
-        'celebrities.destroy',
-        'celebrity'
+        'masterclass.destroy',
+        'masterclass'
     ];
 
     public $storeRouteRules = [
-        'name' => 'required|unique:celebrities|max:255',
+        'name' => 'required|unique:auctions|max:255',
         'description' => 'required'
     ];
 
     public $editRouteRules = [
-        'name' => 'required|unique:celebrities|max:255',
+        'name' => 'required|unique:auctions|max:255',
         'description' => 'required'
+    ];
+
+    public $updateRoute = [
+        'masterclass.update',
+        'masterclass'
     ];
 
     public function __construct()
     {
-    
         parent::__construct();
 
         $this->routeData  = [
             'data' => $this->all(request()),
-            'form' => $this->storeForm
+            'form' => $this->storeForm,
+            'celebrities' => Celebrity::all(),
+            'categories' => Category::parents()->get()
         ];
+        
     }
 
     public function builder()
     {   
-        return Celebrity::query();
+        return MasterClass::query();
     }
-
 
     protected function getCustomColumnNames() 
     {
         return [
           "image",
           "name",
-          "description",
-          "created_at",
+          "start_date",
+          "end_date",
+          "price",
         ];
     }
-
 }

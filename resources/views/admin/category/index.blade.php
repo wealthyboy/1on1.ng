@@ -98,10 +98,8 @@
                      </div>
                   </div>
                </div>
-               <div class="col-12">
-                  <label class="form-control mb-0"></label>
-                  <div action="/file-upload" class="form-control border dropzone" id="dropzone"></div>
-               </div>
+               @include('admin._partials.single_image')
+
                <div class="d-flex justify-content-end mt-4">
                   <button type="submit" name="button" class="btn bg-gradient-dark m-0 ms-2">Submit</button>
                </div>

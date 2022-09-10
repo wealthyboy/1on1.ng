@@ -1,85 +1,118 @@
 <?php
 
 namespace App\Http\Controllers\Admin\Auction;
+use App\DataTable\DataTable;
 
 use App\Http\Controllers\Controller;
+use App\Models\Auction;
+use App\Models\Category;
+use App\Models\Celebrity;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
-class AuctionsController extends Controller
+
+class AuctionsController extends DataTable
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    
+    protected $name = 'Auctions';   
+    
+    public $createRoute = 'admin.auctions.create';
+
+    public $modelName = 'auction';
+
+    public $allowEdit = true;
+
+    public $storeRoute = 'auctions.store';
+
+    public $indexView  = 'admin.auctions.index';
+
+    public $editView  = 'admin.auctions.edit';
+
+    public $indexRoute = 'auctions.index';
+
+    public $storeForm = [
+        'Auction name' => [
+            'type' => 'input',
+            'clasess' => '',
+            'name' => 'name'
+        ],
+        'Description' => [
+            'type' => 'textarea',
+            'clasess' => '',
+            'name' => 'description'
+        ],
+        'image' => [
+            'type' => 'image',
+            'clasess' => '',
+            'name' => 'image'
+        ]
+    ];
+
+
+    public $editRoute = [
+        'auctions.edit',
+        'auction'
+    ];
+
+    public $deleteRoute = [
+        'auctions.destroy',
+        'auction'
+    ];
+
+    public $updateRoute = [
+        'auctions.update',
+        'auction'
+    ];
+
+    public $storeRouteRules = [
+        'name' => 'required|unique:auctions|max:255',
+        'description' => 'required',
+        'celebrity_id' => 'required',
+        'category_id' => 'required',
+    ];
+
+    public function __construct()
     {
-        //
+        parent::__construct();
+
+        $this->routeData  = [
+            'data' => $this->all(request()),
+            'form' => $this->storeForm,
+            'celebrities' => Celebrity::all(),
+            'categories' => Category::parents()->get()
+        ];
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    public function builder()
+    {   
+        return Auction::query();
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+    public function editValidationRules($id) 
+    {    
+        return [
+            'name'=>[
+                'required',
+                    Rule::unique('auctions')->ignore($id)     
+            ],
+            'celebrity_id' => 'required',
+            'description' => 'required',
+            'category_id' => 'required',
+        ];
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    protected function getCustomColumnNames() 
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return [
+          "name",
+          "event_date",
+          "bid_start_price",
+          "one_time_price",
+          "start_date",
+          "end_date",
+          "created_at",
+        ];
     }
 }
+
+

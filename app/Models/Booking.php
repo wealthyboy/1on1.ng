@@ -4,8 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\ColumnFillable;
+
 
 class Booking extends Model
 {
-    use HasFactory;
+    use HasFactory, ColumnFillable;
+
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class)->withPivot('category_id');
+	}
 }

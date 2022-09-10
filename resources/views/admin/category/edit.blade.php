@@ -112,10 +112,8 @@
                      </div>
                   </div>
                </div>
-               <div class="col-12">
-                  <label class="form-control mb-0"></label>
-                  <div action="/file-upload" class="form-control border dropzone" id="dropzone"></div>
-               </div>
+               @include('admin._partials.single_image', ['model' => $cat])
+
                <div class="d-flex justify-content-end mt-4">
                   <button type="submit" name="button" class="btn bg-gradient-dark m-0 ms-2">Submit</button>
                </div>
@@ -126,40 +124,29 @@
 </div>
 @endsection
 @section('inline-scripts')
-if (document.getElementById('choices-gender')) {
-   var gender = document.getElementById('choices-gender');
-   const example = new Choices(gender);
-}
-if (document.getElementById('choices-language')) {
-   var language = document.getElementById('choices-language');
-   const example = new Choices(language);
-}
-if (document.getElementById('choices-skills')) {
-   var skills = document.getElementById('choices-skills');
-   const example = new Choices(skills, {
-      delimiter: ',',
-      editItems: true,
-      maxItemCount: 5,
-      removeItemButton: true,
-      addItems: true
-   });
-}
-   var parent_id = document.getElementById('parent_id');
-   setTimeout(function () {
-      const example = new Choices(parent_id);
-   }, 1);
+$(document).ready(function() {
+    let activateFileExplorer = 'a.activate-file';
+    let delete_image = 'a.delete_image';
+    var main_file = $("input#file_upload_input");
+
+    Img.initUploadImage({
+        url:'/admin/upload/image?folder=category',
+        activator: activateFileExplorer,
+        inputFile: main_file,
+    });
+
+    Img.deleteImage({
+        url:'/admin/category/delete/image',
+        activator: delete_image,
+        inputFile: main_file,
+    });
+});
+
+
    
 
 
-Dropzone.autoDiscover = false;
-var drop = document.getElementById('dropzone')
-var myDropzone = new Dropzone(drop, {
-   url: "/admin/upload/image?folder=category",
-   addRemoveLinks: true,
-   uploadMultiple: false,
-   maxFiles: 1,
 
-});
 @stop
 
 
