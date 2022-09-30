@@ -16,8 +16,17 @@ class Auction extends Model
         return $this->morphMany(Image::class, 'imageable');
 	}
 
+    // public function categories()
+    // {
+    //     return $this->belongsToMany(Category::class)->withPivot('category_id');
+	// }
+
+
+     /**
+     * Get all of the tags for the post.
+     */
     public function categories()
     {
-        return $this->belongsToMany(Category::class)->withPivot('category_id');
-	}
+        return $this->morphToMany(Category::class, 'categoryable');
+    }
 }

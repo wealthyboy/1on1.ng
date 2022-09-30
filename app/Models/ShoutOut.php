@@ -4,18 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Traits\ColumnFillable;
 
-
-class MasterClass extends Model
+class ShoutOut extends Model
 {
-    use HasFactory, ColumnFillable;
-
-    // public function categories()
-    // {
-    //     return $this->belongsToMany(Category::class)->withPivot('category_id');
-	// }
-
+    use HasFactory;
 
     /**
      * Get all of the tags for the post.
@@ -25,4 +17,3 @@ class MasterClass extends Model
         return $this->morphToMany(Category::class, 'categoryable');
     }
 }
-

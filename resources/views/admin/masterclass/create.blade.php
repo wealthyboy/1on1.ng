@@ -1,13 +1,15 @@
 @extends('admin.layouts.app')
 
 @section('content')
+@include('admin.errors.errors')
+
 <form id="" action="{{ route($data['meta']['route']['store']) }}" method="post">
     @csrf
     <div class="row">
     <div class="col-md-7">
         <div class="card mt-4" id="password">
             <div class="card-header">
-                <h5>Add {{ $data['meta']['name'] }}</h5>
+                <h5>Add {{ ucfirst($data['meta']['name']) }}</h5>
             </div>
             <div class="card-body pt-0">
                 
@@ -15,7 +17,7 @@
                     <div class="col-sm-7 col-12">
                         <div class="input-group input-group-outline">
                             <label class="form-label">Name</label>
-                            <input type="text"  required class="form-control"  name="name">
+                            <input type="text" autocomplete="off"   required class="form-control"  name="name">
                         </div>
                     </div>
                     <div class="col-sm-5 col-12">
@@ -35,7 +37,7 @@
                     <div class="col-sm-12 col-12 mt-3">
                         <div class="input-group input-group-outline">
                             <label class="form-label">Price</label>
-                            <input name="price"  class="form-control " type="text" >
+                            <input name="price" autocomplete="off"  class="form-control " type="text" >
                         </div>
                     </div>
                     
@@ -45,13 +47,13 @@
                     <div class="col-sm-6 col-12 mt-3">
                         <div class="input-group input-group-outline">
                             <label class="form-label">Event Start  Date & Time</label>
-                            <input name="start_date"  class="form-control datetimepicker" type="text" data-input>
+                            <input name="start_date"  autocomplete="off"  class="form-control datetimepicker" type="text" data-input>
                         </div>
                     </div>
                     <div class="col-sm-6 col-12 mt-3">
                         <div class="input-group input-group-outline">
                             <label class="form-label">Event  Date & Time</label>
-                            <input name="end_date"  class="form-control datetimepicker" type="text" data-input>
+                            <input name="end_date"  autocomplete="off"  class="form-control datetimepicker" type="text" data-input>
                         </div>
                     </div>
                 </div>
@@ -59,7 +61,7 @@
                     <div class="col-sm-12 col-12">
                         <label class="form-label">Description</label>
                         <div class="input-group input-group-outline">
-                            <textarea type="text" required class="form-control" id="description" name="description" rows="8"></textarea>
+                            <textarea type="text" autocomplete="off"  required class="form-control" id="description" name="description" rows="8"></textarea>
                         </div>
                     </div>
                 </div>

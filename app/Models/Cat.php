@@ -7,39 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 use App\Traits\HasChildren;
 
 
-class Category extends Model
+class Cat extends Model
 {
-    use HasFactory, HasChildren;
+    use HasChildren;
 
+    public $table = 'categories';
 
-    /**
-     * Get all of the posts that are assigned this tag.
-     */
-    public function auctions()
-    {
-        return $this->morphedByMany(Auction::class, 'categoryable');
-    }
- 
-    /**
-     * Get all of the videos that are assigned this tag.
-     */
-    public function shout_outs()
-    {
-        return $this->morphedByMany(ShoutOut::class, 'categoryable');
-    }
-
-
-    /**
-     * Get all of the videos that are assigned this tag.
-     */
-    public function master_clasess()
-    {
-        return $this->morphedByMany(MasterClass::class, 'categoryable');
-    }
-
-
-
-
+	
 	protected $fillable = ['name','description','slug','parent_id','sort_order','allow'];
 	
 
@@ -66,4 +40,8 @@ class Category extends Model
         }
         return $query->whereNull('parent_id')->orderBy($order,$desc);
     }
+
 }
+
+
+
