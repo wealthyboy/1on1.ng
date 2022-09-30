@@ -41,7 +41,7 @@ class Helper{
     }
 
 
-    public function check($collections, $id, $pivot = false, $eid = null)
+    public static function check($collections, $id, $pivot = false, $eid = null)
     {   
         if ( $pivot) {
             foreach($collections as $collection){

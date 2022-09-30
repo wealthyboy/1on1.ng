@@ -22,10 +22,7 @@
 
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-
-
-
-	<!--  Material Dashboard CSS    -->
+   	<!--  Material Dashboard CSS    -->
     <link href="{{ asset('css/admin.css') }}" rel="stylesheet"/>
     @yield('page-styles')
 </head>
@@ -120,7 +117,7 @@
                         <li class="nav-item ">
                            <a class="nav-link text-white {{ $helper->active_link(['bookings']) }}"  href="{{ route('bookings.index') }}">
                               <span class="sidenav-mini-icon"> P </span>
-                              <span class="sidenav-normal  ms-2  ps-1"> Reservations <b class="caret"></b></span>
+                              <span class="sidenav-normal  ms-2  ps-1"> Shout Outs <b class="caret"></b></span>
                            </a>
                         </li>
                      </ul>
