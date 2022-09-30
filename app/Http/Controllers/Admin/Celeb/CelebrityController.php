@@ -36,7 +36,7 @@ class CelebrityController extends DataTable
         'Full name' => [
             'type' => 'input',
             'clasess' => '',
-            'name' => 'full_name'
+            'name' => 'name'
         ],
         'Description' => [
             'type' => 'textarea',
@@ -67,7 +67,7 @@ class CelebrityController extends DataTable
     ];
 
     public $editRouteRules = [
-        'name' => 'required|unique:celebrities|max:255',
+        'full_name' => 'required|unique:celebrities|max:255',
         'description' => 'required'
     ];
 

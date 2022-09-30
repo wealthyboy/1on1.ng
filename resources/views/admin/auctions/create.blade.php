@@ -4,7 +4,6 @@
 @section('content')
 @include('admin.errors.errors')
 
-<?php print_r( old()) ?>
 <form id="" action="{{ route($data['meta']['route']['store']) }}" method="post">
     @csrf
     <div class="row">

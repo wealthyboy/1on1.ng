@@ -143,15 +143,19 @@ $(document).ready(function() {
 });
 
 
-CKEDITOR.replace('description', {
-    height: '200px',
-    width: '100%',
-    // toolbar: [
-    //     '/',
-    //     { name: 'paragraph', groups: ['list', 'indent', ], items: ['BulletedList'] },
-    //     '/',
-    // ]
-})
+if (document.querySelector('.datetimepicker')) {
+
+    CKEDITOR.replace('description', {
+        height: '200px',
+        width: '100%',
+        // toolbar: [
+        //     '/',
+        //     { name: 'paragraph', groups: ['list', 'indent', ], items: ['BulletedList'] },
+        //     '/',
+        // ]
+    })
+
+}
 
 var Img = {
     loadImage: function() {},
