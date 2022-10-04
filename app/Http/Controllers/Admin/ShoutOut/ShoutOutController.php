@@ -85,8 +85,6 @@ class ShoutOutController extends DataTable
             'celebrities' => Celebrity::all(),
             'categories' => Category::parents()->get()
         ];
-
-        dd($this->routeData);
     }
 
     public function builder()
