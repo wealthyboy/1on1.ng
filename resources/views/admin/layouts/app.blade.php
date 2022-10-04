@@ -88,14 +88,14 @@
 
                         <li class="nav-item ">
                            <a class="nav-link text-white {{ $helper->active_link(['auctions']) }}"  href="{{ route('auctions.index') }}">
-                              <span class="sidenav-mini-icon"> P </span>
+                              <span class="sidenav-mini-icon"> A </span>
                               <span class="sidenav-normal  ms-2  ps-1"> Auctions <b class="caret"></b></span>
                            </a>
                         </li>
 
                         <li class="nav-item ">
                            <a class="nav-link text-white {{ $helper->active_link(['celebrities']) }}"  href="{{ route('celebrities.index') }}">
-                              <span class="sidenav-mini-icon"> P </span>
+                              <span class="sidenav-mini-icon"> C </span>
                               <span class="sidenav-normal  ms-2  ps-1"> Celebrity <b class="caret"></b></span>
                            </a>
                         </li>
@@ -109,14 +109,14 @@
 
                         <li class="nav-item ">
                            <a class="nav-link text-white {{ $helper->active_link(['masterclass']) }}"  href="{{ route('masterclass.index') }}">
-                              <span class="sidenav-mini-icon"> P </span>
+                              <span class="sidenav-mini-icon"> M </span>
                               <span class="sidenav-normal  ms-2  ps-1"> Master Class <b class="caret"></b></span>
                            </a>
                         </li> 
                         
                         <li class="nav-item ">
-                           <a class="nav-link text-white {{ $helper->active_link(['bookings']) }}"  href="{{ route('bookings.index') }}">
-                              <span class="sidenav-mini-icon"> P </span>
+                           <a class="nav-link text-white {{ $helper->active_link(['shoutouts']) }}"  href="{{ route('shoutouts.index') }}">
+                              <span class="sidenav-mini-icon"> S </span>
                               <span class="sidenav-normal  ms-2  ps-1"> Shout Outs <b class="caret"></b></span>
                            </a>
                         </li>

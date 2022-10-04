@@ -196,7 +196,7 @@ abstract class DataTable extends Controller
     public function store(Request $request) 
     {   
         $request->validate($this->storeRouteRules);
-        $model = $this->builder->create($request->all());
+        $model = $this->builder->create($request->except('_token'));
         if (!empty($request->images) ) {
             $images =  $request->images;
             $images = array_filter($images);

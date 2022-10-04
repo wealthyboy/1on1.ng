@@ -15,6 +15,12 @@ class CreateShoutOutsTable extends Migration
     {
         Schema::create('shout_outs', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->longText('description')->nullable();
+            $table->bigInteger('price');
+            $table->bigInteger('celebrity_id');
+            $table->string('type');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

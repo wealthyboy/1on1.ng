@@ -31,7 +31,7 @@ Route::group(['prefix' => 'admin'], function(){
     Route::resource('celebrities','Admin\Celeb\CelebrityController',['names'=>'celebrities']);
     Route::resource('auctions','Admin\Auction\AuctionsController',['names'=>'auctions']);
     Route::resource('masterclass','Admin\MasterClass\MasterClassController',['names'=>'masterclass']);
-    Route::resource('bookings','Admin\Booking\BookingController',['names'=>'bookings']);
+    Route::resource('shoutouts','Admin\ShoutOut\ShoutOutController',['names'=>'shoutouts']);
 
 
 
