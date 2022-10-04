@@ -13,7 +13,7 @@ class ImagesController extends Controller
 {
     protected $settings;
 
-    protected $folders = ['products','attributes','category','masterclass','banners','auctions','uploads','bookings'];
+    protected $folders = ['products','shoutouts','category','masterclass','banners','auctions','uploads','bookings'];
     
     public function __construct()
     {	  

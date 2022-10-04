@@ -10,7 +10,10 @@ use Illuminate\Http\Request;
 
 class ShoutOutController extends DataTable
 {   
-    protected $name = 'shoutouts';   
+    protected $name = 'shoutouts';  
+    
+    protected $page_name = 'Shout Outs';   
+
     
     public $createRoute = 'admin.shoutouts.create';
 
