@@ -197,7 +197,7 @@ abstract class DataTable extends Controller
     {   
         $request->validate($this->storeRouteRules);
 
-        dd($request->all());
+       // dd($request->all());
         $model = $this->builder->create($request->all());
         if (!empty($request->images) ) {
             $images =  $request->images;
