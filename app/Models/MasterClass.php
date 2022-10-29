@@ -11,12 +11,6 @@ class MasterClass extends Model
 {
     use HasFactory, ColumnFillable;
 
-    // public function categories()
-    // {
-    //     return $this->belongsToMany(Category::class)->withPivot('category_id');
-	// }
-
-
     /**
      * Get all of the tags for the post.
      */
@@ -24,5 +18,19 @@ class MasterClass extends Model
     {
         return $this->morphToMany(Category::class, 'categoryable');
     }
-}
 
+
+    /**
+     * Get all of the tags for the post.
+     */
+    public function tags()
+    {
+        return $this->morphToMany(Tag::class, 'taggable');
+    }
+
+
+    public function service()
+    {
+        return $this->belongsTo(Service::class);
+    }
+}

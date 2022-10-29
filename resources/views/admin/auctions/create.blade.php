@@ -65,6 +65,8 @@
                         <div class="input-group input-group-outline">
                             <label class="form-label">Auction Start  Date & Time</label>
                             <input required name="start_date"  value="{{ old('start_date') }}"  class="form-control datetimepicker" type="text" data-input>
+                            @include('admin._partials.type', ['name' => 'auction'])
+
                         </div>
                     </div>
                     <div class="col-sm-6 col-12 mt-3">
@@ -101,6 +103,12 @@
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <div class="row">
+                   <div class="col-sm-8 col-12 my-4">
+                      @include('admin._partials.is_featured')
+                   </div>
                 </div>
                 <button type="submit" class="btn bg-gradient-dark btn-sm float-end mt-6 mb-0">Save</button>
             

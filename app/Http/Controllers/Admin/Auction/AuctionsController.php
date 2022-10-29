@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Auction;
 use App\Models\Category;
 use App\Models\Celebrity;
+use App\Models\Service;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -20,13 +22,17 @@ class AuctionsController extends DataTable
 
     public $modelName = 'auction';
 
+
+    public $type = 'auction';
+
+
     public $allowEdit = true;
 
     public $storeRoute = 'auctions.store';
 
-    public $indexView  = 'admin.auctions.index';
+    public $indexView = 'admin.auctions.index';
 
-    public $editView  = 'admin.auctions.edit';
+    public $editView = 'admin.auctions.edit';
 
     public $indexRoute = 'auctions.index';
 
@@ -65,7 +71,7 @@ class AuctionsController extends DataTable
     ];
 
     public $storeRouteRules = [
-        'name' => 'required|unique:auctions|max:255',
+        'name' => 'required|unique:services|max:255',
         'description' => 'required',
         'celebrity_id' => 'required',
         'category_id' => 'required',
@@ -75,17 +81,17 @@ class AuctionsController extends DataTable
     {
         parent::__construct();
 
-        $this->routeData  = [
+        $this->routeData = [
             'data' => $this->all(request()),
             'form' => $this->storeForm,
             'celebrities' => Celebrity::all(),
-            'categories' => Category::parents()->get()
+            'categories' => Category::parents()->get(),
         ];
     }
 
     public function builder()
     {   
-        return Auction::query();
+        return Service::query();
     }
 
     public function editValidationRules($id) 

@@ -108,6 +108,13 @@
                         </li>
 
                         <li class="nav-item ">
+                           <a class="nav-link text-white {{ $helper->active_link(['tags']) }}"  href="{{ route('tags.index') }}">
+                              <span class="sidenav-mini-icon"> T </span>
+                              <span class="sidenav-normal  ms-2  ps-1"> Tags <b class="caret"></b></span>
+                           </a>
+                        </li> 
+
+                        <li class="nav-item ">
                            <a class="nav-link text-white {{ $helper->active_link(['masterclass']) }}"  href="{{ route('masterclass.index') }}">
                               <span class="sidenav-mini-icon"> M </span>
                               <span class="sidenav-normal  ms-2  ps-1"> Master Class <b class="caret"></b></span>

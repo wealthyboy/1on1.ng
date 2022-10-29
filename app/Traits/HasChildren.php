@@ -15,6 +15,16 @@ trait HasChildren
         return $builder->whereNull('parent_id')->orderBy($order,$desc);
     }
 
+    
+
+
+    public function scopeFeatured(Builder $builder,$order = null, $desc = null){
+        if ($order  && $desc) {
+            return $builder->where('is_featured', true)->orderBy($order,$desc);
+        }
+        return $builder->where('is_featured', true);
+    }
+
     public function isParent()
     {
         return $this->parent_id == null ? true : false;

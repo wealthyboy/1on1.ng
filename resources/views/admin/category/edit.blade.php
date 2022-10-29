@@ -114,6 +114,13 @@
                </div>
                @include('admin._partials.single_image', ['model' => $cat])
 
+
+               <div class="row">
+                    <div class="col-sm-8 col-12 my-4">
+                      @include('admin._partials.is_featured',['model' => $cat])
+                    </div>
+                </div>
+
                <div class="d-flex justify-content-end mt-4">
                   <button type="submit" name="button" class="btn bg-gradient-dark m-0 ms-2">Submit</button>
                </div>

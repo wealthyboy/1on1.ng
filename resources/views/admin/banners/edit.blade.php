@@ -14,13 +14,13 @@
                   <div class="col-sm-6 col-12">
                      <div class="input-group input-group-outline ">
                         <label class="form-label">Title</label>
-                        <input name="title" value="{{ $banner ? $banner->title : old('title')   }}"  type="text" class="form-control" placeholder="">
+                        <input name="title" value="{{ $banner ? $banner->title : old('title')   }}" type="text" class="form-control" placeholder="">
                      </div>
                   </div>
                   <div class="col-sm-6 col-4">
                      <div class="input-group input-group-outline ">
                         <label class="form-label">Sort Order</label>
-                        <input type="number" value="{{ $banner->sort_order }}"    name="sort_order" class="form-control" placeholder="">
+                        <input type="number" value="{{ $banner->sort_order }}" name="sort_order" class="form-control" placeholder="">
                      </div>
                   </div>
                </div>
@@ -51,15 +51,15 @@
                <div class="input-group input-group-outline mt-3">
                   <label class="form-label mt-4 ms-0"> </label>
                   <select class="form-control" name="col_width" id="">
-                     <option  value="">--Choose Cols--</option>
-                     @foreach ( $cols  as $col ) 
-                        @if( $col  == $banner->col)
-                              <option value="{{ $col }}" selected>{{ $col }}</option>
-                        @else
-                              <option value="{{ $col }}">{{ $col }}</option>
-                        @endif
-                     @endforeach  
-                    
+                     <option value="">--Choose Cols--</option>
+                     @foreach ( $cols as $col )
+                     @if( $col == $banner->col)
+                     <option value="{{ $col }}" selected>{{ $col }}</option>
+                     @else
+                     <option value="{{ $col }}">{{ $col }}</option>
+                     @endif
+                     @endforeach
+
                   </select>
                </div>
                <div class="input-group input-group-outline mt-3">
@@ -67,16 +67,20 @@
                   <select class="form-control" name="type" id="">
                      <option value="" selected="selected">--Choose Type--</option>
                      <option {{ $banner->type == 'slider' ? 'selected' : ''  }} value="slider">Slider</option>
-                     <option  {{ $banner->type == 'banner' ? 'selected' : ''  }}  value="banner">Banner</option>
-   
+                     <option {{ $banner->type == 'banner' ? 'selected' : ''  }} value="banner">Banner</option>
+
                   </select>
                </div>
                <div class="row mt-3">
-                  <div class="col-12">
-                        <label class="form-control mb-0"></label>
-                        <div action="/file-upload" class="form-control border dropzone" id="dropzone"></div>
+                  <div class="col-sm-12 col-12">
+                     <label class="form-label">Description</label>
+
+                     <div class="input-group input-group-outline">
+                        <textarea type="text" class="form-control" name="description" rows="8">{{ $banner->description }}</textarea>
+                     </div>
                   </div>
                </div>
+               @include('admin._partials.single_image')
                <button type="submit" class="btn bg-gradient-dark btn-sm float-end mt-4 mb-0">Submit</button>
             </form>
          </div>
@@ -84,38 +88,30 @@
    </div>
 </div>
 @endsection
-@section('inline-scripts')
-Dropzone.autoDiscover = false;
-var drop = document.getElementById('dropzone')
-let imgs = []
 
-var myDropzone = new Dropzone(drop, {
-   url: "/admin/upload/image?folder=banners",
-   addRemoveLinks: true,
-   acceptedFiles: ".jpeg,.jpg,.png,.JPG,.PNG",
-   paramName: 'file',
-   maxFiles: 1,
-   sending: function(file, xhr, formData) {
-     formData.append("_token", "{{ csrf_token() }}");
-   },
-  success(file, res, formData) {
-         imgs.push(res.path)
-         console.log(imgs)
-     $('.images').val(imgs)
-  },
-   headers: {
-      'X-CSRF-TOKEN': $('meta[name="token"]').attr('content')
-   }
-});
+@section('page-scripts')
+<script src="{{ asset('backend/products.js') }}"></script>
 @stop
+@section('inline-scripts')
+$(document).ready(function() {
+let activateFileExplorer = 'a.activate-file';
+let delete_image = 'a.delete_image';
+var main_file = $("input#file_upload_input");
+
+Img.initUploadImage({
+url:'/admin/upload/image?folder=banners',
+activator: activateFileExplorer,
+inputFile: main_file,
+});
+
+Img.deleteImage({
+url:'/admin/category/delete/image',
+activator: delete_image,
+inputFile: main_file,
+});
+});
 
 
 
 
-
-
-
-
-
-
-
+@stop

@@ -41,16 +41,30 @@
                     <div class="col-sm-6 col-12 mt-3">
                         <div class="input-group input-group-outline">
                             <label class="form-label">Price</label>
-                            <input name="price"  class="form-control" type="text" >
+                            <input name="shout_out_price[video]"   class="form-control " type="text">
                         </div>
                     </div>
                     <div class="col-sm-6 col-12 mt-3">
                         <div class="input-group input-group-outline">
                             <label class="form-label mt-4 ms-0"> </label>
-                            <select class="form-control" name="type" id="">
-                                <option  value="">--Type--</option>
-                                <option  value="video">Video</option>
-                                <option  value="audio">Audio</option>
+                            <select class="form-control" name="video" id="">
+                                <option   value="video">Video</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 col-12 mt-3">
+                        <div class="input-group input-group-outline">
+                            <label class="form-label">Price</label>
+                            <input name="shout_out_price[audio]"  class="form-control " type="text">
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-12 mt-3">
+                        <div class="input-group input-group-outline">
+                            <label class="form-label mt-4 ms-0"> </label>
+                            <select class="form-control" name="audio" id="">
+                                <option   value="audio">Audio</option>
                             </select>
                         </div>
                     </div>
@@ -62,8 +76,17 @@
                             <textarea type="text" required class="form-control" id="description" name="description" rows="8"></textarea>
                         </div>
                     </div>
+
+                    @include('admin._partials.type', ['name' => 'shout_out'])
+
                 </div>
                 @include('admin._partials.single_image')
+
+                <div class="row">
+                    <div class="col-sm-8 col-12 my-4">
+                      @include('admin._partials.is_featured')
+                    </div>
+                </div>
                 <button type="submit" class="btn bg-gradient-dark btn-sm float-end mt-6 mb-0">Save</button>
         
             </div>
@@ -99,9 +122,6 @@ $(document).ready(function() {
     });
 });
 @stop
-
-
-
 
 
 

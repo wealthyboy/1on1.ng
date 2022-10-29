@@ -11,13 +11,28 @@ class Category extends Model
 {
     use HasFactory, HasChildren;
 
+    protected $fillable = ['name','description','slug','parent_id','sort_order','allow'];
+
+    public $appends = [
+        'url'
+    ];
+    
+
+    /**
+     * Get all of the posts that are assigned this tag.
+     */
+    public function services()
+    {
+        return $this->morphedByMany(Service::class, 'categoryable');
+    }
+
 
     /**
      * Get all of the posts that are assigned this tag.
      */
     public function auctions()
     {
-        return $this->morphedByMany(Auction::class, 'categoryable');
+        return $this->morphedByMany(Auction::class, 'categoryable')->where('type', 'auction');
     }
  
     /**
@@ -25,7 +40,7 @@ class Category extends Model
      */
     public function shout_outs()
     {
-        return $this->morphedByMany(ShoutOut::class, 'categoryable');
+        return $this->morphedByMany(ShoutOut::class, 'categoryable')->where('type', 'shout_out');;
     }
 
 
@@ -34,14 +49,9 @@ class Category extends Model
      */
     public function master_clasess()
     {
-        return $this->morphedByMany(MasterClass::class, 'categoryable');
+        return $this->morphedByMany(MasterClass::class, 'categoryable')->where('type', 'master_class');;;
     }
 
-
-
-
-	protected $fillable = ['name','description','slug','parent_id','sort_order','allow'];
-	
 
     public function children()
     {
@@ -59,11 +69,24 @@ class Category extends Model
     }
 
 
-    public function scopeParents($query,$order = null, $desc = null){
+    public function parent()
+    {
+        return $this->belongsTo(Category::class, 'parent_id');
+    }
 
-        if ($order == null){
-           return $query->whereNull('parent_id');
-        }
-        return $query->whereNull('parent_id')->orderBy($order,$desc);
+
+    public function getRouteKeyName(){
+		return 'slug';
+	}
+
+
+    public function link()
+    {
+        return '/categories/'. $this->slug;
+    }
+
+    public function getUrlAttribute()
+    {
+        return '/categories/'. $this->slug;
     }
 }

@@ -56,6 +56,18 @@
                             <input name="end_date"  autocomplete="off"  class="form-control datetimepicker" type="text" data-input>
                         </div>
                     </div>
+
+                    @include('admin._partials.type', ['name' => 'master_class'])
+
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12 col-12 mt-3">
+                        <div class="input-group input-group-outline">
+                            <label class="form-label">Preview Link</label>
+                            <input name="preview_link" value="" class="form-control" type="text">
+                        </div>
+                    </div>
                 </div>
                 <div class="row mt-3">
                     <div class="col-sm-12 col-12">
@@ -66,14 +78,22 @@
                     </div>
                 </div>
                 @include('admin._partials.single_image')
+
+                <div class="row">
+                    <div class="col-sm-8 col-12 my-4">
+                      @include('admin._partials.is_featured')
+                    </div>
+                </div>
                 
                 <button type="submit" class="btn bg-gradient-dark btn-sm float-end mt-6 mb-0">Save</button>
-            
             </div>
         </div>
     </div>
     <div class="col-md-5">
-    @include('admin._partials.categories')
+       @include('admin._partials.categories')
+
+       @include('admin._partials.tags')
+
     </div>
     </div>
 </form>

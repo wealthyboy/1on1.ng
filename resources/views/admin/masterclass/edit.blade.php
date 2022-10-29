@@ -62,6 +62,14 @@
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-sm-12 col-12 mt-3">
+                        <div class="input-group input-group-outline">
+                            <label class="form-label">Preview Link</label>
+                            <input name="preview_link" value="{{ $masterclass->preview_link }}" class="form-control" type="text">
+                        </div>
+                    </div>
+                </div>
                 <div class="row mt-3">
                     <div class="col-sm-12 col-12">
                         <label class="form-label">Description</label>
@@ -72,6 +80,12 @@
                 </div>
                 @include('admin._partials.single_image',['model' => $masterclass])
 
+                <div class="row">
+                    <div class="col-sm-8 col-12 my-4">
+                      @include('admin._partials.is_featured',['model' => $masterclass])
+                    </div>
+                </div>
+
                 <button type="submit" class="btn bg-gradient-dark btn-sm float-end mt-6 mb-0">Save</button>
             
             </div>
@@ -79,6 +93,8 @@
     </div>
     <div class="col-md-5">
         @include('admin._partials.categories', ['collections' => $masterclass->categories])
+        @include('admin._partials.tags', ['collections' => $masterclass->tags])
+
     </div>
     </div>
 </form>

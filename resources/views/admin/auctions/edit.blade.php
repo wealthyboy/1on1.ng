@@ -115,8 +115,12 @@
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-sm-8 col-12 my-4">
+                      @include('admin._partials.is_featured',['model' => $auction])
+                    </div>
+                </div>
                 <button type="submit" class="btn bg-gradient-dark btn-sm float-end mt-6 mb-0">Save</button>
-                
             </div>
         </div>
     </div>

@@ -17,4 +17,10 @@ class ShoutOut extends Model
     {
         return $this->morphToMany(Category::class, 'categoryable');
     }
+
+
+    public function service()
+    {
+        return $this->belongsTo(Service::class);
+    }
 }

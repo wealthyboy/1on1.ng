@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\ShoutOut;
 use App\DataTable\DataTable;
 use App\Models\Category;
 use App\Models\Celebrity;
+use App\Models\Service;
 use App\Models\ShoutOut;
 use Illuminate\Http\Request;
 
@@ -14,12 +15,13 @@ class ShoutOutController extends DataTable
     
     protected $page_name = 'Shout Outs';   
 
-    
     public $createRoute = 'admin.shoutouts.create';
 
     public $modelName = 'ShoutOut';
 
     public $allowEdit = true;
+
+    public $type = 'shout_out';
 
     public $storeRoute = 'shoutouts.store';
 
@@ -63,15 +65,14 @@ class ShoutOutController extends DataTable
         'shoutout'
     ];
 
-    
 
     public $storeRouteRules = [
-        'name' => 'required|unique:auctions|max:255',
+        'name' => 'required|unique:services|max:255',
         'description' => 'required'
     ];
 
     public $editRouteRules = [
-        'name' => 'required|unique:shoutouts|max:255',
+        'name' => 'required|unique:services|max:255',
         'description' => 'required'
     ];
 
@@ -89,7 +90,7 @@ class ShoutOutController extends DataTable
 
     public function builder()
     {   
-        return ShoutOut::query();
+        return Service::query();
     }
 
 
@@ -98,8 +99,6 @@ class ShoutOutController extends DataTable
         return [
           "image",
           "name",
-          "type",
-          "price",
           "created_at",
         ];
     }

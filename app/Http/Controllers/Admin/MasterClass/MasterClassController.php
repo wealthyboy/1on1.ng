@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Celebrity;
 use App\Models\MasterClass;
+use App\Models\Service;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class MasterClassController extends DataTable
@@ -18,6 +20,9 @@ class MasterClassController extends DataTable
     public $modelName = 'MasterClass';
 
     public $allowEdit = true;
+
+    public $type = 'master_class';
+
 
     public $storeRoute = 'masterclass.store';
 
@@ -79,14 +84,15 @@ class MasterClassController extends DataTable
             'data' => $this->all(request()),
             'form' => $this->storeForm,
             'celebrities' => Celebrity::all(),
-            'categories' => Category::parents()->get()
+            'categories' => Category::parents()->get(),
+            'tags' => Tag::get()
         ];
         
     }
 
     public function builder()
     {   
-        return MasterClass::query();
+        return Service::query();
     }
 
     protected function getCustomColumnNames() 

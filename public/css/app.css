@@ -11286,3 +11286,47 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+.mt-7 {
+  margin-top: 7rem !important;
+}
+
+.mt-9 {
+  margin-top: 11rem !important;
+}
+
+.form-control[readonly] {
+  background-color: #fff;
+}
+
+.nounderline {
+  text-decoration: none !important;
+}
+
+.section-elements .icon-box {
+  display: block;
+  box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1);
+  padding: 2.8rem 0;
+  background: #fff;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section-elements .icon-box i {
+  font-size: 2.5rem;
+  color: #0169fe;
+  position: relative;
+}
+
+.section-elements .icon-box h5, .section-elements .icon-box .h5 {
+  position: relative;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin: 1.2rem 0 0;
+}
+
+.carousel-item {
+  height: 650px;
+}

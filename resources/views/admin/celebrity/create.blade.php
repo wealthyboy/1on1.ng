@@ -34,6 +34,12 @@
                         </div>
                     </div>
                     @include('admin._partials.single_image')
+
+                    <div class="row">
+                        <div class="col-sm-8 col-12 my-4">
+                        @include('admin._partials.is_featured')
+                        </div>
+                    </div>
                     <button type="submit" class="btn bg-gradient-dark btn-sm float-end mt-6 mb-0">Save</button>
                 </form>
             </div>

@@ -94,6 +94,8 @@ class CategoryController extends Controller
         $category->meta_description = $request->meta_description;
         $category->keywords = $request->keywords;
         $category->text_color = $request->text_color;
+        $category->is_featured = $request->is_featured;
+
         $category->title = $request->title;
         $category->slug=$slug;
         $category->sort_order=$request->sort_order;
@@ -193,6 +195,7 @@ class CategoryController extends Controller
         $category->text_color = $request->text_color;
         $category->meta_description = $request->meta_description;
         $category->keywords = $request->keywords;
+        $category->is_featured = $request->is_featured;
         $category->title = $request->title;
         $category->slug=$slug;
         $category->save();    

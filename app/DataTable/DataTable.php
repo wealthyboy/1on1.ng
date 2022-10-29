@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Celebrity;
 use App\Models\Image;
+use App\Models\ShoutOutType;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use Exception;
 use Illuminate\Support\Facades\Schema;
@@ -15,10 +17,10 @@ use Illuminate\Database\Eloquent\Builder;
 use Maatwebsite\Excel\Facades\Excel;
 
 
-abstract class DataTable extends Controller 
+abstract class DataTable extends Controller
 {
-    
-    protected $allowCreation = true;  
+
+    protected $allowCreation = true;
 
     protected $allowDeletion = true;
 
@@ -28,18 +30,20 @@ abstract class DataTable extends Controller
 
     public $allowEdit = false;
 
-    protected $collection;  
+    protected $collection;
+
+    protected $type = null;
 
     protected $name = null;
 
-    protected $useJson = false;  
+    protected $useJson = false;
 
-    protected $builder;  
-    
-    public $indexRoute = null;   
+    protected $builder;
+
+    public $indexRoute = null;
 
     public $routeData = [];
-    
+
     public $createRoute;
 
     public $indexView;
@@ -63,24 +67,22 @@ abstract class DataTable extends Controller
 
 
     abstract public function builder();
-    
-    public function __construct() 
+
+    public function __construct()
     {
 
         $builder = $this->builder();
 
         if (!$builder instanceof Builder) {
-           throw new Exception("Entity builder not instance of Builder");
+            throw new Exception("Entity builder not instance of Builder");
         }
 
         $this->builder = $builder;
-
-       
     }
 
 
     public function index()
-    {   
+    {
 
         if (request()->filled('export')) {
             return $this->export();
@@ -92,32 +94,32 @@ abstract class DataTable extends Controller
     }
 
 
-    public function all(Request $request) 
-    {   
+    public function all(Request $request)
+    {
         $response = [
             'data' => $this->getRecords($request),
             'meta' => [
-                    'table' => $this->builder->getModel()->getTable(),
-                    'displayable' => array_values($this->getDisplayableColumns()),
-                    'updatable' => array_values($this->getUpdatableColumns()),
-                    'custom_columns' => $this->getCustomColumnNames(),
-                    'records' => $this->getRecords($request)->items(),
-                    'name' => $this->name,
-                    'allow' => [
-                        'creation' => $this->allowCreation,
-                        'deletion' => $this->allowDeletion,
-                        'edit' => $this->allowEdit,
-                        'search' => $this->allowSearch,
-                        'export' => $this->allowExport,
-                    ],
-                    'route' => [
-                        'create' => $this->createRoute,
-                        'delete' => $this->deleteRoute,
-                        'update' => $this->updateRoute,
-                        'edit' => $this->editRoute,
-                        'store' => $this->storeRoute,
-                        'index' => $this->indexRoute
-                    ]
+                'table' => $this->builder->getModel()->getTable(),
+                'displayable' => array_values($this->getDisplayableColumns()),
+                'updatable' => array_values($this->getUpdatableColumns()),
+                'custom_columns' => $this->getCustomColumnNames(),
+                'records' => $this->getRecords($request)->items(),
+                'name' => $this->name,
+                'allow' => [
+                    'creation' => $this->allowCreation,
+                    'deletion' => $this->allowDeletion,
+                    'edit' => $this->allowEdit,
+                    'search' => $this->allowSearch,
+                    'export' => $this->allowExport,
+                ],
+                'route' => [
+                    'create' => $this->createRoute,
+                    'delete' => $this->deleteRoute,
+                    'update' => $this->updateRoute,
+                    'edit' => $this->editRoute,
+                    'store' => $this->storeRoute,
+                    'index' => $this->indexRoute
+                ]
             ]
         ];
 
@@ -130,22 +132,22 @@ abstract class DataTable extends Controller
         return $collection->where($request->column, $queryParts['operator'], $queryParts['value']);
     }
 
-    public function getDisplayableColumns() 
-    {   
+    public function getDisplayableColumns()
+    {
         return  array_diff($this->getDatabaseColumnNames(), $this->builder->getModel()->getHidden());
     }
 
-    protected function getDatabaseColumnNames() 
+    protected function getDatabaseColumnNames()
     {
         return Schema::getColumnListing($this->builder->getModel()->getTable());
     }
 
-    protected function getCustomColumnNames() 
+    protected function getCustomColumnNames()
     {
-       return $this->getDisplayableColumns();
+        return $this->getDisplayableColumns();
     }
 
-    public function getUpdatableColumns() 
+    public function getUpdatableColumns()
     {
         return $this->getDisplayableColumns();
     }
@@ -156,7 +158,7 @@ abstract class DataTable extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {   
+    {
 
         return view($this->createRoute, $this->routeData);
     }
@@ -169,7 +171,7 @@ abstract class DataTable extends Controller
      */
     public function export()
     {
-        return Excel::download(new Export($this->builder), $this->name.'.csv');
+        return Excel::download(new Export($this->builder), $this->name . '.csv');
     }
 
     /**
@@ -179,69 +181,93 @@ abstract class DataTable extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {   
+    {
         $model =  $this->builder->find($id);
         $this->routeData  = [
             'data' => $this->all(request()),
             'celebrities' => Celebrity::all(),
             'categories' => Category::parents()->get(),
+            'tags' => Tag::all(),
             strtolower($this->modelName) => $model
         ];
 
         //dd($this->routeData);
 
-        return view($this->editView, $this->routeData );
+        return view($this->editView, $this->routeData);
     }
 
-    public function store(Request $request) 
-    {   
+    public function store(Request $request)
+    {
         $request->validate($this->storeRouteRules);
 
-       // dd($request->all());
-        $model = $this->builder->create($request->all());
-        if (!empty($request->images) ) {
+
+        $data =  $request->all();
+        $data['slug'] = str_slug($data['name']);
+        $model = $this->builder->create($data);
+        if (!empty($request->images)) {
             $images =  $request->images;
             $images = array_filter($images);
-            foreach ( $images as $variation_image) {
+            foreach ($images as $variation_image) {
                 $images = new Image(['image' => $variation_image]);
                 $model->images()->save($images);
             }
-        } 
+        }
 
-        if (!empty($request->category_id) ) {
+        if ($request->filled('type')  && $request->type == 'shout_out') {
+            foreach ($request->shout_out_price as $key => $value) {
+                $shout_out_type = new ShoutOutType;
+                $shout_out_type->type = $key;
+                $shout_out_type->price = $value;
+                $shout_out_type->service_id = $model->id;
+                $shout_out_type->save();
+            }
+        }
+
+        if (!empty($request->category_id)) {
             $model->categories()->sync($request->category_id);
-        } 
+        }
 
-        if ($this->useJson) { return; } //js
+        if (!empty($request->tag_id)) {
+            $model->tags()->sync($request->tag_id);
+        }
+
+        if ($this->useJson) {
+            return;
+        } //js
         return redirect()->route($this->indexRoute);
     }
 
-    public function update(Request $request, $id) 
-    {   
+    public function update(Request $request, $id)
+    {
 
-       // dd($request->all());
         $request->validate($this->editValidationRules($id));
         $model = $this->builder->find($id);
         $this->builder->find($id)->update($request->all());
-        if (!empty($request->images) ) {
+        if (!empty($request->images)) {
             $images =  $request->images;
             $images = array_filter($images);
-            foreach ( $images as $variation_image) {
+            foreach ($images as $variation_image) {
                 $images = new Image(['image' => $variation_image]);
                 $model->images()->save($images);
             }
-        } 
+        }
 
-        if (!empty($request->category_id) ) {
+        if (!empty($request->category_id)) {
             $model->categories()->sync($request->category_id);
-        } 
+        }
 
-        if ($this->useJson) { return; } //js
+        if (!empty($request->tag_id)) {
+            $model->tags()->sync($request->tag_id);
+        }
+
+        if ($this->useJson) {
+            return;
+        } //js
         return redirect()->route($this->indexRoute);
     }
 
-    public function editValidationRules($id) 
-    {   
+    public function editValidationRules($id)
+    {
         return [];
     }
 
@@ -253,6 +279,9 @@ abstract class DataTable extends Controller
         }
 
         try {
+            if ($this->type) {
+                return $builder->where('type', $this->type)->orderBy('id', 'asc')->select($this->getDisplayableColumns())->paginate(20);
+            }
             return $builder->orderBy('id', 'asc')->select($this->getDisplayableColumns())->paginate(20);
         } catch (QueryException $e) {
             return [];
@@ -266,7 +295,7 @@ abstract class DataTable extends Controller
 
     protected function buildSearch(Builder $builder, Request $request)
     {
-       // $queryParts = $this->resolveQueryParts($request->operator, $request->value);
+        // $queryParts = $this->resolveQueryParts($request->operator, $request->value);
         if ($request->filled('q')) {
             return $this->builder()->where(function (Builder $query) use ($request) {
                 $query->where('id', 'like', '%' . $request->q . '%');
@@ -274,21 +303,24 @@ abstract class DataTable extends Controller
                     $query->orWhere($value, 'like', '%' . $request->q . '%');
                 }
             });
-        } 
-       // return $this->builder()->where($request->column, $queryParts['operator'], $queryParts['value']);
+        }
+        // return $this->builder()->where($request->column, $queryParts['operator'], $queryParts['value']);
     }
 
     public function destroy(Request $request, $id)
-    {   
+    {
         $this->builder->whereIn('id', $request->selected)->delete();
-        if ($this->useJson) { return; } //js
+        if ($this->useJson) {
+            return;
+        } //js
         return back();
     }
 
 
 
-    protected function resolveQueryParts($operator, $value){
-    
+    protected function resolveQueryParts($operator, $value)
+    {
+
         return Arr::get([
             'equals' => [
                 'operator' => '=',
@@ -296,5 +328,4 @@ abstract class DataTable extends Controller
             ]
         ], $operator);
     }
-
 }

@@ -13,59 +13,56 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['prefix' => 'admin'], function(){
+Route::group(['prefix' => 'admin'], function () {
 
-    Route::get('/','Admin\HomeCtrl@index')->name('admin_home');
+    Route::get('/', 'Admin\HomeCtrl@index')->name('admin_home');
     Route::get('/maintainance/mode', 'Admin\Live\LiveController@index')->name('maintainance');
     Route::get('live', 'Admin\Live\LiveController@activate');
-    Route::get('activities','Admin\Activity\ActivityController@index');
-    Route::get('reports','Admin\Account\AccountsController@index');
-    Route::get('account/filter','Admin\Account\AccountsController@index')->name('filter_sales');
-    Route::resource('customers', 'Admin\Customers\CustomersController',['name'=>'customers']);
-    Route::get('orders/invoice/{id}','Admin\Orders\OrdersController@invoice')->name('order.invoice');
-    Route::get('orders/dispatch/{id}','Admin\Orders\OrdersController@dispatchNote')->name('order.dispatch.note');
-    Route::resource('location','Admin\Location\LocationController',['names'=>'location']);
-    Route::resource('engines','Admin\Engines\EnginesController',['names'=>'engines']);
+    Route::get('activities', 'Admin\Activity\ActivityController@index');
+    Route::get('reports', 'Admin\Account\AccountsController@index');
+    Route::get('account/filter', 'Admin\Account\AccountsController@index')->name('filter_sales');
+    Route::resource('customers', 'Admin\Customers\CustomersController', ['name' => 'customers']);
+    Route::get('orders/invoice/{id}', 'Admin\Orders\OrdersController@invoice')->name('order.invoice');
+    Route::get('orders/dispatch/{id}', 'Admin\Orders\OrdersController@dispatchNote')->name('order.dispatch.note');
+    Route::resource('location', 'Admin\Location\LocationController', ['names' => 'location']);
+    Route::resource('engines', 'Admin\Engines\EnginesController', ['names' => 'engines']);
 
-    Route::resource('permissions','Admin\Permission\PermissionsController',['names'=>'permissions']);
-    Route::resource('celebrities','Admin\Celeb\CelebrityController',['names'=>'celebrities']);
-    Route::resource('auctions','Admin\Auction\AuctionsController',['names'=>'auctions']);
-    Route::resource('masterclass','Admin\MasterClass\MasterClassController',['names'=>'masterclass']);
-    Route::resource('shoutouts','Admin\ShoutOut\ShoutOutController',['names'=>'shoutouts']);
+    Route::resource('permissions', 'Admin\Permission\PermissionsController', ['names' => 'permissions']);
+    Route::resource('celebrities', 'Admin\Celeb\CelebrityController', ['names' => 'celebrities']);
+    Route::resource('auctions', 'Admin\Auction\AuctionsController', ['names' => 'auctions']);
+    Route::resource('masterclass', 'Admin\MasterClass\MasterClassController', ['names' => 'masterclass']);
+    Route::resource('shoutouts', 'Admin\ShoutOut\ShoutOutController', ['names' => 'shoutouts']);
+    Route::resource('tags', 'Admin\Tags\TagsController', ['names' => 'tags']);
 
+    Route::post('upload/image', 'Admin\Image\ImagesController@store');
+    Route::post('delete/image', 'Admin\Image\ImagesController@undo');
+    Route::post('upload', 'Admin\Uploads\UploadsController@store');
+    Route::get('delete/upload', 'Admin\Uploads\UploadsController@destroy');
+    Route::resource('users',  'Admin\Users\UsersController', ['names' => 'admin.users']);
 
+    Route::resource('banners', 'Admin\Design\BannersController', ['names' => 'banners']);
+    Route::resource('pages', 'Admin\Information\InformationController', ['names' => 'pages']);
+    Route::resource('settings', 'Admin\Settings\SettingsController', ['names' => 'settings']);
 
-
-    Route::post('upload/image','Admin\Image\ImagesController@store');
-    Route::post('delete/image','Admin\Image\ImagesController@undo');
-    Route::post('upload','Admin\Uploads\UploadsController@store');
-    Route::get('delete/upload','Admin\Uploads\UploadsController@destroy');
-    Route::resource('users',  'Admin\Users\UsersController',['names'=>'admin.users']);
-
-    Route::resource('banners', 'Admin\Design\BannersController',['names' =>'banners']);
-    Route::resource('pages','Admin\Information\InformationController',['names' => 'pages']);
-    Route::resource('settings','Admin\Settings\SettingsController',['names' => 'settings']);
-
-    Route::resource('shipping','Admin\Shipping\ShippingController',['names'=>'shipping']);
-    Route::resource('location','Admin\Location\LocationController',['names'=>'location']);
-    Route::resource('attributes','Admin\Attributes\AttributesController',['names'=>'attributes']);
-    Route::resource('payments','Admin\Payments\PaymentController',['name'=>'payments']);
-    Route::resource('rates','Admin\CurrencyRates\CurrencyRatesController',['name'=>'rates']);
-    Route::resource('vouchers','Admin\Vouchers\VouchersController',['names'=>'vouchers']);
-    Route::resource('products','Admin\Product\ProductController',['names' => 'products']);
-    Route::resource('category','Admin\Category\CategoryController',['name'=>'category']);
-    Route::post('category/delete/image','Admin\Category\CategoryController@undo');
-    Route::resource('reviews',  'Admin\Reviews\ReviewsController',['names' => 'reviews']);
-    Route::resource('orders','Admin\Orders\OrdersController',['names' => 'admin.orders']);
-    Route::resource('brands', 'Admin\Brand\BrandsController',['names' =>'brands']);
-    Route::resource('promos', 'Admin\Promo\PromoController',['names'=> 'promos']);
+    Route::resource('shipping', 'Admin\Shipping\ShippingController', ['names' => 'shipping']);
+    Route::resource('location', 'Admin\Location\LocationController', ['names' => 'location']);
+    Route::resource('attributes', 'Admin\Attributes\AttributesController', ['names' => 'attributes']);
+    Route::resource('payments', 'Admin\Payments\PaymentController', ['name' => 'payments']);
+    Route::resource('rates', 'Admin\CurrencyRates\CurrencyRatesController', ['name' => 'rates']);
+    Route::resource('vouchers', 'Admin\Vouchers\VouchersController', ['names' => 'vouchers']);
+    Route::resource('products', 'Admin\Product\ProductController', ['names' => 'products']);
+    Route::resource('category', 'Admin\Category\CategoryController', ['name' => 'category']);
+    Route::post('category/delete/image', 'Admin\Category\CategoryController@undo');
+    Route::resource('reviews',  'Admin\Reviews\ReviewsController', ['names' => 'reviews']);
+    Route::resource('orders', 'Admin\Orders\OrdersController', ['names' => 'admin.orders']);
+    Route::resource('brands', 'Admin\Brand\BrandsController', ['names' => 'brands']);
+    Route::resource('promos', 'Admin\Promo\PromoController', ['names' => 'promos']);
     Route::get('promo-text/create/{id}', 'Admin\PromoText\PromoTextController@create')->name('create.promo.text');
     Route::get('promo-text/edit/{id}', 'Admin\PromoText\PromoTextController@edit')->name('edit_promo_text');
     Route::post('promo-text/edit/{id}', 'Admin\PromoText\PromoTextController@update');
     Route::post('promo-text/create/{id}', 'Admin\PromoText\PromoTextController@store');
     Route::get('promo-text/delete/{id}', 'Admin\PromoText\PromoTextController@destroy')->name('delete.promo.text');
-    Route::resource('discounts','Admin\Discounts\DiscountsController',['names' => 'discounts']);
-
+    Route::resource('discounts', 'Admin\Discounts\DiscountsController', ['names' => 'discounts']);
 });
 
 
@@ -76,6 +73,19 @@ Route::get('/plans',      [App\Http\Controllers\Plans\PlansController::class, 'i
 Route::get('/subscribe',  [App\Http\Controllers\Subscribe\SubscribeController::class, 'index'])->name('subscribe');
 Route::get('/checkout',   [App\Http\Controllers\Checkout\CheckoutController::class, 'index'])->name('checkout');
 Route::get('/buy-now-pay-later',   [App\Http\Controllers\BuyNowPayLater\BuyNowPayLaterController::class, 'index'])->name('buy');
+Route::get('categories/{category}',   'Services\ServicesController@index');
+Route::get('services/{category}/{service}',   'Services\ServicesController@show');
+
+Route::resource('account', 'Account\AccountController', ['names' => 'account']);
+Route::get('change/password', 'ChangePassword\ChangePasswordController@index');
+Route::post('change/password', 'ChangePassword\ChangePasswordController@changePassword');
+
+Route::resource('bids', 'Bids\BidsController', ['names' => 'bids']);
+Route::resource('shoutouts', 'ShoutOuts\ShoutOutsController', ['names' => 'shout.outs']);
+Route::resource('classes', 'MasterClass\MasterClassController', ['names' => 'master.class']);
+Route::resource('wallets', 'Wallets\WalletsController', ['names' => 'master.class']);
+
+
 
 Route::post('webhook/payment',     'WebHook\WebHookController@payment');
 //Route::post('contact/store',        'Contact\ContactController@store');

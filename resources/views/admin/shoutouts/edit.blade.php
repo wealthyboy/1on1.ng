@@ -1,4 +1,3 @@
-
 @extends('admin.layouts.app')
 
 @section('content')
@@ -42,16 +41,30 @@
                     <div class="col-sm-6 col-12 mt-3">
                         <div class="input-group input-group-outline">
                             <label class="form-label">Price</label>
-                            <input name="price"  value="{{ $shoutout->price }}" class="form-control " type="text">
+                            <input name="price[video]"  value="{{ $shoutout->price }}" class="form-control " type="text">
                         </div>
                     </div>
                     <div class="col-sm-6 col-12 mt-3">
                         <div class="input-group input-group-outline">
                             <label class="form-label mt-4 ms-0"> </label>
-                            <select class="form-control" name="type" id="">
-                                <option  value="">--Type--</option>
-                                <option {{ $shoutout->type == 'video' ? 'selected' : '' }}  value="video">Video</option>
-                                <option {{ $shoutout->type == 'audio' ? 'selected' : '' }}   value="audio">Audio</option>
+                            <select class="form-control" name="shout_out_type" id="">
+                                <option {{ $shoutout->shout_out_type == 'video' ? 'selected' : '' }}  value="video">Video</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 col-12 mt-3">
+                        <div class="input-group input-group-outline">
+                            <label class="form-label">Price</label>
+                            <input name="price[audio]"  value="{{ $shoutout->price }}" class="form-control " type="text">
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-12 mt-3">
+                        <div class="input-group input-group-outline">
+                            <label class="form-label mt-4 ms-0"> </label>
+                            <select class="form-control" name="shout_out_type" id="">
+                                <option   value="audio">Audio</option>
                             </select>
                         </div>
                     </div>
@@ -65,6 +78,12 @@
                     </div>
                 </div>
                 @include('admin._partials.single_image', ['model' => $shoutout])
+
+                <div class="row">
+                    <div class="col-sm-8 col-12 my-4">
+                      @include('admin._partials.is_featured',['model' => $shoutout])
+                    </div>
+                </div>
                 <button type="submit" class="btn bg-gradient-dark btn-sm float-end mt-6 mb-0">Save</button>
                 
             </div>
@@ -100,22 +119,3 @@ $(document).ready(function() {
     });
 });
 @stop
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
