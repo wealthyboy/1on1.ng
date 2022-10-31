@@ -14,7 +14,7 @@ class AlterTableShoutOutsAddUserId extends Migration
     public function up()
     {
         Schema::table('shout_outs', function (Blueprint $table) {
-            $table->integer('user_id')->nullable();
+            // $table->integer('user_id')->nullable();
         });
     }
 
