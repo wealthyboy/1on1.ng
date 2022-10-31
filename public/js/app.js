@@ -26009,9 +26009,6 @@ __webpack_require__.r(__webpack_exports__);
         amount: price.value * 100,
         currency: "NGN",
         first_name: props.user.name,
-        metadata: {
-          custom_fields: [form]
-        },
         callback: function callback(response) {
           console.log(response);
         },

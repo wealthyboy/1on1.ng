@@ -201,9 +201,7 @@ export default {
         amount: price.value * 100,
         currency: "NGN",
         first_name: props.user.name,
-        metadata: {
-          custom_fields: [form],
-        },
+
         callback: function (response) {
           console.log(response);
         },
