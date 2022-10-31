@@ -26112,8 +26112,7 @@ var _hoisted_1 = {
 };
 var _hoisted_2 = ["value"];
 var _hoisted_3 = ["value"];
-var _hoisted_4 = ["data-price", "value"];
-var _hoisted_5 = {
+var _hoisted_4 = {
   "for": "floatingSelect"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -26134,19 +26133,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     value: $props.modelValue
   }, "Choose one", 8
   /* PROPS */
-  , _hoisted_3), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.options, function (option) {
-    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
-      "data-price": option.price,
-      key: option.id,
-      value: option.id
-    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(option.type.charAt(0).toUpperCase() + option.type.slice(1)), 9
-    /* TEXT, PROPS */
-    , _hoisted_4);
-  }), 128
-  /* KEYED_FRAGMENT */
-  ))], 16
+  , _hoisted_3), (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "default")], 16
   /* FULL_PROPS */
-  , _hoisted_2), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$attrs.name), 1
+  , _hoisted_2), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$attrs.name), 1
   /* TEXT */
   )]), $props.error.$error ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_simple_message, {
     key: 0,
@@ -27579,11 +27568,13 @@ var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 var _hoisted_15 = {
   "class": "form-floating mb-2 col-6"
 };
-var _hoisted_16 = {
+var _hoisted_16 = ["data-price"];
+var _hoisted_17 = ["data-price"];
+var _hoisted_18 = {
   "class": "form-floating mb-2"
 };
 
-var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "floatingTextarea2"
 }, "Comments", -1
 /* HOISTED */
@@ -27691,13 +27682,29 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return $setup.form.type = $event;
     }),
     name: "Choose type",
-    options: $props.service.shout_out_types,
     onChange: _cache[8] || (_cache[8] = function ($event) {
       return $setup.doChange($event);
     })
-  }, null, 8
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+        "data-price": $props.service.audio_shout_out_price,
+        value: "video"
+      }, "Audio", 8
+      /* PROPS */
+      , _hoisted_16), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+        "data-price": $props.service.video_shout_out_price,
+        value: "audio"
+      }, "Video", 8
+      /* PROPS */
+      , _hoisted_17)];
+    }),
+    _: 1
+    /* STABLE */
+
+  }, 8
   /* PROPS */
-  , ["error", "modelValue", "options"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
+  , ["error", "modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
     "class": "form-control",
     placeholder: "Leave a comment here",
     id: "floatingTextarea2",
@@ -27709,7 +27716,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form.comment]]), _hoisted_17]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_general_button, {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form.comment]]), _hoisted_19]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_general_button, {
     type: "submit",
     text: $setup.text,
     "class": "btn btn-dark w-100",

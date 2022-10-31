@@ -13,12 +13,7 @@
     >
       <option :value="modelValue">Choose one</option>
 
-      <option
-        :data-price="option.price"
-        v-for="option in options"
-        :key="option.id"
-        :value="option.id"
-      >{{ option.type.charAt(0).toUpperCase() + option.type.slice(1) }}</option>
+      <slot />
     </select>
     <label for="floatingSelect">{{ $attrs.name }}</label>
   </div>

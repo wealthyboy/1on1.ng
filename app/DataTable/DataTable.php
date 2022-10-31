@@ -242,7 +242,9 @@ abstract class DataTable extends Controller
 
         $request->validate($this->editValidationRules($id));
         $model = $this->builder->find($id);
-        $this->builder->find($id)->update($request->all());
+        $data =  $request->all();
+
+        $this->builder->find($id)->update($data);
         if (!empty($request->images)) {
             $images =  $request->images;
             $images = array_filter($images);

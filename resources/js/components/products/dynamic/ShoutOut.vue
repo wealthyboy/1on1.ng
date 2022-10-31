@@ -91,9 +91,18 @@
             :error="v$.type"
             v-model="form.type"
             name="Choose type"
-            :options="service.shout_out_types"
             @change="doChange($event)"
-          />
+          >
+            <option
+              :data-price="service.audio_shout_out_price"
+              value="video"
+            >Audio</option>
+            <option
+              :data-price="service.video_shout_out_price"
+              value="audio"
+            >Video</option>
+
+          </general-select>
         </div>
         <div class="form-floating mb-2">
           <textarea
