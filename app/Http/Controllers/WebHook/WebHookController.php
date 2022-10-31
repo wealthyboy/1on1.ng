@@ -38,7 +38,6 @@ class WebHookController extends Controller
     public function payment(Request $request)
     {
 
-
         try {
             Log::info($request->all());
         } catch (\Throwable $th) {

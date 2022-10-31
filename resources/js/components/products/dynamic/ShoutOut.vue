@@ -204,7 +204,9 @@ export default {
         metadata: {
           custom_fields: [form],
         },
-        callback: function (response) {},
+        callback: function (response) {
+          console.log(response);
+        },
         onClose: function () {},
       });
       handler.openIframe();

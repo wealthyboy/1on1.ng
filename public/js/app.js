@@ -26012,7 +26012,9 @@ __webpack_require__.r(__webpack_exports__);
         metadata: {
           custom_fields: [form]
         },
-        callback: function callback(response) {},
+        callback: function callback(response) {
+          console.log(response);
+        },
         onClose: function onClose() {}
       });
       handler.openIframe();
