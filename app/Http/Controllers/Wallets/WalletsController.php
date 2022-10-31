@@ -53,7 +53,6 @@ class WalletsController extends Controller
         $wallet->user_id = $user->id;
         $wallet->amount = $request->amount;
         $wallet->save();
-
         return response(null, 200);
     }
 

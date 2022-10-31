@@ -187,7 +187,7 @@ export default {
       }
       console.log(props.user);
       var handler = PaystackPop.setup({
-        key: "pk_test_844112398c9a22ef5ca147e85860de0b55a14e7c", //'pk_live_c4f922bc8d4448065ad7bd3b0a545627fb2a084f',//'pk_test_844112398c9a22ef5ca147e85860de0b55a14e7c',
+        key: "pk_test_abcbb577deb8d821bc57ff8a99c59942d5d4162f", //'pk_live_c4f922bc8d4448065ad7bd3b0a545627fb2a084f',//'pk_test_844112398c9a22ef5ca147e85860de0b55a14e7c',
         email: props.user.email,
         amount: price.value * 100,
         currency: "NGN",
