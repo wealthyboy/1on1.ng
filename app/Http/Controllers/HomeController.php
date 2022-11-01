@@ -17,8 +17,6 @@ class HomeController extends Controller
     public function index()
     {
         $sliders = Banner::where('type', 'slider')->orderBy('sort_order', 'asc')->get();
-        \Log::info("Custom error :");
-        dd(true);
 
         $categories = Category::has('services')->featured()->get();
         return view('index', compact('sliders', 'categories'));
