@@ -37,6 +37,7 @@ class WebHookController extends Controller
 
     public function payment(Request $request)
     {
+        Log::info("Custom error :");
 
         try {
             Log::info($request->all());
