@@ -202,6 +202,13 @@ export default {
         currency: "NGN",
         first_name: props.user.name,
 
+        metadata: {
+          custom_fields: [
+            {
+              display_name: "kkkkkpp",
+            },
+          ],
+        },
         callback: function (response) {
           console.log(response);
         },
