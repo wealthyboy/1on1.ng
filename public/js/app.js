@@ -26010,9 +26010,7 @@ __webpack_require__.r(__webpack_exports__);
         currency: "NGN",
         first_name: props.user.name,
         metadata: {
-          custom_fields: [{
-            display_name: "kkkkkpp"
-          }]
+          custom_fields: [form]
         },
         callback: function callback(response) {
           console.log(response);
