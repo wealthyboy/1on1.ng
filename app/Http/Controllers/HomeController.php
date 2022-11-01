@@ -8,17 +8,18 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    
+
     /**
      * Show the application dashboard.
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
-    {    
-        $sliders = Banner::where('type','slider')->orderBy('sort_order','asc')->get();
-        
+    {
+        $sliders = Banner::where('type', 'slider')->orderBy('sort_order', 'asc')->get();
+        \Log::info("Custom error :");
+
         $categories = Category::has('services')->featured()->get();
-        return view('index', compact('sliders','categories'));
+        return view('index', compact('sliders', 'categories'));
     }
 }
