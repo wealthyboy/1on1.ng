@@ -22,7 +22,6 @@ class WalletsController extends Controller
      */
     public function index()
     {
-
         $nav = (new AccountSettingsNav())->nav();
         $pagination = auth()->user()->wallets()->paginate(4);
         $collections = $this->getColumnNames($pagination);
@@ -70,6 +69,7 @@ class WalletsController extends Controller
     protected function getGetCustomColumnNames()
     {
         return [
+            "Ref Id",
             "amount",
             "date_added",
         ];
@@ -81,10 +81,14 @@ class WalletsController extends Controller
             'items' => [
                 $collection->map(function (Wallet $wallet) {
                     return [
-                        "amount" => optional($wallet)->amount,
+                        "Ref Id" => '#' . optional($wallet)->id,
+                        "amount" => '₦' . optional($wallet)->amount,
                         "date_added" => $wallet->created_at->format('d-m-y')
                     ];
                 })
+            ],
+            'meta' => [
+                'show' => false
             ]
         ];
     }

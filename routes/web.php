@@ -33,6 +33,8 @@ Route::group(['prefix' => 'admin'], function () {
     Route::resource('masterclass', 'Admin\MasterClass\MasterClassController', ['names' => 'masterclass']);
     Route::resource('shoutouts', 'Admin\ShoutOut\ShoutOutController', ['names' => 'shoutouts']);
     Route::resource('tags', 'Admin\Tags\TagsController', ['names' => 'tags']);
+    Route::resource('faqs', 'Admin\Faqs\FaqsController', ['names' => 'admin.faqs']);
+
 
     Route::post('upload/image', 'Admin\Image\ImagesController@store');
     Route::post('delete/image', 'Admin\Image\ImagesController@undo');
@@ -83,7 +85,7 @@ Route::post('change/password', 'ChangePassword\ChangePasswordController@changePa
 Route::resource('bids', 'Bids\BidsController', ['names' => 'bids']);
 Route::resource('shoutouts', 'ShoutOuts\ShoutOutsController', ['names' => 'shout.outs']);
 Route::resource('classes', 'MasterClass\MasterClassController', ['names' => 'master.class']);
-Route::resource('wallets', 'Wallets\WalletsController', ['names' => 'master.class']);
+Route::resource('wallets', 'Wallets\WalletsController', ['names' => 'wallets']);
 
 
 

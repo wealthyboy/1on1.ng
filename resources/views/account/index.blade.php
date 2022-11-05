@@ -17,7 +17,7 @@
          @foreach($nav as $key => $n)
          <div class="col-6 col-sm-4 col-md-3 col-lg-2">
             <a href="{{ $n['link'] }}" class="icon-box nounderline">
-               <i class="{{ $n['icon'] }}"></i>
+               <i class="{{ $n['icon'] }}">{{ $n['iconText'] }}</i>
                <h5 class="porto-sicon-title mx-2">{{ $key }}</h5>
             </a>
          </div>

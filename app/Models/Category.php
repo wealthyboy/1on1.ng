@@ -11,12 +11,12 @@ class Category extends Model
 {
     use HasFactory, HasChildren;
 
-    protected $fillable = ['name','description','slug','parent_id','sort_order','allow'];
+    protected $fillable = ['name', 'description', 'slug', 'parent_id', 'sort_order', 'allow'];
 
     public $appends = [
         'url'
     ];
-    
+
 
     /**
      * Get all of the posts that are assigned this tag.
@@ -34,7 +34,16 @@ class Category extends Model
     {
         return $this->morphedByMany(Auction::class, 'categoryable')->where('type', 'auction');
     }
- 
+
+
+    /**
+     * Get all of the posts that are assigned this tag.
+     */
+    public function faqs()
+    {
+        return $this->morphedByMany(Faq::class, 'categoryable');
+    }
+
     /**
      * Get all of the videos that are assigned this tag.
      */
@@ -55,7 +64,7 @@ class Category extends Model
 
     public function children()
     {
-        return $this->hasMany(Category::class,'parent_id','id')->orderBy('sort_order','asc');
+        return $this->hasMany(Category::class, 'parent_id', 'id')->orderBy('sort_order', 'asc');
     }
 
     public function images()
@@ -65,7 +74,7 @@ class Category extends Model
 
     public function products()
     {
-        return $this->belongsToMany(Product::class)->where('allow',true);
+        return $this->belongsToMany(Product::class)->where('allow', true);
     }
 
 
@@ -75,18 +84,19 @@ class Category extends Model
     }
 
 
-    public function getRouteKeyName(){
-		return 'slug';
-	}
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 
 
     public function link()
     {
-        return '/categories/'. $this->slug;
+        return '/categories/' . $this->slug;
     }
 
     public function getUrlAttribute()
     {
-        return '/categories/'. $this->slug;
+        return '/categories/' . $this->slug;
     }
 }

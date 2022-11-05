@@ -83,10 +83,7 @@
 
                             <li class="nav-item dropdown dropdown-hover mx-2">
                                 <a class="nav-link ps-2 d-flex cursor-pointer align-items-center" id="dropdownMenuDocs" data-bs-toggle="dropdown" aria-expanded="false" role="button">
-                                    <i class="fa fa-bars"></i>
-
-                                    Menu
-                                    <i class="bi bi-chevron-down arrow ms-auto ms-md-2"></i>
+                                    <i class="fa fa-bars"></i>Menu<i class="bi bi-chevron-down arrow ms-auto ms-md-2"></i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-animation dropdown-md mt-0 mt-lg-3 p-3 border-radius-lg" aria-labelledby="dropdownMenuDocs">
                                     <div class="d-none d-lg-block">
@@ -95,7 +92,7 @@
                                                 <a href="/account" class="dropdown-item py-2 ps-3 border-radius-md"><i class="far fa-sign-out-alt left"></i> Account </a>
                                             </li>
                                             <li class="nav-item list-group-item border-0 p-0">
-                                                <a href="/classess" class="dropdown-item "><i class="far fa-sign-out-alt left"></i> Clasess</a>
+                                                <a href="/classes" class="dropdown-item "><i class="far fa-sign-out-alt left"></i> Clasess</a>
                                             </li>
                                             <li class="nav-item list-group-item border-0 p-0">
                                                 <a href="/Bids" class="dropdown-item py-2 ps-3 border-radius-md"><i class="far fa-sign-out-alt left"></i> Bids</a>
@@ -108,8 +105,8 @@
                                             <li class="nav-item list-group-item border-0 p-0">
                                                 <a href="/wallets" class="dropdown-item py-2 ps-3 border-radius-md" class="list-group-item list-group-item-action bold text-uppercase p-4"><i class="far fa-sign-out-alt left"></i> Wallet</a>
                                             </li>
-                                            <li class="nav-item list-group-item border-0 p-0">
 
+                                            <li class="nav-item list-group-item border-0 p-0">
 
                                                 <a href="#" class="dropdown-item py-2 ps-3 border-radius-md" onclick="event.preventDefault();
                                                     document.getElementById('logout-form').submit();" class="list-group-item list-group-item-action bold text-uppercase p-4"><i class="far fa-sign-out-alt left"></i> Logout
@@ -121,12 +118,11 @@
                                                 </a>
                                             </li>
 
-
                                         </ul>
                                     </div>
                                     <div class="row d-lg-none">
                                         <div class="col-md-12 g-0">
-                                            <a class="dropdown-item py-2 ps-3 border-radius-md" href="../../pages/about-us.html">
+                                            <a class="dropdown-item py-2 ps-3 border-radius-md" href="#">
                                                 <h6 class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0">Getting Started</h6>
                                                 <span class="text-sm">All about overview, quick start, license and contents</span>
                                             </a>
@@ -187,22 +183,27 @@
                 <div class="footer-middle">
                     <div class="row">
 
+                        @foreach($footer_info as $info)
+
+
                         <div class="col-lg-6 col-sm-4">
                             <div class="widget">
-                                <h4 class="widget-title text-white">Guide</h4>
+                                <h4 class="widget-title text-white">{{ title_case($info->title) }}</h4>
 
+                                @if($info->children->count())
                                 <ul class="links text-white list-unstyled">
-                                    <li><a href="dashboard.html">My Account</a></li>
-                                    <li><a href="#">Track Your Order</a></li>
-                                    <li><a href="#">Payment Methods</a></li>
-                                    <li><a href="#">Shipping Guide</a></li>
-                                    <li><a href="#">FAQs</a></li>
-                                    <li><a href="#">Product Support</a></li>
-                                    <li><a href="#">Privacy</a></li>
+                                    @foreach($info->children as $info)
+                                    <li>
+                                        <a href="{{ $info->link }}">
+                                            {{ $info->title }}
+                                        </a>
+                                    </li>
+                                    @endforeach
                                 </ul>
+                                @endif
                             </div><!-- End .widget -->
                         </div><!-- End .col-lg-2 -->
-
+                        @endforeach
 
 
                         <div class="col-lg-6 col-sm-4">
@@ -262,11 +263,7 @@
                 <div class="footer-bottom text-white d-flex border-top justify-content-between align-items-center flex-wrap">
                     <p class="footer-copyright py-3 pr-4 mb-0">© {{ config('app.name') }}. {{ date('Y') }}. All Rights Reserved</p>
 
-                    <div class="social-icons py-3">
-                        <a href="#" class="bi bi-facebook text-white mr-2" target="_blank" title="Facebook"></a>
-                        <a href="#" class="bi bi-twitter  text-white" target="_blank" title="Twitter"></a>
-                        <a href="#" class="bi bi-instagram  text-white" target="_blank" title="Linkedin"></a>
-                    </div><!-- End .social-icons -->
+
                 </div><!-- End .footer-bottom -->
             </div><!-- End .container -->
         </footer>

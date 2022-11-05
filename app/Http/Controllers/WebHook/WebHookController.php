@@ -37,7 +37,6 @@ class WebHookController extends Controller
 
     public function payment(Request $request)
     {
-        Log::info("Paystack is coming tru");
 
         try {
             Log::info($request->all());

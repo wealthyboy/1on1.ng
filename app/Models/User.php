@@ -85,6 +85,12 @@ class User extends Authenticatable
 	}
 
 
+	public function wallet_balance()
+	{
+		return $this->hasOne(WalletBalance::class);
+	}
+
+
 	public function hasSocialLinked($service)
 	{
 		return (bool) $this->social->where('service', $service)->count();

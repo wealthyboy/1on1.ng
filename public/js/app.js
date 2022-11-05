@@ -25633,9 +25633,12 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     category: Object
   },
-  setup: function setup() {
+  emits: ["send:link"],
+  setup: function setup(props, _ref) {
+    var emit = _ref.emit;
+
     function getUrl(link) {
-      console.log(link);
+      emit("send:link", link);
     }
 
     return {
@@ -25675,12 +25678,30 @@ __webpack_require__.r(__webpack_exports__);
   setup: function setup() {
     var services = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(function () {
-      axios__WEBPACK_IMPORTED_MODULE_1___default().get(location.href + "?get=1").then(function (res) {
+      getP();
+    });
+
+    function getP() {
+      var link = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : location.href + "?get=1";
+      axios__WEBPACK_IMPORTED_MODULE_1___default().get(link).then(function (res) {
         services.value = res.data.data;
       })["catch"](function (err) {});
-    });
+    }
+
+    function getLink(link) {
+      var state = {
+        page_id: 1,
+        user_id: 5
+      };
+      var url = link.slug;
+      history.pushState(state, "", url);
+      getP(link = location.href + "?get=1");
+    }
+
     return {
-      services: services
+      services: services,
+      getLink: getLink,
+      getP: getP
     };
   }
 });
@@ -27156,7 +27177,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "col-md-3"
+  "class": "col-md-3 d-none d-lg-block d-md-block d-xl-block"
 };
 var _hoisted_2 = {
   "class": "list-group list-unstyled"
@@ -27183,11 +27204,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_2, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.categories, function (category) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_filters, {
+      "onSend:link": $setup.getLink,
       key: category.id,
       category: category
     }, null, 8
     /* PROPS */
-    , ["category"]);
+    , ["onSend:link", "category"]);
   }), 128
   /* KEYED_FRAGMENT */
   ))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.services, function (service) {

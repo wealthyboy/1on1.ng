@@ -38,25 +38,13 @@ class BidsController extends DataTable
     }
 
 
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-
     protected function getGetCustomColumnNames()
     {
         return [
-            "id",
+            "Ref id",
             "price",
             "auction",
+            "status",
             "created_at",
         ];
     }
@@ -67,12 +55,16 @@ class BidsController extends DataTable
             'items' => [
                 $collection->map(function (Bid $bid) {
                     return [
-                        "id" => $bid->id,
-                        "price" => $bid->price,
+                        "Ref id" => '#' . $bid->id,
+                        "price" => '₦' . $bid->price,
                         "auction" => optional($bid->service)->name,
+                        "status" => null,
                         "created_at" => $bid->created_at->format('d-m-y')
                     ];
                 })
+            ],
+            'meta' => [
+                'show' => true
             ]
         ];
     }

@@ -1,7 +1,8 @@
 <template>
-  <div class="col-md-3">
+  <div class="col-md-3  d-none d-lg-block d-md-block d-xl-block">
     <ul class="list-group list-unstyled">
       <filters
+        @send:link="getLink"
         v-for="category in categories"
         :key="category.id"
         :category="category"
@@ -15,9 +16,13 @@
         :key="service.id"
         class="col-lg-4 mb-lg-0 mb-4"
       >
-        <a  :href="service.url">
+        <a :href="service.url">
           <div class="card card-background">
-            <img :src="service.celebrity.image" alt="" srcset="">
+            <img
+              :src="service.celebrity.image"
+              alt=""
+              srcset=""
+            >
             <div class="card-body pt-12">
               <h4 class="tex">{{ service.name }} </h4>
             </div>
@@ -46,16 +51,31 @@ export default {
   setup() {
     const services = ref([]);
     onMounted(() => {
+      getP();
+    });
+
+    function getP(link = location.href + "?get=1") {
       axios
-        .get(location.href + "?get=1")
+        .get(link)
         .then((res) => {
           services.value = res.data.data;
         })
         .catch((err) => {});
-    });
+    }
+
+    function getLink(link) {
+      const state = { page_id: 1, user_id: 5 };
+      const url = link.slug;
+
+      history.pushState(state, "", url);
+
+      getP((link = location.href + "?get=1"));
+    }
 
     return {
       services,
+      getLink,
+      getP,
     };
   },
 };
