@@ -27899,6 +27899,7 @@ window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   forceTLS: false,
   wsHost: "127.0.0.1",
   wsPort: 6001,
+  wssPort: 6001,
   disableStats: true
 });
 
