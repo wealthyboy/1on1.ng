@@ -34,7 +34,7 @@ window.Echo = new Echo({
     key: process.env.MIX_PUSHER_APP_KEY,
     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
     forceTLS: true,
-    wssHost: process.env.MIX_PUSHER_HOST,
+    wssHost: 'socket.1on1.ng:6001',
     wssPort: 6001,
     wsPort: 6001,
     disableStats: true,
