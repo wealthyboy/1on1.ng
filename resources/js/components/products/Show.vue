@@ -25,6 +25,8 @@
 import ShoutOut from "./dynamic/ShoutOut";
 import Auction from "./dynamic/Auction";
 import MasterClass from "./dynamic/MasterClass";
+import { onMounted } from "vue";
+import axios from "axios";
 
 export default {
   props: {
@@ -36,6 +38,13 @@ export default {
     Auction,
     MasterClass,
   },
-  setup() {},
+
+  mounted() {
+    Echo.private(`bid.${this.user.id}`).listen(".bid.added", (e) => {
+      console.log(e);
+    });
+  },
+
+  setup(props) {},
 };
 </script>

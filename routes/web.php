@@ -87,7 +87,7 @@ Route::resource('shoutouts', 'ShoutOuts\ShoutOutsController', ['names' => 'shout
 Route::resource('classes', 'MasterClass\MasterClassController', ['names' => 'master.class']);
 Route::resource('wallets', 'Wallets\WalletsController', ['names' => 'wallets']);
 
-
+Route::get('/broadcast', 'Wallets\WalletsController@b');
 
 Route::post('webhook/payment',     'WebHook\WebHookController@payment');
 //Route::post('contact/store',        'Contact\ContactController@store');

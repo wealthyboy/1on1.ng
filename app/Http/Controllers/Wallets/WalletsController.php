@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Wallet;
 use App\Utils\AccountSettingsNav;
 use Illuminate\Http\Request;
+use App\Events\NewBid;
 
 class WalletsController extends Controller
 {
@@ -27,6 +28,14 @@ class WalletsController extends Controller
         $collections = $this->getColumnNames($pagination);
         $columns = $this->getGetCustomColumnNames();
         return view('wallet.index', compact('nav', 'collections', 'columns', 'pagination'));
+    }
+
+
+    public function b()
+    {
+        broadcast(new NewBid(auth()->user()));
+
+        return auth()->user();
     }
 
     /**

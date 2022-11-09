@@ -42,6 +42,7 @@ export default {
   props: {
     categories: Array,
     category: Object,
+    wallet_balance: Object,
   },
 
   components: {

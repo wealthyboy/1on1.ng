@@ -16,8 +16,11 @@
         Time Left: <strong>{{ service.days_left + 'd'}}</strong>
       </div>
       <div>
-        Wallet Balance: {{ 0.00 }}
-        <span class="fs-6"> <a href="http://">Fund your wallet</a></span>
+        Wallet Balance: {{ service.currency }}{{ wallet_balance || '0.00' }}
+        <span class="fs-6"> <a
+            @click="b"
+            href="#"
+          >Fund your wallet</a></span>
       </div>
     </div>
 
@@ -93,25 +96,23 @@ import Wallet from "../../auth/Wallet";
 import { computed, reactive, ref } from "vue";
 import { loginRules } from "../../../utils/ValidationRules";
 import { useStore } from "vuex";
+import axios from "axios";
 
 export default {
-  props: ["service"],
+  props: ["service", "wallet_balance"],
   setup(props, { emit }) {
     const loading = ref(false);
     const post_server_error = ref(false);
 
     const store = useStore();
     const wallet = computed(() => store.state.wallet);
-
     const text = ref("Submit");
-
     const message = ref(null);
     const form = reactive({
       email: "",
       password: "",
     });
 
-    console.log(wallet);
     const rules = loginRules(form);
     const v$ = useVuelidate(rules, form);
 
@@ -119,10 +120,16 @@ export default {
       emit("switched", page);
     }
 
+    function b() {
+      axios.get("/broadcast", function (e) {
+        console.log(e);
+      });
+    }
+
     function login() {
       this.v$.$touch();
     }
-    return { form, v$, login, text, wallet, loading, message, change };
+    return { b, form, v$, login, text, wallet, loading, message, change };
   },
   components: { Modal, GeneralInput, Wallet },
 };
