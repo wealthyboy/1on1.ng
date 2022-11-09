@@ -35,5 +35,6 @@ window.Echo = new Echo({
     forceTLS: false,
     wsHost: process.env.MIX_PUSHER_HOST,
     wsPort: 6001,
+    wssHost: process.env.MIX_PUSHER_HOST,
     disableStats: true
 });
