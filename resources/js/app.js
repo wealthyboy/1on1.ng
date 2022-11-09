@@ -51,7 +51,6 @@ import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 import Auth from "./components/auth/Auth";
 import Account from "./components/account/Account";
-
 import Modal from "./components/Modal/Index";
 import ChangePassword from "./components/account/ChangePassword"
 
