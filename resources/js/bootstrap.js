@@ -35,6 +35,8 @@ window.Echo = new Echo({
     wsHost: process.env.MIX_PUSHER_HOST,
     wssHost: process.env.MIX_PUSHER_HOST,
     wsPort: 6001,
+    wssPort: 6001,
+
     disableStats: true,
     enabledTransports: ['ws', 'wss'] // <- added this param
 });
