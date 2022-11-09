@@ -38,7 +38,7 @@ return [
             'options' => [
                 'cluster' => env('PUSHER_APP_CLUSTER'),
                 'encrypted' => true,
-                'host' => '127.0.0.1',
+                'host' => 'socket.1on1.ng',
                 'port' => 6001,
                 'scheme' => 'https',
             ],
