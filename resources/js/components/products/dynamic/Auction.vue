@@ -122,7 +122,7 @@ export default {
 
     function b() {
       axios.get("/broadcast", function (e) {
-        console.log(e);
+        // console.log(e);
       });
     }
 
