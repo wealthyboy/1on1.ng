@@ -43,7 +43,9 @@ class WebHookController extends Controller
 
         try {
 
-            Log::info($request->all());
+            // Log::info($request->all());
+            Log::info($request->data['metadata']['custom_fields']);
+
             $input =  $request->data['metadata']['custom_fields'][0];
 
             if ($input['service_type'] == 'shout-out') {

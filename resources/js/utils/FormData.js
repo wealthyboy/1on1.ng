@@ -36,7 +36,7 @@ export const changePasswordData = (user) => {
 }
 
 
-export const shoutOutData = (service, ) => {
+export const shoutOutData = (service, user) => {
 
     let data = {
         sender_first_name: "",
