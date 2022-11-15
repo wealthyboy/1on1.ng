@@ -62,6 +62,9 @@ class WebHookController extends Controller
                 $shout_out->event_date = $input['date'];
                 $shout_out->save();
 
+                Log::info($shout_out);
+
+
                 //Mail::to();
             }
 
