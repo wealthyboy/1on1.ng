@@ -25881,7 +25881,7 @@ __webpack_require__.r(__webpack_exports__);
     var price = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)("Select shout out  type to  get price");
     var text = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)("Register");
     var message = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(null);
-    var data = (0,_utils_FormData__WEBPACK_IMPORTED_MODULE_8__.masterClassData)();
+    var data = (0,_utils_FormData__WEBPACK_IMPORTED_MODULE_8__.masterClassData)(props.service, props.user);
     var server_errors = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(data);
     var post_server_error = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(null);
     var form = (0,vue__WEBPACK_IMPORTED_MODULE_2__.reactive)(data);
@@ -28792,13 +28792,16 @@ var shoutOutData = function shoutOutData(service, user) {
   };
   return data;
 };
-var masterClassData = function masterClassData() {
+var masterClassData = function masterClassData(service, user) {
   var data = {
     email: "",
     password: "",
     first_name: null,
     last_name: null,
-    phone_number: null
+    phone_number: null,
+    service_type: "master-class",
+    service_id: service.id,
+    user_id: user.id
   };
   return data;
 };

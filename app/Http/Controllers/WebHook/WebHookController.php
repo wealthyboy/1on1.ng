@@ -49,6 +49,7 @@ class WebHookController extends Controller
             $input =  $request->data['metadata']['custom_fields']['form'];
 
             if ($input['service_type'] == 'shout-out') {
+
                 $shout_out = new ShoutOut;
                 $shout_out->recipient_first_name = $input['sender_last_name'];
                 $shout_out->recipient_last_name = $input['sender_last_name'];
@@ -57,13 +58,10 @@ class WebHookController extends Controller
                 $shout_out->service_id = $input['service_id'];
                 $shout_out->user_id = $input['user_id'];
                 $shout_out->type = $input['type'];
-                //$shout_out->event_date = $input['event_date'];
                 $shout_out->comment = $input['comment'];
                 $shout_out->event_date = $input['date'];
                 $shout_out->save();
-
                 Log::info($shout_out);
-
 
                 //Mail::to();
             }
@@ -71,15 +69,13 @@ class WebHookController extends Controller
 
             if ($input['service_type'] == 'master-class') {
                 $shout_out = new ShoutOut;
-                $shout_out->recipient_first_name = $input['sender_last_name'];
-                $shout_out->recipient_last_name = $input['sender_last_name'];
-                $shout_out->recipient_email = $input['recipient_email'];
-                $shout_out->recipient_phone = $input['recipient_phone'];
+                $shout_out->first_name = $input['first_name'];
+                $shout_out->last_name = $input['last_name'];
+                $shout_out->email = $input['email'];
+                $shout_out->phone = $input['phone'];
                 $shout_out->service_id = $input['service_id'];
-                $shout_out->type = $input['type'];
-                //$shout_out->event_date = $input['event_date'];
-                $shout_out->comment = $input['comment'];
-                $shout_out->date = $input['date'];
+                $shout_out->uuid = str_random(6);
+                $shout_out->user_id = $input['user_id'];
                 $shout_out->save();
 
                 //Mail::to();

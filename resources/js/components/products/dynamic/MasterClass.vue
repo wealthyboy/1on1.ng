@@ -103,7 +103,7 @@ export default {
 
     const text = ref("Register");
     const message = ref(null);
-    const data = masterClassData();
+    const data = masterClassData(props.service, props.user);
     const server_errors = ref(data);
     const post_server_error = ref(null);
     const form = reactive(data);

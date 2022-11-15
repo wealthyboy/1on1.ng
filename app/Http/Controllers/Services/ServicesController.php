@@ -35,7 +35,6 @@ class ServicesController extends Controller
     {
         // broadcast(new Test());
 
-
         $categories = Category::with('parent')->orderBy('name', 'asc')->get();
         $services = Service::whereHas('categories', function (Builder  $builder) use ($category) {
             $builder->where('categories.name', $category->name);
@@ -51,8 +50,8 @@ class ServicesController extends Controller
 
     public function getFilters($category_attributes)
     {
-        $filters = [];
 
+        $filters = [];
         foreach ($category_attributes as $category_attribute) {
             $filters[$category_attribute->attribute->slug] = CategoryFilter::class;
         }

@@ -57,7 +57,7 @@ export const shoutOutData = (service, user) => {
 }
 
 
-export const masterClassData = () => {
+export const masterClassData = (service, user) => {
 
     let data = {
         email: "",
@@ -65,6 +65,9 @@ export const masterClassData = () => {
         first_name: null,
         last_name: null,
         phone_number: null,
+        service_type: "master-class",
+        service_id: service.id,
+        user_id: user.id
     };
 
     return data
