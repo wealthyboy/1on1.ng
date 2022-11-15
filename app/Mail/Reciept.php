@@ -11,14 +11,17 @@ class Reciept extends Mailable
 {
     use Queueable, SerializesModels;
 
+
+    public $shout_out;
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($shout_out)
     {
-        //
+        $this->shout_out = $shout_out;
     }
 
     /**
@@ -28,6 +31,6 @@ class Reciept extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.receipt.index');
+        return $this->subject('Shout Out Confirmation')->view('emails.receipt.shout_outs.index');
     }
 }

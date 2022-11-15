@@ -39,8 +39,7 @@ export const changePasswordData = (user) => {
 export const shoutOutData = (service, user) => {
 
     let data = {
-        sender_first_name: "",
-        sender_last_name: "",
+
         recipient_first_name: "",
         recipient_last_name: "",
         recipient_email: "",

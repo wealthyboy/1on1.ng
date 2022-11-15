@@ -5,6 +5,7 @@ namespace App\Http\Controllers\WebHook;
 use App\Http\Controllers\Controller;
 use App\Models\ShoutOut;
 use App\Models\MasterClass;
+use App\Models\Service;
 
 use Illuminate\Support\Facades\Log;
 
@@ -52,16 +53,18 @@ class WebHookController extends Controller
 
             if ($input['service_type'] == 'shout-out') {
 
+                $service = Service::find($input['service_id']);
+
                 $shout_out = new ShoutOut;
-                $shout_out->recipient_first_name = $input['sender_last_name'];
-                $shout_out->recipient_last_name = $input['sender_last_name'];
                 $shout_out->recipient_email = $input['recipient_email'];
                 $shout_out->recipient_phone = $input['recipient_phone'];
                 $shout_out->service_id = $input['service_id'];
                 $shout_out->user_id = $input['user_id'];
+                $shout_out->price =  $service->price;
                 $shout_out->type = $input['type'];
                 $shout_out->comment = $input['comment'];
                 $shout_out->event_date = $input['date'];
+                $shout_out->invoice = "INV-" . date('Y') . "-" . rand(10000, 39999);
                 $shout_out->save();
                 Log::info($shout_out);
 
@@ -78,6 +81,7 @@ class WebHookController extends Controller
                 $master_class->service_id = $input['service_id'];
                 $master_class->uuid = str_random(6);
                 $master_class->user_id = $input['user_id'];
+                $master_class->invoice = "INV-" . date('Y') . "-" . rand(10000, 39999);
                 $master_class->save();
                 Log::info($master_class);
                 //Mail::to();

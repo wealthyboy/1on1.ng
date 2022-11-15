@@ -27597,31 +27597,25 @@ var _hoisted_10 = {
   "class": "form-group col-6"
 };
 var _hoisted_11 = {
-  "class": "form-group col-6"
-};
-var _hoisted_12 = {
-  "class": "form-group col-6"
-};
-var _hoisted_13 = {
   "class": "form-floating mb-2 col-6"
 };
 
-var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "floatingInput"
 }, "Date of event", -1
 /* HOISTED */
 );
 
-var _hoisted_15 = {
+var _hoisted_13 = {
   "class": "form-floating mb-2 col-6"
 };
-var _hoisted_16 = ["data-price"];
-var _hoisted_17 = ["data-price"];
-var _hoisted_18 = {
+var _hoisted_14 = ["data-price"];
+var _hoisted_15 = ["data-price"];
+var _hoisted_16 = {
   "class": "form-floating mb-2"
 };
 
-var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "floatingTextarea2"
 }, "Comments", -1
 /* HOISTED */
@@ -27643,93 +27637,71 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.price), 1
   /* TEXT */
   )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
-    onSubmit: _cache[10] || (_cache[10] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
+    onSubmit: _cache[8] || (_cache[8] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
       return $setup.sendShoutOut && $setup.sendShoutOut.apply($setup, arguments);
     }, ["prevent"]))
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_general_input, {
-    id: "sender_first_name",
-    error: $setup.v$.sender_first_name,
-    modelValue: $setup.form.sender_first_name,
-    "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
-      return $setup.form.sender_first_name = $event;
-    }),
-    name: "Sender's first name",
-    type: "text"
-  }, null, 8
-  /* PROPS */
-  , ["error", "modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_general_input, {
-    id: "sender_last_name",
-    error: $setup.v$.sender_last_name,
-    modelValue: $setup.form.sender_last_name,
-    "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
-      return $setup.form.sender_last_name = $event;
-    }),
-    name: "Sender's last name",
-    type: "text"
-  }, null, 8
-  /* PROPS */
-  , ["error", "modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_general_input, {
     id: "recipient_first_name",
     error: $setup.v$.recipient_first_name,
     modelValue: $setup.form.recipient_first_name,
-    "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
+    "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
       return $setup.form.recipient_first_name = $event;
     }),
     name: "Recipient's first name",
     type: "text"
   }, null, 8
   /* PROPS */
-  , ["error", "modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_general_input, {
+  , ["error", "modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_general_input, {
     id: "recipient_last_name",
     error: $setup.v$.recipient_last_name,
     modelValue: $setup.form.recipient_last_name,
-    "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
+    "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
       return $setup.form.recipient_last_name = $event;
     }),
     name: "Recipient's last name",
     type: "text"
   }, null, 8
   /* PROPS */
-  , ["error", "modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_general_input, {
+  , ["error", "modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_general_input, {
     id: "recipient_email",
     error: $setup.v$.recipient_email,
     modelValue: $setup.form.recipient_email,
-    "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
+    "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
       return $setup.form.recipient_email = $event;
     }),
     name: "Rcipient's email",
     type: "text"
   }, null, 8
   /* PROPS */
-  , ["error", "modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_general_input, {
+  , ["error", "modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_general_input, {
     id: "recipient_phone",
     error: $setup.v$.recipient_phone,
     modelValue: $setup.form.recipient_phone,
-    "onUpdate:modelValue": _cache[5] || (_cache[5] = function ($event) {
+    "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
       return $setup.form.recipient_phone = $event;
     }),
     name: "Recipient's phone",
     type: "text"
   }, null, 8
   /* PROPS */
-  , ["error", "modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_flat_pickr, {
+  , ["error", "modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_flat_pickr, {
     "class": "form-control",
     modelValue: $setup.form.date,
-    "onUpdate:modelValue": _cache[6] || (_cache[6] = function ($event) {
+    "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
       return $setup.form.date = $event;
     }),
     error: $setup.v$.date
   }, null, 8
   /* PROPS */
-  , ["modelValue", "error"]), _hoisted_14]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_general_select, {
+  , ["modelValue", "error"]), _hoisted_12]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_general_select, {
     id: "type",
     error: $setup.v$.type,
     modelValue: $setup.form.type,
-    "onUpdate:modelValue": _cache[7] || (_cache[7] = function ($event) {
+    "onUpdate:modelValue": _cache[5] || (_cache[5] = function ($event) {
       return $setup.form.type = $event;
     }),
     name: "Choose type",
-    onChange: _cache[8] || (_cache[8] = function ($event) {
+    onChange: _cache[6] || (_cache[6] = function ($event) {
       return $setup.doChange($event);
     })
   }, {
@@ -27739,31 +27711,31 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         value: "video"
       }, "Audio", 8
       /* PROPS */
-      , _hoisted_16), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+      , _hoisted_14), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
         "data-price": $props.service.video_shout_out_price,
         value: "audio"
       }, "Video", 8
       /* PROPS */
-      , _hoisted_17)];
+      , _hoisted_15)];
     }),
     _: 1
     /* STABLE */
 
   }, 8
   /* PROPS */
-  , ["error", "modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
+  , ["error", "modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
     "class": "form-control",
     placeholder: "Leave a comment here",
     id: "floatingTextarea2",
     style: {
       "height": "100px"
     },
-    "onUpdate:modelValue": _cache[9] || (_cache[9] = function ($event) {
+    "onUpdate:modelValue": _cache[7] || (_cache[7] = function ($event) {
       return $setup.form.comment = $event;
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form.comment]]), _hoisted_19]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_general_button, {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form.comment]]), _hoisted_17]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_general_button, {
     type: "submit",
     text: $setup.text,
     "class": "btn btn-dark w-100",
@@ -28781,8 +28753,6 @@ var changePasswordData = function changePasswordData(user) {
 };
 var shoutOutData = function shoutOutData(service, user) {
   var data = {
-    sender_first_name: "",
-    sender_last_name: "",
     recipient_first_name: "",
     recipient_last_name: "",
     recipient_email: "",
@@ -28972,12 +28942,6 @@ var masterClassOutRules = function masterClassOutRules(form) {
 var shoutOutRules = function shoutOutRules(form) {
   var rules = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
     return {
-      sender_first_name: {
-        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.withMessage("Please enter sender's first name", _vuelidate_validators__WEBPACK_IMPORTED_MODULE_1__.required)
-      },
-      sender_last_name: {
-        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.withMessage("Please enter a sender lasr name", _vuelidate_validators__WEBPACK_IMPORTED_MODULE_1__.required)
-      },
       recipient_last_name: {
         required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.withMessage("Please enter a  recipient's last name", _vuelidate_validators__WEBPACK_IMPORTED_MODULE_1__.required)
       },

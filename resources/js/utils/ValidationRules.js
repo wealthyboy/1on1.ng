@@ -157,12 +157,7 @@ export const masterClassOutRules = (form) => {
 export const shoutOutRules = (form) => {
     const rules = computed(() => {
         return {
-            sender_first_name: {
-                required: helpers.withMessage("Please enter sender's first name", required),
-            },
-            sender_last_name: {
-                required: helpers.withMessage("Please enter a sender lasr name", required),
-            },
+
             recipient_last_name: {
                 required: helpers.withMessage("Please enter a  recipient's last name", required),
             },

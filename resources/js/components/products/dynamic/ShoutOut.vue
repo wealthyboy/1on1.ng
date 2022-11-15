@@ -10,27 +10,6 @@
     <form @submit.prevent="sendShoutOut">
 
       <div class="row g-1">
-        <div class="form-group col-6">
-          <general-input
-            id="sender_first_name"
-            :error="v$.sender_first_name"
-            v-model="form.sender_first_name"
-            name="Sender's first name"
-            type="text"
-          />
-
-        </div>
-
-        <div class="form-group   col-6">
-          <general-input
-            id="sender_last_name"
-            :error="v$.sender_last_name"
-            v-model="form.sender_last_name"
-            name="Sender's last name"
-            type="text"
-          />
-
-        </div>
 
         <div class="form-group   col-6">
           <general-input
