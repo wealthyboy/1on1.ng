@@ -46,7 +46,7 @@ class WebHookController extends Controller
         try {
 
             // Log::info($request->all());
-            Log::info($request->data['metadata']['custom_fields']['form']);
+            // Log::info($request->data['metadata']['custom_fields']['form']);
 
             $input =  $request->data['metadata']['custom_fields']['form'];
 
@@ -80,8 +80,6 @@ class WebHookController extends Controller
                 $master_class->user_id = $input['user_id'];
                 $master_class->save();
                 Log::info($master_class);
-
-
                 //Mail::to();
             }
         } catch (\Throwable $th) {

@@ -70,6 +70,14 @@ Route::group(['prefix' => 'admin'], function () {
 
 Auth::routes();
 
+Route::get('/mailable', function () {
+    // $order = App\Order::find(201);
+    // $settings =  App\SystemSetting::first();
+    // // $total = Illuminate\Support\Facades\DB::table('ordered_product')->select(\DB::raw('SUM(ordered_product.price*ordered_product.quantity) as items_total'))->where('order_id',$order->id)->get();
+    // // $sub_total = $total[0]->items_total ?? '0.00';
+    return  new App\Mail\Reciept();
+});
+
 Route::get('/',       [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/plans',      [App\Http\Controllers\Plans\PlansController::class, 'index'])->name('plans');
 Route::get('/subscribe',  [App\Http\Controllers\Subscribe\SubscribeController::class, 'index'])->name('subscribe');
