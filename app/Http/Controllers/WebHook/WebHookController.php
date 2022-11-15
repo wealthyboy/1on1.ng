@@ -4,6 +4,8 @@ namespace App\Http\Controllers\WebHook;
 
 use App\Http\Controllers\Controller;
 use App\Models\ShoutOut;
+use App\Models\MasterClass;
+
 use Illuminate\Support\Facades\Log;
 
 use Illuminate\Http\Request;
@@ -68,15 +70,17 @@ class WebHookController extends Controller
 
 
             if ($input['service_type'] == 'master-class') {
-                $shout_out = new ShoutOut;
-                $shout_out->first_name = $input['first_name'];
-                $shout_out->last_name = $input['last_name'];
-                $shout_out->email = $input['email'];
-                $shout_out->phone = $input['phone_number'];
-                $shout_out->service_id = $input['service_id'];
-                $shout_out->uuid = str_random(6);
-                $shout_out->user_id = $input['user_id'];
-                $shout_out->save();
+                $master_class = new MasterClass;
+                $master_class->first_name = $input['first_name'];
+                $master_class->last_name = $input['last_name'];
+                $master_class->email = $input['email'];
+                $master_class->phone = $input['phone_number'];
+                $master_class->service_id = $input['service_id'];
+                $master_class->uuid = str_random(6);
+                $master_class->user_id = $input['user_id'];
+                $master_class->save();
+                Log::info($master_class);
+
 
                 //Mail::to();
             }
