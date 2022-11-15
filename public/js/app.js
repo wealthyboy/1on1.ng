@@ -25925,9 +25925,13 @@ __webpack_require__.r(__webpack_exports__);
         currency: "NGN",
         first_name: props.user.name,
         metadata: {
-          custom_fields: [form]
+          custom_fields: {
+            form: form
+          }
         },
-        callback: function callback(response) {},
+        callback: function callback(response) {
+          console.log(response);
+        },
         onClose: function onClose() {}
       });
       handler.openIframe();

@@ -141,9 +141,11 @@ export default {
         currency: "NGN",
         first_name: props.user.name,
         metadata: {
-          custom_fields: [form],
+          custom_fields: { form },
         },
-        callback: function (response) {},
+        callback: function (response) {
+          console.log(response);
+        },
         onClose: function () {},
       });
       handler.openIframe();
