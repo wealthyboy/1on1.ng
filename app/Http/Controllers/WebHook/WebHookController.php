@@ -72,7 +72,7 @@ class WebHookController extends Controller
                 $shout_out->first_name = $input['first_name'];
                 $shout_out->last_name = $input['last_name'];
                 $shout_out->email = $input['email'];
-                $shout_out->phone = $input['phone'];
+                $shout_out->phone = $input['phone_number'];
                 $shout_out->service_id = $input['service_id'];
                 $shout_out->uuid = str_random(6);
                 $shout_out->user_id = $input['user_id'];
