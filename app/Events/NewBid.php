@@ -61,6 +61,6 @@ class NewBid implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('bid.' . $this->user->id);
+        return new Channel('bid');
     }
 }

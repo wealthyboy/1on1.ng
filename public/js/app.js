@@ -25742,8 +25742,7 @@ __webpack_require__.r(__webpack_exports__);
     MasterClass: _dynamic_MasterClass__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   mounted: function mounted() {
-    console.log(Echo);
-    Echo["private"]("bid.".concat(this.user.id)).listen(".bid.added", function (e) {
+    Echo.channel("bid").listen(".bid.added", function (e) {
       console.log(e);
     });
   },

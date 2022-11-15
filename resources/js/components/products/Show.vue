@@ -40,8 +40,7 @@ export default {
   },
 
   mounted() {
-    console.log(Echo);
-    Echo.private(`bid.${this.user.id}`).listen(".bid.added", (e) => {
+    Echo.channel(`bid`).listen(".bid.added", (e) => {
       console.log(e);
     });
   },
