@@ -59,7 +59,7 @@ class WebHookController extends Controller
                 $shout_out->type = $input['type'];
                 //$shout_out->event_date = $input['event_date'];
                 $shout_out->comment = $input['comment'];
-                $shout_out->date = $input['date'];
+                $shout_out->event_date = $input['date'];
                 $shout_out->save();
 
                 //Mail::to();
