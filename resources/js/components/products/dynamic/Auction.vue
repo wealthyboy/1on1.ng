@@ -103,7 +103,6 @@ export default {
   setup(props, { emit }) {
     const loading = ref(false);
     const post_server_error = ref(false);
-
     const store = useStore();
     const wallet = computed(() => store.state.wallet);
     const text = ref("Submit");

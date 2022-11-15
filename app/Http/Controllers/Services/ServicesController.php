@@ -33,7 +33,7 @@ class ServicesController extends Controller
      */
     public function index(Request $request, Category $category)
     {
-        broadcast(new Test());
+        // broadcast(new Test());
 
 
         $categories = Category::with('parent')->orderBy('name', 'asc')->get();

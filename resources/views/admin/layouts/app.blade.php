@@ -80,11 +80,11 @@
             </li>
 
             <li class="nav-item">
-               <a data-bs-toggle="collapse" href="settings.html#ecommerceExamples" class="nav-link text-white {{ $helper->active_link(['reviews','brands','products','category','discounts','attributes','vouchers']) }}" aria-controls="ecommerceExamples" role="button" aria-expanded="false">
+               <a data-bs-toggle="collapse" href="settings.html#ecommerceExamples" class="nav-link text-white {{ $helper->active_link(['reviews','products','category','discounts','attributes','vouchers']) }}" aria-controls="ecommerceExamples" role="button" aria-expanded="false">
                   <i class="material-symbols-outlined">inventory_2</i>
                   <span class="nav-link-text ms-2 ps-1">Reservations</span>
                </a>
-               <div class="collapse  {{ $helper->active_link(['auctions','engines','celebrities','reviews','category','masterclass','','attributes','vouchers']) ? 'show' : ''}}" id="ecommerceExamples">
+               <div class="collapse  {{ $helper->active_link(['auctions','celebrities','reviews','category','masterclass','','attributes']) ? 'show' : ''}}" id="ecommerceExamples">
                   <ul class="nav ">
 
                      <li class="nav-item ">
@@ -132,11 +132,35 @@
                </div>
             </li>
 
-            <li class=" nav-item">
-               <a class="nav-link text-white {{ $helper->active_link(['orders']) }}" href="{{ route('admin.orders.index') }}">
-                  <i class="material-symbols-outlined opacity-10">shopping_cart</i>
-                  <span class="nav-link-text ms-2 ps-1"> Bookings </span>
+
+            <li class="nav-item">
+               <a data-bs-toggle="collapse" href="settings.html#booking" class="nav-link text-white {{ $helper->active_link(['masterclass','vouchers']) }}" aria-controls="ecommerceExamples" role="button" aria-expanded="false">
+                  <i class="material-symbols-outlined">shopping_cart</i>
+                  <span class="nav-link-text ms-2 ps-1">Bookings</span>
                </a>
+               <div class="collapse  {{ $helper->active_link(['auctions','masterclass']) ? 'show' : ''}}" id="booking">
+                  <ul class="nav">
+                     <li class="nav-item ">
+                        <a class="nav-link text-white {{ $helper->active_link(['auctions']) }}" href="{{ route('auctions.index') }}">
+                           <span class="sidenav-mini-icon"> A </span>
+                           <span class="sidenav-normal  ms-2  ps-1"> Auctions <b class="caret"></b></span>
+                        </a>
+                     </li>
+                     <li class="nav-item ">
+                        <a class="nav-link text-white {{ $helper->active_link(['masterclass']) }}" href="{{ route('masterclass.index') }}">
+                           <span class="sidenav-mini-icon"> M </span>
+                           <span class="sidenav-normal  ms-2  ps-1"> Master Class <b class="caret"></b></span>
+                        </a>
+                     </li>
+
+                     <li class="nav-item ">
+                        <a class="nav-link text-white {{ $helper->active_link(['shoutouts']) }}" href="{{ route('shoutouts.index') }}">
+                           <span class="sidenav-mini-icon"> S </span>
+                           <span class="sidenav-normal  ms-2  ps-1"> Shout Outs <b class="caret"></b></span>
+                        </a>
+                     </li>
+                  </ul>
+               </div>
             </li>
 
             <li class=" nav-item">

@@ -25742,10 +25742,9 @@ __webpack_require__.r(__webpack_exports__);
     MasterClass: _dynamic_MasterClass__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   mounted: function mounted() {
-    console.log(Echo);
-    Echo["private"]("bid.".concat(this.user.id)).listen(".bid.added", function (e) {
-      console.log(e);
-    });
+    console.log(Echo); // Echo.private(`bid.${this.user.id}`).listen(".bid.added", (e) => {
+    //   console.log(e);
+    // });
   },
   setup: function setup(props) {}
 });
@@ -25977,18 +25976,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_FormData__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../../utils/FormData */ "./resources/js/utils/FormData.js");
 /* harmony import */ var _utils_Payment__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../../utils/Payment */ "./resources/js/utils/Payment.js");
 /* harmony import */ var _Forms_Select__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../Forms/Select */ "./resources/js/components/Forms/Select.vue");
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
 
 
 
@@ -26019,7 +26006,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     var price = (0,vue__WEBPACK_IMPORTED_MODULE_4__.ref)("Select shout out  type to  get price");
     var text = (0,vue__WEBPACK_IMPORTED_MODULE_4__.ref)("Submit");
     var message = (0,vue__WEBPACK_IMPORTED_MODULE_4__.ref)(null);
-    var data = (0,_utils_FormData__WEBPACK_IMPORTED_MODULE_10__.shoutOutData)();
+    var data = (0,_utils_FormData__WEBPACK_IMPORTED_MODULE_10__.shoutOutData)(props.service, user);
     var server_errors = (0,vue__WEBPACK_IMPORTED_MODULE_4__.ref)(data);
     var post_server_error = (0,vue__WEBPACK_IMPORTED_MODULE_4__.ref)(null);
     var form = (0,vue__WEBPACK_IMPORTED_MODULE_4__.reactive)(data);
@@ -26054,7 +26041,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       if (this.v$.$error) {//return;
       }
 
-      console.log(props.user);
       var handler = PaystackPop.setup({
         key: "pk_test_abcbb577deb8d821bc57ff8a99c59942d5d4162f",
         //'pk_live_c4f922bc8d4448065ad7bd3b0a545627fb2a084f',//'pk_test_844112398c9a22ef5ca147e85860de0b55a14e7c',
@@ -26063,7 +26049,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         currency: "NGN",
         first_name: props.user.name,
         metadata: {
-          custom_fields: _toConsumableArray(form)
+          custom_fields: form
         },
         callback: function callback(response) {
           console.log(response);
@@ -27894,7 +27880,7 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   broadcaster: 'pusher',
-  key: "local",
+  key: "133bc78cd9e69751b72e",
   cluster: "mt1",
   forceTLS: false,
   wsHost: "127.0.0.1",
@@ -28787,7 +28773,7 @@ var changePasswordData = function changePasswordData(user) {
   };
   return data;
 };
-var shoutOutData = function shoutOutData() {
+var shoutOutData = function shoutOutData(service) {
   var data = {
     sender_first_name: "",
     sender_last_name: "",
@@ -28795,10 +28781,12 @@ var shoutOutData = function shoutOutData() {
     recipient_last_name: "",
     recipient_email: "",
     recipient_phone: "",
-    service_id: "",
+    service_id: service.id,
     type: "Choose one",
     event_date: "",
-    comment: ""
+    comment: "",
+    service_type: "shout-out",
+    user_id: user.id
   };
   return data;
 };

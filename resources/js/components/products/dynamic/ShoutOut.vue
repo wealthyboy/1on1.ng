@@ -160,10 +160,9 @@ export default {
   setup(props, { emit }) {
     const loading = ref(false);
     const price = ref("Select shout out  type to  get price");
-
     const text = ref("Submit");
     const message = ref(null);
-    const data = shoutOutData();
+    const data = shoutOutData(props.service, user);
     const server_errors = ref(data);
     const post_server_error = ref(null);
     const form = reactive(data);
@@ -194,7 +193,6 @@ export default {
       if (this.v$.$error) {
         //return;
       }
-      console.log(props.user);
       var handler = PaystackPop.setup({
         key: "pk_test_abcbb577deb8d821bc57ff8a99c59942d5d4162f", //'pk_live_c4f922bc8d4448065ad7bd3b0a545627fb2a084f',//'pk_test_844112398c9a22ef5ca147e85860de0b55a14e7c',
         email: props.user.email,
@@ -202,7 +200,7 @@ export default {
         currency: "NGN",
         first_name: props.user.name,
         metadata: {
-          custom_fields: [...form],
+          custom_fields: form,
         },
         callback: function (response) {
           console.log(response);

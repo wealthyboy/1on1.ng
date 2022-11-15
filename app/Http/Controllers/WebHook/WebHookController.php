@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\WebHook;
 
 use App\Http\Controllers\Controller;
+use App\Models\ShoutOut;
 use Illuminate\Support\Facades\Log;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+
 // use Illuminate\Support\Facades\Log;
 // use App\User;
 // use App\Order;
@@ -39,7 +42,43 @@ class WebHookController extends Controller
     {
 
         try {
+
             Log::info($request->all());
+            $input =  $request->data['metadata']['custom_fields'][0];
+
+            if ($input['service_type'] == 'shout-out') {
+                $shout_out = new ShoutOut;
+                $shout_out->recipient_first_name = $input['sender_last_name'];
+                $shout_out->recipient_last_name = $input['sender_last_name'];
+                $shout_out->recipient_email = $input['recipient_email'];
+                $shout_out->recipient_phone = $input['recipient_phone'];
+                $shout_out->service_id = $input['service_id'];
+                $shout_out->user_id = $input['user_id'];
+                $shout_out->type = $input['type'];
+                //$shout_out->event_date = $input['event_date'];
+                $shout_out->comment = $input['comment'];
+                $shout_out->date = $input['date'];
+                $shout_out->save();
+
+                //Mail::to();
+            }
+
+
+            if ($input['service_type'] == 'master-class') {
+                $shout_out = new ShoutOut;
+                $shout_out->recipient_first_name = $input['sender_last_name'];
+                $shout_out->recipient_last_name = $input['sender_last_name'];
+                $shout_out->recipient_email = $input['recipient_email'];
+                $shout_out->recipient_phone = $input['recipient_phone'];
+                $shout_out->service_id = $input['service_id'];
+                $shout_out->type = $input['type'];
+                //$shout_out->event_date = $input['event_date'];
+                $shout_out->comment = $input['comment'];
+                $shout_out->date = $input['date'];
+                $shout_out->save();
+
+                //Mail::to();
+            }
         } catch (\Throwable $th) {
             Log::info("Custom error :" . $th);
         }
