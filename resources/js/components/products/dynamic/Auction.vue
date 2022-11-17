@@ -159,15 +159,14 @@ export default {
     }
 
     function handleBid() {
-      //console.log(true);
-
       if (!/^[0-9]+$/.test(bid.amount)) {
         error.value = true;
         return;
       }
 
       if (bid.amount < props.service.min_bid) {
-        console.log(true);
+        error.value = true;
+        return;
       }
 
       emit("bid:placed", bid);
