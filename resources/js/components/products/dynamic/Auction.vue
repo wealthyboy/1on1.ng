@@ -42,11 +42,17 @@
           type="text"
           v-model="bid.amount"
           class="form-control rounded-0"
+          @input="clearError"
         >
+        <small
+          v-if="error"
+          class="text text-danger"
+        >Enter a valid amount </small>
+
       </div>
       <div class="col-md-9">
         <button
-          v-if="walletBalance >= service.bid_start_price"
+          v-if="walletBalance >= service.min_bid"
           class="btn btn-outline-secondary w-100 rounded-0"
           type="button"
           id="button-addon2"
@@ -102,7 +108,7 @@ import Modal from "../../Modal/Index";
 import GeneralInput from "../../Forms/Input";
 import Wallet from "../../auth/Wallet";
 import { computed, reactive, ref, onMounted } from "vue";
-import { loginRules } from "../../../utils/ValidationRules";
+import { bidRules } from "../../../utils/ValidationRules";
 import { useStore } from "vuex";
 import { useActions, useGetters } from "vuex-composition-helpers";
 
@@ -117,10 +123,14 @@ export default {
     const store = useStore();
     const text = ref("Submit");
     const message = ref(null);
+    const error = ref(null);
     const bid = reactive({
-      amount: "",
+      amount: null,
       service_id: props.service.id,
     });
+
+    const rules = bidRules(bid);
+    const v$ = useVuelidate(rules, bid);
 
     const { currentBid, walletBalance, number_of_bidders } = useGetters([
       "currentBid",
@@ -130,11 +140,36 @@ export default {
 
     const { getWalletBalance } = useActions(["getWalletBalance"]);
 
+    function clearError() {
+      if (!/^[0-9]+$/.test(bid.amount)) {
+        error.value = true;
+        return;
+      }
+
+      if (!/^[0-9]+$/.test(bid.amount)) {
+        error.value = false;
+        return;
+      }
+
+      error.value = false;
+    }
+
     function getWallet(page) {
       getWalletBalance();
     }
 
     function handleBid() {
+      //console.log(true);
+
+      if (!/^[0-9]+$/.test(bid.amount)) {
+        error.value = true;
+        return;
+      }
+
+      if (bid.amount < props.service.min_bid) {
+        console.log(true);
+      }
+
       emit("bid:placed", bid);
     }
 
@@ -149,6 +184,9 @@ export default {
       getWalletBalance,
       number_of_bidders,
       handleBid,
+      v$,
+      error,
+      clearError,
     };
   },
   components: { Modal, GeneralInput, Wallet },

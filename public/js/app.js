@@ -25879,6 +25879,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     });
 
     function placeBid(data) {
+      var new_balnce = parseInt(walletBalance.value) - parseInt(data.amount);
+      store.commit("setWalletBalance", new_balnce);
       var postData = {
         url: "/bids",
         data: data,
@@ -25941,10 +25943,13 @@ __webpack_require__.r(__webpack_exports__);
     var store = (0,vuex__WEBPACK_IMPORTED_MODULE_8__.useStore)();
     var text = (0,vue__WEBPACK_IMPORTED_MODULE_4__.ref)("Submit");
     var message = (0,vue__WEBPACK_IMPORTED_MODULE_4__.ref)(null);
+    var error = (0,vue__WEBPACK_IMPORTED_MODULE_4__.ref)(null);
     var bid = (0,vue__WEBPACK_IMPORTED_MODULE_4__.reactive)({
-      amount: "",
+      amount: null,
       service_id: props.service.id
     });
+    var rules = (0,_utils_ValidationRules__WEBPACK_IMPORTED_MODULE_5__.bidRules)(bid);
+    var v$ = (0,_vuelidate_core__WEBPACK_IMPORTED_MODULE_0__.useVuelidate)(rules, bid);
 
     var _useGetters = (0,vuex_composition_helpers__WEBPACK_IMPORTED_MODULE_6__.useGetters)(["currentBid", "walletBalance", "number_of_bidders"]),
         currentBid = _useGetters.currentBid,
@@ -25954,11 +25959,35 @@ __webpack_require__.r(__webpack_exports__);
     var _useActions = (0,vuex_composition_helpers__WEBPACK_IMPORTED_MODULE_6__.useActions)(["getWalletBalance"]),
         getWalletBalance = _useActions.getWalletBalance;
 
+    function clearError() {
+      if (!/^[0-9]+$/.test(bid.amount)) {
+        error.value = true;
+        return;
+      }
+
+      if (!/^[0-9]+$/.test(bid.amount)) {
+        error.value = false;
+        return;
+      }
+
+      error.value = false;
+    }
+
     function getWallet(page) {
       getWalletBalance();
     }
 
     function handleBid() {
+      //console.log(true);
+      if (!/^[0-9]+$/.test(bid.amount)) {
+        error.value = true;
+        return;
+      }
+
+      if (bid.amount < props.service.min_bid) {
+        console.log(true);
+      }
+
       emit("bid:placed", bid);
     }
 
@@ -25972,7 +26001,10 @@ __webpack_require__.r(__webpack_exports__);
       getWallet: getWallet,
       getWalletBalance: getWalletBalance,
       number_of_bidders: number_of_bidders,
-      handleBid: handleBid
+      handleBid: handleBid,
+      v$: v$,
+      error: error,
+      clearError: clearError
     };
   },
   components: {
@@ -27757,9 +27789,13 @@ var _hoisted_9 = {
   "class": "col-md-3"
 };
 var _hoisted_10 = {
-  "class": "col-md-9"
+  key: 0,
+  "class": "text text-danger"
 };
 var _hoisted_11 = {
+  "class": "col-md-9"
+};
+var _hoisted_12 = {
   key: 1,
   "data-bs-toggle": "modal",
   "data-bs-target": "#main-modal",
@@ -27767,19 +27803,19 @@ var _hoisted_11 = {
   type: "button",
   id: "button-addon2"
 };
-var _hoisted_12 = {
+var _hoisted_13 = {
   id: "emailHelp",
   "class": "form-text"
 };
 
-var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", null, "Fund your wallet", -1
+var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", null, "Fund your wallet", -1
 /* HOISTED */
 );
 
-var _hoisted_14 = {
+var _hoisted_15 = {
   "class": "row h-100 d-flex align-items-center justify-content-center mx-2 mt-2"
 };
-var _hoisted_15 = {
+var _hoisted_16 = {
   style: {
     "height": "200px"
   },
@@ -27807,28 +27843,31 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
       return $setup.bid.amount = $event;
     }),
-    "class": "form-control rounded-0"
-  }, null, 512
-  /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.bid.amount]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [$setup.walletBalance >= $props.service.bid_start_price ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
+    "class": "form-control rounded-0",
+    onInput: _cache[1] || (_cache[1] = function () {
+      return $setup.clearError && $setup.clearError.apply($setup, arguments);
+    })
+  }, null, 544
+  /* HYDRATE_EVENTS, NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.bid.amount]]), $setup.error ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("small", _hoisted_10, "Enter a valid amount ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [$setup.walletBalance >= $props.service.min_bid ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
     key: 0,
     "class": "btn btn-outline-secondary w-100 rounded-0",
     type: "button",
     id: "button-addon2",
-    onClick: _cache[1] || (_cache[1] = function () {
+    onClick: _cache[2] || (_cache[2] = function () {
       return $setup.handleBid && $setup.handleBid.apply($setup, arguments);
     })
-  }, "Place Bid")) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", _hoisted_11, "Place Bid"))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, "Enter " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$filters.formatNumber($props.service.min_bid)) + " or more", 1
+  }, "Place Bid")) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", _hoisted_12, "Place Bid"))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, "Enter " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$filters.formatNumber($props.service.min_bid)) + " or more", 1
   /* TEXT */
   )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_modal, null, {
     header: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 1on1 ")];
     }),
     title: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_13];
+      return [_hoisted_14];
     }),
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_wallet, {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_wallet, {
         "onWallet:funded": $setup.getWallet,
         user: $props.user
       }, null, 8
@@ -29634,6 +29673,7 @@ var loadScript = function loadScript(callback) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "accountRules": () => (/* binding */ accountRules),
+/* harmony export */   "bidRules": () => (/* binding */ bidRules),
 /* harmony export */   "changePasswordRules": () => (/* binding */ changePasswordRules),
 /* harmony export */   "loginRules": () => (/* binding */ loginRules),
 /* harmony export */   "masterClassOutRules": () => (/* binding */ masterClassOutRules),
@@ -29740,6 +29780,16 @@ var masterClassOutRules = function masterClassOutRules(form) {
       phone_number: {
         required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.withMessage("Please enter a valid number", _vuelidate_validators__WEBPACK_IMPORTED_MODULE_1__.required),
         numeric: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.withMessage("Please enter a valid number", _vuelidate_validators__WEBPACK_IMPORTED_MODULE_1__.required)
+      }
+    };
+  });
+  return rules;
+};
+var bidRules = function bidRules() {
+  var rules = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
+    return {
+      amount: {
+        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.withMessage("Enter a valid amount", _vuelidate_validators__WEBPACK_IMPORTED_MODULE_1__.required)
       }
     };
   });

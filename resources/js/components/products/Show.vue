@@ -78,6 +78,8 @@ export default {
     });
 
     function placeBid(data) {
+      let new_balnce = parseInt(walletBalance.value) - parseInt(data.amount);
+      store.commit("setWalletBalance", new_balnce);
       const postData = {
         url: "/bids",
         data: data,

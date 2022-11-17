@@ -153,6 +153,25 @@ export const masterClassOutRules = (form) => {
     return rules
 };
 
+export const bidRules = () => {
+
+    const rules = computed(() => {
+        return {
+            amount: {
+                required: helpers.withMessage(
+                    "Enter a valid amount",
+                    required
+                ),
+            },
+        }
+
+    });
+
+    return rules
+
+}
+
+
 
 export const shoutOutRules = (form) => {
     const rules = computed(() => {

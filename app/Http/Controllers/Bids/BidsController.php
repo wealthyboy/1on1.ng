@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Bid;
 use App\Models\Service;
 use App\Events\NewBid;
-
+use App\Models\WalletBalance;
 use App\Utils\AccountSettingsNav;
 use Illuminate\Http\Request;
 
@@ -56,11 +56,19 @@ class BidsController extends DataTable
         $bid->service_id = $request->service_id;
         $bid->price = $request->amount;
         $bid->save();
+
+        //reduce wallet 
+        $input = $request->all();
+        WalletBalance::deductAmount($input);
+
         $service = Service::find($request->service_id);
         $data = Bid::getCurrentBid($service);
 
 
         broadcast(new NewBid($data));
+
+        //Send emails
+
 
         return response()->json($data);
     }

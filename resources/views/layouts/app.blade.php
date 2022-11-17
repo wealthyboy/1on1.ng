@@ -95,7 +95,7 @@
                                                 <a href="/classes" class="dropdown-item "><i class="far fa-sign-out-alt left"></i> Clasess</a>
                                             </li>
                                             <li class="nav-item list-group-item border-0 p-0">
-                                                <a href="/Bids" class="dropdown-item py-2 ps-3 border-radius-md"><i class="far fa-sign-out-alt left"></i> Bids</a>
+                                                <a href="/bids" class="dropdown-item py-2 ps-3 border-radius-md"><i class="far fa-sign-out-alt left"></i> Bids</a>
                                             </li>
                                             <li class="nav-item list-group-item border-0 p-0">
                                                 <a href="/shout-outs" class="dropdown-item py-2 ps-3 border-radius-md"><i class="far fa-sign-out-alt left"></i> Shout Outs
@@ -110,8 +110,6 @@
 
                                                 <a href="#" class="dropdown-item py-2 ps-3 border-radius-md" onclick="event.preventDefault();
                                                     document.getElementById('logout-form').submit();" class="list-group-item list-group-item-action bold text-uppercase p-4"><i class="far fa-sign-out-alt left"></i> Logout
-
-
                                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                                         @csrf
                                                     </form>
