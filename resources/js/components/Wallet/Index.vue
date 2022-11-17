@@ -1,108 +1,39 @@
 <template>
-
-  <div
-    class="modal fade"
-    id="mainweewewew-modal"
-    data-bs-backdrop="static"
-    data-bs-keyboard="false"
-    tabindex="-1"
-    aria-labelledby="main-modal"
-    aria-hidden="true"
-  >
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5
-            class="modal-title"
-            id="staticBackdropLabel"
-          >Fund </h5>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
-        </div>
-        <div class="modal-body">
-          hjdhhjjhsjhsdhj
-        </div>
-
-      </div>
+  <div class="d-flex align-items-center justify-content-between">
+    <h2 class="page-title ">Wallet</h2>
+    <div class="wallet-balance">
+      <fund-wallet :user="user" />
     </div>
   </div>
-
+  <general-table />
 </template>
-  
-  <script>
-import { useVuelidate } from "@vuelidate/core";
-import axios from "axios";
-import { reactive, ref } from "vue";
-import SimpleMessage from "../message/SimpleMessage";
-import GeneralButton from "../general/Button.vue";
-import GeneralInput from "../Forms/Input";
-import Message from "../message/Message";
-import { loginRules } from "../../utils/ValidationRules";
+<script>
+import { ref } from "vue";
+import FundWallet from "./Fund";
+import GeneralTable from "../table/Table";
 import { useActions } from "vuex-composition-helpers";
 
 export default {
-  emits: ["switched"],
+  props: ["user"],
   components: {
-    SimpleMessage,
-    GeneralButton,
-    GeneralInput,
-    Message,
+    GeneralTable,
+    FundWallet,
   },
-
-  computed: {
-    ...mapGetters({
-      carts: "carts",
-      meta: "meta",
-      loading: "loading",
-    }),
-  },
-  setup(p, { emit }) {
-    const loading = ref(false);
-    const post_server_error = ref(false);
-
-    const text = ref("Submit");
-    const message = ref(null);
-    const form = reactive({
-      email: "",
-      password: "",
-    });
-
-    const rules = loginRules(form);
-    const v$ = useVuelidate(rules, form);
-    const { clearErr, makePost } = useActions(["makePost", "clearErr"]);
-
-    function change(page) {
-      emit("switched", page);
+  setup() {
+    const reload = ref(false);
+    const { getTableData } = useActions(["getTableData"]);
+    function refre(m) {
+      console.log(m);
+      setTimeout(() => {
+        getTableData(location.href);
+      }, 3000);
     }
 
-    function login() {
-      this.v$.$touch();
-
-      const postData = {
-        url: "/wallet",
-        data: form,
-        loading,
-        needsValidation: true,
-        error: this.v$.$error,
-        post_server_error: post_server_error,
-      };
-
-      makePost(postData)
-        .then((res) => {
-          window.location.href = res.data.url;
-        })
-        .catch((error) => {
-          message.value = "We could not find your data in our system";
-          setTimeout(() => {
-            message.value = null;
-          }, 3000);
-        });
-    }
-    return { form, v$, login, text, loading, message, change };
+    return {
+      reload,
+      refre,
+      getTableData,
+    };
   },
 };
 </script>

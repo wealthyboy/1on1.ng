@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Wallets;
 
 use App\Http\Controllers\Controller;
 use App\Models\Wallet;
+use App\Models\WalletBalance;
+
+
 use App\Utils\AccountSettingsNav;
 use Illuminate\Http\Request;
 use App\Events\NewBid;
@@ -38,14 +41,12 @@ class WalletsController extends Controller
         return auth()->user();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function walletBalnce()
     {
-        //
+        $balance  = auth()->user()->wallet_balance;
+        return response()->json([
+            'balance' => $balance
+        ]);
     }
 
     /**
@@ -56,12 +57,27 @@ class WalletsController extends Controller
      */
     public function store(Request $request)
     {
+
         $user = $request->user();
+        $input = $request->all();
         $wallet = new Wallet;
+        $wallet->amount = $input['amount'];
         $wallet->user_id = $user->id;
-        $wallet->amount = $request->amount;
+        $wallet->status = 'Added';
         $wallet->save();
-        return response(null, 200);
+
+        $balance = WalletBalance::where('user_id', $user->id)->first();
+
+        if (null !== $balance) {
+            $balance->amount = $balance->balance +  $input['amount'];
+            $balance->save();
+        } else {
+            $balance = new WalletBalance;
+            $balance->amount = $input['amount'];
+            $balance->user_id = $user->id;
+            $balance->save();
+        }
+        return response($balance, 200);
     }
 
     /**

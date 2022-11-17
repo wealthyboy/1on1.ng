@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Log;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use App\Models\Wallet;
+use App\Models\WalletBalance;
 
 // use Illuminate\Support\Facades\Log;
 // use App\User;
@@ -50,6 +52,28 @@ class WebHookController extends Controller
             // Log::info($request->data['metadata']['custom_fields']['form']);
 
             $input =  $request->data['metadata']['custom_fields']['form'];
+
+            if ($input['type'] == 'Wallet') {
+                $wallet = new Wallet;
+                $wallet->amount = $input['amount'];
+                $wallet->user_id = $input['customer_id'];
+                $wallet->status = 'Added';
+                $wallet->save();
+
+                $balance = WalletBalance::where('user_id', $input['customer_id'])->first();
+
+                if (null !== $balance) {
+                    $balance->balance = $balance->balance +  $input['amount'];
+                    $balance->save();
+                } else {
+                    $balance = new WalletBalance;
+                    $balance->balance = $input['amount'];
+                    $balance->user_id = $input['customer_id'];
+                    $balance->save();
+                }
+
+                \Log::info($balance);
+            }
 
             if ($input['service_type'] == 'shout-out') {
 

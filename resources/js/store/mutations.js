@@ -84,6 +84,23 @@ export const setDefaultShipping = (state, default_shipping) => {
     state.default_shipping = default_shipping
 }
 
-export const setWallet = (state, amount) => {
-    state.wallet = amount
+
+export const setWalletBalance = (state, balance) => {
+    state.walletBalance = balance
+}
+
+export const setTableData = (state, data) => {
+    state.tableData = data
+}
+
+export const setCurrentBid = (state, current_bid) => {
+    state.currentBid = current_bid
+}
+
+export const setNumberOfBidders = (state, number_of_bidders) => {
+    state.number_of_bidders = number_of_bidders
+}
+
+export const setMeta = (state, meta) => {
+    state.meta = meta
 }

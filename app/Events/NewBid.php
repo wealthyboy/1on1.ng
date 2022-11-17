@@ -21,7 +21,7 @@ class NewBid implements ShouldBroadcast
      *
      * @var \App\Models\User
      */
-    public $user;
+    public $data;
 
 
 
@@ -31,9 +31,9 @@ class NewBid implements ShouldBroadcast
      * @param  \App\Models\User  $user
      * @return void
      */
-    public function __construct(User $user)
+    public function __construct($data)
     {
-        $this->user = $user;
+        $this->data = $data;
     }
     /**
      * The event's broadcast name.
@@ -48,10 +48,7 @@ class NewBid implements ShouldBroadcast
 
     public function broadcastWith()
     {
-        return [
-            'cuurent_bid' => 97097097097,
-            'number_of_bidders' => 3333
-        ];
+        return $this->data;
     }
 
     /**

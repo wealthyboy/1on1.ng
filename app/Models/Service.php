@@ -48,6 +48,12 @@ class Service extends Model
     }
 
 
+    public function bids()
+    {
+        return $this->hasMany(Bid::class);
+    }
+
+
     public function shout_out_types()
     {
         return $this->hasMany(ShoutOutType::class);
@@ -80,7 +86,7 @@ class Service extends Model
 
     public function getUrlAttribute()
     {
-        return '/services/' . optional($this->categories->first())->slug .'/'. $this->slug;
+        return '/services/' . optional($this->categories->first())->slug . '/' . $this->slug;
     }
 
     public function getDateAttribute()
@@ -118,8 +124,6 @@ class Service extends Model
             return $this->end_date->format('H:i');
         }
     }
-
-
 
     public function getHoursLeftAttribute()
     {

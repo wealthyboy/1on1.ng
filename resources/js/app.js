@@ -53,6 +53,10 @@ import Auth from "./components/auth/Auth";
 import Account from "./components/account/Account";
 import Modal from "./components/Modal/Index";
 import ChangePassword from "./components/account/ChangePassword"
+import FundWallet from "./components/wallet/Fund"
+import Table from "./components/table/Table"
+
+import WalletTable from "./components/wallet/Index"
 
 
 const app = createApp({})
@@ -66,5 +70,16 @@ app.component('Auth', Auth)
 app.component('Modal', Modal)
 app.component('Account', Account)
 app.component('ChangePassword', ChangePassword)
+app.component('FundWallet', FundWallet)
+app.component('GeneralTable', Table)
+app.component('WalletTable', WalletTable)
+
+
+app.config.globalProperties.$filters = {
+    formatNumber(value) {
+        return '₦' + new Intl.NumberFormat().format(value);
+    }
+}
+
 
 app.mount('#app');

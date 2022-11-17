@@ -13,8 +13,8 @@ use Illuminate\Support\Facades\Broadcast;
 |
 */
 
-Broadcast::channel('bid.{user_id}', function ($user, $user_id) {
-    return (int) $user->id === (int) $user_id;
+Broadcast::channel('bid', function ($user) {
+    return true;
 });
 
 

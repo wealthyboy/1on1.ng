@@ -19,5 +19,10 @@ export default {
     loadn: false,
     images: [],
     showForm: false,
-    wallet: null
+    states: [],
+    walletBalance: 0,
+    tableData: [],
+    meta: null,
+    currentBid: 0,
+    number_of_bidders: 0
 }

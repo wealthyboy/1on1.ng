@@ -83,13 +83,21 @@ Route::get('/buy-now-pay-later',   [App\Http\Controllers\BuyNowPayLater\BuyNowPa
 Route::get('categories/{category}',   'Services\ServicesController@index');
 Route::get('services/{category}/{service}',   'Services\ServicesController@show');
 
+
 Route::resource('account', 'Account\AccountController', ['names' => 'account']);
 Route::get('change/password', 'ChangePassword\ChangePasswordController@index');
 Route::post('change/password', 'ChangePassword\ChangePasswordController@changePassword');
 
-Route::resource('bids', 'Bids\BidsController', ['names' => 'bids']);
+Route::get('bids', 'Bids\BidsController@index');
+Route::post('bids', 'Bids\BidsController@store');
+
+Route::get('bids/{service_id}', 'Bids\BidsController@currentBid');
+
 Route::resource('shoutouts', 'ShoutOuts\ShoutOutsController', ['names' => 'shout.outs']);
 Route::resource('classes', 'MasterClass\MasterClassController', ['names' => 'master.class']);
+Route::get('wallet-balance', 'Wallets\WalletsController@walletBalnce');
+
+
 Route::resource('wallets', 'Wallets\WalletsController', ['names' => 'wallets']);
 
 Route::get('/broadcast', 'Wallets\WalletsController@b');

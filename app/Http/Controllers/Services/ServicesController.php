@@ -35,6 +35,7 @@ class ServicesController extends Controller
     {
         // broadcast(new Test());
 
+
         $categories = Category::with('parent')->orderBy('name', 'asc')->get();
         $services = Service::whereHas('categories', function (Builder  $builder) use ($category) {
             $builder->where('categories.name', $category->name);
@@ -68,8 +69,8 @@ class ServicesController extends Controller
     public function show(Request $request, Category $category, Service $service)
     {
 
-        //  broadcast(new NewBid(auth()->user()));
         $service->load('shout_out_types', 'celebrity');
+        //dd($service->bids()->orderBy('id', 'desc')->sum('price'));
         $user = $request->user();
         return view('products.show', compact('user', 'service'));
     }

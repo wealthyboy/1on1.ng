@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Bids;
 use App\DataTable\DataTable;
 use App\Http\Controllers\Controller;
 use App\Models\Bid;
+use App\Models\Service;
+use App\Events\NewBid;
+
 use App\Utils\AccountSettingsNav;
 use Illuminate\Http\Request;
 
@@ -35,6 +38,31 @@ class BidsController extends DataTable
         $collections = $this->getColumnNames($pagination);
         $columns = $this->getGetCustomColumnNames();
         return view('bids.index', compact('nav', 'collections', 'columns', 'pagination'));
+    }
+
+
+    public function currentBid(Request $request, $service_id)
+    {
+        //  broadcast(new NewBid(auth()->user()));
+        $service = Service::find($service_id);
+        $data = Bid::getCurrentBid($service);
+        return response()->json($data);
+    }
+
+    public function store(Request $request)
+    {
+        $bid = new Bid;
+        $bid->user_id = $request->user_id;
+        $bid->service_id = $request->service_id;
+        $bid->price = $request->amount;
+        $bid->save();
+        $service = Service::find($request->service_id);
+        $data = Bid::getCurrentBid($service);
+
+
+        broadcast(new NewBid($data));
+
+        return response()->json($data);
     }
 
 

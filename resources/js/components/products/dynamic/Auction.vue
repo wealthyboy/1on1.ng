@@ -16,20 +16,23 @@
         Time Left: <strong>{{ service.days_left + 'd'}}</strong>
       </div>
       <div>
-        Wallet Balance: {{ service.currency }}{{ wallet_balance || '0.00' }}
+        Wallet Balance: {{ $filters.formatNumber(walletBalance) || '0.00' }}
         <span class="fs-6"> <a
-            @click="b"
+            data-bs-toggle="modal"
+            data-bs-target="#main-modal"
+            class=" w-100 rounded-0"
             href="#"
+            id=""
           >Fund your wallet</a></span>
       </div>
     </div>
 
     <div class="d-flex justify-content-between">
       <div>
-        Current Bid: <strong>{{ service.currency }}{{ service.bid_start_price }}</strong>
+        Current Bid: <strong>{{ $filters.formatNumber(currentBid) }}</strong>
       </div>
       <div>
-        [ 51 bids ]
+        [ {{number_of_bidders}} bids ]
       </div>
     </div>
 
@@ -37,15 +40,17 @@
       <div class="col-md-3">
         <input
           type="text"
+          v-model="bid.amount"
           class="form-control rounded-0"
         >
       </div>
       <div class="col-md-9">
         <button
-          v-if="wallet >= service.bid_start_price"
+          v-if="walletBalance >= service.bid_start_price"
           class="btn btn-outline-secondary w-100 rounded-0"
           type="button"
           id="button-addon2"
+          @click="handleBid"
         >Place Bid</button>
 
         <button
@@ -60,7 +65,7 @@
       <div
         id="emailHelp"
         class="form-text"
-      >Enter {{ service.start_price }} or more</div>
+      >Enter {{ $filters.formatNumber(service.min_bid) }} or more</div>
 
     </div>
 
@@ -79,7 +84,10 @@
           style="height: 200px;"
           class="form-floating mx-2 mt-2"
         >
-          <wallet />
+          <wallet
+            @wallet:funded="getWallet"
+            :user="user"
+          />
         </div>
       </div>
 
@@ -93,42 +101,55 @@ import { useVuelidate } from "@vuelidate/core";
 import Modal from "../../Modal/Index";
 import GeneralInput from "../../Forms/Input";
 import Wallet from "../../auth/Wallet";
-import { computed, reactive, ref } from "vue";
+import { computed, reactive, ref, onMounted } from "vue";
 import { loginRules } from "../../../utils/ValidationRules";
 import { useStore } from "vuex";
+import { useActions, useGetters } from "vuex-composition-helpers";
+
 import axios from "axios";
 
 export default {
-  props: ["service", "wallet_balance"],
+  props: ["service", "wallet_balance", "user"],
+  emits: ["bid:placed"],
   setup(props, { emit }) {
     const loading = ref(false);
     const post_server_error = ref(false);
     const store = useStore();
-    const wallet = computed(() => store.state.wallet);
     const text = ref("Submit");
     const message = ref(null);
-    const form = reactive({
-      email: "",
-      password: "",
+    const bid = reactive({
+      amount: "",
+      service_id: props.service.id,
     });
 
-    const rules = loginRules(form);
-    const v$ = useVuelidate(rules, form);
+    const { currentBid, walletBalance, number_of_bidders } = useGetters([
+      "currentBid",
+      "walletBalance",
+      "number_of_bidders",
+    ]);
 
-    function change(page) {
-      emit("switched", page);
+    const { getWalletBalance } = useActions(["getWalletBalance"]);
+
+    function getWallet(page) {
+      getWalletBalance();
     }
 
-    function b() {
-      axios.get("/broadcast", function (e) {
-        // console.log(e);
-      });
+    function handleBid() {
+      emit("bid:placed", bid);
     }
 
-    function login() {
-      this.v$.$touch();
-    }
-    return { b, form, v$, login, text, wallet, loading, message, change };
+    return {
+      bid,
+      text,
+      walletBalance,
+      currentBid,
+      loading,
+      message,
+      getWallet,
+      getWalletBalance,
+      number_of_bidders,
+      handleBid,
+    };
   },
   components: { Modal, GeneralInput, Wallet },
 };

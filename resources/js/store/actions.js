@@ -174,6 +174,21 @@ export const register = ({ commit }, { context }) => {
         });
 };
 
+
+export const getWalletBalance = ({ commit }) => {
+    return axios
+        .get("/wallet-balance")
+        .then(response => {
+            commit("setWalletBalance", response.data.balance.amount);
+            return Promise.resolve(response);
+        }).catch(() => {
+            return Promise.reject(response);
+        });
+};
+
+
+
+
 /**
  * 
  * @url {*} url to post to 

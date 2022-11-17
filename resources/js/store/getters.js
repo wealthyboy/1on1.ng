@@ -87,3 +87,25 @@ export const loading = (state) => {
 export const showForm = (state) => {
     return state.showForm
 }
+
+export const walletBalance = (state) => {
+    return state.walletBalance
+}
+
+
+export const tableData = (state) => {
+    return state.tableData
+}
+
+export const pmeta = (state) => {
+    return state.meta
+}
+
+export const currentBid = (state) => {
+    return state.currentBid
+}
+
+
+export const number_of_bidders = (state) => {
+    return state.number_of_bidders
+}
