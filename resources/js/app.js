@@ -55,13 +55,12 @@ import Modal from "./components/Modal/Index";
 import ChangePassword from "./components/account/ChangePassword"
 import FundWallet from "./components/wallet/Fund"
 import Table from "./components/table/Table"
-
 import WalletTable from "./components/wallet/Index"
 
 
 const app = createApp({})
-app.use(store);
 
+app.use(store);
 
 app.component('CategoryItems', CategoryItems)
 app.component('AuthModal', AuthModal)
@@ -73,7 +72,6 @@ app.component('ChangePassword', ChangePassword)
 app.component('FundWallet', FundWallet)
 app.component('GeneralTable', Table)
 app.component('WalletTable', WalletTable)
-
 
 app.config.globalProperties.$filters = {
     formatNumber(value) {
