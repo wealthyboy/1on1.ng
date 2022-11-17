@@ -31,6 +31,6 @@ class Bid extends Model
             return round($size / pow(1000, ($i = floor(log($size, 1000)))), $round) . $unit[$i];
         }
 
-        return null;
+        return 0;
     }
 }
