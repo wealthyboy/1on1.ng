@@ -26,7 +26,11 @@ class Bid extends Model
 
     public static function numsize($size, $round = 2)
     {
-        $unit = ['', 'K', 'M', 'G', 'T'];
-        return round($size / pow(1000, ($i = floor(log($size, 1000)))), $round) . $unit[$i];
+        if ($size) {
+            $unit = ['', 'K', 'M', 'G', 'T'];
+            return round($size / pow(1000, ($i = floor(log($size, 1000)))), $round) . $unit[$i];
+        }
+
+        return null;
     }
 }
