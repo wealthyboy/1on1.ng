@@ -2,12 +2,13 @@
 
 namespace App\Mail;
 
+use App\Models\ShoutOut;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class Reciept extends Mailable
+class ShoutOutReciept extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -19,7 +20,7 @@ class Reciept extends Mailable
      *
      * @return void
      */
-    public function __construct($shout_out)
+    public function __construct(ShoutOut $shout_out)
     {
         $this->shout_out = $shout_out;
     }

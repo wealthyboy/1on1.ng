@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Models\Wallet;
 use App\Models\WalletBalance;
+use App\Mail\ShoutOutReciept;
 
 // use Illuminate\Support\Facades\Log;
 // use App\User;
@@ -91,6 +92,15 @@ class WebHookController extends Controller
                 $shout_out->invoice = "INV-" . date('Y') . "-" . rand(10000, 39999);
                 $shout_out->save();
                 Log::info($shout_out);
+
+                try {
+
+                    $when = now()->addMinutes(5);
+                    Mail::to('jacob.atam@gmail.com')
+                        ->send(new ShoutOutReciept($shout_out));
+                } catch (\Throwable $th) {
+                    Log::info("Mail error :" . $th);
+                }
 
                 //Mail::to();
             }
