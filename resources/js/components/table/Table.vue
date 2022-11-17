@@ -139,7 +139,7 @@
 import { onMounted, ref } from "vue";
 import { useActions, useGetters } from "vuex-composition-helpers";
 import Pagination from "../pagination/Pagination";
-import Loader from "../utils/loader";
+import Loader from "../utils/Loader";
 
 export default {
   props: ["url", "reload"],
