@@ -65,7 +65,7 @@ class ShoutOutsController extends Controller
                     return [
                         "id" => $shout_outs->id,
                         "Name" => optional($shout_outs->service)->name,
-                        "Price" => optional($shout_outs)->price,
+                        "Price" => number_format(optional($shout_outs)->price),
                         "Recipient Full Name" => ucfirst($shout_outs->recipient_first_name) . ' ' . ucfirst($shout_outs->recipient_last_name),
                         "Phone" => $shout_outs->recipient_phone,
                         "Event Date" => optional($shout_outs)->event_date,
