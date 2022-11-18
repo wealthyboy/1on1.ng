@@ -64,12 +64,12 @@ class ShoutOutsController extends Controller
                 $collection->map(function (ShoutOut $shout_outs) {
                     return [
                         "id" => $shout_outs->id,
-                        "name" => optional($shout_outs->service)->name,
-                        "price" => optional($shout_outs)->price,
-                        "full_name" => $shout_outs->recipient_first_name . ' ' . $shout_outs->recipient_last_name,
-                        "phone" => $shout_outs->recipient_phone,
-                        "event_date" => optional($shout_outs->service)->end_date,
-                        "date_added" => $shout_outs->created_at->format('d-m-y')
+                        "Name" => optional($shout_outs->service)->name,
+                        "Price" => optional($shout_outs)->price,
+                        "Recipient Full Name" => $shout_outs->recipient_first_name . ' ' . $shout_outs->recipient_last_name,
+                        "Phone" => $shout_outs->recipient_phone,
+                        "Event Date" => optional($shout_outs->service)->end_date,
+                        "Date Added" => $shout_outs->created_at->format('d-m-y')
                     ];
                 })
             ], 'meta' => [
