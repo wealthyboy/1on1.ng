@@ -66,9 +66,9 @@ class ShoutOutsController extends Controller
                         "id" => $shout_outs->id,
                         "Name" => optional($shout_outs->service)->name,
                         "Price" => optional($shout_outs)->price,
-                        "Recipient Full Name" => $shout_outs->recipient_first_name . ' ' . $shout_outs->recipient_last_name,
+                        "Recipient Full Name" => ucfirst($shout_outs->recipient_first_name) . ' ' . ucfirst($shout_outs->recipient_last_name),
                         "Phone" => $shout_outs->recipient_phone,
-                        "Event Date" => optional($shout_outs->service)->end_date,
+                        "Event Date" => optional($shout_outs->service)->event_date,
                         "Date Added" => $shout_outs->created_at->format('d-m-y')
                     ];
                 })
