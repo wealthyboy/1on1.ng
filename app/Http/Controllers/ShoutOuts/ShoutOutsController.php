@@ -63,7 +63,7 @@ class ShoutOutsController extends Controller
             'items' => [
                 $collection->map(function (ShoutOut $shout_outs) {
                     return [
-                        "id" => $shout_outs->id,
+                        "id" => '#' . $shout_outs->id,
                         "Name" => optional($shout_outs->service)->name,
                         "Price" => number_format(optional($shout_outs)->price),
                         "Recipient Full Name" => ucfirst($shout_outs->recipient_first_name) . ' ' . ucfirst($shout_outs->recipient_last_name),
