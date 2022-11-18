@@ -2,7 +2,7 @@
 
   <div class="mb-3">
     <h2 class="product-title">{{ service.name }}</h2>
-    <div class="price">Price: <span v-if="!isNaN(price)">{{ service.currency }}</span>{{ price }}</div>
+    <div class="price">Price: <span v-if="!isNaN(price)">{{ service.currency }}</span>{{ $filters.formatNumber(price) }}</div>
 
   </div>
   <div class=" p-0">
