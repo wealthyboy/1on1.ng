@@ -25565,27 +25565,29 @@ __webpack_require__.r(__webpack_exports__);
           var new_balnce = parseInt(walletBalance.value) + parseInt(form.amount);
           store.commit("setWalletBalance", new_balnce);
           error.value = false;
-          message.value = "Your money has been addedd";
+          message.value = "Your money has been addedd"; // const postData = {
+          //   url: "/wallets",
+          //   data: form,
+          //   loading,
+          //   needsValidation: true,
+          //   error: this.v$.$error,
+          //   post_server_error: post_server_error,
+          //   method: "post",
+          // };
+          // makePost(postData)
+          //   .then((res) => {})
+          //   .catch((error) => {
+          //     message.value = "We could not find your data in our system";
+          //     setTimeout(() => {
+          //       message.value = null;
+          //     }, 3000);
+          //   });
+
           emit("wallet:funded");
         },
         onClose: function onClose() {}
       });
       handler.openIframe();
-      var postData = {
-        url: "/wallets",
-        data: form,
-        loading: loading,
-        needsValidation: true,
-        error: this.v$.$error,
-        post_server_error: post_server_error,
-        method: "post"
-      };
-      makePost(postData).then(function (res) {})["catch"](function (error) {
-        message.value = "We could not find your data in our system";
-        setTimeout(function () {
-          message.value = null;
-        }, 3000);
-      });
     }
 
     return {

@@ -112,30 +112,30 @@ export default {
           store.commit("setWalletBalance", new_balnce);
           error.value = false;
           message.value = "Your money has been addedd";
+
+          // const postData = {
+          //   url: "/wallets",
+          //   data: form,
+          //   loading,
+          //   needsValidation: true,
+          //   error: this.v$.$error,
+          //   post_server_error: post_server_error,
+          //   method: "post",
+          // };
+
+          // makePost(postData)
+          //   .then((res) => {})
+          //   .catch((error) => {
+          //     message.value = "We could not find your data in our system";
+          //     setTimeout(() => {
+          //       message.value = null;
+          //     }, 3000);
+          //   });
           emit("wallet:funded");
         },
         onClose: function () {},
       });
       handler.openIframe();
-
-      const postData = {
-        url: "/wallets",
-        data: form,
-        loading,
-        needsValidation: true,
-        error: this.v$.$error,
-        post_server_error: post_server_error,
-        method: "post",
-      };
-
-      makePost(postData)
-        .then((res) => {})
-        .catch((error) => {
-          message.value = "We could not find your data in our system";
-          setTimeout(() => {
-            message.value = null;
-          }, 3000);
-        });
     }
     return {
       form,

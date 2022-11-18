@@ -27,9 +27,11 @@ class WalletsController extends Controller
     public function index()
     {
         $nav = (new AccountSettingsNav())->nav();
-        $pagination = auth()->user()->wallets()->paginate(4);
+        $pagination = auth()->user()->wallets()->paginate(100);
         $collections = $this->getColumnNames($pagination);
         $columns = $this->getGetCustomColumnNames();
+        $user = auth()->user();
+
 
         if (request()->ajax()) {
             return response([
@@ -38,7 +40,7 @@ class WalletsController extends Controller
             ]);
         }
 
-        return view('wallet.index', compact('nav', 'collections', 'columns', 'pagination'));
+        return view('wallet.index', compact('user', 'nav', 'collections', 'columns', 'pagination'));
     }
 
 
@@ -116,12 +118,16 @@ class WalletsController extends Controller
                     return [
                         "Ref Id" => '#' . optional($wallet)->id,
                         "amount" => '₦' . optional($wallet)->amount,
+                        "status" =>  optional($wallet)->status,
+
                         "date_added" => $wallet->created_at->format('d-m-y')
                     ];
                 })
             ],
             'meta' => [
-                'show' => false
+                'show' => false,
+                'right' => 'Balance: 0000',
+                'wallet' => true
             ]
         ];
     }
