@@ -3,7 +3,6 @@
   <div class="mb-3">
     <h2 class="product-title">{{ service.name }}</h2>
     <div class="price">Price: <span v-if="!isNaN(price)"></span>{{ $filters.formatNumber(price) }}</div>
-
   </div>
   <div class=" p-0">
 
@@ -11,7 +10,7 @@
 
       <div class="row g-1">
 
-        <div class="form-group   col-6">
+        <div class="form-group col-6">
           <general-input
             id="recipient_first_name"
             :error="v$.recipient_first_name"
