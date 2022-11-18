@@ -26193,7 +26193,7 @@ __webpack_require__.r(__webpack_exports__);
   setup: function setup(props, _ref) {
     var emit = _ref.emit;
     var loading = (0,vue__WEBPACK_IMPORTED_MODULE_4__.ref)(false);
-    var price = (0,vue__WEBPACK_IMPORTED_MODULE_4__.ref)("Select shout out  type to  get price");
+    var price = (0,vue__WEBPACK_IMPORTED_MODULE_4__.ref)("Select shout out type to get price");
     var text = (0,vue__WEBPACK_IMPORTED_MODULE_4__.ref)("Submit");
     var message = (0,vue__WEBPACK_IMPORTED_MODULE_4__.ref)(null);
     var data = (0,_utils_FormData__WEBPACK_IMPORTED_MODULE_10__.shoutOutData)(props.service, props.user);
@@ -26228,7 +26228,8 @@ __webpack_require__.r(__webpack_exports__);
     function sendShoutOut() {
       this.v$.$touch();
 
-      if (this.v$.$error) {//return;
+      if (this.v$.$error) {
+        return;
       }
 
       var handler = PaystackPop.setup({
