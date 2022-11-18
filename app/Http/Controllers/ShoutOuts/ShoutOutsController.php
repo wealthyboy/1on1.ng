@@ -17,7 +17,7 @@ class ShoutOutsController extends Controller
     public function index()
     {
         $nav = (new AccountSettingsNav())->nav();
-        $pagination = auth()->user()->shout_outs()->paginate(4);
+        $pagination = auth()->user()->shout_outs()->latest()->paginate(4);
         $collections = $this->getColumnNames($pagination);
         $columns = $this->getGetCustomColumnNames();
 
