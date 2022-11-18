@@ -52,7 +52,7 @@ class WebHookController extends Controller
             Log::info($request->all());
             // Log::info($request->data['metadata']['custom_fields']['form']);
 
-            $input =  $request->data['metadata']['custom_fields']['form'];
+            $input =  $request->data['metadata']['custom_fields'][0]['form'];
 
             if ($input['type'] == 'Wallet') {
                 $wallet = new Wallet;
