@@ -438,10 +438,10 @@
 
                                                             <tr>
                                                                <td colspan="3" class="RegularTextTD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="margin-left: 3px;color: #727e8d;font-family: sans-serif;font-size: 13px;font-weight: lighter;line-height: 23px;">
-                                                                  <b>Recipient's Full Name:</b> {{ $shout_out->recipient_first_name }} {{ $shout_out->recipient_last_name }} <br />
+                                                                  <b>Recipient's Full Name:</b> {{ ucfirst($shout_out->recipient_first_name) }} {{ ucfirst($shout_out->recipient_last_name) }} <br />
                                                                   <b>Recipient's Email Address:</b> {{ $shout_out->recipient_email }}<br />
                                                                   <b>Recipient's Phone Number:</b> {{ $shout_out->recipient_phone }}<br />
-                                                                  <b>Type:</b> {{ $shout_out->type }}<br />
+                                                                  <b>Type:</b> {{ ucfirst($shout_out->type) }}<br />
                                                                   <b>Event Date:</b> {{ $shout_out->event_date }}<br />
                                                                </td>
                                                             </tr>
