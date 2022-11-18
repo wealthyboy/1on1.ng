@@ -68,6 +68,11 @@ class MasterClassController extends Controller
                         "date_added" => $master_class->created_at->format('d-m-y')
                     ];
                 })
+            ],
+            'meta' => [
+                'show' => false,
+                'right' => null,
+                'urls' => null
             ]
         ];
     }

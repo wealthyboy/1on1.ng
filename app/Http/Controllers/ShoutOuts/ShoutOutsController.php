@@ -72,6 +72,10 @@ class ShoutOutsController extends Controller
                         "date_added" => $shout_outs->created_at->format('d-m-y')
                     ];
                 })
+            ], 'meta' => [
+                'show' => false,
+                'right' => null,
+                'urls' => null
             ]
         ];
     }

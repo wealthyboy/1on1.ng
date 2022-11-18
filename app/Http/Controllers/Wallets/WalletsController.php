@@ -30,6 +30,14 @@ class WalletsController extends Controller
         $pagination = auth()->user()->wallets()->paginate(4);
         $collections = $this->getColumnNames($pagination);
         $columns = $this->getGetCustomColumnNames();
+
+        if (request()->ajax()) {
+            return response([
+                'collections' => $this->getColumnNames($pagination),
+                'pagination' =>  $pagination
+            ]);
+        }
+
         return view('wallet.index', compact('nav', 'collections', 'columns', 'pagination'));
     }
 
