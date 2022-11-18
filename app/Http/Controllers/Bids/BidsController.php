@@ -99,7 +99,7 @@ class BidsController extends DataTable
                 $collection->map(function (Bid $bid) {
                     return [
                         "Ref id" => '#' . $bid->id,
-                        "Price" => number_format(optional($bid)->price),
+                        "Price" => '₦' . number_format(optional($bid)->price),
                         "Auction" => optional($bid->service)->name,
                         "Date Added" => $bid->created_at->format('d-m-y')
                     ];
