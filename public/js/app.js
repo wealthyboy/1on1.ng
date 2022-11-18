@@ -25519,7 +25519,8 @@ __webpack_require__.r(__webpack_exports__);
     var message = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(null);
     var form = (0,vue__WEBPACK_IMPORTED_MODULE_2__.reactive)({
       amount: "",
-      type: "Wallet"
+      type: "Wallet",
+      customer_id: props.user.id
     });
     (0,vue__WEBPACK_IMPORTED_MODULE_2__.onMounted)(function () {
       scriptLoaded.value = new Promise(function (resolve) {

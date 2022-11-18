@@ -67,6 +67,7 @@ export default {
     const form = reactive({
       amount: "",
       type: "Wallet",
+      customer_id: props.user.id,
     });
 
     onMounted(() => {
