@@ -81,7 +81,7 @@ class WebHookController extends Controller
                 $service = Service::find($input['service_id']);
 
                 $shout_out = new ShoutOut;
-                $shout_out->recipient_first_name = $input['recipient_first_name	'];
+                $shout_out->recipient_first_name = $input['recipient_first_name'];
                 $shout_out->recipient_last_name = $input['recipient_last_name'];
                 $shout_out->recipient_email = $input['recipient_email'];
                 $shout_out->recipient_phone = $input['recipient_phone'];
