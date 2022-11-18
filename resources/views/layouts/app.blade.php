@@ -78,6 +78,7 @@
 
                         @auth
                         <button class="btn btn-outline-success" type="submit">
+                            <span>Balance: </span>
                             <wallet-balance />
                         </button>
 
