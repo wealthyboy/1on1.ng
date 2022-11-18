@@ -87,7 +87,7 @@ class WebHookController extends Controller
                 $shout_out->recipient_phone = $input['recipient_phone'];
                 $shout_out->service_id = $input['service_id'];
                 $shout_out->user_id = $input['user_id'];
-                $shout_out->price = 4000;
+                $shout_out->price = $input['price'];
                 $shout_out->type = $input['type'];
                 $shout_out->comment = $input['comment'];
                 $shout_out->event_date = $input['date'];
