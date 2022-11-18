@@ -14,7 +14,7 @@ class AlterWallentBalanceTable extends Migration
     public function up()
     {
         Schema::table('wallet_balances', function (Blueprint $table) {
-            $table->decimal('amount', 15, 1)->change();
+            $table->decimal('amount', 15, 2)->change();
         });
     }
 
