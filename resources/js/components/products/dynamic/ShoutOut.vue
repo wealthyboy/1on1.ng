@@ -141,7 +141,7 @@ export default {
     const price = ref("Select shout out type to get price");
     const text = ref("Submit");
     const message = ref(null);
-    const data = shoutOutData(props.service, props.user);
+    const data = shoutOutData(props.service, props.user, price);
     const server_errors = ref(data);
     const post_server_error = ref(null);
     const form = reactive(data);

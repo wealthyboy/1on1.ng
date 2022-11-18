@@ -36,7 +36,7 @@ export const changePasswordData = (user) => {
 }
 
 
-export const shoutOutData = (service, user) => {
+export const shoutOutData = (service, user, price) => {
 
     let data = {
         recipient_first_name: "",
@@ -48,7 +48,8 @@ export const shoutOutData = (service, user) => {
         event_date: "",
         comment: "",
         service_type: "shout-out",
-        user_id: user.id
+        user_id: user.id,
+        price: price
     };
 
     return data

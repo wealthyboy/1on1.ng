@@ -26196,7 +26196,7 @@ __webpack_require__.r(__webpack_exports__);
     var price = (0,vue__WEBPACK_IMPORTED_MODULE_4__.ref)("Select shout out type to get price");
     var text = (0,vue__WEBPACK_IMPORTED_MODULE_4__.ref)("Submit");
     var message = (0,vue__WEBPACK_IMPORTED_MODULE_4__.ref)(null);
-    var data = (0,_utils_FormData__WEBPACK_IMPORTED_MODULE_10__.shoutOutData)(props.service, props.user);
+    var data = (0,_utils_FormData__WEBPACK_IMPORTED_MODULE_10__.shoutOutData)(props.service, props.user, price);
     var server_errors = (0,vue__WEBPACK_IMPORTED_MODULE_4__.ref)(data);
     var post_server_error = (0,vue__WEBPACK_IMPORTED_MODULE_4__.ref)(null);
     var form = (0,vue__WEBPACK_IMPORTED_MODULE_4__.reactive)(data);
@@ -29611,7 +29611,7 @@ var changePasswordData = function changePasswordData(user) {
   };
   return data;
 };
-var shoutOutData = function shoutOutData(service, user) {
+var shoutOutData = function shoutOutData(service, user, price) {
   var data = {
     recipient_first_name: "",
     recipient_last_name: "",
@@ -29622,7 +29622,8 @@ var shoutOutData = function shoutOutData(service, user) {
     event_date: "",
     comment: "",
     service_type: "shout-out",
-    user_id: user.id
+    user_id: user.id,
+    price: price
   };
   return data;
 };
