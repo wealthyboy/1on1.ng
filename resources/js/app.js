@@ -56,7 +56,7 @@ import ChangePassword from "./components/account/ChangePassword"
 import FundWallet from "./components/wallet/Fund"
 import Table from "./components/table/Table"
 import WalletTable from "./components/wallet/Index"
-
+import WalletBalance from "./components/wallet/Balance"
 
 const app = createApp({})
 
@@ -72,6 +72,8 @@ app.component('ChangePassword', ChangePassword)
 app.component('FundWallet', FundWallet)
 app.component('GeneralTable', Table)
 app.component('WalletTable', WalletTable)
+app.component('WalletBalance', WalletBalance)
+
 
 app.config.globalProperties.$filters = {
     formatNumber(value) {

@@ -10,7 +10,7 @@ use App\Models\Information;
 use App\Models\Category;
 use App\Models\Setting;
 use App\Models\Promo;
-
+use App\Utils\AccountSettingsNav;
 
 class   NavComposer
 {
@@ -23,6 +23,8 @@ class   NavComposer
 		$global_promo = Promo::first();
 		$system_settings = Setting::first();
 		$wallet_balance =   optional(auth()->user())->wallet_balance ??  '0.00';
+		$nav = (new AccountSettingsNav())->nav();
+
 		$currency = '₦';
 		//$news_letter_image = PageBanner::where('page_name','newsletter')->first();
 		$view->with([
@@ -31,7 +33,8 @@ class   NavComposer
 			'system_settings' => $system_settings,
 			'global_promo' => $global_promo,
 			'currency' => $currency,
-			'wallet_balance' => $wallet_balance
+			'wallet_balance' => $wallet_balance,
+			'nav' => $nav
 		]);
 	}
 }

@@ -77,7 +77,10 @@
 
 
                         @auth
-                        <button class="btn btn-outline-success" type="submit">Wallet: 000</button>
+                        <button class="btn btn-outline-success" type="submit">
+                            <wallet-balance />
+                        </button>
+
 
                         <ul class="navbar-nav  ">
 
@@ -88,23 +91,12 @@
                                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-animation dropdown-md mt-0 mt-lg-3 p-3 border-radius-lg" aria-labelledby="dropdownMenuDocs">
                                     <div class="d-none d-lg-block">
                                         <ul class="list-group">
+                                            @foreach($nav as $key => $n)
                                             <li class="nav-item list-group-item border-0 p-0">
-                                                <a href="/account" class="dropdown-item py-2 ps-3 border-radius-md"><i class="far fa-sign-out-alt left"></i> Account </a>
+                                                <a href="{{ $n['link'] }}" class="dropdown-item py-2 ps-3 border-radius-md"><i class="far fa-sign-out-alt left"></i> {{ $key  }} </a>
                                             </li>
-                                            <li class="nav-item list-group-item border-0 p-0">
-                                                <a href="/classes" class="dropdown-item "><i class="far fa-sign-out-alt left"></i> Clasess</a>
-                                            </li>
-                                            <li class="nav-item list-group-item border-0 p-0">
-                                                <a href="/bids" class="dropdown-item py-2 ps-3 border-radius-md"><i class="far fa-sign-out-alt left"></i> Bids</a>
-                                            </li>
-                                            <li class="nav-item list-group-item border-0 p-0">
-                                                <a href="/shout-outs" class="dropdown-item py-2 ps-3 border-radius-md"><i class="far fa-sign-out-alt left"></i> Shout Outs
-                                                </a>
-                                            </li>
+                                            @endforeach
 
-                                            <li class="nav-item list-group-item border-0 p-0">
-                                                <a href="/wallets" class="dropdown-item py-2 ps-3 border-radius-md" class="list-group-item list-group-item-action bold text-uppercase p-4"><i class="far fa-sign-out-alt left"></i> Wallet</a>
-                                            </li>
 
                                             <li class="nav-item list-group-item border-0 p-0">
 
