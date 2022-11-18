@@ -87,24 +87,21 @@ class WebHookController extends Controller
                 $shout_out->recipient_phone = $input['recipient_phone'];
                 $shout_out->service_id = $input['service_id'];
                 $shout_out->user_id = $input['user_id'];
-                $shout_out->price =  $service->price;
+                $shout_out->price = $service->price;
                 $shout_out->type = $input['type'];
                 $shout_out->comment = $input['comment'];
                 $shout_out->event_date = $input['date'];
                 $shout_out->invoice = "INV-" . date('Y') . "-" . rand(10000, 39999);
                 $shout_out->save();
-                Log::info($shout_out);
+                //Log::info($shout_out);
 
                 try {
-
                     $when = now()->addMinutes(5);
                     Mail::to('jacob.atam@gmail.com')
                         ->send(new ShoutOutReciept($shout_out));
                 } catch (\Throwable $th) {
                     Log::info("Mail error :" . $th);
                 }
-
-                //Mail::to();
             }
 
 
