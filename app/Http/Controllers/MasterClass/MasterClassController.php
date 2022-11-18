@@ -20,6 +20,12 @@ class MasterClassController extends Controller
         $pagination = auth()->user()->master_classes()->paginate(4);
         $collections = $this->getColumnNames($pagination);
         $columns = $this->getGetCustomColumnNames();
+        if (request()->ajax()) {
+            return response([
+                'collections' => $this->getColumnNames($pagination),
+                'pagination' =>  $pagination
+            ]);
+        }
         return view('master_class.index', compact('nav', 'collections', 'columns', 'pagination'));
     }
 

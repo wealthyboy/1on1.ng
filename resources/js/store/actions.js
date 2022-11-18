@@ -14,6 +14,19 @@ export const addProductToCart = ({ commit }, { product_id, quantity }) => {
         });
 };
 
+export const getTableData = ({ commit }, url) => {
+    console.log(url)
+    return axios
+        .get(url)
+        .then(response => {
+            commit("setTableData", response.data.collections);
+            commit("setMeta", response.data.pagination);
+            return Promise.resolve(response);
+        }).catch((error) => {
+            return Promise.reject(error);
+        });
+};
+
 
 export const fistLetterUpppercase = (string) => {
 

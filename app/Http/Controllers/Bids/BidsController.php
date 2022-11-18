@@ -32,11 +32,18 @@ class BidsController extends DataTable
      */
     public function index()
     {
-
         $nav = (new AccountSettingsNav())->nav();
         $pagination = auth()->user()->bids()->paginate(4);
         $collections = $this->getColumnNames($pagination);
         $columns = $this->getGetCustomColumnNames();
+
+        if (request()->ajax()) {
+            return response([
+                'collections' => $this->getColumnNames($pagination),
+                'pagination' =>  $pagination
+            ]);
+        }
+
         return view('bids.index', compact('nav', 'collections', 'columns', 'pagination'));
     }
 
@@ -52,7 +59,7 @@ class BidsController extends DataTable
     public function store(Request $request)
     {
         $bid = new Bid;
-        $bid->user_id = $request->user_id;
+        $bid->user_id = $request->user()->id;
         $bid->service_id = $request->service_id;
         $bid->price = $request->amount;
         $bid->save();
@@ -92,15 +99,14 @@ class BidsController extends DataTable
                 $collection->map(function (Bid $bid) {
                     return [
                         "Ref id" => '#' . $bid->id,
-                        "price" => '₦' . $bid->price,
-                        "auction" => optional($bid->service)->name,
-                        "status" => null,
-                        "created_at" => $bid->created_at->format('d-m-y')
+                        "Price" =>  $bid->price,
+                        "Auction" => optional($bid->service)->name,
+                        "Date Added" => $bid->created_at->format('d-m-y')
                     ];
                 })
             ],
             'meta' => [
-                'show' => true
+                'show' => false
             ]
         ];
     }

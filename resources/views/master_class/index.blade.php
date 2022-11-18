@@ -12,8 +12,8 @@
         <div class="row">
             @include('_partials.nav')
             <div class="col-md-9">
-                <h2 class="page-title ">Class</h2>
-                @include('_partials.table')
+                <h2 class="page-title ">Master Class</h2>
+                <general-table />
             </div>
         </div>
     </div>

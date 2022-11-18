@@ -161,7 +161,7 @@ export default {
     const loading = ref(true);
 
     onMounted(() => {
-      console.log();
+      console.log(true);
       loading.value = true;
       getTableData(location.href + "?get=1")
         .then((res) => {

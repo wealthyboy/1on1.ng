@@ -26304,7 +26304,7 @@ __webpack_require__.r(__webpack_exports__);
 
     var loading = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(true);
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(function () {
-      console.log();
+      console.log(true);
       loading.value = true;
       getTableData(location.href + "?get=1").then(function (res) {
         console.log(tableData.value.items);
@@ -28690,6 +28690,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "getAddresses": () => (/* binding */ getAddresses),
 /* harmony export */   "getCart": () => (/* binding */ getCart),
 /* harmony export */   "getReviews": () => (/* binding */ getReviews),
+/* harmony export */   "getTableData": () => (/* binding */ getTableData),
 /* harmony export */   "getWalletBalance": () => (/* binding */ getWalletBalance),
 /* harmony export */   "getWislist": () => (/* binding */ getWislist),
 /* harmony export */   "login": () => (/* binding */ login),
@@ -28727,11 +28728,22 @@ var addProductToCart = function addProductToCart(_ref, _ref2) {
     return Promise.resolve();
   });
 };
-var fistLetterUpppercase = function fistLetterUpppercase(string) {};
-var updateCart = function updateCart(_ref3, _ref4) {
+var getTableData = function getTableData(_ref3, url) {
   var commit = _ref3.commit;
-  var product_variation_id = _ref4.product_variation_id,
-      quantity = _ref4.quantity;
+  console.log(url);
+  return axios__WEBPACK_IMPORTED_MODULE_0___default().get(url).then(function (response) {
+    commit("setTableData", response.data.collections);
+    commit("setMeta", response.data.pagination);
+    return Promise.resolve(response);
+  })["catch"](function (error) {
+    return Promise.reject(error);
+  });
+};
+var fistLetterUpppercase = function fistLetterUpppercase(string) {};
+var updateCart = function updateCart(_ref4, _ref5) {
+  var commit = _ref4.commit;
+  var product_variation_id = _ref5.product_variation_id,
+      quantity = _ref5.quantity;
   return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/cart", {
     product_variation_id: product_variation_id,
     quantity: quantity
@@ -28742,8 +28754,8 @@ var updateCart = function updateCart(_ref3, _ref4) {
     return Promise.resolve();
   });
 };
-var getCart = function getCart(_ref5) {
-  var commit = _ref5.commit;
+var getCart = function getCart(_ref6) {
+  var commit = _ref6.commit;
   commit("Loading", true);
   return axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/cart").then(function (response) {
     commit("setCart", response.data);
@@ -28753,9 +28765,9 @@ var getCart = function getCart(_ref5) {
     return Promise.resolve();
   })["catch"](function () {});
 };
-var deleteCart = function deleteCart(_ref6, _ref7) {
-  var commit = _ref6.commit;
-  var cart_id = _ref7.cart_id;
+var deleteCart = function deleteCart(_ref7, _ref8) {
+  var commit = _ref7.commit;
+  var cart_id = _ref8.cart_id;
   return axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("/api/cart/delete/" + cart_id + "").then(function (response) {
     console.log(response.data);
     commit("setCart", response.data);
@@ -28768,15 +28780,15 @@ var deleteCart = function deleteCart(_ref6, _ref7) {
     return Promise.resolve();
   });
 };
-var flashMessage = function flashMessage(_ref8, message) {
-  var commit = _ref8.commit;
+var flashMessage = function flashMessage(_ref9, message) {
+  var commit = _ref9.commit;
   commit("setMessage", message);
   setTimeout(function () {
     commit("clearMessage");
   }, 3000);
 };
-var applyVoucher = function applyVoucher(_ref9, coupon) {
-  var commit = _ref9.commit;
+var applyVoucher = function applyVoucher(_ref10, coupon) {
+  var commit = _ref10.commit;
   axios__WEBPACK_IMPORTED_MODULE_0___default().post("/checkout/coupon", {
     coupon: coupon
   }).then(function (response) {
@@ -28784,15 +28796,15 @@ var applyVoucher = function applyVoucher(_ref9, coupon) {
     return Promise.resolve();
   })["catch"](function (error) {});
 };
-var updateCartMeta = function updateCartMeta(_ref10, payload) {
-  var commit = _ref10.commit;
+var updateCartMeta = function updateCartMeta(_ref11, payload) {
+  var commit = _ref11.commit;
   commit("setCartMeta", payload);
 };
-var addProductToWishList = function addProductToWishList(_ref11, _ref12) {
-  var commit = _ref11.commit,
-      dispatch = _ref11.dispatch;
-  var product_variation_id = _ref12.product_variation_id,
-      context = _ref12.context;
+var addProductToWishList = function addProductToWishList(_ref12, _ref13) {
+  var commit = _ref12.commit,
+      dispatch = _ref12.dispatch;
+  var product_variation_id = _ref13.product_variation_id,
+      context = _ref13.context;
   return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/wishlist", {
     product_variation_id: product_variation_id
   }).then(function (res) {
@@ -28804,8 +28816,8 @@ var addProductToWishList = function addProductToWishList(_ref11, _ref12) {
     dispatch("flashMessage", "Sorry your item could not be saved.Please try again");
   });
 };
-var getWislist = function getWislist(_ref13) {
-  var commit = _ref13.commit;
+var getWislist = function getWislist(_ref14) {
+  var commit = _ref14.commit;
   commit("Loading", true);
   return axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/wishlist").then(function (response) {
     document.getElementById("js-loading").style.display = "none";
@@ -28816,19 +28828,19 @@ var getWislist = function getWislist(_ref13) {
     console.log("could not get wishlist");
   });
 };
-var deleteWishlist = function deleteWishlist(_ref14, _ref15) {
-  var commit = _ref14.commit;
-  var id = _ref15.id;
+var deleteWishlist = function deleteWishlist(_ref15, _ref16) {
+  var commit = _ref15.commit;
+  var id = _ref16.id;
   return axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("/api/wishlist/delete/" + id).then(function (response) {
     commit("setWishlist", response.data.data);
     return Promise.resolve();
   });
 };
-var login = function login(_ref16, _ref17) {
-  var commit = _ref16.commit;
-  var email = _ref17.email,
-      password = _ref17.password,
-      context = _ref17.context;
+var login = function login(_ref17, _ref18) {
+  var commit = _ref17.commit;
+  var email = _ref18.email,
+      password = _ref18.password,
+      context = _ref18.context;
   return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/login", {
     email: email,
     password: password
@@ -28849,9 +28861,9 @@ var login = function login(_ref16, _ref17) {
     commit("setFormErrors", error.response.data.error);
   });
 };
-var register = function register(_ref18, _ref19) {
-  var commit = _ref18.commit;
-  var context = _ref19.context;
+var register = function register(_ref19, _ref20) {
+  var commit = _ref19.commit;
+  var context = _ref20.context;
   return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/register", context.form).then(function (response) {
     window.location.href = response.data.url;
   })["catch"](function (error) {
@@ -28868,8 +28880,8 @@ var register = function register(_ref18, _ref19) {
     commit("setFormErrors", error.response.data.errors);
   });
 };
-var getWalletBalance = function getWalletBalance(_ref20) {
-  var commit = _ref20.commit;
+var getWalletBalance = function getWalletBalance(_ref21) {
+  var commit = _ref21.commit;
   return axios__WEBPACK_IMPORTED_MODULE_0___default().get("/wallet-balance").then(function (response) {
     commit("setWalletBalance", response.data.balance.amount);
     return Promise.resolve(response);
@@ -28886,9 +28898,9 @@ var getWalletBalance = function getWalletBalance(_ref20) {
  * @returns a promise
  */
 
-var makePost = function makePost(_ref21, postData) {
-  var dispatch = _ref21.dispatch,
-      commit = _ref21.commit;
+var makePost = function makePost(_ref22, postData) {
+  var dispatch = _ref22.dispatch,
+      commit = _ref22.commit;
   var url = postData.url,
       data = postData.data,
       loading = postData.loading,
@@ -28922,11 +28934,11 @@ var clearErr = function clearErr(value) {
     value.value = null;
   }, 4000);
 };
-var createAddress = function createAddress(_ref22, _ref23) {
-  var dispatch = _ref22.dispatch,
-      commit = _ref22.commit;
-  var form = _ref23.form,
-      context = _ref23.context;
+var createAddress = function createAddress(_ref23, _ref24) {
+  var dispatch = _ref23.dispatch,
+      commit = _ref23.commit;
+  var form = _ref24.form,
+      context = _ref24.context;
   return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/addresses", {
     first_name: form.first_name,
     last_name: form.last_name,
@@ -28953,11 +28965,11 @@ var createAddress = function createAddress(_ref22, _ref23) {
     context.errors = error.response.data.errors;
   });
 };
-var deleteAddress = function deleteAddress(_ref24, _ref25) {
-  var dispatch = _ref24.dispatch,
-      commit = _ref24.commit;
-  var id = _ref25.id,
-      context = _ref25.context;
+var deleteAddress = function deleteAddress(_ref25, _ref26) {
+  var dispatch = _ref25.dispatch,
+      commit = _ref25.commit;
+  var id = _ref26.id,
+      context = _ref26.context;
   axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("/api/addresses/" + id + "").then(function (response) {
     if (!response.data.data.length) {
       commit("setShowForm", true);
@@ -28967,11 +28979,11 @@ var deleteAddress = function deleteAddress(_ref24, _ref25) {
     context.submiting = false;
   });
 };
-var updateAddresses = function updateAddresses(_ref26, _ref27) {
-  var dispatch = _ref26.dispatch,
-      commit = _ref26.commit;
-  var form = _ref27.form,
-      id = _ref27.id;
+var updateAddresses = function updateAddresses(_ref27, _ref28) {
+  var dispatch = _ref27.dispatch,
+      commit = _ref27.commit;
+  var form = _ref28.form,
+      id = _ref28.id;
   return axios__WEBPACK_IMPORTED_MODULE_0___default().put("/api/addresses/" + id, {
     first_name: form.first_name,
     last_name: form.last_name,
@@ -28995,10 +29007,10 @@ var updateAddresses = function updateAddresses(_ref26, _ref27) {
     }
   });
 };
-var getAddresses = function getAddresses(_ref28, _ref29) {
-  var dispatch = _ref28.dispatch,
-      commit = _ref28.commit;
-  var context = _ref29.context;
+var getAddresses = function getAddresses(_ref29, _ref30) {
+  var dispatch = _ref29.dispatch,
+      commit = _ref29.commit;
+  var context = _ref30.context;
   return axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/addresses").then(function (response) {
     if (!response.data.data.length) {
       commit("setShowForm", true);
@@ -29017,11 +29029,11 @@ var getAddresses = function getAddresses(_ref28, _ref29) {
     // }
   });
 };
-var updatePassword = function updatePassword(_ref30, _ref31) {
-  var commit = _ref30.commit,
-      dispatch = _ref30.dispatch;
-  var payload = _ref31.payload,
-      context = _ref31.context;
+var updatePassword = function updatePassword(_ref31, _ref32) {
+  var commit = _ref31.commit,
+      dispatch = _ref31.dispatch;
+  var payload = _ref32.payload,
+      context = _ref32.context;
   return axios__WEBPACK_IMPORTED_MODULE_0___default().put("/change/password", payload).then(function (response) {
     context.loading = false;
     commit("setMessage", response.data.message);
@@ -29039,10 +29051,10 @@ var updatePassword = function updatePassword(_ref30, _ref31) {
     }
   });
 };
-var resetPassword = function resetPassword(_ref32, _ref33) {
-  var commit = _ref32.commit;
-  var payload = _ref33.payload,
-      context = _ref33.context;
+var resetPassword = function resetPassword(_ref33, _ref34) {
+  var commit = _ref33.commit;
+  var payload = _ref34.payload,
+      context = _ref34.context;
   return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/reset/password", payload).then(function (response) {
     context.loading = false;
     commit("setMessage", response.data.message);
@@ -29061,39 +29073,39 @@ var resetPassword = function resetPassword(_ref32, _ref33) {
     }
   });
 };
-var updateAddress = function updateAddress(_ref34, payload) {
-  var commit = _ref34.commit;
+var updateAddress = function updateAddress(_ref35, payload) {
+  var commit = _ref35.commit;
   commit("addToAddress", payload);
 };
-var updateLocations = function updateLocations(_ref35, payload) {
-  var commit = _ref35.commit;
+var updateLocations = function updateLocations(_ref36, payload) {
+  var commit = _ref36.commit;
   commit("addToLocations", payload);
 };
-var setADl = function setADl(_ref36, response) {
-  var commit = _ref36.commit;
+var setADl = function setADl(_ref37, response) {
+  var commit = _ref37.commit;
   commit("addToAddress", response.data.data);
   commit("addToLocations", response.data.meta.countries);
   commit("setShipping", response.data.meta.shipping);
   commit("setDefaultShipping", response.data.meta.default_shipping);
 };
-var clearError = function clearError(_ref37) {
-  var commit = _ref37.commit;
+var clearError = function clearError(_ref38) {
+  var commit = _ref38.commit;
   var errors = {};
   commit("setFormErrors", errors);
 };
-var clearErrors = function clearErrors(_ref38, _ref39) {
-  var commit = _ref38.commit;
-  var context = _ref39.context,
-      input = _ref39.input,
-      e = _ref39.e;
+var clearErrors = function clearErrors(_ref39, _ref40) {
+  var commit = _ref39.commit;
+  var context = _ref40.context,
+      input = _ref40.input,
+      e = _ref40.e;
   var prop = e.target.name;
   delete context.errors[prop];
 };
-var validateForm = function validateForm(_ref40, _ref41) {
-  var dispatch = _ref40.dispatch,
-      commit = _ref40.commit;
-  var context = _ref41.context,
-      input = _ref41.input;
+var validateForm = function validateForm(_ref41, _ref42) {
+  var dispatch = _ref41.dispatch,
+      commit = _ref41.commit;
+  var context = _ref42.context,
+      input = _ref42.input;
   var p = {},
       k,
       errors = [];
@@ -29132,11 +29144,11 @@ var validateForm = function validateForm(_ref40, _ref41) {
   errors = Object.assign({}, errors, p);
   commit("setFormErrors", errors);
 };
-var checkInput = function checkInput(_ref42, _ref43) {
-  var commit = _ref42.commit;
-  var context = _ref43.context,
-      input = _ref43.input,
-      e = _ref43.e;
+var checkInput = function checkInput(_ref43, _ref44) {
+  var commit = _ref43.commit;
+  var context = _ref44.context,
+      input = _ref44.input,
+      e = _ref44.e;
   validateForm({
     commit: commit
   }, {
@@ -29145,10 +29157,10 @@ var checkInput = function checkInput(_ref42, _ref43) {
     e: e
   });
 };
-var forgotPassword = function forgotPassword(_ref44, _ref45) {
-  var commit = _ref44.commit;
-  var payload = _ref45.payload,
-      context = _ref45.context;
+var forgotPassword = function forgotPassword(_ref45, _ref46) {
+  var commit = _ref45.commit;
+  var payload = _ref46.payload,
+      context = _ref46.context;
   return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/password/reset/link", payload).then(function (response) {
     context.loading = false;
     commit("setMessage", response.data.message);
@@ -29168,11 +29180,11 @@ var forgotPassword = function forgotPassword(_ref44, _ref45) {
     }
   });
 };
-var createReviews = function createReviews(_ref46, _ref47) {
-  var commit = _ref46.commit;
-  var payload = _ref47.payload,
-      context = _ref47.context,
-      form = _ref47.form;
+var createReviews = function createReviews(_ref47, _ref48) {
+  var commit = _ref47.commit;
+  var payload = _ref48.payload,
+      context = _ref48.context,
+      form = _ref48.form;
   return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/reviews/store", form).then(function (response) {
     context.submiting = false;
     commit("setReviews", response.data.data);
@@ -29192,10 +29204,10 @@ var createReviews = function createReviews(_ref46, _ref47) {
     }
   });
 };
-var createComment = function createComment(_ref48, _ref49) {
-  var commit = _ref48.commit;
-  var payload = _ref49.payload,
-      context = _ref49.context;
+var createComment = function createComment(_ref49, _ref50) {
+  var commit = _ref49.commit;
+  var payload = _ref50.payload,
+      context = _ref50.context;
   return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/blog", context.form).then(function (response) {
     context.submiting = false;
     commit("setComments", response.data.data);
@@ -29215,9 +29227,9 @@ var createComment = function createComment(_ref48, _ref49) {
     }
   });
 };
-var getReviews = function getReviews(_ref50, _ref51) {
-  var commit = _ref50.commit;
-  var context = _ref51.context;
+var getReviews = function getReviews(_ref51, _ref52) {
+  var commit = _ref51.commit;
+  var context = _ref52.context;
   return axios__WEBPACK_IMPORTED_MODULE_0___default().get("/reviews/" + context.product_slug).then(function (response) {
     context.loading = false;
     commit("setReviews", response.data.data);

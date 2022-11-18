@@ -11,7 +11,7 @@
             @include('_partials.nav')
             <div class="col-md-9">
                 <h2 class="page-title ">Bids</h2>
-                @include('_partials.table')
+                <general-table />
             </div>
         </div>
     </div>
