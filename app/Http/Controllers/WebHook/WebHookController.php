@@ -64,7 +64,7 @@ class WebHookController extends Controller
                 $balance = WalletBalance::where('user_id', $input['customer_id'])->first();
 
                 if (null !== $balance) {
-                    $balance->amount = $balance->balance +  $input['amount'];
+                    $balance->amount = $balance->amount +  $input['amount'];
                     $balance->save();
                 } else {
                     $balance = new WalletBalance;
