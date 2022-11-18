@@ -93,7 +93,7 @@ class WebHookController extends Controller
                 $shout_out->event_date = $input['date'];
                 $shout_out->invoice = "INV-" . date('Y') . "-" . rand(10000, 39999);
                 $shout_out->save();
-                //Log::info($shout_out);
+                Log::info($shout_out);
 
                 try {
                     $when = now()->addMinutes(5);
