@@ -73,7 +73,7 @@ class WebHookController extends Controller
                     $balance->save();
                 }
 
-                \Log::info($balance);
+                Log::info($balance);
             }
 
             if ($input['service_type'] == 'shout-out') {
