@@ -174,9 +174,6 @@
 </template>
 
 
-
-
-
 <script>
 import { useVuelidate } from "@vuelidate/core";
 
