@@ -9,7 +9,7 @@
   </ol>
 </nav>
 
-<section id="main-content" class="py-5 ">
+<section id="main-content" class="py-2">
   <div class="container">
     <div class="row">
       <div class="col-lg-7">
@@ -39,8 +39,6 @@
 
               <div class="col-md-6">
                 <h1>Schedule</h1>
-
-
               </div>
 
             </div>
