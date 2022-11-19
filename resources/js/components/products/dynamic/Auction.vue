@@ -1,106 +1,182 @@
 <template>
-  <div class=" product-single-details">
-    <h1 class="product-title">{{ service.name }}</h1>
 
-    <!-- End .ratings-container -->
-    <hr class="short-divider">
-    <div class="price-box">
-      <div>
-        Event Date: <strong>{{ service.service_date }}</strong>
-      </div>
-    </div>
-    <!-- End .price-box -->
-
-    <div class="d-flex justify-content-between">
-      <div>
-        Time Left: <strong>{{ service.days_left + 'd'}}</strong>
-      </div>
-      <div>
-        Wallet Balance: {{ $filters.formatNumber(walletBalance) || '0.00' }}
-        <span class="fs-6"> <a
-            data-bs-toggle="modal"
-            data-bs-target="#main-modal"
-            class=" w-100 rounded-0"
-            href="#"
-            id=""
-          >Fund your wallet</a></span>
-      </div>
-    </div>
-
-    <div class="d-flex justify-content-between">
-      <div>
-        Current Bid: <strong>{{ $filters.formatNumber(currentBid) }}</strong>
-      </div>
-      <div>
-        [ {{number_of_bidders}} bids ]
-      </div>
-    </div>
-
-    <div class="row g-0">
-      <div class="col-md-3">
-        <input
-          type="text"
-          v-model="bid.amount"
-          class="form-control rounded-0"
-          @input="clearError"
-        >
-        <small
-          v-if="error"
-          class="text text-danger"
-        >Enter a valid amount </small>
-
-      </div>
-      <div class="col-md-9">
-        <button
-          v-if="walletBalance >= service.min_bid"
-          class="btn btn-outline-secondary w-100 rounded-0"
-          type="button"
-          id="button-addon2"
-          @click="handleBid"
-        >Place Bid</button>
-
-        <button
-          v-else
-          data-bs-toggle="modal"
-          data-bs-target="#main-modal"
-          class="btn btn-outline-secondary w-100 rounded-0"
-          type="button"
-          id="button-addon2"
-        >Place Bid</button>
-      </div>
-      <div
-        id="emailHelp"
-        class="form-text"
-      >Enter {{ $filters.formatNumber(service.min_bid) }} or more</div>
-
-    </div>
-
-    <modal>
-      <template v-slot:header>
-        1on1
-      </template>
-
-      <template v-slot:title>
-        <h2>Fund your wallet</h2>
-      </template>
-
-      <div class="row h-100  d-flex align-items-center justify-content-center   mx-2 mt-2">
-
-        <div
-          style="height: 200px;"
-          class="form-floating mx-2 mt-2"
-        >
-          <wallet
-            @wallet:funded="getWallet"
-            :user="user"
-          />
+  <div
+    v-if="!reg_message"
+    class="container"
+  >
+    <div class="row">
+      <div class="col-lg-7 border">
+        <div class="image">
+          <img
+            :src="service.image_to_show"
+            class="img-fluid"
+            alt=""
+            srcset=""
+          >
         </div>
       </div>
+      <div class="col-lg-5">
 
-    </modal>
+        <div class=" product-single-details">
+          <h1 class="product-title">{{ service.name }}</h1>
 
+          <!-- End .ratings-container -->
+          <hr class="short-divider">
+          <div class="price-box">
+            <div>
+              Event Date: <strong>{{ service.service_date }}</strong>
+            </div>
+          </div>
+          <!-- End .price-box -->
+
+          <div class="d-flex justify-content-between">
+            <div>
+              Time Left: <strong>{{ service.days_left + 'd'}}</strong>
+            </div>
+            <div>
+              Wallet Balance: {{ $filters.formatNumber(walletBalance) || '0.00' }}
+              <span class="fs-6"> <a
+                  data-bs-toggle="modal"
+                  data-bs-target="#main-modal"
+                  class=" w-100 rounded-0"
+                  href="#"
+                  id=""
+                >Fund your wallet</a></span>
+            </div>
+          </div>
+
+          <div class="d-flex justify-content-between">
+            <div>
+              Current Bid: <strong>{{ $filters.formatNumber(currentBid) }}</strong>
+            </div>
+            <div>
+              [ {{number_of_bidders}} bids ]
+            </div>
+          </div>
+
+          <div class="row g-0">
+            <div class="col-md-3">
+              <input
+                type="text"
+                v-model="bid.amount"
+                class="form-control rounded-0"
+                @input="clearError"
+              >
+              <small
+                v-if="error"
+                class="text text-danger"
+              >Enter a valid amount </small>
+
+            </div>
+            <div class="col-md-9">
+              <button
+                v-if="walletBalance >= service.min_bid"
+                class="btn btn-outline-secondary w-100 rounded-0"
+                type="button"
+                id="button-addon2"
+                @click="handleBid"
+              >Place Bid</button>
+
+              <button
+                v-else
+                data-bs-toggle="modal"
+                data-bs-target="#main-modal"
+                class="btn btn-outline-secondary w-100 rounded-0"
+                type="button"
+                id="button-addon2"
+              >Place Bid</button>
+            </div>
+            <div
+              id="emailHelp"
+              class="form-text"
+            >Enter {{ $filters.formatNumber(service.min_bid) }} or more</div>
+
+          </div>
+
+          <modal>
+            <template v-slot:header>
+              1on1
+            </template>
+
+            <template v-slot:title>
+              <h2>Fund your wallet</h2>
+            </template>
+
+            <div class="row h-100  d-flex align-items-center justify-content-center   mx-2 mt-2">
+
+              <div
+                style="height: 200px;"
+                class="form-floating mx-2 mt-2"
+              >
+                <wallet
+                  @wallet:funded="getWallet"
+                  :user="user"
+                />
+              </div>
+            </div>
+
+          </modal>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="row my-5">
+      <div class="col-12">
+        <nav>
+          <div
+            class="nav nav-tabs"
+            id="nav-tab"
+            role="tablist"
+          >
+            <button
+              class="nav-link active"
+              id="nav-home-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#nav-home"
+              type="button"
+              role="tab"
+              aria-controls="nav-home"
+              aria-selected="true"
+            >Description</button>
+          </div>
+        </nav>
+        <div
+          class="tab-content"
+          id="nav-tabContent"
+        >
+          <div
+            class="tab-pane fade show active"
+            id="nav-home"
+            role="tabpanel"
+            aria-labelledby="nav-home-tab"
+          >
+            <div class="row">
+              <div class="col-md-6">
+
+                <p v-html="service.description"></p>
+              </div>
+
+              <div class="col-md-6">
+                <h1>Schedule</h1>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+  <template v-if="reg_message">
+    <complete :message="reg_message" />
+  </template>
 </template>
+
+
+
+
+
 <script>
 import { useVuelidate } from "@vuelidate/core";
 
@@ -111,6 +187,7 @@ import { computed, reactive, ref, onMounted } from "vue";
 import { bidRules } from "../../../utils/ValidationRules";
 import { useStore } from "vuex";
 import { useActions, useGetters } from "vuex-composition-helpers";
+import Complete from "../../utils/Complete";
 
 import axios from "axios";
 
@@ -188,6 +265,6 @@ export default {
       clearError,
     };
   },
-  components: { Modal, GeneralInput, Wallet },
+  components: { Modal, GeneralInput, Wallet, Complete },
 };
 </script>
