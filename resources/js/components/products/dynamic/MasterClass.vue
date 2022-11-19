@@ -1,11 +1,8 @@
 <template>
   <div>
     <h2 class="product-title">{{ service.name }}</h2>
-    <div class="price">Price: {{ service.currency }}{{ service.price }}</div>
-    <div class="price">Date: {{ service.date }}</div>
-    <div v-if="service.starts_time &&   service.end_time">Time: {{ service.starts_time }} - {{ service.end_time }}</div>
+    <div class="price">Date: <a href="#">Click to see schedule</a></div>
 
-    <div class="price">Time Left: {{ service.days_left + 'days left' }} </div>
     <div>
       Instructor(s): {{ service.celebrity.name }}
     </div>

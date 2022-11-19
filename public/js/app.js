@@ -27937,34 +27937,31 @@ __webpack_require__.r(__webpack_exports__);
 var _hoisted_1 = {
   "class": "product-title"
 };
-var _hoisted_2 = {
+
+var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "price"
-};
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Date: "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+  href: "#"
+}, "Click to see schedule")], -1
+/* HOISTED */
+);
+
 var _hoisted_3 = {
-  "class": "price"
-};
-var _hoisted_4 = {
-  key: 0
-};
-var _hoisted_5 = {
-  "class": "price"
-};
-var _hoisted_6 = {
   "class": "mt-3 p-0"
 };
-var _hoisted_7 = {
+var _hoisted_4 = {
   "class": "row g-2"
 };
+var _hoisted_5 = {
+  "class": "form-group col-6"
+};
+var _hoisted_6 = {
+  "class": "form-group col-6"
+};
+var _hoisted_7 = {
+  "class": "form-group col-6"
+};
 var _hoisted_8 = {
-  "class": "form-group col-6"
-};
-var _hoisted_9 = {
-  "class": "form-group col-6"
-};
-var _hoisted_10 = {
-  "class": "form-group col-6"
-};
-var _hoisted_11 = {
   "class": "form-group col-6"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -27974,21 +27971,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", _hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.service.name), 1
   /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, "Price: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.service.currency) + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.service.price), 1
+  ), _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, " Instructor(s): " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.service.celebrity.name), 1
   /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, "Date: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.service.date), 1
-  /* TEXT */
-  ), $props.service.starts_time && $props.service.end_time ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_4, "Time: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.service.starts_time) + " - " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.service.end_time), 1
-  /* TEXT */
-  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, "Time Left: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.service.days_left + 'days left'), 1
-  /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, " Instructor(s): " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.service.celebrity.name), 1
-  /* TEXT */
-  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
     onSubmit: _cache[4] || (_cache[4] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
       return $setup.register && $setup.register.apply($setup, arguments);
     }, ["prevent"]))
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_general_input, {
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_general_input, {
     id: "first_name",
     error: $setup.v$.first_name,
     modelValue: $setup.form.first_name,
@@ -27999,7 +27988,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     type: "text"
   }, null, 8
   /* PROPS */
-  , ["error", "modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_general_input, {
+  , ["error", "modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_general_input, {
     id: "last_name",
     error: $setup.v$.last_name,
     modelValue: $setup.form.last_name,
@@ -28010,7 +27999,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     type: "text"
   }, null, 8
   /* PROPS */
-  , ["error", "modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_general_input, {
+  , ["error", "modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_general_input, {
     id: "email",
     error: $setup.v$.email,
     modelValue: $setup.form.email,
@@ -28021,7 +28010,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     type: "email"
   }, null, 8
   /* PROPS */
-  , ["error", "modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_general_input, {
+  , ["error", "modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_general_input, {
     id: "phone",
     error: $setup.v$.phone_number,
     modelValue: $setup.form.phone_number,
