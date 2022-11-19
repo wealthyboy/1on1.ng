@@ -2,7 +2,6 @@
   <div>
     <h2 class="product-title">{{ service.name }}</h2>
     <div class="price">Price: {{ $filters.formatNumber(service.price) }}</div>
-
     <div class="price">Schedule: <a href="#">Click to see schedule</a></div>
 
   </div>
