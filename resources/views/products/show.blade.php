@@ -32,7 +32,19 @@
         </nav>
         <div class="tab-content" id="nav-tabContent">
           <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-            <p><?php echo  html_entity_decode($service->description);  ?></p>
+            <div class="row">
+              <div class="col-md-6">
+
+                <p><?php echo  html_entity_decode($service->description);  ?></p>
+              </div>
+
+              <div class="col-md-6">
+                <h1>Schedule</h1>
+
+
+              </div>
+
+            </div>
 
           </div>
         </div>
