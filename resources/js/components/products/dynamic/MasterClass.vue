@@ -1,11 +1,8 @@
 <template>
   <div>
     <h2 class="product-title">{{ service.name }}</h2>
-    <div class="price">Date: <a href="#">Click to see schedule</a></div>
+    <div class="price">Price: {{ $filters.formatNumber(service.price) }}</div>
 
-    <div>
-      Instructor(s): {{ service.celebrity.name }}
-    </div>
   </div>
 
   <div class="mt-3 p-0">
