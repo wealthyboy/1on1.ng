@@ -1,69 +1,134 @@
 <template>
-  <div>
-    <h2 class="product-title">{{ service.name }}</h2>
-    <div class="price">Price: {{ $filters.formatNumber(service.price) }}</div>
-    <div class="price">Schedule: <a href="#">Click to see schedule</a></div>
 
-  </div>
-
-  <div class="mt-3 p-0">
-
-    <form @submit.prevent="register">
-      <div class="row g-2">
-
-        <div class="form-group   col-6">
-          <general-input
-            id="first_name"
-            :error="v$.first_name"
-            v-model="form.first_name"
-            name="First name"
-            type="text"
-          />
-
-        </div>
-
-        <div class="form-group   col-6">
-          <general-input
-            id="last_name"
-            :error="v$.last_name"
-            v-model="form.last_name"
-            name="Last name"
-            type="text"
-          />
-
-        </div>
-
-        <div class="form-group   col-6">
-          <general-input
-            id="email"
-            :error="v$.email"
-            v-model="form.email"
-            name="Email"
-            type="email"
-          />
-
-        </div>
-
-        <div class="form-group   col-6">
-          <general-input
-            id="phone"
-            :error="v$.phone_number"
-            v-model="form.phone_number"
-            name="Phone"
-            type="text"
-          />
-
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-7 border">
+        <div class="image">
+          <img
+            :src="service.image_to_show  || service.image "
+            class="img-fluid"
+            alt=""
+            srcset=""
+          >
         </div>
       </div>
+      <div class="col-lg-5">
+        <div>
+          <h2 class="product-title">{{ service.name }}</h2>
+          <div class="price">Price: {{ $filters.formatNumber(service.price) }}</div>
+          <div class="price">Schedule: <a href="#">Click to see schedule</a></div>
 
-      <general-button
-        type="submit"
-        :text="text"
-        class="btn btn-dark w-100 mt-2"
-        :loading="loading"
-      />
-    </form>
+        </div>
+
+        <div class="mt-3 p-0">
+
+          <form @submit.prevent="register">
+            <div class="row g-2">
+
+              <div class="form-group   col-6">
+                <general-input
+                  id="first_name"
+                  :error="v$.first_name"
+                  v-model="form.first_name"
+                  name="First name"
+                  type="text"
+                />
+
+              </div>
+
+              <div class="form-group   col-6">
+                <general-input
+                  id="last_name"
+                  :error="v$.last_name"
+                  v-model="form.last_name"
+                  name="Last name"
+                  type="text"
+                />
+
+              </div>
+
+              <div class="form-group   col-6">
+                <general-input
+                  id="email"
+                  :error="v$.email"
+                  v-model="form.email"
+                  name="Email"
+                  type="email"
+                />
+
+              </div>
+
+              <div class="form-group   col-6">
+                <general-input
+                  id="phone"
+                  :error="v$.phone_number"
+                  v-model="form.phone_number"
+                  name="Phone"
+                  type="text"
+                />
+
+              </div>
+            </div>
+
+            <general-button
+              type="submit"
+              :text="text"
+              class="btn btn-dark w-100 mt-2"
+              :loading="loading"
+            />
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="row my-5">
+      <div class="col-12">
+        <nav>
+          <div
+            class="nav nav-tabs"
+            id="nav-tab"
+            role="tablist"
+          >
+            <button
+              class="nav-link active"
+              id="nav-home-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#nav-home"
+              type="button"
+              role="tab"
+              aria-controls="nav-home"
+              aria-selected="true"
+            >Description</button>
+          </div>
+        </nav>
+        <div
+          class="tab-content"
+          id="nav-tabContent"
+        >
+          <div
+            class="tab-pane fade show active"
+            id="nav-home"
+            role="tabpanel"
+            aria-labelledby="nav-home-tab"
+          >
+            <div class="row">
+              <div class="col-md-6">
+
+                <p v-html="service.description"></p>
+              </div>
+
+              <div class="col-md-6">
+                <h1>Schedule</h1>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+
 </template>
  
 <script>
