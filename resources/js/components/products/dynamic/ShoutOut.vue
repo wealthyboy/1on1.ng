@@ -1,111 +1,189 @@
 <template>
 
-  <div class="mb-3">
-    <h2 class="product-title">{{ service.name }}</h2>
-    <div class="price">Price: <span v-if="!isNaN(price)">{{ service.currency }}</span>{{ price }}</div>
-
-  </div>
-  <div class=" p-0">
-
-    <form @submit.prevent="sendShoutOut">
-
-      <div class="row g-1">
-
-        <div class="form-group   col-6">
-          <general-input
-            id="recipient_first_name"
-            :error="v$.recipient_first_name"
-            v-model="form.recipient_first_name"
-            name="Recipient's first name"
-            type="text"
-          />
-
-        </div>
-
-        <div class="form-group   col-6">
-          <general-input
-            id="recipient_last_name"
-            :error="v$.recipient_last_name"
-            v-model="form.recipient_last_name"
-            name="Recipient's last name"
-            type="text"
-          />
-
-        </div>
-
-        <div class="form-group   col-6">
-          <general-input
-            id="recipient_email"
-            :error="v$.recipient_email"
-            v-model="form.recipient_email"
-            name="Rcipient's email"
-            type="text"
-          />
-
-        </div>
-
-        <div class="form-group   col-6">
-          <general-input
-            id="recipient_phone"
-            :error="v$.recipient_phone"
-            v-model="form.recipient_phone"
-            name="Recipient's phone"
-            type="text"
-          />
-
-        </div>
-
-        <div class="form-floating mb-2 col-6">
-
-          <flat-pickr
-            class="form-control"
-            v-model="form.date"
-            :error="v$.date"
-          ></flat-pickr>
-          <label for="floatingInput">Date of event</label>
-        </div>
-        <div class="form-floating mb-2 col-6">
-          <general-select
-            id="type"
-            :error="v$.type"
-            v-model="form.type"
-            name="Choose type"
-            @change="doChange($event)"
+  <div
+    v-if="!reg_message"
+    class="container"
+  >
+    <div class="row">
+      <div class="col-lg-7 border">
+        <div class="image">
+          <img
+            v-if="service.image"
+            :src="service.image"
+            class="img-fluid"
+            alt=""
+            srcset=""
           >
-            <option
-              :data-price="service.audio_shout_out_price"
-              value="video"
-            >Audio</option>
 
-            <option
-              :data-price="service.video_shout_out_price"
-              value="audio"
-            >Video</option>
-
-          </general-select>
+          <img
+            v-else
+            :src="service.image_to_show"
+            class="img-fluid"
+            alt=""
+            srcset=""
+          >
         </div>
-        <div class="form-floating mb-2">
-          <textarea
-            class="form-control"
-            placeholder="Leave a comment here"
-            id="floatingTextarea2"
-            style="height: 100px"
-            v-model="form.comment"
-          ></textarea>
-          <label for="floatingTextarea2">Comments</label>
-        </div>
-
-        <general-button
-          type="submit"
-          :text="text"
-          class="btn btn-dark w-100"
-          :loading="loading"
-        />
-
       </div>
+      <div class="col-lg-5">
+        <div class="mb-3">
+          <h2 class="product-title">{{ service.name }}</h2>
+          <div class="price">Price: <span v-if="!isNaN(price)">{{ service.currency }}</span>{{ price }}</div>
 
-    </form>
+        </div>
+        <div class=" p-0">
+
+          <form @submit.prevent="sendShoutOut">
+
+            <div class="row g-1">
+
+              <div class="form-group   col-6">
+                <general-input
+                  id="recipient_first_name"
+                  :error="v$.recipient_first_name"
+                  v-model="form.recipient_first_name"
+                  name="Recipient's first name"
+                  type="text"
+                />
+
+              </div>
+
+              <div class="form-group   col-6">
+                <general-input
+                  id="recipient_last_name"
+                  :error="v$.recipient_last_name"
+                  v-model="form.recipient_last_name"
+                  name="Recipient's last name"
+                  type="text"
+                />
+
+              </div>
+
+              <div class="form-group   col-6">
+                <general-input
+                  id="recipient_email"
+                  :error="v$.recipient_email"
+                  v-model="form.recipient_email"
+                  name="Rcipient's email"
+                  type="text"
+                />
+
+              </div>
+
+              <div class="form-group   col-6">
+                <general-input
+                  id="recipient_phone"
+                  :error="v$.recipient_phone"
+                  v-model="form.recipient_phone"
+                  name="Recipient's phone"
+                  type="text"
+                />
+
+              </div>
+
+              <div class="form-floating mb-2 col-6">
+
+                <flat-pickr
+                  class="form-control"
+                  v-model="form.date"
+                  :error="v$.date"
+                ></flat-pickr>
+                <label for="floatingInput">Date of event</label>
+              </div>
+              <div class="form-floating mb-2 col-6">
+                <general-select
+                  id="type"
+                  :error="v$.type"
+                  v-model="form.type"
+                  name="Choose type"
+                  @change="doChange($event)"
+                >
+                  <option
+                    :data-price="service.audio_shout_out_price"
+                    value="video"
+                  >Audio</option>
+
+                  <option
+                    :data-price="service.video_shout_out_price"
+                    value="audio"
+                  >Video</option>
+
+                </general-select>
+              </div>
+              <div class="form-floating mb-2">
+                <textarea
+                  class="form-control"
+                  placeholder="Leave a comment here"
+                  id="floatingTextarea2"
+                  style="height: 100px"
+                  v-model="form.comment"
+                ></textarea>
+                <label for="floatingTextarea2">Comments</label>
+              </div>
+
+              <general-button
+                type="submit"
+                :text="text"
+                class="btn btn-dark w-100"
+                :loading="loading"
+              />
+
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="row my-5">
+      <div class="col-12">
+        <nav>
+          <div
+            class="nav nav-tabs"
+            id="nav-tab"
+            role="tablist"
+          >
+            <button
+              class="nav-link active"
+              id="nav-home-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#nav-home"
+              type="button"
+              role="tab"
+              aria-controls="nav-home"
+              aria-selected="true"
+            >Description</button>
+          </div>
+        </nav>
+        <div
+          class="tab-content"
+          id="nav-tabContent"
+        >
+          <div
+            class="tab-pane fade show active"
+            id="nav-home"
+            role="tabpanel"
+            aria-labelledby="nav-home-tab"
+          >
+            <div class="row">
+              <div class="col-md-6">
+
+                <p v-html="service.description"></p>
+              </div>
+
+              <div class="col-md-6">
+                <h1>Schedule</h1>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+  <template v-if="reg_message">
+    <complete :message="reg_message" />
+  </template>
 </template>
 
 <script>
@@ -142,6 +220,8 @@ export default {
     const price = ref("Select shout out type to get price");
     const text = ref("Submit");
     const message = ref(null);
+    const reg_message = ref(null);
+
     const data = shoutOutData(props.service, props.user, price);
     const server_errors = ref(data);
     const post_server_error = ref(null);
@@ -202,6 +282,7 @@ export default {
       change,
       doChange,
       price,
+      reg_message,
     };
   },
 };

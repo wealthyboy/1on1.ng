@@ -1,6 +1,9 @@
 <template>
 
-  <div class="container">
+  <div
+    v-if="!reg_message"
+    class="container"
+  >
     <div class="row">
       <div class="col-lg-7 border">
         <div class="image">
@@ -128,6 +131,9 @@
       </div>
     </div>
   </div>
+  <template v-if="reg_message">
+    <complete :message="reg_message" />
+  </template>
 
 </template>
  
@@ -146,6 +152,7 @@ import { masterClassData } from "../../../utils/FormData";
 import { loadScript } from "../../../utils/Payment";
 
 import GeneralSelect from "../../Forms/Select";
+import Complete from "../../utils/Complete";
 
 export default {
   props: ["user", "service"],
@@ -156,6 +163,7 @@ export default {
     GeneralInput,
     Message,
     GeneralSelect,
+    Complete,
   },
   setup(props, { emit }) {
     const loading = ref(false);
@@ -163,6 +171,8 @@ export default {
 
     const text = ref("Register");
     const message = ref(null);
+    const reg_message = ref(null);
+
     const data = masterClassData(props.service, props.user);
     const server_errors = ref(data);
     const post_server_error = ref(null);
@@ -204,7 +214,8 @@ export default {
           custom_fields: { form },
         },
         callback: function (response) {
-          console.log(response);
+          reg_message.value =
+            "Thank You. Your registration has been received. Please  check your email for more details.";
         },
         onClose: function () {},
       });
@@ -223,6 +234,7 @@ export default {
       change,
       doChange,
       price,
+      reg_message,
     };
   },
 };
