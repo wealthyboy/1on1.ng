@@ -2,15 +2,14 @@
 
 @section('content')
 
-<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-  <ol class="breadcrumb">
+<nav class="mt-5" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+  <ol class="breadcrumb border px-5 py-3">
     <li class="breadcrumb-item"><a href="#">Home</a></li>
     <li class="breadcrumb-item active" aria-current="page">Library</li>
   </ol>
 </nav>
 
-
-<section class="py-5">
+<section id="main-content" class="py-5 ">
   <div class="container">
     <div class="row">
       <div class="col-lg-7">
@@ -52,5 +51,55 @@
     </div>
   </div>
 </section>
+
+
+<section id="order-complete" class="d-none">
+  <div class="container-fluid mt-5">
+    <div class="row justify-content-center align-items-center">
+      <div class="col-lg-8">
+        <div class="card border-width-3 border-radius-0 border-color-success">
+          <div class="card-body text-center">
+            <p class="text-color-dark font-weight-bold text-4-5 mb-0"><i class="fas fa-check text-color-success me-1"></i> Thank You. Your Order has been received.</p>
+          </div>
+        </div>
+        <div class="d-flex flex-column flex-md-row justify-content-between py-3 px-4 my-4">
+          <div class="text-center">
+            <span>
+              Order Number <br>
+              <strong class="text-color-dark">31891</strong>
+            </span>
+          </div>
+          <div class="text-center mt-4 mt-md-0">
+            <span>
+              Date <br>
+              <strong class="text-color-dark">June 17, 2020</strong>
+            </span>
+          </div>
+          <div class="text-center mt-4 mt-md-0">
+            <span>
+              Email <br>
+              <strong class="text-color-dark">abc@abc.com</strong>
+            </span>
+          </div>
+          <div class="text-center mt-4 mt-md-0">
+            <span>
+              Total <br>
+              <strong class="text-color-dark">$30</strong>
+            </span>
+          </div>
+          <div class="text-center mt-4 mt-md-0">
+            <span>
+              Payment Method <br>
+              <strong class="text-color-dark">Cash on Delivery</strong>
+            </span>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</section>
+
 
 @stop
