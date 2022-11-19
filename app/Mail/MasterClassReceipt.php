@@ -32,6 +32,6 @@ class MasterClassReceipt extends Mailable
      */
     public function build()
     {
-        return $this->subject('Registeration Confirmation')->view('emails.receipt.master_class.index');
+        return $this->subject('Registration Confirmation')->view('emails.receipt.master_class.index');
     }
 }

@@ -439,8 +439,8 @@
                                                             <tr>
                                                                <td colspan="3" class="RegularTextTD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="margin-left: 3px;color: #727e8d;font-family: sans-serif;font-size: 13px;font-weight: lighter;line-height: 23px;">
                                                                   <b>Full Name:</b> {{ $master_class->first_name }} {{ $master_class->last_name }} <br />
-                                                                  <b>Email Address:</b> {{ $master_class->recipient_email }}<br />
-                                                                  <b>Phone Number:</b> {{ $master_class->recipient_phone }}<br />
+                                                                  <b>Email Address:</b> {{ $master_class->email }}<br />
+                                                                  <b>Phone Number:</b> {{ $master_class->phone }}<br />
                                                                </td>
                                                             </tr>
 
