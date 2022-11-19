@@ -26253,6 +26253,7 @@ __webpack_require__.r(__webpack_exports__);
         },
         callback: function callback(response) {
           console.log(response);
+          reg_message.value = "Thank You. Your event  has been placed. Please  check your email for more details.";
         },
         onClose: function onClose() {}
       });

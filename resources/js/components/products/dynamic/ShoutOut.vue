@@ -263,6 +263,8 @@ export default {
         },
         callback: function (response) {
           console.log(response);
+          reg_message.value =
+            "Thank You. Your event  has been placed. Please  check your email for more details.";
         },
         onClose: function () {},
       });
