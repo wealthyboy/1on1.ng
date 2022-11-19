@@ -11,7 +11,6 @@
 
 <section id="main-content" class="py-2">
   <show-products :user="{{ $user }}" :service="{{ $service }}" />
-
 </section>
 
 @stop

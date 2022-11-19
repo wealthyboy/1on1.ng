@@ -5,7 +5,7 @@
       <div class="col-lg-7 border">
         <div class="image">
           <img
-            :src="service.image_to_show  || service.image "
+            :src="service.image"
             class="img-fluid"
             alt=""
             srcset=""
