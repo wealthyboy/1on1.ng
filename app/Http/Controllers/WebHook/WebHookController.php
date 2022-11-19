@@ -55,7 +55,7 @@ class WebHookController extends Controller
 
             $input =  $request->data['metadata']['custom_fields']['form'];
 
-            if ($input['type'] == 'Wallet') {
+            if (isset($input['type']) && $input['type'] == 'Wallet') {
                 $input =  $request->data['metadata']['custom_fields'][0]['form'];
 
                 $wallet = new Wallet;
