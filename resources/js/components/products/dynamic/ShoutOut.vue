@@ -202,6 +202,7 @@ import { shoutOutData } from "../../../utils/FormData";
 import { loadScript } from "../../../utils/Payment";
 
 import GeneralSelect from "../../Forms/Select";
+import Complete from "../../utils/Complete";
 
 export default {
   props: ["user", "service"],
@@ -213,6 +214,7 @@ export default {
     Message,
     flatPickr,
     GeneralSelect,
+    Complete,
   },
   setup(props, { emit }) {
     const loading = ref(false);

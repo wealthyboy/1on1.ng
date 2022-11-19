@@ -26172,6 +26172,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_FormData__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../../utils/FormData */ "./resources/js/utils/FormData.js");
 /* harmony import */ var _utils_Payment__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../../utils/Payment */ "./resources/js/utils/Payment.js");
 /* harmony import */ var _Forms_Select__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../Forms/Select */ "./resources/js/components/Forms/Select.vue");
+/* harmony import */ var _utils_Complete__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../utils/Complete */ "./resources/js/components/utils/Complete.vue");
+
 
 
 
@@ -26194,7 +26196,8 @@ __webpack_require__.r(__webpack_exports__);
     GeneralInput: _Forms_Input__WEBPACK_IMPORTED_MODULE_7__["default"],
     Message: _message_Message__WEBPACK_IMPORTED_MODULE_8__["default"],
     flatPickr: (vue_flatpickr_component__WEBPACK_IMPORTED_MODULE_0___default()),
-    GeneralSelect: _Forms_Select__WEBPACK_IMPORTED_MODULE_12__["default"]
+    GeneralSelect: _Forms_Select__WEBPACK_IMPORTED_MODULE_12__["default"],
+    Complete: _utils_Complete__WEBPACK_IMPORTED_MODULE_13__["default"]
   },
   setup: function setup(props, _ref) {
     var emit = _ref.emit;
