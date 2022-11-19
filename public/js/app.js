@@ -29694,7 +29694,9 @@ var masterClassData = function masterClassData(service, user) {
     phone_number: null,
     service_type: "master-class",
     service_id: service.id,
-    user_id: user.id
+    user_id: user.id,
+    price: service.price,
+    schedule_id: 1
   };
   return data;
 };

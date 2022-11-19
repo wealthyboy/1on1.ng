@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Models\Wallet;
 use App\Models\WalletBalance;
 use App\Mail\ShoutOutReciept;
+use App\Mail\MasterClassReceipt;
 
 // use Illuminate\Support\Facades\Log;
 // use App\User;
@@ -113,13 +114,44 @@ class WebHookController extends Controller
                 $master_class->last_name = $input['last_name'];
                 $master_class->email = $input['email'];
                 $master_class->phone = $input['phone_number'];
+                $master_class->price = $input['price'];
+                $master_class->service_id = $input['service_id'];
+                $master_class->uuid = str_random(6);
+                $master_class->user_id = $input['user_id'];
+                $master_class->price = $input['price'];
+                $master_class->invoice = "INV-" . date('Y') . "-" . rand(10000, 39999);
+                $master_class->save();
+                Log::info($master_class);
+                try {
+                    $when = now()->addMinutes(5);
+                    Mail::to('jacob.atam@gmail.com')
+                        ->send(new MasterClassReceipt($shout_out));
+                } catch (\Throwable $th) {
+                    Log::info("Mail error :" . $th);
+                }
+            }
+
+
+            if ($input['service_type'] == 'auction') {
+                $master_class = new MasterClass;
+                $master_class->first_name = $input['first_name'];
+                $master_class->last_name = $input['last_name'];
+                $master_class->email = $input['email'];
+                $master_class->phone = $input['phone_number'];
+                $master_class->price = $input['price'];
                 $master_class->service_id = $input['service_id'];
                 $master_class->uuid = str_random(6);
                 $master_class->user_id = $input['user_id'];
                 $master_class->invoice = "INV-" . date('Y') . "-" . rand(10000, 39999);
                 $master_class->save();
                 Log::info($master_class);
-                //Mail::to();
+                try {
+                    $when = now()->addMinutes(5);
+                    Mail::to('jacob.atam@gmail.com')
+                        ->send(new MasterClassReceipt($shout_out));
+                } catch (\Throwable $th) {
+                    Log::info("Mail error :" . $th);
+                }
             }
         } catch (\Throwable $th) {
             Log::info("Custom error :" . $th);
