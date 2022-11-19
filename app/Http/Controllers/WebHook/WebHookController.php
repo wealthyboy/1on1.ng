@@ -125,7 +125,7 @@ class WebHookController extends Controller
                 try {
                     $when = now()->addMinutes(5);
                     Mail::to('jacob.atam@gmail.com')
-                        ->send(new MasterClassReceipt($shout_out));
+                        ->send(new MasterClassReceipt($master_class));
                 } catch (\Throwable $th) {
                     Log::info("Mail error :" . $th);
                 }
