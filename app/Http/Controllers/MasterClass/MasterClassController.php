@@ -60,12 +60,10 @@ class MasterClassController extends Controller
             'items' => [
                 $collection->map(function (MasterClass $master_class) {
                     return [
-                        "id" => $master_class->id,
-                        "class" => optional($master_class->service)->name,
-                        "price" => optional($master_class->service)->price,
-                        "start_date" => optional($master_class->service)->start_date,
-                        "end_date" => optional($master_class->service)->end_date,
-                        "date_added" => $master_class->created_at->format('d-m-y')
+                        "Id" => $master_class->id,
+                        "Class" => '#' . optional($master_class->service)->name,
+                        "Price" => '₦' . optional($master_class->service)->price,
+                        "Date Added" => $master_class->created_at->format('d-m-y')
                     ];
                 })
             ],
