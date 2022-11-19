@@ -116,10 +116,9 @@ class WalletsController extends Controller
                 $collection->map(function (Wallet $wallet) {
                     return [
                         "Ref Id" => '#' . optional($wallet)->id,
-                        "amount" => '₦' . optional($wallet)->amount,
-                        "status" =>  optional($wallet)->status,
-
-                        "date_added" => $wallet->created_at->format('d-m-y')
+                        "Amount" => '₦' . number_format(optional($wallet)->amount),
+                        "Status" =>  optional($wallet)->status,
+                        "Date Added" => $wallet->created_at->format('d-m-y')
                     ];
                 })
             ],
