@@ -62,15 +62,19 @@ class MasterClassController extends Controller
                     return [
                         "Id" => $master_class->id,
                         "Class" => '#' . optional($master_class->service)->name,
-                        "Price" => '₦' . optional($master_class->service)->price,
+                        "Price" => '₦' . number_format(optional($master_class->service)->price),
                         "Date Added" => $master_class->created_at->format('d-m-y')
                     ];
                 })
             ],
             'meta' => [
-                'show' => false,
+                'show' => true,
                 'right' => null,
-                'urls' => null
+                'urls' =>  $collection->map(function (MasterClass $master_class) {
+                    return [
+                        "url" => '/master_class/' . optional($master_class)->id,
+                    ];
+                })
             ]
         ];
     }
