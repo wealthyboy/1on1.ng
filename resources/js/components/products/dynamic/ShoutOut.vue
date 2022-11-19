@@ -55,7 +55,6 @@
                   name="Recipient's last name"
                   type="text"
                 />
-
               </div>
 
               <div class="form-group   col-6">
