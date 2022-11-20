@@ -281,6 +281,8 @@ abstract class DataTable extends Controller
 
         if (!empty($request->sch['start_date'])) {
 
+            dd($request->sch['start_date']);
+
             $model->schedules()->delete();
 
             foreach ($request->sch['start_date'] as $key => $value) {
