@@ -173,13 +173,13 @@ function addRowShedule() {
     html += '<div class="col-sm-3">';
     html += '<div class="input-group input-group-outline">';
     html += '<label class="form-label"></label>';
-    html += '<input type="text" class="form-control datetimepicker" required placeholder="Start Date" name="sch[start_time][]" data-input>';
+    html += '<input type="text" class="form-control datetimepicker" required placeholder="Start Date" name="sch[start_date][]" data-input>';
     html += '</div>';
     html += '</div>';
     html += '<div class="col-sm-3">';
     html += '<div class="input-group input-group-outline">';
     html += '<label class="form-label"></label>';
-    html += '<input type="text" class="form-control datetimepicker" required placeholder="End Date" name="sch[end_time][]">';
+    html += '<input type="text" class="form-control datetimepicker" required placeholder="End Date" name="sch[end_date][]">';
     html += '</div>';
     html += '</div>';
     html += '<div class="col-sm-2">';
