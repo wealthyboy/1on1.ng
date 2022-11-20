@@ -5,7 +5,7 @@
     class="container"
   >
     <div class="row">
-      <div class="col-lg-7 border">
+      <div class="col-lg-7 ">
         <div class="image">
           <img
             :src="service.image"
@@ -19,7 +19,12 @@
         <div>
           <h2 class="product-title">{{ service.name }}</h2>
           <div class="price">Price: {{ $filters.formatNumber(service.price) }}</div>
-          <div class="price">Schedule: <a href="#">Click to see schedule</a></div>
+          <div class="price">Schedule:
+            <a
+              id="sch"
+              href="#"
+            >Click to see schedule</a>
+          </div>
 
         </div>
 
@@ -116,12 +121,24 @@
           >
             <div class="row">
               <div class="col-md-6">
+                <h1>Description</h1>
 
                 <p v-html="service.description"></p>
               </div>
 
-              <div class="col-md-6">
+              <div
+                id="#sch"
+                v-if="service.schedules"
+                class="col-md-6"
+              >
                 <h1>Schedule</h1>
+                <ul class="li">
+                  <li
+                    v-for="schedule in service.schedules"
+                    :key="schedule.id"
+                  > Date: {{ schedule.starts_at }} - {{ schedule.ends_at }} | Time: {{ schedule.start_time}} - {{ schedule.end_time }}</li>
+
+                </ul>
               </div>
 
             </div>

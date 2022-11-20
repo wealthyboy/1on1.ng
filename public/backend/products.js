@@ -136,8 +136,16 @@ $(document).ready(function() {
     if (document.querySelector('.datetimepicker')) {
         flatpickr('.datetimepicker', {
             allowInput: true,
+            minDate: "today"
+
+        }); // flatpickr
+    }
+
+    if (document.querySelector('.timepicker')) {
+        flatpickr('.timepicker', {
             enableTime: true,
-            dateFormat: "Y-m-d H:i",
+            noCalendar: true,
+            dateFormat: "H:i",
         }); // flatpickr
     }
 });
@@ -155,6 +163,59 @@ if (document.querySelector('.datetimepicker')) {
         // ]
     })
 
+}
+
+
+var row = 0;
+
+function addRowShedule() {
+    let html = '<div id="row-' + row + '" class="row dup-lagos my-3 ">';
+    html += '<div class="col-sm-3">';
+    html += '<div class="input-group input-group-outline">';
+    html += '<label class="form-label"></label>';
+    html += '<input type="text" class="form-control datetimepicker" required placeholder="Start Date" name="sch[start_time][]" data-input>';
+    html += '</div>';
+    html += '</div>';
+    html += '<div class="col-sm-3">';
+    html += '<div class="input-group input-group-outline">';
+    html += '<label class="form-label"></label>';
+    html += '<input type="text" class="form-control datetimepicker" required placeholder="End Date" name="sch[end_time][]">';
+    html += '</div>';
+    html += '</div>';
+    html += '<div class="col-sm-2">';
+    html += '<div class="input-group input-group-outline">';
+    html += '<label class="form-label"></label>';
+    html += '<input type="text" class="form-control timepicker" required placeholder="Start time" name="sch[start_time][]">';
+    html += '</div>';
+    html += '</div>';
+    html += '<div class="col-sm-2">';
+    html += '<div class="input-group input-group-outline">';
+    html += '<label class="form-label"></label>';
+    html += '<input type="text" class="form-control timepicker" required placeholder="End time" name="sch[end_time][]">';
+    html += '</div>';
+    html += '</div>';
+    html += '<div class="col-sm-1">';
+    html += '<button onclick="$(\'#row-' + row + '\').remove();"  class="remove-section-lagos btn btn-outline-primary btn-sm mb-0" type="button" ><i class="fa fa-trash"></i> </button>';
+    html += '</div>';
+    html += '</div>';
+    $("div.schedule:last").after(html);
+    row++;
+
+    if (document.querySelector('.datetimepicker')) {
+
+        flatpickr('.datetimepicker', {
+            allowInput: true,
+            minDate: "today"
+        }); // flatpickr
+    }
+
+    if (document.querySelector('.timepicker')) {
+        flatpickr('.timepicker', {
+            enableTime: true,
+            noCalendar: true,
+            dateFormat: "H:i",
+        }); // flatpickr
+    }
 }
 
 var Img = {

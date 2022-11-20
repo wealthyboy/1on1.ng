@@ -71,7 +71,8 @@ class ServicesController extends Controller
         $a = '10 : 52 AM';
         $x = preg_replace('/\s*:\s*/', ':', $a);
         // dd(date("H:i", strtotime($x)));
-        $service->load('shout_out_types', 'celebrity');
+
+        $service->load('shout_out_types', 'celebrity', 'schedules');
         //dd($service->bids()->orderBy('id', 'desc')->sum('price'));
         $user = $request->user();
         return view('products.show', compact('user', 'service'));

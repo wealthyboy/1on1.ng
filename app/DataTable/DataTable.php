@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Celebrity;
 use App\Models\Image;
+use App\Models\Schedule;
 use App\Models\ShoutOutType;
 use App\Models\Tag;
 use Illuminate\Http\Request;
@@ -223,6 +224,28 @@ abstract class DataTable extends Controller
             }
         }
 
+        //Add Shedule
+
+        // dd($request->sch);
+
+        if (!empty($request->sch['start_date'])) {
+            foreach ($request->sch['start_date'] as $key => $value) {
+
+                $data = [
+                    'starts_at' =>  $request->sch['start_date'][$key],
+                    'ends_at' =>  $request->sch['end_date'][$key],
+                    'start_time' =>  $request->sch['start_time'][$key],
+                    'end_time' =>  $request->sch['end_time'][$key],
+                ];
+
+                $schedule = new Schedule($data);
+                $model->schedules()->save($schedule);
+            }
+        }
+
+
+
+
         if (!empty($request->category_id)) {
             $model->categories()->sync($request->category_id);
         }
@@ -251,6 +274,26 @@ abstract class DataTable extends Controller
             foreach ($images as $variation_image) {
                 $images = new Image(['image' => $variation_image]);
                 $model->images()->save($images);
+            }
+        }
+
+
+
+        if (!empty($request->sch['start_date'])) {
+
+            $model->schedules()->delete();
+
+            foreach ($request->sch['start_date'] as $key => $value) {
+
+                $data = [
+                    'starts_at' =>  $request->sch['start_date'][$key],
+                    'ends_at' =>  $request->sch['end_date'][$key],
+                    'start_time' =>  $request->sch['start_time'][$key],
+                    'end_time' =>  $request->sch['end_time'][$key],
+                ];
+
+                $schedule = new Schedule($data);
+                $model->schedules()->save($schedule);
             }
         }
 

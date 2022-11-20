@@ -5,7 +5,7 @@
     class="container"
   >
     <div class="row">
-      <div class="col-lg-7 border">
+      <div class="col-lg-7 ">
         <div class="image">
           <img
             :src="service.image_to_show"
@@ -153,12 +153,9 @@
           >
             <div class="row">
               <div class="col-md-6">
+                <h1>Description</h1>
 
                 <p v-html="service.description"></p>
-              </div>
-
-              <div class="col-md-6">
-                <h1>Schedule</h1>
               </div>
 
             </div>

@@ -449,9 +449,11 @@
                                                             </tr>
 
                                                             <tr>
+                                                               @foreach($master_class->schedules as $schedule)
                                                                <td colspan="3" class="RegularTextTD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="margin-left: 3px;color: #727e8d;font-family: sans-serif;font-size: 13px;font-weight: lighter;line-height: 23px;">
-                                                                  <b>Full Name:</b> <br />
+                                                                  <b>Date: {{ $schedule->starts_at }} - {{ $schedule->ends_at }} | Time: {{ $schedule->start_time}} - {{ $schedule->end_time }} <br />
                                                                </td>
+                                                               @endforeach
                                                             </tr>
                                                             <tr>
                                                                <td colspan="3" style="font-size:0;line-height:0;" height="25"></td>

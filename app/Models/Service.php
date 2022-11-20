@@ -48,6 +48,13 @@ class Service extends Model
     }
 
 
+
+    public function schedules()
+    {
+        return $this->morphMany(Schedule::class, 'scheduleable');
+    }
+
+
     public function bids()
     {
         return $this->hasMany(Bid::class);
