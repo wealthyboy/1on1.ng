@@ -277,7 +277,7 @@ abstract class DataTable extends Controller
             }
         }
 
-        dd($request->sch['start_date']);
+        dd($request->sch);
 
 
         if (!empty($request->sch['start_date'])) {
