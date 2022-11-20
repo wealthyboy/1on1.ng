@@ -184,6 +184,7 @@ abstract class DataTable extends Controller
     public function edit($id)
     {
         $model =  $this->builder->find($id);
+
         $this->routeData  = [
             'data' => $this->all(request()),
             'celebrities' => Celebrity::all(),
@@ -200,7 +201,6 @@ abstract class DataTable extends Controller
     public function store(Request $request)
     {
         $request->validate($this->storeRouteRules);
-
 
         $data =  $request->all();
         $data['slug'] = str_slug($data['name']);
@@ -225,9 +225,6 @@ abstract class DataTable extends Controller
         }
 
         //Add Shedule
-
-        // dd($request->sch);
-
         if (!empty($request->sch['start_date'])) {
             foreach ($request->sch['start_date'] as $key => $value) {
 
