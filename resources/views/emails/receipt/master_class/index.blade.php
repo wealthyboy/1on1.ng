@@ -448,13 +448,17 @@
                                                                <td class="RegularText4TD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="SectionInfoLink" data-color="SectionInfoTXT" style="color: #425065;font-family: sans-serif;font-size: 18px;font-weight: bold;text-align: left;line-height: 23px;" width="179" valign="top" align="left"><a href="#" target="_blank" style="text-decoration: none;color: #67bffd;font-weight: bold;" data-color="SectionInfoLink"></a>Schedule</td>
                                                             </tr>
 
+                                                            @if(null !== optional($master_class->service)->schedules)
+
                                                             <tr>
-                                                               @foreach($master_class->schedules as $schedule)
+                                                               @foreach(optional($master_class->service)->schedules as $schedule)
                                                                <td colspan="3" class="RegularTextTD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="margin-left: 3px;color: #727e8d;font-family: sans-serif;font-size: 13px;font-weight: lighter;line-height: 23px;">
                                                                   <b>Date: {{ $schedule->starts_at }} - {{ $schedule->ends_at }} | Time: {{ $schedule->start_time}} - {{ $schedule->end_time }} <br />
                                                                </td>
                                                                @endforeach
                                                             </tr>
+
+                                                            @endif
 
                                                             <tr>
                                                                <td colspan="3" style="font-size:0;line-height:0;" height="25"></td>
