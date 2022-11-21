@@ -215,6 +215,7 @@ abstract class DataTable extends Controller
         }
 
         if ($request->filled('type')  && $request->type == 'shout_out') {
+
             foreach ($request->shout_out_price as $key => $value) {
                 $shout_out_type = new ShoutOutType;
                 $shout_out_type->type = $key;
@@ -226,8 +227,8 @@ abstract class DataTable extends Controller
 
         //Add Shedule
         if (!empty($request->sch['start_date'])) {
-            foreach ($request->sch['start_date'] as $key => $value) {
 
+            foreach ($request->sch['start_date'] as $key => $value) {
                 $data = [
                     'starts_at' =>  $request->sch['start_date'][$key],
                     'ends_at' =>  $request->sch['end_date'][$key],
@@ -239,9 +240,6 @@ abstract class DataTable extends Controller
                 $model->schedules()->save($schedule);
             }
         }
-
-
-
 
         if (!empty($request->category_id)) {
             $model->categories()->sync($request->category_id);
