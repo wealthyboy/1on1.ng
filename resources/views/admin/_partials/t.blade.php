@@ -2,7 +2,7 @@
 <div class="card">
 
     <div class="card-header pb-0">
-        <h4>Top Selling Products</h4>
+        <h4>{{ $name }}</h4>
     </div>
 
     <div class="card-header">

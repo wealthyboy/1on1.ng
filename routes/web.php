@@ -51,7 +51,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::resource('attributes', 'Admin\Attributes\AttributesController', ['names' => 'attributes']);
     Route::resource('bookedauctions', 'Admin\Booking\BookedAuctionController', ['name' => 'admin.booked']);
     Route::resource('bookedclasses', 'Admin\Booking\BookedClassesController', ['names' => 'b.classes']);
-    Route::resource('bookedshoutouts', 'Admin\Booking\BookingShoutOutsController', ['names' => 'b.shoutouts']);
+    Route::resource('bookedshoutouts', 'Admin\Booking\BookedShoutOutsController', ['names' => 'b.shoutouts']);
 
 
     Route::resource('payments', 'Admin\Payments\PaymentController', ['name' => 'payments']);

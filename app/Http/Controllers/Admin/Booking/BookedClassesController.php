@@ -16,7 +16,7 @@ class BookedClassesController extends Controller
      */
     public function index()
     {
-        $pagination = MasterClass::paginate(2);
+        $pagination = MasterClass::paginate(30);
         $collections = $this->getColumnNames($pagination);
         return view('admin.bookings.master_class.index', compact('collections', 'pagination'));
     }
