@@ -9,10 +9,10 @@ use App\Models\Booking;
 use Illuminate\Http\Request;
 
 
-class BookingController extends DataTable
+class BookingShoutOutsController extends DataTable
 {
-    protected $name = 'Bookings';   
-    
+    protected $name = 'Bookings';
+
     public $createRoute = 'admin.bookings.create';
 
     public $modelName = 'Booking';
@@ -62,7 +62,7 @@ class BookingController extends DataTable
         'booking'
     ];
 
-    
+
 
     public $storeRouteRules = [
         'name' => 'required|unique:auctions|max:255',
@@ -87,20 +87,20 @@ class BookingController extends DataTable
     }
 
     public function builder()
-    {   
+    {
         return Booking::query();
     }
 
 
-    protected function getCustomColumnNames() 
+    protected function getCustomColumnNames()
     {
         return [
-          "image",
-          "name",
-          "price",
-          "start_date",
-          "end_date",
-          "created_at",
+            "image",
+            "name",
+            "price",
+            "start_date",
+            "end_date",
+            "created_at",
         ];
     }
 }

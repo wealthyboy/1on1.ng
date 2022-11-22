@@ -49,6 +49,11 @@ Route::group(['prefix' => 'admin'], function () {
     Route::resource('shipping', 'Admin\Shipping\ShippingController', ['names' => 'shipping']);
     Route::resource('location', 'Admin\Location\LocationController', ['names' => 'location']);
     Route::resource('attributes', 'Admin\Attributes\AttributesController', ['names' => 'attributes']);
+    Route::resource('bookedauctions', 'Admin\Booking\BookedAuctionController', ['name' => 'admin.booked']);
+    Route::resource('bookedclasses', 'Admin\Booking\BookedClassesController', ['names' => 'b.classes']);
+    Route::resource('bookedshoutouts', 'Admin\Booking\BookingShoutOutsController', ['names' => 'b.shoutouts']);
+
+
     Route::resource('payments', 'Admin\Payments\PaymentController', ['name' => 'payments']);
     Route::resource('rates', 'Admin\CurrencyRates\CurrencyRatesController', ['name' => 'rates']);
     Route::resource('vouchers', 'Admin\Vouchers\VouchersController', ['names' => 'vouchers']);

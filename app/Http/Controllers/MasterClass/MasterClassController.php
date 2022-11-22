@@ -42,17 +42,7 @@ class MasterClassController extends Controller
         //
     }
 
-    protected function getGetCustomColumnNames()
-    {
-        return [
-            "id",
-            "class",
-            "price",
-            "start_date",
-            "end_date",
-            "date_added",
-        ];
-    }
+
 
     protected function getColumnNames($collection)
     {

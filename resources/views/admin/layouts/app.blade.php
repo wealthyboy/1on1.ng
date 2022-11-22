@@ -140,21 +140,23 @@
                </a>
                <div class="collapse  {{ $helper->active_link(['auctions','masterclass']) ? 'show' : ''}}" id="booking">
                   <ul class="nav">
+
                      <li class="nav-item ">
-                        <a class="nav-link text-white {{ $helper->active_link(['auctions']) }}" href="{{ route('auctions.index') }}">
+                        <a class="nav-link text-white {{ $helper->active_link(['auctions']) }}" href="/admin/bookedauctions">
                            <span class="sidenav-mini-icon"> A </span>
                            <span class="sidenav-normal  ms-2  ps-1"> Auctions <b class="caret"></b></span>
                         </a>
                      </li>
+
                      <li class="nav-item ">
-                        <a class="nav-link text-white {{ $helper->active_link(['masterclass']) }}" href="{{ route('masterclass.index') }}">
+                        <a class="nav-link text-white {{ $helper->active_link(['masterclass']) }}" href="/admin/bookedclasses">
                            <span class="sidenav-mini-icon"> M </span>
-                           <span class="sidenav-normal  ms-2  ps-1"> Master Class <b class="caret"></b></span>
+                           <span class="sidenav-normal ms-2 ps-1"> Master Class <b class="caret"></b></span>
                         </a>
                      </li>
 
                      <li class="nav-item ">
-                        <a class="nav-link text-white {{ $helper->active_link(['shoutouts']) }}" href="{{ route('shoutouts.index') }}">
+                        <a class="nav-link text-white {{ $helper->active_link(['shoutouts']) }}" href="/admin/bookedshoutouts">
                            <span class="sidenav-mini-icon"> S </span>
                            <span class="sidenav-normal  ms-2  ps-1"> Shout Outs <b class="caret"></b></span>
                         </a>
