@@ -12,14 +12,14 @@
     <div class="card-body p-3">
         <ul class="list-group">
 
-            @foreach($users as $key => $user)
+            @foreach($models as $key => $model)
 
             <li class="list-group-item border-0 justify-content-between ps-0 pb-0 border-radius-lg">
                 <div class="d-flex">
                     <div class="d-flex align-items-center">
                         <div class="d-flex flex-column">
                             <h6 class="mb-1 text-dark text-sm">{{ $key }}</h6>
-                            <span class="text-xs">{{ $user }}</span>
+                            <span class="text-xs">{{ $model }}</span>
                         </div>
                     </div>
                     <div class="d-flex align-items-center text-danger text-gradient text-sm font-weight-bold ms-auto">

@@ -7,7 +7,7 @@
 </div>
 <div class="row mt-3">
     <div class="col-md-12">
-        @include('admin._partials.show', ['users' => $master_class['data'], 'name' => 'Class'])
+        @include('admin._partials.show', ['models' => $master_class['data'], 'name' => 'Class'])
     </div>
 </div>
 @endsection
