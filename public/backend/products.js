@@ -135,9 +135,10 @@ function getFile(e, name, model = null, multiple = true) {
 $(document).ready(function() {
     if (document.querySelector('.datetimepicker')) {
         flatpickr('.datetimepicker', {
+            minDate: "today",
             allowInput: true,
-            minDate: "today"
-
+            enableTime: true,
+            dateFormat: "Y-m-d H:i",
         }); // flatpickr
     }
 

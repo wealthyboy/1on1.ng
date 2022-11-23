@@ -1,5 +1,5 @@
 <template>
-  <template v-if="service.type == 'auction'">
+  <template v-if="auction">
     <auction
       :user="user"
       :service="service"
@@ -35,6 +35,7 @@ export default {
   props: {
     service: Object,
     user: Object,
+    auction: Boolean,
   },
   components: {
     ShoutOut,
@@ -78,8 +79,8 @@ export default {
     });
 
     function placeBid(data) {
-      let new_balnce = parseInt(walletBalance.value) - parseInt(data.amount);
-      store.commit("setWalletBalance", new_balnce);
+      // let new_balnce = parseInt(walletBalance.value) - parseInt(data.amount);
+      // store.commit("setWalletBalance", new_balnce);
       const postData = {
         url: "/bids",
         data: data,

@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Bid;
 use App\Models\Service;
 use App\Events\NewBid;
+use App\Models\Auction;
 use App\Models\WalletBalance;
 use App\Utils\AccountSettingsNav;
 use Illuminate\Http\Request;
@@ -48,11 +49,11 @@ class BidsController extends DataTable
     }
 
 
-    public function currentBid(Request $request, $service_id)
+    public function currentBid(Request $request, $auction_id)
     {
         //  broadcast(new NewBid(auth()->user()));
-        $service = Service::find($service_id);
-        $data = Bid::getCurrentBid($service);
+        $auction = Auction::find($auction_id);
+        $data = Bid::getCurrentBid($auction);
         return response()->json($data);
     }
 
@@ -60,7 +61,7 @@ class BidsController extends DataTable
     {
         $bid = new Bid;
         $bid->user_id = $request->user()->id;
-        $bid->service_id = $request->service_id;
+        $bid->auction_id = $request->service_id;
         $bid->price = $request->amount;
         $bid->save();
 

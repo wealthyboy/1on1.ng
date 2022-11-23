@@ -12,15 +12,15 @@ class Bid extends Model
 
     public function service()
     {
-        return $this->belongsTo(Service::class);
+        return $this->belongsTo(Auction::class);
     }
 
 
-    public static function getCurrentBid(Service $service)
+    public static function getCurrentBid(Auction $auction)
     {
         $data = [];
-        $data['current_bid'] = null !== $service->bids ? $service->bids()->orderBy('id', 'desc')->sum('price') + $service->bid_start_price : $service->bid_start_price;
-        $data['number_of_bids'] = self::numsize($service->bids->count());
+        $data['current_bid'] = null !== $auction->bids ? $auction->bids()->orderBy('id', 'desc')->sum('price') + $auction->bid_start_price : $service->bid_start_price;
+        $data['number_of_bids'] = self::numsize($auction->bids->count());
         return $data;
     }
 

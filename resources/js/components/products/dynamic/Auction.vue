@@ -24,7 +24,7 @@
           <hr class="short-divider">
           <div class="price-box">
             <div>
-              Event Date: <strong>{{ service.service_date }}</strong>
+              Event Date: <strong>{{ service.event_date }}</strong>
             </div>
           </div>
           <!-- End .price-box -->
@@ -195,9 +195,11 @@ export default {
     const text = ref("Submit");
     const message = ref(null);
     const error = ref(null);
+    const reg_message = ref(null);
+
     const bid = reactive({
       amount: null,
-      service_id: props.service.id,
+      auction_id: props.service.id,
     });
 
     const rules = bidRules(bid);
@@ -257,6 +259,7 @@ export default {
       v$,
       error,
       clearError,
+      reg_message,
     };
   },
   components: { Modal, GeneralInput, Wallet, Complete },

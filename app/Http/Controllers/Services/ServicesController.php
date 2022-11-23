@@ -34,8 +34,6 @@ class ServicesController extends Controller
     public function index(Request $request, Category $category)
     {
         // broadcast(new Test());
-
-
         $categories = Category::with('parent')->orderBy('name', 'asc')->get();
         $services = Service::whereHas('categories', function (Builder  $builder) use ($category) {
             $builder->where('categories.name', $category->name);
@@ -71,6 +69,13 @@ class ServicesController extends Controller
         $a = '10 : 52 AM';
         $x = preg_replace('/\s*:\s*/', ':', $a);
         // dd(date("H:i", strtotime($x)));
+
+        if (\Carbon\Carbon::parse('2022-11-23 11:30:00')->gt(\Carbon\Carbon::now())) {
+            dd(true);
+            //Time has not passed
+        } else {
+            //Time has  passed
+        }
 
         $service->load('shout_out_types', 'celebrity', 'schedules');
         //dd($service->bids()->orderBy('id', 'desc')->sum('price'));

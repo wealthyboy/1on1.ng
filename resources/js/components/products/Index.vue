@@ -65,8 +65,9 @@ export default {
     }
 
     function getLink(link) {
+      console.log(link);
       const state = { page_id: 1, user_id: 5 };
-      const url = link.slug;
+      const url = link.url;
 
       history.pushState(state, "", url);
 

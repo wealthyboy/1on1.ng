@@ -25792,11 +25792,12 @@ __webpack_require__.r(__webpack_exports__);
     }
 
     function getLink(link) {
+      console.log(link);
       var state = {
         page_id: 1,
         user_id: 5
       };
-      var url = link.slug;
+      var url = link.url;
       history.pushState(state, "", url);
       getP(link = location.href + "?get=1");
     }
@@ -25842,7 +25843,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     service: Object,
-    user: Object
+    user: Object,
+    auction: Boolean
   },
   components: {
     ShoutOut: _dynamic_ShoutOut__WEBPACK_IMPORTED_MODULE_0__["default"],
@@ -25882,8 +25884,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     });
 
     function placeBid(data) {
-      var new_balnce = parseInt(walletBalance.value) - parseInt(data.amount);
-      store.commit("setWalletBalance", new_balnce);
+      // let new_balnce = parseInt(walletBalance.value) - parseInt(data.amount);
+      // store.commit("setWalletBalance", new_balnce);
       var postData = {
         url: "/bids",
         data: data,
@@ -25949,9 +25951,10 @@ __webpack_require__.r(__webpack_exports__);
     var text = (0,vue__WEBPACK_IMPORTED_MODULE_4__.ref)("Submit");
     var message = (0,vue__WEBPACK_IMPORTED_MODULE_4__.ref)(null);
     var error = (0,vue__WEBPACK_IMPORTED_MODULE_4__.ref)(null);
+    var reg_message = (0,vue__WEBPACK_IMPORTED_MODULE_4__.ref)(null);
     var bid = (0,vue__WEBPACK_IMPORTED_MODULE_4__.reactive)({
       amount: null,
-      service_id: props.service.id
+      auction_id: props.service.id
     });
     var rules = (0,_utils_ValidationRules__WEBPACK_IMPORTED_MODULE_5__.bidRules)(bid);
     var v$ = (0,_vuelidate_core__WEBPACK_IMPORTED_MODULE_0__.useVuelidate)(rules, bid);
@@ -26009,7 +26012,8 @@ __webpack_require__.r(__webpack_exports__);
       handleBid: handleBid,
       v$: v$,
       error: error,
-      clearError: clearError
+      clearError: clearError,
+      reg_message: reg_message
     };
   },
   components: {
@@ -27779,7 +27783,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   var _component_master_class = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("master-class");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [$props.service.type == 'auction' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_auction, {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [$props.auction ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_auction, {
     key: 0,
     user: $props.user,
     service: $props.service,
@@ -27962,7 +27966,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   var _component_complete = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("complete");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [!_ctx.reg_message ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [!$setup.reg_message ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
     src: $props.service.image_to_show,
     "class": "img-fluid",
     alt: "",
@@ -27971,7 +27975,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* PROPS */
   , _hoisted_5)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.service.name), 1
   /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .ratings-container "), _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Event Date: "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("strong", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.service.service_date), 1
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .ratings-container "), _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Event Date: "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("strong", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.service.event_date), 1
   /* TEXT */
   )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .price-box "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Time Left: "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("strong", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.service.days_left + 'd'), 1
   /* TEXT */
@@ -28024,9 +28028,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     innerHTML: $props.service.description
   }, null, 8
   /* PROPS */
-  , _hoisted_31)])])])])])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.reg_message ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_complete, {
+  , _hoisted_31)])])])])])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.reg_message ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_complete, {
     key: 1,
-    message: _ctx.reg_message
+    message: $setup.reg_message
   }, null, 8
   /* PROPS */
   , ["message"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 64
@@ -29295,10 +29299,10 @@ var register = function register(_ref19, _ref20) {
 var getWalletBalance = function getWalletBalance(_ref21) {
   var commit = _ref21.commit;
   return axios__WEBPACK_IMPORTED_MODULE_0___default().get("/wallet-balance").then(function (response) {
-    commit("setWalletBalance", response.data.balance.amount);
+    commit("setWalletBalance", response.data.balance);
     return Promise.resolve(response);
-  })["catch"](function () {
-    return Promise.reject(response);
+  })["catch"](function (error) {
+    return Promise.reject(error);
   });
 };
 /**

@@ -40,4 +40,30 @@ class MasterClass extends Model
     {
         return $this->belongsTo(Service::class);
     }
+
+
+    public static function getShowData(MasterClass $master_class)
+    {
+        return [
+            "Id" => '#' . $master_class->id,
+            "Class" =>  optional($master_class->service)->name,
+            "Price" => '₦' . number_format(optional($master_class->service)->price),
+            "Uuid" =>  $master_class->uuid,
+            "Date Added" => $master_class->created_at->format('d-m-y')
+        ];
+    }
+
+
+    public function getListingData($collection)
+    {
+
+        return  $collection->map(function ($master_class) {
+            return [
+                "Id" => $master_class->id,
+                "Class" => '#' . optional($master_class->service)->name,
+                "Price" => '₦' . number_format(optional($master_class->service)->price),
+                "Date Added" => $master_class->created_at->format('d-m-y')
+            ];
+        });
+    }
 }

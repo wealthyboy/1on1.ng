@@ -92,11 +92,15 @@ class Category extends Model
 
     public function link()
     {
+        if ($this->type == 'auction') {
+            return '/auctions/' . $this->slug;
+        }
+
         return '/categories/' . $this->slug;
     }
 
     public function getUrlAttribute()
     {
-        return '/categories/' . $this->slug;
+        return $this->link();
     }
 }

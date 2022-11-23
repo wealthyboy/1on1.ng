@@ -54,7 +54,7 @@ class WalletsController extends Controller
     {
         $balance  = auth()->user()->wallet_balance;
         return response()->json([
-            'balance' => $balance
+            'balance' => null !== $balance ?  $balance->amount : 0
         ]);
     }
 

@@ -80,13 +80,19 @@ Route::get('/mailable', function () {
     return  new App\Mail\Reciept($shout_out);
 });
 
-Route::get('/',       [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/plans',      [App\Http\Controllers\Plans\PlansController::class, 'index'])->name('plans');
-Route::get('/subscribe',  [App\Http\Controllers\Subscribe\SubscribeController::class, 'index'])->name('subscribe');
-Route::get('/checkout',   [App\Http\Controllers\Checkout\CheckoutController::class, 'index'])->name('checkout');
-Route::get('/buy-now-pay-later',   [App\Http\Controllers\BuyNowPayLater\BuyNowPayLaterController::class, 'index'])->name('buy');
-Route::get('categories/{category}',   'Services\ServicesController@index');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/plans', [App\Http\Controllers\Plans\PlansController::class, 'index'])->name('plans');
+Route::get('/subscribe', [App\Http\Controllers\Subscribe\SubscribeController::class, 'index'])->name('subscribe');
+Route::get('/checkout', [App\Http\Controllers\Checkout\CheckoutController::class, 'index'])->name('checkout');
+Route::get('/buy-now-pay-later', [App\Http\Controllers\BuyNowPayLater\BuyNowPayLaterController::class, 'index'])->name('buy');
+Route::get('categories/{category}', 'Services\ServicesController@index');
+Route::get('auctions/{category}', 'Auctions\AuctionsController@index');
+
+Route::get('auction/{auction}', 'Auctions\AuctionsController@show');
+
+
 Route::get('services/{category}/{service}',   'Services\ServicesController@show');
+
 
 
 Route::resource('account', 'Account\AccountController', ['names' => 'account']);
@@ -96,15 +102,13 @@ Route::post('change/password', 'ChangePassword\ChangePasswordController@changePa
 Route::get('bids', 'Bids\BidsController@index');
 Route::post('bids', 'Bids\BidsController@store');
 
-Route::get('bids/{service_id}', 'Bids\BidsController@currentBid');
+Route::get('bids/{auction_id}', 'Bids\BidsController@currentBid');
 
 Route::resource('shoutouts', 'ShoutOuts\ShoutOutsController', ['names' => 'shout.outs']);
 Route::resource('classes', 'MasterClass\MasterClassController', ['names' => 'master.class']);
 Route::get('wallet-balance', 'Wallets\WalletsController@walletBalnce');
 
-
 Route::resource('wallets', 'Wallets\WalletsController', ['names' => 'wallets']);
-
 Route::get('/broadcast', 'Wallets\WalletsController@b');
 
 Route::post('webhook/payment',     'WebHook\WebHookController@payment');

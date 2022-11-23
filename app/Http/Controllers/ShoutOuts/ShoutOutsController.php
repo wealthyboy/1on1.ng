@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\ShoutOuts;
 
+use App\DataTable\Table;
 use App\Http\Controllers\Controller;
 use App\Models\ShoutOut;
 use App\Utils\AccountSettingsNav;
 use Illuminate\Http\Request;
 
-class ShoutOutsController extends Controller
+class ShoutOutsController
 {
     /**
      * Display a listing of the resource.
@@ -42,41 +43,5 @@ class ShoutOutsController extends Controller
     public function show($id)
     {
         //
-    }
-
-    protected function getGetCustomColumnNames()
-    {
-        return [
-            "id",
-            "name",
-            "price",
-            "full_name",
-            "phone",
-            "event_date",
-            "date_added",
-        ];
-    }
-
-    protected function getColumnNames($collection)
-    {
-        return [
-            'items' => [
-                $collection->map(function (ShoutOut $shout_outs) {
-                    return [
-                        "id" => '#' . $shout_outs->id,
-                        "Name" => optional($shout_outs->service)->name,
-                        "Price" => '₦' . number_format(optional($shout_outs)->price),
-                        "Recipient Full Name" => ucfirst($shout_outs->recipient_first_name) . ' ' . ucfirst($shout_outs->recipient_last_name),
-                        "Phone" => $shout_outs->recipient_phone,
-                        "Event Date" => optional($shout_outs)->event_date,
-                        "Date Added" => $shout_outs->created_at->format('d-m-y')
-                    ];
-                })
-            ], 'meta' => [
-                'show' => false,
-                'right' => null,
-                'urls' => null
-            ]
-        ];
     }
 }

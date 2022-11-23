@@ -47,6 +47,11 @@ class Service extends Model
         return $this->morphMany(Image::class, 'imageable');
     }
 
+    public function te()
+    {
+        return "This is me";
+    }
+
 
 
     public function schedules()

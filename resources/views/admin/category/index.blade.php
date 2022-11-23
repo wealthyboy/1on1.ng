@@ -16,11 +16,7 @@
                   <div class="col-sm-12 col-12">
                      <div class="input-group input-group-outline">
                         <label class="form-label"> Name</label>
-                        <input 
-                           type="text" 
-                           class="form-control"                                     
-                           name="name"
-                           >
+                        <input type="text" class="form-control" name="name">
                      </div>
                   </div>
                </div>
@@ -28,23 +24,15 @@
                   <div class="col-sm-12 col-12">
                      <div class="input-group input-group-outline">
                         <label class="form-label"> Sort order</label>
-                        <input 
-                           type="number" 
-                           class="form-control"                                     
-                           name="sort_order"
-                           >
+                        <input type="number" class="form-control" name="sort_order">
                      </div>
                   </div>
                </div>
                <div class="row mt-3">
                   <div class="col-sm-12 col-12">
                      <div class="input-group input-group-outline">
-                        <label class="form-label"> Custom  Link</label>
-                        <input 
-                           type="text" 
-                           class="form-control"                                     
-                           name="custom_link"
-                           >
+                        <label class="form-label"> Custom Link</label>
+                        <input type="text" class="form-control" name="custom_link">
                      </div>
                   </div>
                </div>
@@ -52,9 +40,7 @@
                   <div class="col-sm-12 col-12">
                      <div class="input-group input-group-outline">
                         <label class="form-label"> Meta Title</label>
-                        <input type="text" class="form-control"                                     
-                           name="meta_title"
-                           >
+                        <input type="text" class="form-control" name="meta_title">
                      </div>
                   </div>
                </div>
@@ -62,25 +48,29 @@
                   <div class="col-sm-12 col-12">
                      <div class="input-group input-group-outline">
                         <label class="form-label">Keywords</label>
-                        <input type="text" class="form-control"                                     
-                           name="keywords"
-                           >
-                        <input type="hidden" class="image"                                     
-                           name="image"
-                           >
+                        <input type="text" class="form-control" name="keywords">
+                        <input type="hidden" class="image" name="image">
                      </div>
                   </div>
                </div>
                <div class="row mt-3">
                   <div class="col-sm-12 col-12">
                      <label class="form-label">Meta Description</label>
-
                      <div class="input-group input-group-outline">
-                        <textarea type="text" class="form-control"                                     
-                           name="meta_description"
-                           rows="8"
-                           >
-                        </textarea>
+                        <textarea type="text" class="form-control" name="meta_description" rows="8"></textarea>
+                     </div>
+                  </div>
+               </div>
+               <div class="row mt-3">
+                  <div class="col-sm-12 col-12">
+                     <div class="input-group input-group-outline">
+                        <label class="form-label mt-4 ms-0"> </label>
+                        <select class="form-control" name="type" id="">
+                           <option value="">--Choose Type--</option>
+                           <option value="auction">Auction</option>
+                           <option value="shout_out">Shout Out</option>
+                           <option value="master_class">Master Class</option>
+                        </select>
                      </div>
                   </div>
                </div>
@@ -89,9 +79,9 @@
                      <div class="input-group input-group-outline">
                         <label class="form-label mt-4 ms-0"> </label>
                         <select class="form-control" name="parent_id" id="">
-                           <option  value="">--Choose Parent--</option>
+                           <option value="">--Choose Parent--</option>
                            @foreach($categories as $category)
-                           <option class="" value="{{ $category->id }}" >{{ $category->name }} </option>
+                           <option class="" value="{{ $category->id }}">{{ $category->name }} </option>
                            @include('includes.children_options',['obj'=>$category,'space'=>'&nbsp;&nbsp;'])
                            @endforeach
                         </select>
@@ -102,10 +92,10 @@
 
 
                <div class="row">
-                   <div class="col-sm-8 col-12 my-4">
-                      @include('admin._partials.is_featured')
-                   </div>
-                </div>
+                  <div class="col-sm-8 col-12 my-4">
+                     @include('admin._partials.is_featured')
+                  </div>
+               </div>
 
                <div class="d-flex justify-content-end mt-4">
                   <button type="submit" name="button" class="btn bg-gradient-dark m-0 ms-2">Submit</button>
@@ -134,12 +124,12 @@ acceptedFiles: ".jpeg,.jpg,.png,.JPG,.PNG",
 paramName: 'file',
 maxFiles: 1,
 sending: function (file, xhr, formData) {
-   formData.append("_token", "{{ csrf_token() }}");
+formData.append("_token", "{{ csrf_token() }}");
 },
 success(file, res, formData) {
-   imgs.push(res.path)
-   console.log(imgs)
-   $('.image').val(imgs)
+imgs.push(res.path)
+console.log(imgs)
+$('.image').val(imgs)
 },
 
 });

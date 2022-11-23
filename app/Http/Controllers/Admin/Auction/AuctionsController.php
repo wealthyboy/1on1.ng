@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin\Auction;
+
 use App\DataTable\DataTable;
 
 use App\Http\Controllers\Controller;
@@ -8,22 +9,22 @@ use App\Models\Auction;
 use App\Models\Category;
 use App\Models\Celebrity;
 use App\Models\Service;
-use App\Models\Tag;
+use App\Models\Image;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
 
 class AuctionsController extends DataTable
 {
-    
-    protected $name = 'Auctions';   
-    
+
+    protected $name = 'Auctions';
+
     public $createRoute = 'admin.auctions.create';
 
     public $modelName = 'auction';
 
 
-    public $type = 'auction';
+    public $type = null;
 
 
     public $allowEdit = true;
@@ -87,19 +88,21 @@ class AuctionsController extends DataTable
             'celebrities' => Celebrity::all(),
             'categories' => Category::parents()->get(),
         ];
+
+        //dd($this->routeData);
     }
 
     public function builder()
-    {   
-        return Service::query();
+    {
+        return Auction::query();
     }
 
-    public function editValidationRules($id) 
-    {    
+    public function editValidationRules($id)
+    {
         return [
-            'name'=>[
+            'name' => [
                 'required',
-                    Rule::unique('auctions')->ignore($id)     
+                Rule::unique('auctions')->ignore($id)
             ],
             'celebrity_id' => 'required',
             'description' => 'required',
@@ -107,18 +110,72 @@ class AuctionsController extends DataTable
         ];
     }
 
-    protected function getCustomColumnNames() 
+    protected function getCustomColumnNames()
     {
         return [
-          "name",
-          "event_date",
-          "bid_start_price",
-          "one_time_price",
-          "start_date",
-          "end_date",
-          "created_at",
+            "name",
+            "event_date",
+            "bid_start_price",
+            "one_time_price",
+            "start_date",
+            "end_date",
+            "created_at",
         ];
     }
+
+
+    public function store(Request $request)
+    {
+        $request->validate($this->storeRouteRules);
+
+        $data =  $request->all();
+        $data['slug'] = str_slug($data['name']);
+        $model = $this->builder->create($data);
+        if (!empty($request->images)) {
+            $images =  $request->images;
+            $images = array_filter($images);
+            foreach ($images as $variation_image) {
+                $images = new Image(['image' => $variation_image]);
+                $model->images()->save($images);
+            }
+        }
+
+        if (!empty($request->category_id)) {
+            $model->categories()->sync($request->category_id);
+        }
+
+        return redirect()->route($this->indexRoute);
+    }
+
+    public function update(Request $request, $id)
+    {
+
+        $request->validate($this->editValidationRules($id));
+        $model = $this->builder->find($id);
+        $data =  $request->all();
+
+        $this->builder->find($id)->update($data);
+        if (!empty($request->images)) {
+            $images =  $request->images;
+            $images = array_filter($images);
+            foreach ($images as $variation_image) {
+                $images = new Image(['image' => $variation_image]);
+                $model->images()->save($images);
+            }
+        }
+
+
+        if (!empty($request->category_id)) {
+            $model->categories()->sync($request->category_id);
+        }
+
+        if (!empty($request->tag_id)) {
+            $model->tags()->sync($request->tag_id);
+        }
+
+        if ($this->useJson) {
+            return;
+        } //js
+        return redirect()->route($this->indexRoute);
+    }
 }
-
-
