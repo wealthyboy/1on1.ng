@@ -89,6 +89,10 @@ export const setWalletBalance = (state, balance) => {
     state.walletBalance = balance
 }
 
+export const setBalance = (state, balance) => {
+    state.wallet_balance = balance
+}
+
 export const setTableData = (state, data) => {
     state.tableData = data
 }

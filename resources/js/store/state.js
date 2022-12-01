@@ -24,5 +24,7 @@ export default {
     tableData: [],
     meta: null,
     currentBid: 0,
-    number_of_bidders: 0
+    number_of_bidders: 0,
+    wallet_balance: 0,
+
 }

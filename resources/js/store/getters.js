@@ -92,6 +92,10 @@ export const walletBalance = (state) => {
     return state.walletBalance
 }
 
+export const wallet_balance = (state) => {
+    return state.wallet_balance
+}
+
 
 export const tableData = (state) => {
     return state.tableData

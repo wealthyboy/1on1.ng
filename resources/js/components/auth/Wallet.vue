@@ -111,7 +111,7 @@ export default {
           let new_balnce =
             parseInt(walletBalance.value) + parseInt(form.amount);
 
-          store.commit("setWalletBalance", 6000);
+          store.commit("setWalletBalance", new_balnce);
           console.log(walletBalance.value);
 
           error.value = false;
@@ -134,7 +134,7 @@ export default {
           //       message.value = null;
           //     }, 3000);
           //   });
-          emit("wallet:funded");
+          emit("wallet:funded", new_balnce);
         },
         onClose: function () {},
       });

@@ -25564,7 +25564,7 @@ __webpack_require__.r(__webpack_exports__);
         },
         callback: function callback(response) {
           var new_balnce = parseInt(walletBalance.value) + parseInt(form.amount);
-          store.commit("setWalletBalance", 6000);
+          store.commit("setWalletBalance", new_balnce);
           console.log(walletBalance.value);
           error.value = false;
           message.value = "Your money has been addedd"; // const postData = {
@@ -25585,7 +25585,7 @@ __webpack_require__.r(__webpack_exports__);
           //     }, 3000);
           //   });
 
-          emit("wallet:funded");
+          emit("wallet:funded", new_balnce);
         },
         onClose: function onClose() {}
       });
@@ -25968,8 +25968,6 @@ __webpack_require__.r(__webpack_exports__);
     var _useActions = (0,vuex_composition_helpers__WEBPACK_IMPORTED_MODULE_6__.useActions)(["getWalletBalance"]),
         getWalletBalance = _useActions.getWalletBalance;
 
-    console.log(walletBalance.value);
-
     function clearError() {
       if (!/^[0-9]+$/.test(bid.amount)) {
         error.value = true;
@@ -25984,9 +25982,7 @@ __webpack_require__.r(__webpack_exports__);
       error.value = false;
     }
 
-    function getWallet(page) {
-      console.log(400);
-      getWalletBalance();
+    function getWallet(new_balnce) {// getWalletBalance();
     }
 
     function handleBid() {
@@ -29712,6 +29708,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "voucher": () => (/* binding */ voucher),
 /* harmony export */   "wallet": () => (/* binding */ wallet),
 /* harmony export */   "walletBalance": () => (/* binding */ walletBalance),
+/* harmony export */   "wallet_balance": () => (/* binding */ wallet_balance),
 /* harmony export */   "wishlist": () => (/* binding */ wishlist),
 /* harmony export */   "wishlistCount": () => (/* binding */ wishlistCount)
 /* harmony export */ });
@@ -29784,6 +29781,9 @@ var showForm = function showForm(state) {
 var walletBalance = function walletBalance(state) {
   return state.walletBalance;
 };
+var wallet_balance = function wallet_balance(state) {
+  return state.wallet_balance;
+};
 var tableData = function tableData(state) {
   return state.tableData;
 };
@@ -29844,6 +29844,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "appendToCart": () => (/* binding */ appendToCart),
 /* harmony export */   "clearMessage": () => (/* binding */ clearMessage),
 /* harmony export */   "loggedIn": () => (/* binding */ loggedIn),
+/* harmony export */   "setBalance": () => (/* binding */ setBalance),
 /* harmony export */   "setCart": () => (/* binding */ setCart),
 /* harmony export */   "setCartMeta": () => (/* binding */ setCartMeta),
 /* harmony export */   "setComments": () => (/* binding */ setComments),
@@ -29927,6 +29928,9 @@ var setDefaultShipping = function setDefaultShipping(state, default_shipping) {
 var setWalletBalance = function setWalletBalance(state, balance) {
   state.walletBalance = balance;
 };
+var setBalance = function setBalance(state, balance) {
+  state.wallet_balance = balance;
+};
 var setTableData = function setTableData(state, data) {
   state.tableData = data;
 };
@@ -29979,7 +29983,8 @@ __webpack_require__.r(__webpack_exports__);
   tableData: [],
   meta: null,
   currentBid: 0,
-  number_of_bidders: 0
+  number_of_bidders: 0,
+  wallet_balance: 0
 });
 
 /***/ }),

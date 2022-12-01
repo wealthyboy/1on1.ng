@@ -216,8 +216,6 @@ export default {
 
     const { getWalletBalance } = useActions(["getWalletBalance"]);
 
-    console.log(walletBalance.value);
-
     function clearError() {
       if (!/^[0-9]+$/.test(bid.amount)) {
         error.value = true;
@@ -232,9 +230,8 @@ export default {
       error.value = false;
     }
 
-    function getWallet(page) {
-      console.log(400);
-      getWalletBalance();
+    function getWallet(new_balnce) {
+      // getWalletBalance();
     }
 
     function handleBid() {
