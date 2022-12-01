@@ -11,6 +11,7 @@ use App\Events\NewBid;
 use App\Models\Auction;
 use App\Models\User;
 use App\Models\WalletBalance;
+use App\Notifications\NewBid as NotificationsNewBid;
 use App\Utils\AccountSettingsNav;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Notification;
@@ -80,8 +81,10 @@ class BidsController extends Table
         $users = User::find($users);
         broadcast(new NewBid($data));
 
+
+
         //Send emails
-        Notification::send($users, new NewBid($auction));
+        Notification::send($users, new NotificationsNewBid($auction));
 
         return response()->json($data);
     }
