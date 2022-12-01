@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Banner;
 use App\Models\Category;
 use App\Models\Faq;
+use App\Models\Service;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -18,7 +19,7 @@ class HomeController extends Controller
     public function index()
     {
         // broadcast(new \App\Events\NewBid(auth()->user()));
-
+        Service::truncate();
         $sliders = Banner::where('type', 'slider')->orderBy('sort_order', 'asc')->get();
         $faqs = Faq::all();
         $categories = Category::has('services')->featured()->get();
