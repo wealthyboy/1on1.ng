@@ -12,9 +12,19 @@ class Auction extends Model
     use HasFactory, ColumnFillable, ImageFiles;
 
 
+    public $casts = [
+        'start_date' => 'datetime',
+        'end_date' => 'datetime',
+        'event_date' => 'datetime',
+
+    ];
+
+
     public $appends = [
         'image_to_show',
-        'url'
+        'url',
+        'days_left',
+        'ev_date'
     ];
 
     public function images()
@@ -44,6 +54,28 @@ class Auction extends Model
     public function celebrity()
     {
         return $this->belongsTo(Celebrity::class);
+    }
+
+
+    public function getTimeAttribute()
+    {
+        if ($this->end_date->isToday()) {
+            return now()->diffInHours($this->end_date);
+        }
+
+        return null;
+    }
+
+
+    public function getEvDateAttribute()
+    {
+        return $this->event_date->format('Y-M-D');
+    }
+
+
+    public function getDaysLeftAttribute()
+    {
+        return $this->start_date->diffInDays($this->end_date);
     }
 
 

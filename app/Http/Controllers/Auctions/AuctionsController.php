@@ -39,7 +39,6 @@ class AuctionsController extends Controller
 
         $auctions->load('celebrity');
 
-        //dd($auctions);
 
         if ($request->ajax()) {
             return new AuctionCollection($auctions);
@@ -53,7 +52,7 @@ class AuctionsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $id  
      * @return \Illuminate\Http\Response
      */
     public function show(Request $request, Auction $auction)

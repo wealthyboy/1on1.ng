@@ -110,10 +110,12 @@ export default {
         callback: function (response) {
           let new_balnce =
             parseInt(walletBalance.value) + parseInt(form.amount);
-          store.commit("setWalletBalance", new_balnce);
+
+          store.commit("setWalletBalance", 6000);
+          console.log(walletBalance.value);
+
           error.value = false;
           message.value = "Your money has been addedd";
-
           // const postData = {
           //   url: "/wallets",
           //   data: form,
@@ -147,7 +149,6 @@ export default {
       message,
       getTableData,
       getWalletBalance,
-      walletBalance,
       error,
     };
   },

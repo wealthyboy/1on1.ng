@@ -8,7 +8,7 @@ use App\Models\ShoutOut;
 use App\Utils\AccountSettingsNav;
 use Illuminate\Http\Request;
 
-class ShoutOutsController
+class ShoutOutsController extends Table
 {
     /**
      * Display a listing of the resource.
@@ -18,21 +18,22 @@ class ShoutOutsController
     public function index()
     {
         $nav = (new AccountSettingsNav())->nav();
-        $pagination = auth()->user()->shout_outs()->latest()->paginate(4);
-        $collections = $this->getColumnNames($pagination);
-        $columns = $this->getGetCustomColumnNames();
+        $collections = $this->getColumnListings();
 
         if (request()->ajax()) {
-            return response([
-                'collections' => $this->getColumnNames($pagination),
-                'pagination' =>  $pagination
+            return response()->json([
+                'collections' =>  $collections,
             ]);
         }
 
-        return view('shout_outs.index', compact('nav', 'collections', 'columns', 'pagination'));
+        return view('shout_outs.index', compact('nav'));
     }
 
 
+    public function builder()
+    {
+        return ShoutOut::query();
+    }
 
     /**
      * Display the specified resource.

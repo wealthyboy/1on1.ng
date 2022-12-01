@@ -15,12 +15,12 @@ export const addProductToCart = ({ commit }, { product_id, quantity }) => {
 };
 
 export const getTableData = ({ commit }, url) => {
-    console.log(url)
     return axios
         .get(url)
         .then(response => {
+
             commit("setTableData", response.data.collections);
-            commit("setMeta", response.data.pagination);
+            commit("setMeta", response.data.collections.meta);
             return Promise.resolve(response);
         }).catch((error) => {
             return Promise.reject(error);

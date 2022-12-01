@@ -24,15 +24,18 @@
           <hr class="short-divider">
           <div class="price-box">
             <div>
-              Event Date: <strong>{{ service.event_date }}</strong>
+              Event Date: <strong>{{ service.ev_date }}</strong>
             </div>
           </div>
           <!-- End .price-box -->
 
           <div class="d-flex justify-content-between">
             <div>
-              Time Left: <strong>{{ service.days_left + 'd'}}</strong>
+              Time Left: <strong v-if="service.time_left">{{ service.time_left + 'h'}}</strong>
+              <strong v-if="service.days_left">{{ service.days_left + 'd'}}</strong>
             </div>
+
+            {{ walletBalance }}
             <div>
               Wallet Balance: {{ $filters.formatNumber(walletBalance) || '0.00' }}
               <span class="fs-6"> <a
@@ -212,6 +215,8 @@ export default {
     ]);
 
     const { getWalletBalance } = useActions(["getWalletBalance"]);
+
+    console.log(walletBalance.value);
 
     function clearError() {
       if (!/^[0-9]+$/.test(bid.amount)) {

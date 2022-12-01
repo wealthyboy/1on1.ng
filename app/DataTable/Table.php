@@ -42,18 +42,23 @@ abstract class Table extends Controller
     {
         $collection =  $this->builder->paginate(30);
 
+
         return [
             'items' => [
                 $this->builder->getModel()->getListingData($collection)
             ],
             'meta' => [
+                'sub_total'  => false,
                 'show'  => true,
                 'right' => null,
                 'links' => $collection->links(),
                 'count' => $collection->count(),
-                'total' => $collection->total(),
                 'firstItem' => $collection->firstItem(),
                 'lastItem' => $collection->lastItem(),
+                'total' => $collection->total(),
+                'per_page' => $collection->perPage(),
+                'current_page' => $collection->currentPage(),
+                'last_page' => $collection->lastPage(),
                 'urls' => $collection->map(function ($obj) {
                     return [
                         "url" => '/admin/' . $this->link . '/' . $obj->id,

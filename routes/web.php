@@ -93,8 +93,6 @@ Route::get('auction/{auction}', 'Auctions\AuctionsController@show');
 
 Route::get('services/{category}/{service}',   'Services\ServicesController@show');
 
-
-
 Route::resource('account', 'Account\AccountController', ['names' => 'account']);
 Route::get('change/password', 'ChangePassword\ChangePasswordController@index');
 Route::post('change/password', 'ChangePassword\ChangePasswordController@changePassword');

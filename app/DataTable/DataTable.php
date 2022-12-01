@@ -198,10 +198,11 @@ abstract class DataTable extends Controller
         return view($this->editView, $this->routeData);
     }
 
+
     public function store(Request $request)
     {
+        // dd($request->all());
         $request->validate($this->storeRouteRules);
-
         $data =  $request->all();
         $data['slug'] = str_slug($data['name']);
         $model = $this->builder->create($data);
@@ -214,16 +215,7 @@ abstract class DataTable extends Controller
             }
         }
 
-        if ($request->filled('type')  && $request->type == 'shout_out') {
 
-            foreach ($request->shout_out_price as $key => $value) {
-                $shout_out_type = new ShoutOutType;
-                $shout_out_type->type = $key;
-                $shout_out_type->price = $value;
-                $shout_out_type->service_id = $model->id;
-                $shout_out_type->save();
-            }
-        }
 
         //Add Shedule
         if (!empty($request->sch['start_date'])) {
@@ -257,6 +249,7 @@ abstract class DataTable extends Controller
 
     public function update(Request $request, $id)
     {
+        //dd($request->all());
 
         $request->validate($this->editValidationRules($id));
         $model = $this->builder->find($id);

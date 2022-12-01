@@ -39,6 +39,7 @@ class ServicesController extends Controller
             $builder->where('categories.name', $category->name);
         })->latest()->paginate(30);
         $services->load('celebrity');
+
         if ($request->ajax()) {
             return new ServicesCollection($services);
         }

@@ -16,6 +16,12 @@ class Bid extends Model
     }
 
 
+    public function auction()
+    {
+        return $this->belongsTo(Auction::class);
+    }
+
+
     public static function getCurrentBid(Auction $auction)
     {
         $data = [];
@@ -32,5 +38,29 @@ class Bid extends Model
         }
 
         return 0;
+    }
+
+    public function getListingData($collection)
+    {
+        return  $collection->map(function ($bid) {
+            return [
+                "Auction" =>  optional($bid->auction)->name,
+                "Price" => '₦' . $bid->price,
+                "Date Added" => $bid->created_at->format('d-m-y')
+            ];
+        });
+    }
+
+
+
+    public static function getShowData(MasterClass $master_class)
+    {
+        return [
+            "Id" => '#' . $master_class->id,
+            "Class" =>  optional($master_class->service)->name,
+            "Price" => '₦' . number_format(optional($master_class->service)->price),
+            "Uuid" =>  $master_class->uuid,
+            "Date Added" => $master_class->created_at->format('d-m-y')
+        ];
     }
 }

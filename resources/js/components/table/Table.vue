@@ -11,7 +11,7 @@
       <div class="d-flex justify-content-between align-items-center mt-3">
         <div class="mb-0 align-self-center">
           <p class="text-sm text-gray-700 leading-5">
-            Showing <span>{{ pmeta.from }}- {{ pmeta.to }} of {{pmeta.total}} Records</span>
+            Showing <span>{{ pmeta.firstItem }}- {{ pmeta.lastItem }} of {{pmeta.total}} Records</span>
 
           </p>
         </div>
@@ -29,11 +29,9 @@
         enctype="multipart/form-data"
         id="form-auctions"
         class="is-filled"
-      ><input
-          type="hidden"
-          name="_token"
-          value="PYlFxXUwxavupF6J09OR8TWqPrEQH8ciyislr1wH"
-        > <input
+      >
+
+        <input
           type="hidden"
           name="_method"
           value="DELETE"
@@ -72,8 +70,7 @@
                 class=""
               >
                 <div class="align-middle  text-sm">
-                  <h6 class="mb-0 text-xs">{{ td }}
-                  </h6>
+                  <h6 class="mb-0 text-xs">{{ td }}</h6>
                 </div>
               </td>
 
@@ -161,21 +158,20 @@ export default {
     const loading = ref(true);
 
     onMounted(() => {
-      console.log(true);
       loading.value = true;
       getTableData(location.href + "?get=1")
         .then((res) => {
-          console.log(tableData.value.items);
+          console.log(res);
           loading.value = false;
         })
         .catch(() => {
           loading.value = false;
         });
-      getWalletBalance();
+      // getWalletBalance();
     });
 
-    function handlePagination(url) {
-      getTableData(url);
+    function handlePagination(page) {
+      getTableData(location.href + "?page=" + page);
     }
 
     return {

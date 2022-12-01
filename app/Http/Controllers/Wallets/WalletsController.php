@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Wallets;
 
+use App\DataTable\Table;
 use App\Http\Controllers\Controller;
 use App\Models\Wallet;
 use App\Models\WalletBalance;
@@ -11,12 +12,14 @@ use App\Utils\AccountSettingsNav;
 use Illuminate\Http\Request;
 use App\Events\NewBid;
 
-class WalletsController extends Controller
+class WalletsController extends Table
 {
 
     public function __construct()
     {
         $this->middleware('auth');
+
+        parent::__construct();
     }
 
     /**
@@ -27,20 +30,22 @@ class WalletsController extends Controller
     public function index()
     {
         $nav = (new AccountSettingsNav())->nav();
-        $pagination = auth()->user()->wallets()->paginate(100);
-        $collections = $this->getColumnNames($pagination);
-        $columns = $this->getGetCustomColumnNames();
         $user = auth()->user();
-
+        $collections = $this->getColumnListings();
 
         if (request()->ajax()) {
-            return response([
-                'collections' => $this->getColumnNames($pagination),
-                'pagination' =>  $pagination
+            return response()->json([
+                'collections' =>  $collections,
             ]);
         }
 
-        return view('wallet.index', compact('user', 'nav', 'collections', 'columns', 'pagination'));
+        return view('wallet.index', compact('user', 'nav'));
+    }
+
+
+    public function builder()
+    {
+        return Wallet::query();
     }
 
 
