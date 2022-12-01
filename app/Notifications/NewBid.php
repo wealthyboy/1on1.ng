@@ -12,6 +12,8 @@ class NewBid extends  Notification implements ShouldQueue
 {
     use Queueable;
 
+    public $auction;
+
     /**
      * Create a new notification instance.
      *
@@ -19,7 +21,7 @@ class NewBid extends  Notification implements ShouldQueue
      */
     public function __construct(Auction $auction)
     {
-        //
+        $this->auction  = $auction;
     }
 
     /**
@@ -42,9 +44,11 @@ class NewBid extends  Notification implements ShouldQueue
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->line('The introduction to the notification.')
-            ->action('Notification Action', url('/'))
-            ->line('Thank you for using our application!');
+            ->line('Hi')
+            ->line('You have been outbidded !!')
+
+            ->action('Click here to place another bid', url('https://1on1.ng/auction/' . $this->auction->slug))
+            ->line('Thank you for using our service!');
     }
 
 
@@ -57,7 +61,7 @@ class NewBid extends  Notification implements ShouldQueue
     public function withDelay($notifiable)
     {
         return [
-            'mail' => now()->addMinutes(5),
+            'mail' => now()->addMinutes(1),
             'sms' => now()->addMinutes(10),
         ];
     }
