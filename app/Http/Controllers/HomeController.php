@@ -22,6 +22,6 @@ class HomeController extends Controller
         $sliders = Banner::where('type', 'slider')->orderBy('sort_order', 'asc')->get();
         $faqs = Faq::all();
         $categories = Category::has('services')->featured()->get();
-        return view('underconstruction.index', compact('sliders', 'faqs', 'categories'));
+        return view('index', compact('sliders', 'faqs', 'categories'));
     }
 }
