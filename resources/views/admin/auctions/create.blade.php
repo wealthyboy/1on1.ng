@@ -49,7 +49,7 @@
                         <div class="col-sm-4 col-12 mt-3">
                             <div class="input-group input-group-outline">
                                 <label class="form-label">Minimum Bid </label>
-                                <input required value="{{ old('min_bid') }}" name="min_bid" class="form-control " type="number">
+                                <input required value="{{ old('min_bid') }}" name="min_bid" class="form-control" type="number">
                             </div>
                         </div>
 
