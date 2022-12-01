@@ -68,7 +68,9 @@ class AuctionsController extends Controller
         //     //Time has  passed
         // }
 
+        // dd(auth()->user());
 
+        Auction::truncate();
 
 
         $auction->load('celebrity');

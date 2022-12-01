@@ -233,6 +233,7 @@ export default {
     }
 
     function getWallet(page) {
+      console.log(400);
       getWalletBalance();
     }
 

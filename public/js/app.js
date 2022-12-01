@@ -25985,6 +25985,7 @@ __webpack_require__.r(__webpack_exports__);
     }
 
     function getWallet(page) {
+      console.log(400);
       getWalletBalance();
     }
 
