@@ -70,7 +70,7 @@ class AuctionsController extends Controller
 
         // dd(auth()->user());
 
-        Auction::truncate();
+        dd(Auction::all());
 
 
         $auction->load('celebrity');
