@@ -44,7 +44,6 @@ class NewBid extends  Notification implements ShouldQueue
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->line('Hi')
             ->line('You have been outbidded !!')
 
             ->action('Click here to place another bid', url('https://1on1.ng/auction/' . $this->auction->slug))
