@@ -24,7 +24,8 @@ class Auction extends Model
         'image_to_show',
         'url',
         'days_left',
-        'ev_date'
+        'ev_date',
+        'time_left'
     ];
 
     public function images()
@@ -57,7 +58,7 @@ class Auction extends Model
     }
 
 
-    public function getTimeAttribute()
+    public function getTimeLeftAttribute()
     {
         if ($this->end_date->isToday()) {
             return now()->diffInHours($this->end_date);
