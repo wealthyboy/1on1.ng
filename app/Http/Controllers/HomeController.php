@@ -19,7 +19,6 @@ class HomeController extends Controller
     public function index()
     {
         // broadcast(new \App\Events\NewBid(auth()->user()));
-        Service::truncate();
         $sliders = Banner::where('type', 'slider')->orderBy('sort_order', 'asc')->get();
         $faqs = Faq::all();
         $categories = Category::has('services')->featured()->get();
