@@ -25885,8 +25885,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     });
 
     function placeBid(data) {
-      // let new_balnce = parseInt(walletBalance.value) - parseInt(data.amount);
-      // store.commit("setWalletBalance", new_balnce);
+      var new_balnce = parseInt(walletBalance.value) - parseInt(data.amount);
+      store.commit("setWalletBalance", new_balnce);
       var postData = {
         url: "/bids",
         data: data,
