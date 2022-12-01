@@ -35,7 +35,6 @@
               <strong v-if="service.days_left">{{ service.days_left + 'd'}}</strong>
             </div>
 
-            {{ walletBalance }}
             <div>
               Wallet Balance: {{ $filters.formatNumber(walletBalance) || '0.00' }}
               <span class="fs-6"> <a

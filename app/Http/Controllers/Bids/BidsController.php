@@ -9,9 +9,12 @@ use App\Models\Bid;
 use App\Models\Service;
 use App\Events\NewBid;
 use App\Models\Auction;
+use App\Models\User;
 use App\Models\WalletBalance;
 use App\Utils\AccountSettingsNav;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Mail;
 
 class BidsController extends Table
 {
@@ -64,22 +67,21 @@ class BidsController extends Table
     {
         $bid = new Bid;
         $bid->user_id = $request->user()->id;
-        $bid->auction_id = $request->service_id;
+        $bid->auction_id = $request->auction_id;
         $bid->price = $request->amount;
         $bid->save();
 
         //reduce wallet 
         $input = $request->all();
         WalletBalance::deductAmount($input);
-
-        $service = Service::find($request->service_id);
-        $data = Bid::getCurrentBid($service);
-
-
+        $auction = Auction::find($request->auction_id);
+        $data = Bid::getCurrentBid($auction);
+        $users = Bid::where('auction_id', $request->auction_id)->select('user_id')->get()->toArray();
+        $users = User::find($users);
         broadcast(new NewBid($data));
 
         //Send emails
-
+        Notification::send($users, new NewBid($auction));
 
         return response()->json($data);
     }
