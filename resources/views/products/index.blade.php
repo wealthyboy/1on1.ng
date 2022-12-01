@@ -13,9 +13,8 @@
             </div>
         </div>
 
-        <div class="row mt-4">
-            <category-items :category="{{ $category }}" :categories="{{ $categories }}" />
-        </div>
+        <category-items :category="{{ $category }}" :categories="{{ $categories }}" />
+
 
     </div>
 </section>

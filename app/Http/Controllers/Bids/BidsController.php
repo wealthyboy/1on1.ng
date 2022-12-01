@@ -58,7 +58,7 @@ class BidsController extends Table
 
     public function currentBid(Request $request, $auction_id)
     {
-        //  broadcast(new NewBid(auth()->user()));
+        //broadcast(new NewBid(auth()->user()));
         $auction = Auction::find($auction_id);
         $data = Bid::getCurrentBid($auction);
         return response()->json($data);
@@ -80,8 +80,6 @@ class BidsController extends Table
         $users = Bid::where('auction_id', $request->auction_id)->select('user_id')->get()->toArray();
         $users = User::find($users);
         broadcast(new NewBid($data));
-
-
 
         //Send emails
         Notification::send($users, new NotificationsNewBid($auction));

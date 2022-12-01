@@ -1,14 +1,14 @@
 <template>
-  <div class="row justify-content-center">
-    <div class="col-6 col-sm-4 col-md-3 col-lg-2">
-      <div
-        href="#"
-        class="icon-box nounderline"
-      >
-        <i class=""></i>
-        <h5 class="porto-sicon-title mx-2">No transaction Yet</h5>
-      </div>
-    </div>
 
+  <div class="d-flex justify-content-center align-content-center  page-loading w-100 h-100">
+    <div class="align-self-center">
+      {{ message || 'Nothing Found' }}
+    </div>
   </div>
 </template>
+<script>
+export default {
+  props: ["message"],
+  setup() {},
+};
+</script>

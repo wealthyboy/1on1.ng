@@ -35,7 +35,8 @@ class AuctionsController extends Controller
 
         $auctions = Auction::whereHas('categories', function (Builder  $builder) use ($category) {
             $builder->where('categories.name', $category->name);
-        })->latest()->paginate(30);
+        })->whereDate('end_date', ">=", now())
+            ->latest()->paginate(30);
 
         $auctions->load('celebrity');
 
@@ -59,6 +60,7 @@ class AuctionsController extends Controller
     {
         $a = '10 : 52 AM';
         $x = preg_replace('/\s*:\s*/', ':', $a);
+
         // dd(date("H:i", strtotime($x)));
 
         // if (\Carbon\Carbon::parse('2022-11-23 11:30:00')->gt(\Carbon\Carbon::now())) {
