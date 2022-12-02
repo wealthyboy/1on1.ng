@@ -78,8 +78,6 @@ class AuctionsController extends Controller
 
         $categories = Category::with('parent')->orderBy('name', 'asc')->get();
         $faqs = Faq::all();
-
-
         $user = $request->user();
         return view('products.auction', compact('faqs', 'categories', 'user', 'auction'));
     }
