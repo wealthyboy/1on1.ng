@@ -179,13 +179,12 @@
                         <div class="col-lg-6 col-sm-4">
                             <div class="widget">
                                 <h4 class="widget-title text-white">{{ title_case($link->name) }}</h4>
-
                                 @if($link->children->count())
                                 <ul class="links text-white list-unstyled">
                                     @foreach($link->children as $link)
                                     <li>
-                                        <a href="{{ $link->link }}">
-                                            {{ $link->title }}
+                                        <a class=" text-white" href="{{ $link->link }}">
+                                            {{ $link->name }}
                                         </a>
                                     </li>
                                     @endforeach
