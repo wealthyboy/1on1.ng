@@ -36,7 +36,7 @@
             <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="/">
-                        <img src="https://1on1.ng/images/logo/one.ng.PNG" width="50" height="50" alt="">
+                        <img src="https://1on1.ng/images/logo/one.ng.PNG" width="100" height="50" alt="">
                     </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -116,7 +116,7 @@
                                     <div class="row d-lg-none">
                                         <div class="col-md-12 g-0">
                                             <a class="dropdown-item py-2 ps-3 border-radius-md" href="#">
-                                                <h6 class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0">Getting Started</h6>
+                                                <h6 class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0"></h6>
                                                 <span class="text-sm">All about overview, quick start, license and contents</span>
                                             </a>
 
@@ -146,12 +146,12 @@
             <auth-modal />
         </main>
 
-        <div class="py-3 subscribe  text-white">
+        <div class="py-3 subscribe  bg-dark">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 text-start">
-                        <h4 class="text-white">Get tips & tricks</h4>
-                        <span class="mb-0">Subscribe to get the latest deals, promotions, and offerings.</span>
+                        <h4 class="text-white">Get the latest</h4>
+                        <span class="mb-0">Enter your email and we’ll send you some samples of our favorite classes.</span>
                     </div>
                     <div class="col-lg-5 ms-auto text-end my-auto">
                         <div class="row g-0">

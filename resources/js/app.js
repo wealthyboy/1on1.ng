@@ -6,6 +6,10 @@
 
 require('./bootstrap');
 
+
+require("../../node_modules/owl.carousel/dist/owl.carousel.min.js");
+
+
 window.Vue = require('vue');
 
 import { createApp } from "vue";
@@ -83,3 +87,9 @@ app.config.globalProperties.$filters = {
 
 
 app.mount('#app');
+
+
+jQuery(function() {
+    $('.owl-carousel').owlCarousel();
+
+})
