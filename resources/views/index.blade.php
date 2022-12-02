@@ -48,7 +48,7 @@
       <div class="row mt-4">
          @foreach( $category->auctions as $auction)
          <div class="col-lg-3 mb-lg-0 mb-4">
-            <a href="{{ $service->url }}">
+            <a href="{{ $auction->url }}">
                <div class="card card-background">
                   <img src="{{ optional($auction->celebrity)->image }}" alt="" srcset="">
                   <div class="card-body pt-12">
