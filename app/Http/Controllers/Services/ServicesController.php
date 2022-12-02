@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use App\Events\Test;
 use App\Events\NewBid;
-
+use App\Models\Faq;
 
 // use Illuminate\Database\Eloquent\Builder;
 
@@ -39,12 +39,15 @@ class ServicesController extends Controller
             $builder->where('categories.name', $category->name);
         })->latest()->paginate(30);
         $services->load('celebrity');
+        $faqs = Faq::all();
+
+
 
         if ($request->ajax()) {
             return new ServicesCollection($services);
         }
 
-        return view('products.index', compact('categories', 'category'));
+        return view('products.index', compact('faqs', 'categories', 'category'));
     }
 
 
