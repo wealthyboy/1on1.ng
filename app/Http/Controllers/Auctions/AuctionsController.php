@@ -76,7 +76,9 @@ class AuctionsController extends Controller
         $auction->load('celebrity');
 
         $categories = Category::with('parent')->orderBy('name', 'asc')->get();
+        $faqs = Faq::all();
+
         $user = $request->user();
-        return view('products.auction', compact('categories', 'user', 'auction'));
+        return view('products.auction', compact('faqs', 'categories', 'user', 'auction'));
     }
 }
