@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\AuctionCollection;
 use App\Models\Auction;
 use App\Models\Category;
+use App\Models\Faq;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -77,6 +78,7 @@ class AuctionsController extends Controller
 
         $categories = Category::with('parent')->orderBy('name', 'asc')->get();
         $faqs = Faq::all();
+
 
         $user = $request->user();
         return view('products.auction', compact('faqs', 'categories', 'user', 'auction'));
