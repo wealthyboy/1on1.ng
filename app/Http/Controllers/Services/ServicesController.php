@@ -74,6 +74,7 @@ class ServicesController extends Controller
         $x = preg_replace('/\s*:\s*/', ':', $a);
         // dd(date("H:i", strtotime($x)));
 
+        $categories = Category::with('parent')->orderBy('name', 'asc')->get();
 
 
         $faqs = Faq::all();
@@ -82,6 +83,6 @@ class ServicesController extends Controller
         $service->load('shout_out_types', 'celebrity', 'schedules');
         //dd($service->bids()->orderBy('id', 'desc')->sum('price'));
         $user = $request->user();
-        return view('products.show', compact('faqs', 'user', 'service'));
+        return view('products.show', compact('categories', 'faqs', 'user', 'service'));
     }
 }
