@@ -19,7 +19,7 @@
 
                   <h1>{{ $slider->title }}</h1>
                   <p class="w-50">{{ $slider->description }}</p>
-                  <p><a class="btn btn-lg btn-primary" href="{{ $slider->link }}"> Learn More</p>
+                  <p><a class="btn btn-lg btn-primary" href="{{ $slider->link }}"> Learn More</a></p>
                </div>
             </div>
          </div>
