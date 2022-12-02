@@ -32,7 +32,7 @@ class Category extends Model
      */
     public function auctions()
     {
-        return $this->morphedByMany(Auction::class, 'categoryable')->where('type', 'auction');
+        return $this->morphedByMany(Auction::class, 'categoryable');
     }
 
 
