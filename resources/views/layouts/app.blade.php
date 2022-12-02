@@ -167,26 +167,25 @@
                 </div>
             </div>
         </div>
-        <footer class="footer py-5 text-white font2">
-            <!-- -------   START PRE-FOOTER 4 - title & description and input    -------- -->
-            <!-- -------   END PRE-FOOTER 4 - title & description and input    -------- -->
+        <footer class="footer py-5 border bg-dark font2">
+
             <div class="container">
                 <div class="footer-middle">
                     <div class="row">
 
-                        @foreach($footer_info as $info)
+                        @foreach($footer_links as $link)
 
 
                         <div class="col-lg-6 col-sm-4">
                             <div class="widget">
-                                <h4 class="widget-title text-white">{{ title_case($info->title) }}</h4>
+                                <h4 class="widget-title text-white">{{ title_case($link->name) }}</h4>
 
-                                @if($info->children->count())
+                                @if($link->children->count())
                                 <ul class="links text-white list-unstyled">
-                                    @foreach($info->children as $info)
+                                    @foreach($link->children as $link)
                                     <li>
-                                        <a href="{{ $info->link }}">
-                                            {{ $info->title }}
+                                        <a href="{{ $link->link }}">
+                                            {{ $link->title }}
                                         </a>
                                     </li>
                                     @endforeach
