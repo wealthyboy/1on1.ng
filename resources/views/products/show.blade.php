@@ -2,7 +2,7 @@
 
 @section('content')
 
-<nav class="mt-7" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+<nav class="mt-5" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
   <ol class="breadcrumb border px-5 py-3">
     <li class="breadcrumb-item"><a href="#">Home</a></li>
     <li class="breadcrumb-item active" aria-current="page">Library</li>
