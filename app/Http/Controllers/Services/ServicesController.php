@@ -74,16 +74,14 @@ class ServicesController extends Controller
         $x = preg_replace('/\s*:\s*/', ':', $a);
         // dd(date("H:i", strtotime($x)));
 
-        if (\Carbon\Carbon::parse('2022-11-23 11:30:00')->gt(\Carbon\Carbon::now())) {
-            dd(true);
-            //Time has not passed
-        } else {
-            //Time has  passed
-        }
+
+
+        $faqs = Faq::all();
+
 
         $service->load('shout_out_types', 'celebrity', 'schedules');
         //dd($service->bids()->orderBy('id', 'desc')->sum('price'));
         $user = $request->user();
-        return view('products.show', compact('user', 'service'));
+        return view('products.show', compact('faqs', 'user', 'service'));
     }
 }
