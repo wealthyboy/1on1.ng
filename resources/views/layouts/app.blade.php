@@ -250,7 +250,7 @@
                     </div><!-- End .row -->
                 </div><!-- End .footer-middle -->
 
-                <div class="footer-bottom text-white d-flex border-top justify-content-between align-items-center flex-wrap">
+                <div class="footer-bottom text-white d-flex border-top justify-content-center align-items-center ">
                     <p class="footer-copyright py-3 pr-4 mb-0">© {{ config('app.name') }}. {{ date('Y') }}. All Rights Reserved</p>
 
 
