@@ -13,4 +13,7 @@
   <show-products :user="{{ $user }}" :service="{{ $service }}" />
 </section>
 
+@include('_partials.faqs')
+
+
 @stop
