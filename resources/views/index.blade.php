@@ -42,10 +42,23 @@
       <div class="row">
          <div class="col-lg-6">
             <h2 class="mc-text-h2 mc-my-2 d-inline-block">Trending {{ $category->name }}</h2>
-            <span>sll</span>
+            <span></span>
          </div>
       </div>
       <div class="row mt-4">
+         @foreach( $category->auctions as $auction)
+         <div class="col-lg-3 mb-lg-0 mb-4">
+            <a href="{{ $service->url }}">
+               <div class="card card-background">
+                  <img src="{{ optional($auction->celebrity)->image }}" alt="" srcset="">
+                  <div class="card-body pt-12">
+                     <h4 class="tex">{{ $auction->name }}</h4>
+                     <p class="text"></p>
+                  </div>
+               </div>
+            </a>
+         </div>
+         @endforeach
          @foreach( $category->services as $service)
          <div class="col-lg-3 mb-lg-0 mb-4">
             <a href="{{ $service->url }}">
