@@ -62,9 +62,9 @@
             @endforeach
          </div>
 
-         <div class="owl-carousel owl-theme">
+         <div class="  {{ $category->services->count() > 4 ? 'owl-carousel owl-theme' : 'col-md-4 col-2'}}">
             @foreach( $category->services as $service)
-            <div class="">
+            <div class="{{ $category->services->count() > 4 ? '' : ''}}">
                <a href="{{ $service->url }}">
                   <div class="card card-background">
                      <img src="{{ optional($service->celebrity)->image }}" alt="" srcset="">
