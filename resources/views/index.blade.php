@@ -62,7 +62,7 @@
             @endforeach
          </div>
 
-         <div class="service">
+         <div class="service-carousel">
             @foreach( $category->services as $service)
             <div class="">
                <a href="{{ $service->url }}">
@@ -113,7 +113,7 @@ responsive: { 576: { items: 3 }, 992: { items: 4 } }
 
 
 $('.service-carousel').owlCarousel({
-loop: true,
+loop: false,
 margin: 10,
 nav: true,
 dots: true,
