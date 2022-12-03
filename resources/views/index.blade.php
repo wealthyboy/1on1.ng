@@ -62,19 +62,22 @@
             </div>
             @endforeach
          </div>
-         @foreach( $category->services as $service)
-         <div class="col-lg-3 mb-lg-0 mb-4">
-            <a href="{{ $service->url }}">
-               <div class="card card-background">
-                  <img src="{{ optional($service->celebrity)->image }}" alt="" srcset="">
-                  <div class="card-body pt-12">
-                     <h4 class="tex">{{ $service->name }}</h4>
-                     <p class="text"></p>
+         <div class="owl-carousel owl-theme">
+
+            @foreach( $category->services as $service)
+            <div class="">
+               <a href="{{ $service->url }}">
+                  <div class="card card-background">
+                     <img src="{{ optional($service->celebrity)->image }}" alt="" srcset="">
+                     <div class="card-body pt-12">
+                        <h4 class="tex">{{ $service->name }}</h4>
+                        <p class="text"></p>
+                     </div>
                   </div>
-               </div>
-            </a>
+               </a>
+            </div>
+            @endforeach
          </div>
-         @endforeach
 
       </div>
 
