@@ -49,7 +49,7 @@
          <div class="owl-carousel owl-theme">
 
             @foreach( $category->auctions as $auction)
-            <div class="col-lg-3 mb-lg-0 mb-4 mb-3">
+            <div class="">
                <a href="{{ $auction->url }}">
                   <div class="card card-background">
                      <img src="{{ optional($auction->celebrity)->image }}" alt="" srcset="">
