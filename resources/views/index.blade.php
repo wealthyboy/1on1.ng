@@ -96,7 +96,7 @@
 @section('inline-scripts')
 
 jQuery(function() {
-$('.owl-carousel').owlCarousel.owlCarousel({
+$('.owl-carousel').owlCarousel({
 loop: true,
 margin: 10,
 nav: true,
