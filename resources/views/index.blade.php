@@ -12,7 +12,7 @@
                <div class="fresnel-container fresnel-lessThan-lg "></div>
                <div class="fresnel-container fresnel-greaterThanOrEqual-lg ">
                   <h1 class="mc-text--brand mc-text--uppercase mc-text-d1 mc-mb-8">Gain New Skills, Meet Your Favorite Celeb</h1>
-                  <p class="mc-text-large">Unlimited access to all. <i class="bi bi-arrow-left-circle-fill"></i></p>
+                  <p class="mc-text-large">Unlimited access to all. </p>
                </div>
             </div>
          </div>
@@ -47,7 +47,6 @@
       </div>
       <div class="row mt-4">
          <div class="owl-carousel owl-theme">
-
             @foreach( $category->auctions as $auction)
             <div class="">
                <a href="{{ $auction->url }}">
@@ -63,7 +62,7 @@
             @endforeach
          </div>
 
-         <div class="service-carousel owl-theme">
+         <div class="service">
             @foreach( $category->services as $service)
             <div class="">
                <a href="{{ $service->url }}">
