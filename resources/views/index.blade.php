@@ -62,7 +62,7 @@
             @endforeach
          </div>
 
-         <div class="  {{ $category->services->count() > 4 ? 'owl-carousel owl-theme' : 'col-md-4 col-2'}}">
+         <div class="  {{ $category->services->count() > 4 ? 'owl-carousel owl-theme' : 'col-md-4 col-6'}}">
             @foreach( $category->services as $service)
             <div class="{{ $category->services->count() > 4 ? '' : ''}}">
                <a href="{{ $service->url }}">
