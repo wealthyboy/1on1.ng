@@ -151,7 +151,7 @@
                 <div class="row">
                     <div class="col-lg-6 text-start">
                         <h4 class="text-white">Get the latest</h4>
-                        <span class="mb-0">Enter your email and we’ll send you some samples of our favorite classes.</span>
+                        <span class="mb-0 text-white">Enter your email and we’ll send you some samples of our favorite classes.</span>
                     </div>
                     <div class="col-lg-5 ms-auto text-end my-auto">
                         <div class="row g-0">
@@ -169,7 +169,7 @@
                 </div>
             </div>
         </div>
-        <footer class="footer py-5 border bg-dark font2">
+        <footer class="footer py-5  bg-dark font2">
 
             <div class="container">
                 <div class="footer-middle">
