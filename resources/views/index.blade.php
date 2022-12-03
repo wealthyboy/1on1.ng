@@ -102,11 +102,12 @@ margin: 5,
 nav: true,
 dots: true,
 center: true,
+items: 2,
 navText: [
 '<i class="bi bi-arrow-left-circle-fill"></i>',
 '<i class="bi bi-arrow-right-circle-fill"></i>',
 ],
-responsive: { 476: { items: 2 }, 992: { items: 4 } }
+responsive: { 576: { items: 2 }, 992: { items: 4 } }
 });
 
 
