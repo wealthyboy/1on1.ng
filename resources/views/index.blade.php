@@ -113,11 +113,11 @@ responsive: { 576: { items: 3 }, 992: { items: 4 } }
 
 
 $('.service-carousel').owlCarousel({
-loop: false,
+loop: true,
 margin: 10,
 nav: true,
 dots: true,
-center: true,
+center: false,
 navText: [
 '<i class="bi bi-arrow-left-circle-fill"></i>',
 '<i class="bi bi-arrow-right-circle-fill"></i>',
