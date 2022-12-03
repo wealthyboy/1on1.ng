@@ -62,7 +62,8 @@
             </div>
             @endforeach
          </div>
-         <div class="service owl-theme">
+
+         <div class="service-carousel owl-theme">
             @foreach( $category->services as $service)
             <div class="">
                <a href="{{ $service->url }}">
@@ -104,17 +105,10 @@ margin: 10,
 nav: true,
 dots: true,
 center: true,
-
-responsive: { 576: { items: 3 }, 992: { items: 4 } }
-});
-
-$('.service').owlCarousel({
-loop: true,
-margin: 10,
-nav: true,
-dots: true,
-center: true,
-
+navText: [
+'<i class="bi bi-arrow-left-circle-fill"></i>',
+'<i class="bi bi-arrow-right-circle-fill"></i>',
+],
 responsive: { 576: { items: 3 }, 992: { items: 4 } }
 });
 })
