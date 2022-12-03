@@ -19337,10 +19337,6 @@ textarea.form-control-lg {
   margin: 1.2rem 0 0;
 }
 
-.carousel-item {
-  height: 650px;
-}
-
 button.owl-prev {
   position: absolute;
   top: 50% !important;
