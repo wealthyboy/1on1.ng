@@ -19354,11 +19354,11 @@ button.owl-next {
 }
 
 button.owl-next {
-  right: -1;
+  right: 2;
 }
 
 button.owl-prev {
-  left: 4px;
+  left: 2px;
 }
 
 button.owl-next,
