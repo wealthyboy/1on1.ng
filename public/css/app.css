@@ -19354,11 +19354,11 @@ button.owl-next {
 }
 
 button.owl-next {
-  right: 0;
+  right: -1;
 }
 
 button.owl-prev {
-  left: 2px;
+  left: 4px;
 }
 
 button.owl-next,
@@ -19367,7 +19367,8 @@ button.raised {
   background-color: #fff !important;
   box-shadow: 0 2px 0.25rem 0 rgba(0, 11, 38, 0.2) !important;
   color: #342c27 !important;
-  height: 2rem !important;
+  height: 2.5rem !important;
   min-height: 2rem !important;
-  width: 2rem !important;
+  width: 2.5rem !important;
+  border-radius: 50%;
 }
