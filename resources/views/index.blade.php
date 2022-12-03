@@ -101,7 +101,6 @@ loop: true,
 margin: 5,
 nav: true,
 dots: true,
-center: true,
 items: 2,
 navText: [
 '<i class="bi bi-arrow-left-circle-fill"></i>',
