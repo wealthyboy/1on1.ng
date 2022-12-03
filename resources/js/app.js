@@ -87,9 +87,3 @@ app.config.globalProperties.$filters = {
 
 
 app.mount('#app');
-
-
-jQuery(function() {
-    $('.owl-carousel').owlCarousel();
-
-})
