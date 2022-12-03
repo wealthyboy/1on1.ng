@@ -19340,3 +19340,15 @@ textarea.form-control-lg {
 .carousel-item {
   height: 650px;
 }
+
+button.owl-prev {
+  position: absolute;
+  top: 50% !important;
+  font-size: 2rem;
+}
+
+button.owl-next {
+  position: absolute;
+  top: 50% !important;
+  font-size: 2rem;
+}
