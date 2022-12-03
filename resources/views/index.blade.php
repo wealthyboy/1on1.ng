@@ -62,8 +62,7 @@
             </div>
             @endforeach
          </div>
-         <div class="owl-carousel owl-theme">
-
+         <div class="service owl-theme">
             @foreach( $category->services as $service)
             <div class="">
                <a href="{{ $service->url }}">
@@ -100,6 +99,16 @@
 
 jQuery(function() {
 $('.owl-carousel').owlCarousel({
+loop: true,
+margin: 10,
+nav: true,
+dots: true,
+center: true,
+
+responsive: { 576: { items: 3 }, 992: { items: 4 } }
+});
+
+$('.service').owlCarousel({
 loop: true,
 margin: 10,
 nav: true,
