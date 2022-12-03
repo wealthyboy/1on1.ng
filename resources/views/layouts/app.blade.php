@@ -150,7 +150,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 text-start">
-                        <h4 class="text-white">Get the latest</h4>
+                        <h4 class="text-white">Gain New Skills, Meet Your Favorite Celeb</h4>
                         <span class="mb-0 text-white">Enter your email and we’ll send you some samples of our favorite classes.</span>
                     </div>
                     <div class="col-lg-5 ms-auto text-end my-auto">
