@@ -19339,13 +19339,13 @@ textarea.form-control-lg {
 
 button.owl-prev {
   position: absolute;
-  top: 70% !important;
+  top: 35% !important;
   font-size: 2rem;
 }
 
 button.owl-next {
   position: absolute;
-  top: 50% !important;
+  top: 35% !important;
   font-size: 2rem;
 }
 
