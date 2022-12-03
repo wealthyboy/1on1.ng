@@ -17,23 +17,21 @@
             </div>
          </div>
          <div class="col-12 col-lg-5 offset-lg-1">
-            <div class="fresnel-container fresnel-lessThan-md "></div>
-            <div class="fresnel-container fresnel-greaterThanOrEqual-md ">
-               <div>
-                  <div class="row justify-content-center">
-                     <div class="col-10 col-md-8 col-lg-12">
-                        <form class="row justify-content-center justify-content-lg-start no-gutters">
 
-                           <div class="row g-0">
-                              <div class="col-md-9 col-7"><input type="text" placeholder="Email" class="form-control rounded-0"></div>
-                              <div class="col-md-3 col-5"><button data-bs-toggle="modal" data-bs-target="#main-modal" class="btn btn-outline-secondary w-100 rounded-0" type="button" id="button-addon2">Subscribe</button></div>
-                           </div>
-                           <p class="mc-text-x-small mc-opacity--muted">By sharing your email, you agree to our <a class="mc-text--link" href="/terms">Terms of Service</a> and <a class="mc-text--link" href="https://privacy.masterclass.com">Privacy Policy.</a></p>
-                        </form>
+            <div class="row justify-content-center p-0">
+               <div class="">
+                  <form class="row justify-content-center justify-content-lg-start no-gutters">
+
+                     <div class="row g-0">
+                        <div class="col-md-9 col-7"><input type="text" placeholder="Email" class="form-control rounded-0"></div>
+                        <div class="col-md-3 col-5"><button data-bs-toggle="modal" data-bs-target="#main-modal" class="btn btn-outline-secondary w-100 rounded-0" type="button" id="button-addon2">Subscribe</button></div>
                      </div>
-                  </div>
+                     <p class="mc-text-x-small mc-opacity--muted">By sharing your email, you agree to our <a class="mc-text--link" href="/terms">Terms of Service</a> and <a class="mc-text--link" href="https://privacy.masterclass.com">Privacy Policy.</a></p>
+                  </form>
                </div>
             </div>
+
+
          </div>
       </div>
 
