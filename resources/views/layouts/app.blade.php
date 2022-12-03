@@ -178,7 +178,7 @@
                         @foreach($footer_links as $link)
 
 
-                        <div class="col-lg-6 col-sm-4">
+                        <div class="col-lg-6 col-6">
                             <div class="widget">
                                 <h4 class="widget-title text-white">{{ title_case($link->name) }}</h4>
                                 @if($link->children->count())
@@ -197,7 +197,7 @@
                         @endforeach
 
 
-                        <div class="col-lg-6 col-sm-4">
+                        <div class="col-lg-6 col-6">
                             <div class="widget">
                                 <h4 class="widget-title text-white">Social</h4>
 
@@ -253,7 +253,6 @@
 
                 <div class="footer-bottom text-white d-flex border-top justify-content-center align-items-center ">
                     <p class="footer-copyright py-3 pr-4 mb-0">© {{ config('app.name') }}. {{ date('Y') }}. All Rights Reserved</p>
-
 
                 </div><!-- End .footer-bottom -->
             </div><!-- End .container -->
