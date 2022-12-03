@@ -62,7 +62,7 @@
             @endforeach
          </div>
 
-         <div class="service-carousel">
+         <div class="owl-carousel owl-theme">
             @foreach( $category->services as $service)
             <div class="">
                <a href="{{ $service->url }}">
