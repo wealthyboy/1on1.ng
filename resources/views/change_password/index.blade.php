@@ -2,9 +2,8 @@
 
 @section('content')
 
-<section class="sec-padding--account mt-7 bg--gray">
+<section class="mt-7 mb-9">
     @include('_partials.mobile_nav')
-
     <div class="container">
         <div class="row">
             @include('_partials.nav')

@@ -14,7 +14,7 @@
     <label :for="$attrs.id">{{ $attrs.name }}</label>
   </div>
   <simple-message
-    class="link-danger fs-6"
+    class="link-danger fs-xs-6 fs-6 "
     v-if="error.$error"
     :message="error.$errors[0].$message"
   />

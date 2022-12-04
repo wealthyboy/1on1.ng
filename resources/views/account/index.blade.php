@@ -2,7 +2,7 @@
 
 @section('content')
 
-<nav class="mt-5" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+<nav class="mt-6" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
    <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="#">Home</a></li>
       <li class="breadcrumb-item active" aria-current="page">Library</li>
@@ -10,9 +10,9 @@
 </nav>
 
 <section class="py-5 section-elements">
-   <div class="container">
+   <div class="container mt-6">
       <h2 class="elements">Account</h2>
-      <div class="row justify-content-center">
+      <div class="row justify-content-center ">
 
          @foreach($nav as $key => $n)
          <div class="col-6 col-sm-4 col-md-3 col-lg-2">

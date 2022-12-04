@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex align-items-center justify-content-between">
+  <div class="d-flex align-items-center justify-content-between my-3">
     <h2 class="page-title ">Wallet</h2>
     <div class="wallet-balance">
       <fund-wallet :user="user" />

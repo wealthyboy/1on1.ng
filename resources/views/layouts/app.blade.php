@@ -38,9 +38,16 @@
                     <a class="navbar-brand" href="/">
                         <img src="https://1on1.ng/images/logo/one.ng.PNG" width="100" height="50" alt="">
                     </a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
+                    <div>
+                        <button class="btn btn-outline-success  d-lg-none me-1" type="button">
+                            <span>Balance: </span>
+                            <wallet-balance />
+                        </button>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                    </div>
+
                     <div class="collapse navbar-collapse" id="navbarCollapse">
                         <ul class="navbar-nav  mx-auto">
 
@@ -55,7 +62,7 @@
                                 @if( $category->children->count())
                                 @foreach( $category->children as $category)
                                 <div class="dropdown-menu dropdown-menu-animation dropdown-md border-radius-xl p-3 mt-0 mt-lg-3" aria-labelledby="dropdownMenuAccount">
-                                    <div class="d-none d-lg-flex">
+                                    <div class=" d-lg-flex">
                                         <ul class="list-group w-100">
                                             <li class="nav-item list-group-item border-0 p-0">
                                                 <a href="{{ optional($category->parent)->link() }}" class="dropdown-item border-radius-md text-dark ps-3 d-flex align-items-center mb-1">
@@ -79,7 +86,7 @@
 
 
                         @auth
-                        <button class="btn btn-outline-success" type="submit">
+                        <button class="btn btn-outline-success d-none d-lg-block" type="submit">
                             <span>Balance: </span>
                             <wallet-balance />
                         </button>
@@ -89,22 +96,25 @@
 
                             <li class="nav-item dropdown dropdown-hover mx-2">
                                 <a class="nav-link ps-2 d-flex cursor-pointer align-items-center" id="dropdownMenuDocs" data-bs-toggle="dropdown" aria-expanded="false" role="button">
-                                    <i class="fa fa-bars"></i>Menu<i class="bi bi-chevron-down arrow ms-auto ms-md-2"></i>
+                                    <i class="bi bi-list fs-2"></i>
+                                    Menu<i class="bi bi-chevron-down arrow ms-auto ms-md-2"></i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-animation dropdown-md mt-0 mt-lg-3 p-3 border-radius-lg" aria-labelledby="dropdownMenuDocs">
-                                    <div class="d-none d-lg-block">
+                                    <div class="">
                                         <ul class="list-group">
                                             @foreach($nav as $key => $n)
                                             <li class="nav-item list-group-item border-0 p-0">
-                                                <a href="{{ $n['link'] }}" class="dropdown-item py-2 ps-3 border-radius-md"><i class="far fa-sign-out-alt left"></i> {{ $key  }} </a>
+                                                <a href="{{ $n['link'] }}" class="dropdown-item py-2 ps-3 border-radius-md"> <i class="{{ $n['icon'] }}">{{ $n['iconText'] }}</i>
+                                                    {{ $key }} </a>
                                             </li>
                                             @endforeach
-
 
                                             <li class="nav-item list-group-item border-0 p-0">
 
                                                 <a href="#" class="dropdown-item py-2 ps-3 border-radius-md" onclick="event.preventDefault();
-                                                    document.getElementById('logout-form').submit();" class="list-group-item list-group-item-action bold text-uppercase p-4"><i class="far fa-sign-out-alt left"></i> Logout
+                                                    document.getElementById('logout-form').submit();" class="list-group-item list-group-item-action bold text-uppercase p-4">
+                                                    <i class="bi bi-box-arrow-right"></i>
+                                                    Logout
                                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                                         @csrf
                                                     </form>
@@ -113,15 +123,7 @@
 
                                         </ul>
                                     </div>
-                                    <div class="row d-lg-none">
-                                        <div class="col-md-12 g-0">
-                                            <a class="dropdown-item py-2 ps-3 border-radius-md" href="#">
-                                                <h6 class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0"></h6>
-                                                <span class="text-sm">All about overview, quick start, license and contents</span>
-                                            </a>
 
-                                        </div>
-                                    </div>
                                 </div>
                             </li>
 

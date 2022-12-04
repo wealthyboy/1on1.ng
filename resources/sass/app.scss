@@ -5,14 +5,8 @@
 @import "../../node_modules/owl.carousel/dist/assets/owl.carousel.min.css"; // Bootstrap
 @import '~bootstrap-icons/font/bootstrap-icons';
 @import '~bootstrap/scss/bootstrap';
-.mt-7 {
-    margin-top: 7rem !important;
-}
-
-.mt-9 {
-    margin-top: 11rem !important;
-}
-
+@import './media.css';
+@import './utilities.css';
 .form-control[readonly] {
     background-color: #fff;
 }

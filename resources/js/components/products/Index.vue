@@ -22,7 +22,7 @@
         <div
           v-for="service in services"
           :key="service.id"
-          class="col-lg-4 mb-lg-0 mb-4"
+          class="col-lg-4 mb-2"
         >
           <a :href="service.url">
             <div class="card card-background">

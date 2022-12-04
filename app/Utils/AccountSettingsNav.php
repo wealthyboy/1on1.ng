@@ -34,8 +34,8 @@ class AccountSettingsNav
                 'iconText' => null,
             ],
             'Shout Outs' => [
-                'icon' => 'material-symbols-outlined',
-                'iconText' => 'celebration',
+                'icon' => 'bi bi-broadcast',
+                'iconText' => null,
                 'link' => '/shoutouts'
             ],
             'Wallet' => [

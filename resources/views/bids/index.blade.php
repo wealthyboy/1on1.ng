@@ -2,7 +2,7 @@
 
 @section('content')
 
-<section class="my-5">
+<section class="mt-7 mb-9">
 
     @include('_partials.mobile_nav')
 

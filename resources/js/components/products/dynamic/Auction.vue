@@ -17,19 +17,19 @@
       </div>
       <div class="col-lg-5">
 
-        <div class=" product-single-details">
+        <div class="product-single-details mt-xs-3">
           <h1 class="product-title">{{ service.name }}</h1>
 
           <!-- End .ratings-container -->
           <hr class="short-divider">
-          <div class="price-box">
+          <div class="-box mb-1">
             <div>
               Event Date: <strong>{{ service.ev_date }}</strong>
             </div>
           </div>
           <!-- End .price-box -->
 
-          <div class="d-flex justify-content-between">
+          <div class="d-flex justify-content-between mb-1">
             <div>
               Time Left: <strong v-if="service.time_left">{{ service.time_left + 'h'}}</strong>
               <strong v-if="service.days_left">{{ service.days_left + 'd'}}</strong>
@@ -47,7 +47,7 @@
             </div>
           </div>
 
-          <div class="d-flex justify-content-between">
+          <div class="d-flex justify-content-between mb-2">
             <div>
               Current Bid: <strong>{{ $filters.formatNumber(currentBid) }}</strong>
             </div>
@@ -57,7 +57,7 @@
           </div>
 
           <div class="row g-0">
-            <div class="col-md-3">
+            <div class="col-md-3 col-3">
               <input
                 type="text"
                 v-model="bid.amount"
@@ -70,7 +70,7 @@
               >Enter a valid amount </small>
 
             </div>
-            <div class="col-md-9">
+            <div class="col-md-9 col-9">
               <button
                 v-if="walletBalance >= service.min_bid"
                 class="btn btn-outline-secondary w-100 rounded-0"
@@ -140,7 +140,7 @@
               role="tab"
               aria-controls="nav-home"
               aria-selected="true"
-            >Description</button>
+            ></button>
           </div>
         </nav>
         <div
@@ -155,7 +155,7 @@
           >
             <div class="row">
               <div class="col-md-6">
-                <h1>Description</h1>
+                <h1 class="mt-3">Description</h1>
 
                 <p v-html="service.description"></p>
               </div>

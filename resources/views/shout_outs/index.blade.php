@@ -2,9 +2,9 @@
 
 @section('content')
 
-<section class="my-5 mt-5">
+<section class="mt-7 mb-9">
     @include('_partials.mobile_nav')
-    <div class="container">
+    <div class="container ">
         <div class="row">
             @include('_partials.nav')
             <div class="col-md-9">

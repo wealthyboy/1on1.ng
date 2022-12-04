@@ -1,4 +1,4 @@
-   <div id="au-slider" class="carousel slide" data-bs-ride="carousel">
+   <div id="au-slider" class="carousel slide  mt-xs-6" data-bs-ride="carousel">
       @if($sliders->count() > 1)
       <div class="carousel-indicators">
          @foreach($sliders as $key => $slider)
@@ -14,7 +14,7 @@
                <img src="{{ $slider->image }}" class="w-100" alt="...">
             </a>
 
-            <div class="container">
+            <div class="container  mt-xs-4">
                <div class="carousel-caption text-start">
 
                   <h1>{{ $slider->title }}</h1>
