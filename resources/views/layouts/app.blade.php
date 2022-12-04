@@ -53,7 +53,7 @@
 
                             @foreach( $global_categories as $category)
                             <li class="nav-item dropdown dropdown-hover mx-2">
-                                <a href="{{ $category->link() }}" class="nav-link ps-2 d-flex cursor-pointer align-items-center" id="dropdownMenuAccount" data-bs-toggle="dropdown" aria-expanded="false" role="button">
+                                <a href="{{ $category->link() }}" class="nav-link ps-2 d-flex text-white cursor-pointer align-items-center" id="dropdownMenuAccount" data-bs-toggle="dropdown" aria-expanded="false" role="button">
                                     {{ $category->name }}
                                     @if( $category->children->count())
                                     <i class="bi bi-chevron-down arrow ms-auto ms-md-2"></i>
@@ -65,12 +65,12 @@
                                     <div class=" d-lg-flex">
                                         <ul class="list-group w-100">
                                             <li class="nav-item list-group-item border-0 p-0">
-                                                <a href="{{ optional($category->parent)->link() }}" class="dropdown-item border-radius-md text-dark ps-3 d-flex align-items-center mb-1">
+                                                <a href="{{ optional($category->parent)->link() }}" class="dropdown-item border-radius-md  ps-3 d-flex align-items-center mb-1">
                                                     <span>All {{ optional($category->parent)->name }}</span>
                                                 </a>
                                             </li>
                                             <li class="nav-item list-group-item border-0 p-0">
-                                                <a href="{{ $category->link() }}" class="dropdown-item border-radius-md text-dark ps-3 d-flex align-items-center mb-1">
+                                                <a href="{{ $category->link() }}" class="dropdown-item border-radius-md ps-3 d-flex align-items-center mb-1">
                                                     <span> {{ $category->name }}</span>
                                                 </a>
                                             </li>
@@ -95,7 +95,7 @@
                         <ul class="navbar-nav  ">
 
                             <li class="nav-item dropdown dropdown-hover mx-2">
-                                <a class="nav-link ps-2 d-flex cursor-pointer align-items-center" id="dropdownMenuDocs" data-bs-toggle="dropdown" aria-expanded="false" role="button">
+                                <a class="nav-link ps-2 d-flex text-white cursor-pointer align-items-center" id="dropdownMenuDocs" data-bs-toggle="dropdown" aria-expanded="false" role="button">
                                     <i class="bi bi-list fs-2"></i>
                                     Menu<i class="bi bi-chevron-down arrow ms-auto ms-md-2"></i>
                                 </a>
@@ -131,12 +131,12 @@
                         @endauth
 
                         @guest
-                        <button data-bs-toggle="modal" data-bs-target="#auth-modal" class="btn btn-outline-success">
-                            <i class="material-symbols-outlined">login</i>
-                            <span>
+                        <div data-bs-toggle="modal" role="button" data-bs-target="#auth-modal" class="">
+                            <i class="bi bi-box-arrow-in-right text-white"></i>
+                            <span class="text-white">
                                 Login
                             </span>
-                        </button>
+                        </div>
                         @endguest
 
                     </div>
@@ -150,23 +150,30 @@
 
         <div class="py-3 subscribe  bg-dark">
             <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 text-start">
-                        <h4 class="text-white">Gain New Skills, Meet Your Favorite Celeb</h4>
-                        <span class="mb-0 text-white">Enter your email and we’ll send you some samples of our favorite classes.</span>
-                    </div>
-                    <div class="col-lg-5 ms-auto text-end my-auto">
-                        <div class="row g-0">
-                            <div class="col-lg-8 col-md-4 col-7">
-                                <div class="input-group input-group-outline">
-                                    <label class="form-label">Your Email</label>
-                                    <input class="form-control rounded-0 bg-white" placeholder="Enter your email" type="email">
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-5 text-start ps-0">
-                                <button type="button" class="btn  bg-white rounded-0 bg-gradient-dark mb-0"><i class="bi bi-arrow-right"></i></button>
+                <div class="row justify-content-center align-items-center no-gutters">
+                    <div class="col-12 col-lg-6">
+                        <div class="mc-mb-6 mc-mb-md-9 mc-mb-lg-0">
+                            <div class="">
+                                <h1 class="text-white">Gain New Skills, Meet Your Favorite Celeb</h1>
+                                <p class="text-white">Unlimited access to all. </p>
                             </div>
                         </div>
+                    </div>
+                    <div class="col-12 col-lg-5 offset-lg-1">
+
+                        <div class="row justify-content-center p-0">
+                            <div class="">
+                                <form class="row justify-content-center justify-content-lg-start no-gutters">
+
+                                    <div class="row g-0">
+                                        <div class="col-md-9 col-8"><input type="text" placeholder="Email" class="form-control rounded-0"></div>
+                                        <div class="col-md-3 col-4"><button data-bs-toggle="modal" data-bs-target="#main-modal" class="btn btn-outline-secondary w-100 rounded-0 bg-light" type="button" id="button-addon2">Subscribe</button></div>
+                                    </div>
+                                    <p class="text-white">By sharing your email, you agree to our <a class="mc-text--link" href="/terms">Terms of Service</a> and <a class="mc-text--link" href="https://privacy.masterclass.com">Privacy Policy.</a></p>
+                                </form>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>

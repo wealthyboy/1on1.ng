@@ -18,7 +18,7 @@
       <div class="col-lg-5">
         <div>
           <h2 class="product-title">{{ service.name }}</h2>
-          <div class="price">Price: {{ $filters.formatNumber(service.price) }}</div>
+          <div class="price mb-2">Price: {{ $filters.formatNumber(service.price) }}</div>
           <div class="price">Schedule:
             <a
               id="sch"
@@ -89,105 +89,11 @@
       </div>
     </div>
 
-    <div class="row my-5">
-      <div class="col-12">
-        <nav>
-          <div
-            class="nav nav-tabs"
-            id="nav-tab"
-            role="tablist"
-          >
-            <button
-              class="nav-link active"
-              id="nav-home-tab"
-              data-bs-toggle="tab"
-              data-bs-target="#nav-home"
-              type="button"
-              role="tab"
-              aria-controls="nav-home"
-              aria-selected="true"
-            ></button>
-          </div>
-        </nav>
-        <div
-          class="tab-content"
-          id="nav-tabContent"
-        >
-          <div
-            class="tab-pane fade show active"
-            id="nav-home"
-            role="tabpanel"
-            aria-labelledby="nav-home-tab"
-          >
-            <div class="row">
-              <div class="col-md-6">
-                <div class="row my-5">
-                  <div class="col-12">
-                    <nav>
-                      <div
-                        class="nav nav-tabs"
-                        id="nav-tab"
-                        role="tablist"
-                      >
-                        <button
-                          class="nav-link active"
-                          id="nav-home-tab"
-                          data-bs-toggle="tab"
-                          data-bs-target="#nav-home"
-                          type="button"
-                          role="tab"
-                          aria-controls="nav-home"
-                          aria-selected="true"
-                        ></button>
-                      </div>
-                    </nav>
-                    <div
-                      class="tab-content"
-                      id="nav-tabContent"
-                    >
-                      <div
-                        class="tab-pane fade show active"
-                        id="nav-home"
-                        role="tabpanel"
-                        aria-labelledby="nav-home-tab"
-                      >
-                        <div class="row">
-                          <div class="col-md-6">
-                            <h1 class="mt-3">Description</h1>
+    <description
+      :description="service.description"
+      :schedules="service.schedules"
+    />
 
-                            <p v-html="service.description"></p>
-                          </div>
-
-                        </div>
-
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <p v-html="service.description"></p>
-              </div>
-
-              <div
-                id="#sch"
-                v-if="service.schedules"
-                class="col-md-6"
-              >
-                <h1>Schedule</h1>
-                <ul class="li">
-                  <li
-                    v-for="schedule in service.schedules"
-                    :key="schedule.id"
-                  > Date: {{ schedule.starts_at }} - {{ schedule.ends_at }} | Time: {{ schedule.start_time}} - {{ schedule.end_time }}</li>
-
-                </ul>
-              </div>
-
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
   <template v-if="reg_message">
     <complete :message="reg_message" />
@@ -211,6 +117,7 @@ import { loadScript } from "../../../utils/Payment";
 
 import GeneralSelect from "../../Forms/Select";
 import Complete from "../../utils/Complete";
+import Description from "../Description";
 
 export default {
   props: ["user", "service"],
@@ -222,6 +129,7 @@ export default {
     Message,
     GeneralSelect,
     Complete,
+    Description,
   },
   setup(props, { emit }) {
     const loading = ref(false);

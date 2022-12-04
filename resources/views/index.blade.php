@@ -9,8 +9,7 @@
       <div class="row justify-content-center align-items-center no-gutters">
          <div class="col-12 col-lg-6">
             <div class="mc-mb-6 mc-mb-md-9 mc-mb-lg-0">
-               <div class="fresnel-container fresnel-lessThan-lg "></div>
-               <div class="fresnel-container fresnel-greaterThanOrEqual-lg ">
+               <div class="">
                   <h1 class="mc-text--brand mc-text--uppercase mc-text-d1 mc-mb-8">Gain New Skills, Meet Your Favorite Celeb</h1>
                   <p class="mc-text-large">Unlimited access to all. </p>
                </div>

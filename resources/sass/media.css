@@ -56,8 +56,8 @@
     .mt-xs-12 {
         margin-top: 16rem!important
     }
-    w-xs-100 {
-        width: 100vh !important;
+    .w-xs-100 {
+        width: 100% !important;
     }
 }
 

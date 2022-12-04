@@ -63,8 +63,8 @@
     .mt-xs-12 {
         margin-top: 16rem!important
     }
-    w-xs-100 {
-        width: 100vh !important;
+    .w-xs-100 {
+        width: 100% !important;
     }
 }
 
@@ -19450,6 +19450,10 @@ textarea.form-control-lg {
   font-weight: 600;
   text-transform: uppercase;
   margin: 1.2rem 0 0;
+}
+
+.carousel-caption {
+  left: 5%;
 }
 
 button.owl-prev {

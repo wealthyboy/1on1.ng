@@ -123,49 +123,10 @@
       </div>
     </div>
 
-    <div class="row my-5">
-      <div class="col-12">
-        <nav>
-          <div
-            class="nav nav-tabs"
-            id="nav-tab"
-            role="tablist"
-          >
-            <button
-              class="nav-link active"
-              id="nav-home-tab"
-              data-bs-toggle="tab"
-              data-bs-target="#nav-home"
-              type="button"
-              role="tab"
-              aria-controls="nav-home"
-              aria-selected="true"
-            ></button>
-          </div>
-        </nav>
-        <div
-          class="tab-content"
-          id="nav-tabContent"
-        >
-          <div
-            class="tab-pane fade show active"
-            id="nav-home"
-            role="tabpanel"
-            aria-labelledby="nav-home-tab"
-          >
-            <div class="row">
-              <div class="col-md-6">
-                <h1 class="mt-3">Description</h1>
-
-                <p v-html="service.description"></p>
-              </div>
-
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </div>
+    <description
+      :description="service.description"
+      :schedules="service.schedules"
+    />
   </div>
   <template v-if="reg_message">
     <complete :message="reg_message" />
@@ -184,6 +145,7 @@ import { bidRules } from "../../../utils/ValidationRules";
 import { useStore } from "vuex";
 import { useActions, useGetters } from "vuex-composition-helpers";
 import Complete from "../../utils/Complete";
+import Description from "../Description";
 
 import axios from "axios";
 
@@ -264,6 +226,6 @@ export default {
       reg_message,
     };
   },
-  components: { Modal, GeneralInput, Wallet, Complete },
+  components: { Modal, GeneralInput, Wallet, Complete, Description },
 };
 </script>
