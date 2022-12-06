@@ -74,7 +74,7 @@
                 </div>
               </td>
 
-              <td v-if="tableData.meta.show">
+              <td v-if="tableData.unique.show">
                 <a
                   :href="tableData.meta.urls[index].url"
                   data-bs-toggle="tooltip"

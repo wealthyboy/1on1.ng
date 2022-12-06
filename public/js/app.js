@@ -28719,7 +28719,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       )])]);
     }), 128
     /* KEYED_FRAGMENT */
-    )), $setup.tableData.meta.show ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("td", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+    )), $setup.tableData.unique.show ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("td", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
       href: $setup.tableData.meta.urls[index].url,
       "data-bs-toggle": "tooltip",
       "data-bs-original-title": "Preview order"

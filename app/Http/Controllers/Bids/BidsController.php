@@ -56,6 +56,15 @@ class BidsController extends Table
     }
 
 
+    public function unique()
+    {
+        return [
+            'show'  => false,
+            'right' => false,
+        ];
+    }
+
+
     public function currentBid(Request $request, $auction_id)
     {
         //broadcast(new NewBid(auth()->user()));
