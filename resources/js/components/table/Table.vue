@@ -1,6 +1,7 @@
 <template>
 
   <loader :loading="loading" />
+  {{ tableData.unique }}
 
   <div
     v-if="!loading &&  tableData.items[0].length"
