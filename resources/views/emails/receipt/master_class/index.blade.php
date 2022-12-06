@@ -573,7 +573,7 @@
                                                                <td class="header2TD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="scl" data-color="SectionCaptionTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;text-align: left;line-height: 19px;font-weight: lighter;" valign="top" align="left"><a href="#" target="_blank" style="text-decoration: none;color: #67bffd;font-weight: bold;" data-color="scl"></a>Invoice Total</td>
                                                             </tr>
                                                             <tr>
-                                                               <td class="RegularText4TD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="sil" data-color="SectionInfoTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: bold;text-align: left;line-height: 23px;" valign="top" align="left"><a href="#" target="_blank" style="text-decoration: none;color: #67bffd;font-weight: bold;" data-color="sil"></a>{{ $master_class->currency }}{{ $master_class->price }}</td>
+                                                               <td class="RegularText4TD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="sil" data-color="SectionInfoTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: bold;text-align: left;line-height: 23px;" valign="top" align="left"><a href="#" target="_blank" style="text-decoration: none;color: #67bffd;font-weight: bold;" data-color="sil"></a>{{ $master_class->currency }}{{ number_format($master_class->price) }}</td>
                                                             </tr>
                                                             <tr>
                                                                <td colspan="3" style="font-size:0;line-height:0;" height="25">&nbsp;</td>
@@ -712,7 +712,7 @@
                                                    </tr>
                                                    <tr>
 
-                                                      <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>{{ $master_class->currency }}{{ $master_class->price }}</td>
+                                                      <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>{{ $master_class->currency }}{{ number_format($master_class->price) }}</td>
 
                                                    </tr>
                                                    <tr>
@@ -744,7 +744,7 @@
                                                    </tr>
                                                    <tr>
 
-                                                      <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>{{ $master_class->currency }}{{ $master_class->price }}</td>
+                                                      <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>{{ $master_class->currency }}{{ number_format($master_class->price) }}</td>
 
                                                    </tr>
                                                    <tr>
