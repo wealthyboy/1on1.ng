@@ -35,6 +35,16 @@ class ShoutOutsController extends Table
         return ShoutOut::query();
     }
 
+
+
+    public function unique()
+    {
+        return [
+            'show'  => true,
+            'right' => false,
+        ];
+    }
+
     /**
      * Display the specified resource.
      *

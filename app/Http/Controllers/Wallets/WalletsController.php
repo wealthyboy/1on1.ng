@@ -63,6 +63,16 @@ class WalletsController extends Table
         ]);
     }
 
+
+
+    public function unique()
+    {
+        return [
+            'show'  => false,
+            'right' => true,
+        ];
+    }
+
     /**
      * Store a newly created resource in storage.
      *

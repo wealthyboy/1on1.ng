@@ -49,7 +49,7 @@ abstract class Table extends Controller
             ],
             'meta' => [
                 'sub_total'  => false,
-                'show'  => true,
+                'show'  => false,
                 'right' => null,
                 'links' => $collection->links(),
                 'count' => $collection->count(),
@@ -64,10 +64,18 @@ abstract class Table extends Controller
                         "url" => '' . $this->link . '/' . $obj->id,
                     ];
                 })
-            ]
+            ],
+            'unique' =>  $this->unique()
         ];
     }
 
+    public function unique()
+    {
+        return [
+            'show'  => true,
+            'right' => false,
+        ];
+    }
 
 
 

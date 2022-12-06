@@ -16,7 +16,7 @@
           </p>
         </div>
         <div
-          v-if="tableData.meta.right"
+          v-if="tableData.unique.right"
           class="total"
         > Balance: {{ $filters.formatNumber(walletBalance) || '0.00'}} </div>
       </div>

@@ -35,6 +35,15 @@ class MasterClassController extends Table
     }
 
 
+    public function unique()
+    {
+        return [
+            'show'  => true,
+            'right' => false,
+        ];
+    }
+
+
     /**
      * Display the specified resource.
      *

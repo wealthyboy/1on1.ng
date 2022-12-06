@@ -56,13 +56,13 @@ class NewBid extends  Notification implements ShouldQueue
      * @param  mixed  $notifiable
      * @return array
      */
-    public function withDelay($notifiable)
-    {
-        // return [
-        //     'mail' => now()->addMinutes(5),
-        //     'sms' => now()->addMinutes(10),
-        // ];
-    }
+    // public function withDelay($notifiable)
+    // {
+    //     // return [
+    //     //     'mail' => now()->addMinutes(5),
+    //     //     'sms' => now()->addMinutes(10),
+    //     // ];
+    // }
 
 
     /**
