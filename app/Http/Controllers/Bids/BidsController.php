@@ -82,7 +82,9 @@ class BidsController extends Table
         broadcast(new NewBid($data));
 
         //Send emails
-        Notification::send($users, new NotificationsNewBid($auction));
+        $delay = now()->addMinutes(5);
+
+        Notification::send($users, (new NotificationsNewBid($auction))->delay($delay));
 
         return response()->json($data);
     }

@@ -40,8 +40,8 @@ abstract class Table extends Controller
 
     protected function getColumnListings()
     {
-        $collection =  $this->builder->latest()->paginate(30);
 
+        $collection =  $this->builder->latest()->paginate(30);
 
         return [
             'items' => [
@@ -61,7 +61,7 @@ abstract class Table extends Controller
                 'last_page' => $collection->lastPage(),
                 'urls' => $collection->map(function ($obj) {
                     return [
-                        "url" => '/admin/' . $this->link . '/' . $obj->id,
+                        "url" => '' . $this->link . '/' . $obj->id,
                     ];
                 })
             ]
