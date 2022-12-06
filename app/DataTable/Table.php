@@ -40,7 +40,7 @@ abstract class Table extends Controller
 
     protected function getColumnListings()
     {
-        $collection =  $this->builder->paginate(30);
+        $collection =  $this->builder->latest()->paginate(30);
 
 
         return [
