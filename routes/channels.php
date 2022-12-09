@@ -13,8 +13,8 @@ use Illuminate\Support\Facades\Broadcast;
 |
 */
 
-Broadcast::channel('bid', function ($user) {
-    return true;
+Broadcast::channel('bid.{auction_id}', function ($auction_id) {
+    return $auction_id;
 });
 
 

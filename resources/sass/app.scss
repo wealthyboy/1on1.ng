@@ -80,6 +80,98 @@ button.raised {
     border-radius: 50%;
 }
 
+.minipopup-area {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    font-size: 1.1em;
+    text-align: center;
+    z-index: 20002
+}
+
+.minipopup-box {
+    position: absolute;
+    right: -100px;
+    text-align: left;
+    margin: auto auto 20px;
+    padding: 20px;
+    line-height: 1.4;
+    box-shadow: 0 1px 30px rgba(0, 0, 0, 0.08);
+    word-break: break-word;
+    transform: translateY(-100%);
+    width: 300px;
+    z-index: 1000;
+    background: #fff;
+    opacity: 0;
+    transition: right 0.4s ease-in-out, opacity 0.4s ease-in-out
+}
+
+.minipopup-box.active {
+    right: 0;
+    opacity: 1
+}
+
+.minipopup-box .product {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px
+}
+
+.minipopup-box figure {
+    max-width: 60px;
+    margin-right: 10px;
+    margin-bottom: 0
+}
+
+.minipopup-box .product-detail {
+    font-family: Poppins, sans-serif;
+    font-weight: 500
+}
+
+.minipopup-box .product-detail .product-name {
+    display: inline-block;
+    color: #222529;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.4em
+}
+
+.minipopup-box .product-detail .product-name:hover {
+    color: #08C
+}
+
+.minipopup-box .product-detail p {
+    font-size: 12px;
+    letter-spacing: -0.025em;
+    margin-top: 0.5rem;
+    margin-bottom: 0
+}
+
+.minipopup-box .product-action .btn {
+    min-width: 120px;
+    letter-spacing: 0.025em;
+    font-size: 11.2px;
+    padding: 11.2px 22.4px
+}
+
+.minipopup-box .product-action .btn.viewcart {
+    background-color: #efefef;
+    color: #000
+}
+
+.minipopup-box .product-action .btn.checkout {
+    float: right
+}
+
+button.mfp-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    overflow: visible;
+    cursor: pointer;
+    border: 0;
+}
+
 // button.owl-next {
 //     right: 0;
 // }

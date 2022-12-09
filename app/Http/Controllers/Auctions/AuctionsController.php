@@ -7,6 +7,7 @@ use App\Http\Resources\AuctionCollection;
 use App\Models\Auction;
 use App\Models\Category;
 use App\Models\Faq;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -59,26 +60,11 @@ class AuctionsController extends Controller
      */
     public function show(Request $request, Auction $auction)
     {
-        $a = '10 : 52 AM';
-        $x = preg_replace('/\s*:\s*/', ':', $a);
-
-        // dd(date("H:i", strtotime($x)));
-
-        // if (\Carbon\Carbon::parse('2022-11-23 11:30:00')->gt(\Carbon\Carbon::now())) {
-        //     dd(true);
-        //     //Time has not passed
-        // } else {
-        //     //Time has  passed
-        // }
-
-        // dd(auth()->user());
-
-
         $auction->load('celebrity');
-
         $categories = Category::with('parent')->orderBy('name', 'asc')->get();
         $faqs = Faq::all();
         $user = $request->user();
+        // dd(now()->addMinutes(10));
         return view('products.auction', compact('faqs', 'categories', 'user', 'auction'));
     }
 }

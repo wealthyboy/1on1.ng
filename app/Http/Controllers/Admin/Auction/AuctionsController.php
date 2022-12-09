@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Auction;
 use App\DataTable\DataTable;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\CheckForWinnerOfAuction;
 use App\Models\Auction;
 use App\Models\Category;
 use App\Models\Celebrity;
@@ -130,19 +131,21 @@ class AuctionsController extends DataTable
 
         $data =  $request->all();
         $data['slug'] = str_slug($data['name']);
-        $model = $this->builder->create($data);
+        $auction = $this->builder->create($data);
         if (!empty($request->images)) {
             $images =  $request->images;
             $images = array_filter($images);
             foreach ($images as $variation_image) {
                 $images = new Image(['image' => $variation_image]);
-                $model->images()->save($images);
+                $auction->images()->save($images);
             }
         }
 
         if (!empty($request->category_id)) {
-            $model->categories()->sync($request->category_id);
+            $auction->categories()->sync($request->category_id);
         }
+
+        dispatch(new CheckForWinnerOfAuction($auction))->delay($auction->end_date);
 
         return redirect()->route($this->indexRoute);
     }
@@ -151,8 +154,15 @@ class AuctionsController extends DataTable
     {
 
         $request->validate($this->editValidationRules($id));
-        $model = $this->builder->find($id);
+        $auction = $this->builder->find($id);
         $data =  $request->all();
+
+
+        $auction->end_date = $request->end_date;
+
+        if ($auction->isDirty('end_date')) {
+            CheckForWinnerOfAuction::dispatch($auction);
+        }
 
         $this->builder->find($id)->update($data);
         if (!empty($request->images)) {
@@ -160,18 +170,23 @@ class AuctionsController extends DataTable
             $images = array_filter($images);
             foreach ($images as $variation_image) {
                 $images = new Image(['image' => $variation_image]);
-                $model->images()->save($images);
+                $auction->images()->save($images);
             }
         }
 
 
         if (!empty($request->category_id)) {
-            $model->categories()->sync($request->category_id);
+            $auction->categories()->sync($request->category_id);
         }
 
         if (!empty($request->tag_id)) {
-            $model->tags()->sync($request->tag_id);
+            $auction->tags()->sync($request->tag_id);
         }
+
+        // dd($auction->isDirty('end_date'))
+
+
+
 
         if ($this->useJson) {
             return;

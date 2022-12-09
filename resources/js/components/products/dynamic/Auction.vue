@@ -31,8 +31,11 @@
 
           <div class="d-flex justify-content-between mb-1">
             <div>
-              Time Left: <strong v-if="service.time_left">{{ service.time_left + 'h'}}</strong>
-              <strong v-if="service.days_left">{{ service.days_left + 'd'}}</strong>
+              Time Left:
+              <strong>
+                <span v-if="service.days_left"> {{ service.days_left + 'd'}} </span>
+                {{ service.time_left + 'h'}}
+              </strong>
             </div>
 
             <div>
@@ -132,6 +135,7 @@
     <complete :message="reg_message" />
   </template>
 </template>
+
 
 
 <script>

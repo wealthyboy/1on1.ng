@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\ColumnFillable;
 use App\Traits\ImageFiles;
+use Carbon\Carbon;
 
 class Auction extends Model
 {
@@ -60,11 +61,8 @@ class Auction extends Model
 
     public function getTimeLeftAttribute()
     {
-        if ($this->end_date->isToday()) {
-            return now()->diffInHours($this->end_date);
-        }
-
-        return null;
+        $time = Carbon::parse('12:00 AM');
+        return $time->diffInHours($this->end_date->format('H:i'));
     }
 
 

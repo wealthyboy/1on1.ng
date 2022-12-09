@@ -61,6 +61,9 @@ import FundWallet from "./components/wallet/Fund"
 import Table from "./components/table/Table"
 import WalletTable from "./components/wallet/Index"
 import WalletBalance from "./components/wallet/Balance"
+import Notifications from '@kyvg/vue3-notification'
+
+
 
 const app = createApp({})
 
@@ -77,6 +80,7 @@ app.component('FundWallet', FundWallet)
 app.component('GeneralTable', Table)
 app.component('WalletTable', WalletTable)
 app.component('WalletBalance', WalletBalance)
+app.use(Notifications)
 
 
 app.config.globalProperties.$filters = {

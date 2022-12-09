@@ -67,16 +67,17 @@ class BidsController extends Table
 
     public function currentBid(Request $request, $auction_id)
     {
-        //broadcast(new NewBid(auth()->user()));
+        $user = $request->user();
         $auction = Auction::find($auction_id);
-        $data = Bid::getCurrentBid($auction);
+        $data = Bid::getCurrentBid($auction, $user);
         return response()->json($data);
     }
 
     public function store(Request $request)
     {
         $bid = new Bid;
-        $bid->user_id = $request->user()->id;
+        $user = $request->user();
+        $bid->user_id = $user->id;
         $bid->auction_id = $request->auction_id;
         $bid->price = $request->amount;
         $bid->save();
@@ -85,14 +86,13 @@ class BidsController extends Table
         $input = $request->all();
         WalletBalance::deductAmount($input);
         $auction = Auction::find($request->auction_id);
-        $data = Bid::getCurrentBid($auction);
-        $users = Bid::where('auction_id', $request->auction_id)->select('user_id')->get()->toArray();
+        $data = Bid::getCurrentBid($auction, $user);
+        $users = Bid::where('auction_id', $request->auction_id)->where('user_id', '!=',  $user->id)->select('user_id')->get()->toArray();
         $users = User::find($users);
-        broadcast(new NewBid($data));
+        broadcast(new NewBid($data))->toOthers();
 
         //Send emails
         $delay = now()->addMinutes(5);
-
         Notification::send($users, (new NotificationsNewBid($auction))->delay($delay));
 
         return response()->json($data);

@@ -40,7 +40,7 @@ class ShoutOutsController extends Table
     public function unique()
     {
         return [
-            'show'  => true,
+            'show'  => false,
             'right' => false,
         ];
     }

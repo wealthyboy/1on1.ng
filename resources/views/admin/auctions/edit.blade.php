@@ -41,24 +41,19 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-sm-4 col-12 mt-3">
+                        <div class="col-sm-6 col-12 mt-3">
                             <div class="input-group input-group-outline">
                                 <label class="form-label">Auction Bid Start Price</label>
                                 <input value="{{ $auction->bid_start_price }}" name="bid_start_price" class="form-control" type="text">
                             </div>
                         </div>
-                        <div class="col-sm-4 col-12 mt-3">
+                        <div class="col-sm-6 col-12 mt-3">
                             <div class="input-group input-group-outline">
                                 <label class="form-label">Minimum Bid </label>
                                 <input value="{{ $auction->min_bid }}" required name="min_bid" class="form-control " type="number">
                             </div>
                         </div>
-                        <div class="col-sm-4 col-12 mt-3">
-                            <div class="input-group input-group-outline">
-                                <label class="form-label">Auction Bid End Price</label>
-                                <input value="{{ $auction->one_time_price }}" name="one_time_price" class="form-control " type="text">
-                            </div>
-                        </div>
+
                     </div>
                     <div class="row">
                         <div class="col-sm-12 col-12 mt-3">

@@ -1,10 +1,12 @@
 <template>
+
   <template v-if="auction">
     <auction
       :user="user"
       :service="service"
       @bid:placed="placeBid"
     />
+
   </template>
 
   <template v-if="service.type == 'shout_out'">
@@ -21,6 +23,8 @@
     />
   </template>
 
+  <notification :data="notification" />
+
 </template>
 <script>
 import ShoutOut from "./dynamic/ShoutOut";
@@ -29,6 +33,7 @@ import MasterClass from "./dynamic/MasterClass";
 import { onMounted, ref } from "vue";
 import { useStore } from "vuex";
 import { useActions, useGetters } from "vuex-composition-helpers";
+import Notification from "../utils/Notification";
 import axios from "axios";
 
 export default {
@@ -41,11 +46,16 @@ export default {
     ShoutOut,
     Auction,
     MasterClass,
+    Notification,
   },
 
   setup(props, { emit }) {
     const store = useStore();
     const loading = ref(false);
+    const new_bid = ref(false);
+    const notification = ref({
+      active: false,
+    });
 
     const { currentBid, walletBalance, number_of_bidders } = useGetters([
       "currentBid",
@@ -69,9 +79,17 @@ export default {
     }
 
     onMounted(() => {
-      Echo.channel(`bid`).listen(".bid.added", (res) => {
+      Echo.join(`bid.${props.service.id}`).listen(".bid.added", (res) => {
+        console.log(res);
         store.commit("setCurrentBid", res.current_bid);
         store.commit("setNumberOfBidders", res.number_of_bids);
+
+        notification.value = {
+          active: true,
+          message: "This is a test",
+          error: false,
+          success: true,
+        };
       });
 
       getWalletBalance();
@@ -103,6 +121,8 @@ export default {
       placeBid,
       loading,
       makePost,
+      new_bid,
+      notification,
     };
   },
 };
