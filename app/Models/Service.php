@@ -106,9 +106,9 @@ class Service extends Model
     public function getLatestPriceAttribute()
     {
         if ($this->type == 'master_class') {
-            $price = $this->price;
+            $price = $this->currency . number_format($this->price);
         } else {
-            $price = $this->video_shout_out_price . ' - ' . $this->audio_shout_out_price;
+            $price = $this->currency . number_format($this->video_shout_out_price) . ' - ' . $this->currency . number_format($this->audio_shout_out_price);
         }
 
         return $price;

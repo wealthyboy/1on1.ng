@@ -58,10 +58,10 @@ class Auction extends Model
         $price = Bid::where('auction_id', $this->id)->sum('price');
 
         if ($price) {
-            return $price;
+            return  '₦' . number_format($price);
         }
 
-        return $this->bid_start_price;
+        return '₦' . number_format($this->bid_start_price);
     }
 
     public function celebrity()

@@ -52,7 +52,7 @@
                      <div class="card-body pt-12">
                         <h4 class="tex">{{ $auction->name }}</h4>
                         <div class="price">₦{{ number_format($auction->latest_price) }}</div>
-                        <p class="text"></p>
+
                      </div>
                   </div>
                </a>
@@ -68,7 +68,8 @@
                      <img src="{{ optional($service->celebrity)->image }}" alt="" srcset="">
                      <div class="card-body pt-12">
                         <h4 class="tex">{{ $service->name }}</h4>
-                        <div class="price">₦{{ number_format($auction->latest_price) }}</div>
+                        <div class="price">₦{{ $service->latest_price }}</div>
+
                      </div>
                   </div>
                </a>
