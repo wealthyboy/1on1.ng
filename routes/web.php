@@ -100,6 +100,9 @@ Route::post('change/password', 'ChangePassword\ChangePasswordController@changePa
 Route::get('bids', 'Bids\BidsController@index');
 Route::post('bids', 'Bids\BidsController@store');
 
+Route::post('newsletter/signup',              'Api\NewsLetter\NewsLetterController@store');
+
+
 Route::get('bids/{auction_id}', 'Bids\BidsController@currentBid');
 
 Route::resource('shoutouts', 'ShoutOuts\ShoutOutsController', ['names' => 'shout.outs']);

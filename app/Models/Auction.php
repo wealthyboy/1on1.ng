@@ -26,7 +26,8 @@ class Auction extends Model
         'url',
         'days_left',
         'ev_date',
-        'time_left'
+        'time_left',
+        'latest_price'
     ];
 
     public function images()
@@ -52,6 +53,16 @@ class Auction extends Model
         return '/auction/' . $this->slug;
     }
 
+    public function getLatestPriceAttribute()
+    {
+        $price = Bid::where('auction_id', $this->id)->sum('price');
+
+        if (null !== $price) {
+            return $price;
+        }
+
+        return $this->bid_start_price;
+    }
 
     public function celebrity()
     {

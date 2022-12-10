@@ -35,6 +35,9 @@
               <div class="card-body pt-12">
                 <h4 class="tex">{{ service.name }} <i class="fa-solid fa-empty-set"></i>
                 </h4>
+                <div>
+                  {{ service.latest_price }}
+                </div>
               </div>
             </div>
           </a>
@@ -42,8 +45,7 @@
       </div>
 
       <template v-if="!loading &&  !services.length">
-        <empty :message="'No auctions found'" />
-
+        <empty :message="'No contents for your query'" />
       </template>
 
     </div>

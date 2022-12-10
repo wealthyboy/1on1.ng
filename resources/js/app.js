@@ -61,6 +61,8 @@ import FundWallet from "./components/wallet/Fund"
 import Table from "./components/table/Table"
 import WalletTable from "./components/wallet/Index"
 import WalletBalance from "./components/wallet/Balance"
+import NewsLetter from "./components/newsletter/Index"
+
 import Notifications from '@kyvg/vue3-notification'
 
 
@@ -75,6 +77,7 @@ app.component('ShowProducts', ShowProducts)
 app.component('Auth', Auth)
 app.component('Modal', Modal)
 app.component('Account', Account)
+app.component('NewsLetter', NewsLetter)
 app.component('ChangePassword', ChangePassword)
 app.component('FundWallet', FundWallet)
 app.component('GeneralTable', Table)
