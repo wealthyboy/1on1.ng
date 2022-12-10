@@ -68,7 +68,7 @@
                      <img src="{{ optional($service->celebrity)->image }}" alt="" srcset="">
                      <div class="card-body pt-12">
                         <h4 class="tex">{{ $service->name }}</h4>
-                        <p class="text"></p>
+                        <div class="price">₦{{ number_format($auction->latest_price) }}</div>
                      </div>
                   </div>
                </a>

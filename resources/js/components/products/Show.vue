@@ -79,18 +79,21 @@ export default {
     }
 
     onMounted(() => {
-      Echo.join(`bid.${props.service.id}`).listen(".bid.added", (res) => {
-        console.log(res);
-        store.commit("setCurrentBid", res.current_bid);
-        store.commit("setNumberOfBidders", res.number_of_bids);
+      Echo.join(`presence-bid.${props.service.id}`).listen(
+        ".bid.added",
+        (res) => {
+          console.log(res);
+          store.commit("setCurrentBid", res.current_bid);
+          store.commit("setNumberOfBidders", res.number_of_bids);
 
-        notification.value = {
-          active: true,
-          message: "This is a test",
-          error: false,
-          success: true,
-        };
-      });
+          notification.value = {
+            active: true,
+            message: "This is a test",
+            error: false,
+            success: true,
+          };
+        }
+      );
 
       getWalletBalance();
       getCurrentBid();

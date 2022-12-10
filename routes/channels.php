@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Broadcast;
 */
 
 Broadcast::channel('bid.{auction_id}', function ($auction_id) {
-    return $auction_id;
+    return true;
 });
 
 

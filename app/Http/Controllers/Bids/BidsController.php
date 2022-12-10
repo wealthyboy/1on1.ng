@@ -87,6 +87,8 @@ class BidsController extends Table
         WalletBalance::deductAmount($input);
         $auction = Auction::find($request->auction_id);
         $data = Bid::getCurrentBid($auction, $user);
+
+
         $users = Bid::where('auction_id', $request->auction_id)->where('user_id', '!=',  $user->id)->select('user_id')->get()->toArray();
         $users = User::find($users);
         broadcast(new NewBid($data))->toOthers();

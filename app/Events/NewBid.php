@@ -58,7 +58,6 @@ class NewBid implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        // return new Channel('bid');
         return new PresenceChannel('bid.' . $this->data['auction_id']);
     }
 }

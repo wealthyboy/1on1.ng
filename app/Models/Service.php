@@ -24,7 +24,8 @@ class Service extends Model
         'end_time',
         'currency',
         'service_date',
-        'url'
+        'url',
+        'latest_price'
     ];
 
     public $casts = [
@@ -100,6 +101,20 @@ class Service extends Model
     {
         return '/services/' . optional($this->categories->first())->slug . '/' . $this->slug;
     }
+
+
+    public function getLatestPriceAttribute()
+    {
+        if ($this->type == 'master_class') {
+            $price = $this->price;
+        } else {
+            $price = $this->video_shout_out_price . ' - ' . $this->audio_shout_out_price;
+        }
+
+        return $price;
+    }
+
+
 
     public function getDateAttribute()
     {

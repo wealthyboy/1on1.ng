@@ -36,7 +36,7 @@
                 <h4 class="tex">{{ service.name }} <i class="fa-solid fa-empty-set"></i>
                 </h4>
                 <div>
-                  {{ service.latest_price }}
+                  {{ $filters.formatNumber(service.latest_price) }}
                 </div>
               </div>
             </div>
