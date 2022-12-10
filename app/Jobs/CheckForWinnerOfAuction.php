@@ -40,12 +40,13 @@ class CheckForWinnerOfAuction implements ShouldQueue
         $bid = Bid::where('auction_id', $this->auction->id)->latest()->first();
 
         if (null !== $bid) {
-            $delay = now()->addMinutes(5);
-            Notification::send($users, (new BidWon($auction));
+            Notification::send(
+                optional($bid->user)->email,
+                (new BidWon($auction))
+            );
             $this->auction->is_ended = true;
             $this->auction->save();
         }
         Log::info($bid);
-
     }
 }
