@@ -12,12 +12,13 @@
     <div class="modal-dialog  modal-dialog-centered modal-dialog-scrollable">
       <div class="modal-content px-4">
         <div class="modal-header">
-          <h5
-            class="modal-title"
-            id="staticBackdropLabel"
+          <img
+            src="https://1on1.ng/images/logo/one.ng.PNG"
+            alt=""
+            srcset=""
+            width="80"
+            height="50"
           >
-            1on1
-          </h5>
           <button
             type="button"
             class="btn-close"

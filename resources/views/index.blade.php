@@ -44,7 +44,7 @@
                      <img src="{{ optional($auction->celebrity)->image }}" alt="" srcset="">
                      <div class="card-body pt-12">
                         <h4 class="tex">{{ $auction->name }}</h4>
-                        <div class="price">₦{{ number_format($auction->latest_price }}</div>
+                        <div class="price">₦{{ number_format($auction->latest_price) }}</div>
                         <p class="text"></p>
                      </div>
                   </div>

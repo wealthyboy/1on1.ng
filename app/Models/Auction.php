@@ -57,7 +57,7 @@ class Auction extends Model
     {
         $price = Bid::where('auction_id', $this->id)->sum('price');
 
-        if (null !== $price) {
+        if ($price) {
             return $price;
         }
 
