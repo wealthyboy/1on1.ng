@@ -255,6 +255,9 @@
 
                 <div class="footer-bottom  d-flex border-top justify-content-center align-items-center ">
                     <p class="footer-copyright py-3 text-white pr-4 mb-0">© {{ config('app.name') }}. {{ date('Y') }}. All Rights Reserved</p>
+                    @if ( auth()->check() && auth()->user()->isAdmin() )
+                    <p class="footer-copyright mx-3"><a target="_blank" href="/admin">Go to Admin</a></p>
+                    @endif
 
                 </div><!-- End .footer-bottom -->
             </div><!-- End .container -->
