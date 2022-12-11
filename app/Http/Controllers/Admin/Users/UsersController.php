@@ -66,7 +66,7 @@ class UsersController extends Controller
 	{
 
 		$this->validate($request, [
-			'email'      => 'required|unique:users|email|max:255',
+			'email'  => 'required|unique:users|email|max:255',
 		]);
 
 		$user  = new  User;
@@ -77,9 +77,7 @@ class UsersController extends Controller
 		$user->password = $request->has('password') ? bcrypt($request->password) : $user->password;
 		$user->save();
 
-		//dd($request->permission_id);
-
-		$user->users_permission()->update([
+		$user->users_permission()->create([
 			'permission_id' => $request->permission_id
 		]);
 
@@ -102,6 +100,7 @@ class UsersController extends Controller
 		$user->save();
 
 		//dd($request->permission_id);
+
 
 		$user->users_permission()->update([
 			'permission_id' => $request->permission_id
