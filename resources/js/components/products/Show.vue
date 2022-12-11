@@ -79,28 +79,39 @@ export default {
     }
 
     onMounted(() => {
-      Echo.join(`presence-bid.${props.service.id}`).listen(
-        ".bid.added",
-        (res) => {
+      console.log(props.service.id);
+      Echo.join(`bid.${props.service.id}`)
+        .here((users) => {
+          console.log(users);
+        })
+        .joining((user) => {
+          console.log(user.name);
+        })
+        .leaving((user) => {
+          console.log(user.name);
+        })
+        .error((error) => {
+          console.error(error);
+        })
+        .listen(".bid.added", (res) => {
           console.log(res);
           store.commit("setCurrentBid", res.current_bid);
           store.commit("setNumberOfBidders", res.number_of_bids);
 
-          notification.value = {
-            active: true,
-            message: "A new bid has been placed",
-            error: false,
-          };
+          // notification.value = {
+          //   active: true,
+          //   message: "A new bid has been placed",
+          //   error: false,
+          // };
 
-          setTimeout(() => {
-            notification.value = {
-              active: true,
-              message: "A new bid has been placed",
-              error: false,
-            };
-          }, 4000);
-        }
-      );
+          // setTimeout(() => {
+          //   notification.value = {
+          //     active: true,
+          //     message: "A new bid has been placed",
+          //     error: false,
+          //   };
+          // }, 4000);
+        });
 
       getWalletBalance();
       getCurrentBid();
@@ -118,7 +129,10 @@ export default {
       };
 
       makePost(postData)
-        .then(() => {})
+        .then((res) => {
+          store.commit("setCurrentBid", res.data.current_bid);
+          store.commit("setNumberOfBidders", res.data.number_of_bids);
+        })
         .catch(() => {});
     }
 

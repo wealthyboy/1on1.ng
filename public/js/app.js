@@ -26030,22 +26030,30 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
 
     (0,vue__WEBPACK_IMPORTED_MODULE_3__.onMounted)(function () {
-      Echo.join("presence-bid.".concat(props.service.id)).listen(".bid.added", function (res) {
+      console.log(props.service.id);
+      Echo.join("bid.".concat(props.service.id)).here(function (users) {
+        console.log(users);
+      }).joining(function (user) {
+        console.log(user.name);
+      }).leaving(function (user) {
+        console.log(user.name);
+      }).error(function (error) {
+        console.error(error);
+      }).listen(".bid.added", function (res) {
         console.log(res);
         store.commit("setCurrentBid", res.current_bid);
-        store.commit("setNumberOfBidders", res.number_of_bids);
-        notification.value = {
-          active: true,
-          message: "A new bid has been placed",
-          error: false
-        };
-        setTimeout(function () {
-          notification.value = {
-            active: true,
-            message: "A new bid has been placed",
-            error: false
-          };
-        }, 4000);
+        store.commit("setNumberOfBidders", res.number_of_bids); // notification.value = {
+        //   active: true,
+        //   message: "A new bid has been placed",
+        //   error: false,
+        // };
+        // setTimeout(() => {
+        //   notification.value = {
+        //     active: true,
+        //     message: "A new bid has been placed",
+        //     error: false,
+        //   };
+        // }, 4000);
       });
       getWalletBalance();
       getCurrentBid();
@@ -26061,7 +26069,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         needsValidation: true,
         method: "post"
       };
-      makePost(postData).then(function () {})["catch"](function () {});
+      makePost(postData).then(function (res) {
+        store.commit("setCurrentBid", res.data.current_bid);
+        store.commit("setNumberOfBidders", res.data.number_of_bids);
+      })["catch"](function () {});
     }
 
     return _ref2 = {
