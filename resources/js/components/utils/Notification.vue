@@ -1,10 +1,10 @@
 <template>
   <div
-    v-if="data.active"
+    v-if="(data.active && !close)"
     class="minipopup-area"
   >
     <div
-      :class="{'active': data.active}"
+      :class="{'active': data.active, 'bg-danger text-white':  data.error}"
       class="minipopup-box "
       style="top: 0px;"
     >
@@ -12,22 +12,37 @@
 
         <div class="product-detail">
           <div class="d-flex">
-            <i class="bi bi-check-circle"></i>
-            <div class="content">
-              <div>Success</div>
+            <i class="fa fa-bell fs-4 align-self-center"></i>
+            <div class="content ms-3">
+              <div>{{ data.error ? "Error " : "Success" }}</div>
               <p>{{ data.message }}</p>
             </div>
           </div>
         </div>
       </div>
 
-      <button class="mfp-close"><i class="bi bi-x-lg"></i></button>
+      <button
+        @click="cancel"
+        class="mfp-close mt-1 me-1 rounded-circle"
+      ><i class="bi bi-x-lg "></i></button>
     </div>
   </div>
 </template>
 <script>
+import { ref } from "vue";
+
 export default {
   props: ["data"],
-  setup() {},
+  setup(props) {
+    const close = ref(false);
+    function cancel() {
+      close.value = true;
+    }
+
+    return {
+      cancel,
+      close,
+    };
+  },
 };
 </script>

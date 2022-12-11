@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Admin\Booking;
 
+use App\DataTable\Table;
 use App\Http\Controllers\Controller;
 use App\Models\Auction;
 use Illuminate\Http\Request;
 
-class BookedAuctionController extends Controller
+class BookedAuctionController extends Table
 {
     /**
      * Display a listing of the resource.

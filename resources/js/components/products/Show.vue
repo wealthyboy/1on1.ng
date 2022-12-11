@@ -88,10 +88,17 @@ export default {
 
           notification.value = {
             active: true,
-            message: "This is a test",
+            message: "A new bid has been placed",
             error: false,
-            success: true,
           };
+
+          setTimeout(() => {
+            notification.value = {
+              active: true,
+              message: "A new bid has been placed",
+              error: false,
+            };
+          }, 4000);
         }
       );
 

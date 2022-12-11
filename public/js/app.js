@@ -25726,13 +25726,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
 /* harmony import */ var _messages_components_Error__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../messages/components/Error */ "./resources/js/components/messages/components/Error.vue");
+/* harmony import */ var _utils_Notification__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/Notification */ "./resources/js/components/utils/Notification.vue");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -25745,28 +25747,37 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       submitting: false,
       message: null,
       error: null,
-      errorsBag: []
+      errorsBag: [],
+      n: {
+        active: false
+      }
     };
   },
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapGetters)({
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapGetters)({
     errors: "errors"
   })),
   components: {
-    ErrorMessage: _messages_components_Error__WEBPACK_IMPORTED_MODULE_0__["default"]
+    ErrorMessage: _messages_components_Error__WEBPACK_IMPORTED_MODULE_0__["default"],
+    Notification: _utils_Notification__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   methods: {
     signUp: function signUp() {
       var _this = this;
 
       this.submitting = true;
-      return axios.post("/newsletter/signup", {
+      axios.post("/newsletter/signup", {
         email: this.form.email
       }).then(function (response) {
         _this.submitting = false;
         _this.message = response.data.message;
       })["catch"](function (error) {
+        console.log(true);
         _this.submitting = false;
-        _this.error = "There was an error";
+        _this.n = {
+          active: true,
+          message: "An error occured",
+          error: true
+        };
       });
     }
   }
@@ -26025,10 +26036,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         store.commit("setNumberOfBidders", res.number_of_bids);
         notification.value = {
           active: true,
-          message: "This is a test",
-          error: false,
-          success: true
+          message: "A new bid has been placed",
+          error: false
         };
+        setTimeout(function () {
+          notification.value = {
+            active: true,
+            message: "A new bid has been placed",
+            error: false
+          };
+        }, 4000);
       });
       getWalletBalance();
       getCurrentBid();
@@ -26559,9 +26576,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ["data"],
-  setup: function setup() {}
+  setup: function setup(props) {
+    var close = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(false);
+
+    function cancel() {
+      close.value = true;
+    }
+
+    return {
+      cancel: cancel,
+      close: close
+    };
+  }
 });
 
 /***/ }),
@@ -27914,7 +27944,7 @@ var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 );
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  var _component_error_message = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("error-message");
+  var _component_notification = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("notification");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [$data.message ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.message), 1
   /* TEXT */
@@ -27933,13 +27963,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "form-control rounded-0"
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.email]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", _hoisted_8, [$data.submitting ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_9)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Subscribe")])])]), _hoisted_10], 32
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.email]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", _hoisted_8, [$data.submitting ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_9)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Subscribe ")])])]), _hoisted_10], 32
   /* HYDRATE_EVENTS */
-  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_error_message, {
-    error: $data.error
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_notification, {
+    data: $data.n
   }, null, 8
   /* PROPS */
-  , ["error"])]);
+  , ["data"])]);
 }
 
 /***/ }),
@@ -29140,38 +29170,41 @@ var _hoisted_4 = {
 };
 
 var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
-  "class": "bi bi-check-circle"
+  "class": "fa fa-bell fs-4 align-self-center"
 }, null, -1
 /* HOISTED */
 );
 
 var _hoisted_6 = {
-  "class": "content"
+  "class": "content ms-3"
 };
 
-var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, "Success", -1
-/* HOISTED */
-);
-
-var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-  "class": "mfp-close"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
   "class": "bi bi-x-lg"
-})], -1
+}, null, -1
 /* HOISTED */
 );
 
+var _hoisted_8 = [_hoisted_7];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return $props.data.active ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  return $props.data.active && !$setup.close ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
-      'active': $props.data.active
+      'active': $props.data.active,
+      'bg-danger text-white': $props.data.error
     }, "minipopup-box"]),
     style: {
       "top": "0px"
     }
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [_hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.data.message), 1
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.data.error ? "Error " : "Success"), 1
   /* TEXT */
-  )])])])]), _hoisted_8], 2
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.data.message), 1
+  /* TEXT */
+  )])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    onClick: _cache[0] || (_cache[0] = function () {
+      return $setup.cancel && $setup.cancel.apply($setup, arguments);
+    }),
+    "class": "mfp-close mt-1 me-1 rounded-circle"
+  }, _hoisted_8)], 2
   /* CLASS */
   )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true);
 }

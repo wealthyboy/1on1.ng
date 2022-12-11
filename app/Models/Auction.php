@@ -89,6 +89,42 @@ class Auction extends Model
     }
 
 
+    public static function getShowData(Auction $auction)
+    {
+        return [
+            "Id" => '#' . $auction->id,
+            "Name" => optional($auction)->name,
+            "Recipient's full name" =>  optional($auction)->fullname(),
+            "Recipient's email" =>  $auction->recipient_email,
+            "Recipient's phone" =>  $auction->recipient_phone,
+            "Type" => $auction->type,
+            "Event Date" => $auction->event_date,
+            "Comment" => $auction->comment,
+            "Price" => '₦' . number_format($auction->price),
+            "Date Added" => $auction->created_at->format('d-m-y'),
+        ];
+    }
+
+
+    public function getListingData($collection)
+    {
+        return  $collection->map(function ($auction) {
+            return [
+                "Id" => '#' . $auction->id,
+                "Name" => optional($auction)->name,
+                "Recipient's full name" =>  optional($auction->user)->fullname(),
+                "Recipient's email" =>  $auction->recipient_email,
+                "Recipient's phone" =>  $auction->recipient_phone,
+                "Type" => $auction->type,
+                "Event Date" => $auction->event_date,
+                "Comment" =>  $auction->comment,
+                "Price" => '₦' . number_format($auction->price),
+                "Date Added" => $auction->created_at->format('d-m-y'),
+            ];
+        });
+    }
+
+
     /**
      * Get all of the tags for the post.
      */

@@ -33,7 +33,8 @@
               aria-hidden="true"
             ></span>
 
-            Subscribe</button>
+            Subscribe
+          </button>
         </div>
       </div>
       <p class="mc-text-x-small text-white mt-2">By sharing your email, you agree to our <a
@@ -44,13 +45,15 @@
           href="https://privacy.masterclass.com"
         >Privacy Policy.</a></p>
     </form>
-    <error-message :error="error" />
+    <notification :data="n" />
+
   </div>
 </template>
 
 <script>
 import { mapActions, mapGetters } from "vuex";
 import ErrorMessage from "../messages/components/Error";
+import Notification from "../utils/Notification";
 
 export default {
   data() {
@@ -62,6 +65,9 @@ export default {
       message: null,
       error: null,
       errorsBag: [],
+      n: {
+        active: false,
+      },
     };
   },
   computed: {
@@ -71,11 +77,12 @@ export default {
   },
   components: {
     ErrorMessage,
+    Notification,
   },
   methods: {
     signUp() {
       this.submitting = true;
-      return axios
+      axios
         .post("/newsletter/signup", {
           email: this.form.email,
         })
@@ -84,8 +91,13 @@ export default {
           this.message = response.data.message;
         })
         .catch((error) => {
+          console.log(true);
           this.submitting = false;
-          this.error = "There was an error";
+          this.n = {
+            active: true,
+            message: "An error occured",
+            error: true,
+          };
         });
     },
   },

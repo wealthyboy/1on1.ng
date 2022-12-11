@@ -19502,7 +19502,7 @@ button.raised {
   right: -100px;
   text-align: left;
   margin: auto auto 20px;
-  padding: 20px;
+  padding: 10px;
   line-height: 1.4;
   box-shadow: 0 1px 30px rgba(0, 0, 0, 0.08);
   word-break: break-word;
@@ -19522,7 +19522,6 @@ button.raised {
 .minipopup-box .product {
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
 }
 
 .minipopup-box figure {

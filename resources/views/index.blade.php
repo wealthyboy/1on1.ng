@@ -19,14 +19,8 @@
 
             <div class="row justify-content-center p-0">
                <div class="">
-                  <form class="row justify-content-center justify-content-lg-start no-gutters">
+                  <news-letter />
 
-                     <div class="row g-0">
-                        <div class="col-md-9 col-8"><input type="text" placeholder="Email" class="form-control rounded-0"></div>
-                        <div class="col-md-3 col-4"><button data-bs-toggle="modal" data-bs-target="#main-modal" class="btn btn-outline-secondary w-100 rounded-0" type="button" id="button-addon2">Subscribe</button></div>
-                     </div>
-                     <p class="mc-text-x-small mc-opacity--muted">By sharing your email, you agree to our <a class="mc-text--link" href="/terms">Terms of Service</a> and <a class="mc-text--link" href="https://privacy.masterclass.com">Privacy Policy.</a></p>
-                  </form>
                </div>
             </div>
 
