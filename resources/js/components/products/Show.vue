@@ -73,9 +73,8 @@ export default {
     onMounted(() => {
       setInterval(() => {
         console.log(props.service.id);
-
-
       }, 3000)
+
       Echo.join(`bid.${props.service.id}`)
         .here((users) => {
           console.log(users);
