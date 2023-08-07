@@ -1,7 +1,6 @@
 <template>
   <template v-if="auction">
     <auction :user="user" :service="service" @bid:placed="placeBid" />
-    jjjjjjjj
   </template>
 
   <template v-if="service.type == 'shout_out'">
@@ -72,7 +71,7 @@ export default {
 
     onMounted(() => {
       setInterval(() => {
-        console.log(props.service.id);
+        // console.log(props.service.id);
       }, 3000)
 
       Echo.join(`bid.${props.service.id}`)
