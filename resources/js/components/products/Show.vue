@@ -65,14 +65,12 @@ export default {
         .catch(() => { });
     }
 
-    onUnmounted(() => {
-      // clearInterval()
-    })
+
 
     onMounted(() => {
-      setInterval(() => {
-        // console.log(props.service.id);
-      }, 3000)
+      // setInterval(() => {
+      //   // console.log(props.service.id);
+      // }, 3000)
 
       Echo.join(`bid.${props.service.id}`)
         .here((users) => {
