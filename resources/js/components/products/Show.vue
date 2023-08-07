@@ -1,7 +1,7 @@
 <template>
   <template v-if="auction">
     <auction :user="user" :service="service" @bid:placed="placeBid" />
-
+    jjjjjjjj
   </template>
 
   <template v-if="service.type == 'shout_out'">
