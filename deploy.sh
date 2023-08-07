@@ -4,7 +4,7 @@ cd /home/forge/1on1.ng
 
 php artisan down || true
 
-git pull origin $FORGE_SITE_BRANCH
+git pull origin master
 $FORGE_COMPOSER install --no-interaction --prefer-dist --optimize-autoloader
 
 ( flock -w 10 9 || exit 1
