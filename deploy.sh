@@ -1,6 +1,6 @@
 # Change to the project directory
 
-cd /home/forge/autofactor.ng
+cd /home/forge/1on1.ng
 
 php artisan down || true
 
