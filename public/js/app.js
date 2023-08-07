@@ -25980,8 +25980,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_Notification__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils/Notification */ "./resources/js/components/utils/Notification.vue");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_6__);
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 
 
 
@@ -26003,8 +26001,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     Notification: _utils_Notification__WEBPACK_IMPORTED_MODULE_5__["default"]
   },
   setup: function setup(props, _ref) {
-    var _ref2;
-
     var emit = _ref.emit;
     var store = (0,vuex__WEBPACK_IMPORTED_MODULE_7__.useStore)();
     var loading = (0,vue__WEBPACK_IMPORTED_MODULE_3__.ref)(false);
@@ -26079,13 +26075,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       })["catch"](function () {});
     }
 
-    return _ref2 = {
+    return {
       placeBid: placeBid,
       walletBalance: walletBalance,
       currentBid: currentBid,
       getWalletBalance: getWalletBalance,
-      getCurrentBid: getCurrentBid
-    }, _defineProperty(_ref2, "placeBid", placeBid), _defineProperty(_ref2, "loading", loading), _defineProperty(_ref2, "makePost", makePost), _defineProperty(_ref2, "new_bid", new_bid), _defineProperty(_ref2, "notification", notification), _ref2;
+      getCurrentBid: getCurrentBid,
+      loading: loading,
+      makePost: makePost,
+      new_bid: new_bid,
+      notification: notification
+    };
   }
 });
 

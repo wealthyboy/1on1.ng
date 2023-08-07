@@ -133,11 +133,11 @@ export default {
 
     return {
       placeBid,
+
       walletBalance,
       currentBid,
       getWalletBalance,
       getCurrentBid,
-      placeBid,
       loading,
       makePost,
       new_bid,
