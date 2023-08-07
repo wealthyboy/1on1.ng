@@ -1,36 +1,24 @@
 <template>
-
   <template v-if="auction">
-    <auction
-      :user="user"
-      :service="service"
-      @bid:placed="placeBid"
-    />
+    <auction :user="user" :service="service" @bid:placed="placeBid" />
 
   </template>
 
   <template v-if="service.type == 'shout_out'">
-    <shout-out
-      :user="user"
-      :service="service"
-    />
+    <shout-out :user="user" :service="service" />
   </template>
 
   <template v-if="service.type == 'master_class'">
-    <master-class
-      :user="user"
-      :service="service"
-    />
+    <master-class :user="user" :service="service" />
   </template>
 
   <notification :data="notification" />
-
 </template>
 <script>
 import ShoutOut from "./dynamic/ShoutOut";
 import Auction from "./dynamic/Auction";
 import MasterClass from "./dynamic/MasterClass";
-import { onMounted, ref } from "vue";
+import { onMounted, ref, onUnmounted } from "vue";
 import { useStore } from "vuex";
 import { useActions, useGetters } from "vuex-composition-helpers";
 import Notification from "../utils/Notification";
@@ -75,11 +63,19 @@ export default {
           store.commit("setCurrentBid", res.data.current_bid);
           store.commit("setNumberOfBidders", res.data.number_of_bids);
         })
-        .catch(() => {});
+        .catch(() => { });
     }
 
+    onUnmounted(() => {
+      clearInterval()
+    })
+
     onMounted(() => {
-      console.log(props.service.id);
+      setInterval(() => {
+        console.log(props.service.id);
+
+
+      }, 3000)
       Echo.join(`bid.${props.service.id}`)
         .here((users) => {
           console.log(users);
@@ -133,7 +129,7 @@ export default {
           store.commit("setCurrentBid", res.data.current_bid);
           store.commit("setNumberOfBidders", res.data.number_of_bids);
         })
-        .catch(() => {});
+        .catch(() => { });
     }
 
     return {
