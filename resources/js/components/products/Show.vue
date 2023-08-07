@@ -74,13 +74,13 @@ export default {
 
       Echo.join(`bid.${props.service.id}`)
         .here((users) => {
-          console.log(users);
+          // console.log(users);
         })
         .joining((user) => {
-          console.log(user.name);
+          // console.log(user.name);
         })
         .leaving((user) => {
-          console.log(user.name);
+          //console.log(user.name);
         })
         .error((error) => {
           console.error(error);

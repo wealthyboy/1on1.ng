@@ -26029,12 +26029,9 @@ __webpack_require__.r(__webpack_exports__);
       // setInterval(() => {
       //   // console.log(props.service.id);
       // }, 3000)
-      Echo.join("bid.".concat(props.service.id)).here(function (users) {
-        console.log(users);
-      }).joining(function (user) {
-        console.log(user.name);
-      }).leaving(function (user) {
-        console.log(user.name);
+      Echo.join("bid.".concat(props.service.id)).here(function (users) {// console.log(users);
+      }).joining(function (user) {// console.log(user.name);
+      }).leaving(function (user) {//console.log(user.name);
       }).error(function (error) {
         console.error(error);
       }).listen(".bid.added", function (res) {
