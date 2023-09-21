@@ -26026,9 +26026,9 @@ __webpack_require__.r(__webpack_exports__);
     }
 
     (0,vue__WEBPACK_IMPORTED_MODULE_3__.onMounted)(function () {
-      // setInterval(() => {
-      //   // console.log(props.service.id);
-      // }, 3000)
+      setInterval(function () {
+        getCurrentBid();
+      }, 3000);
       Echo.join("bid.".concat(props.service.id)).here(function (users) {// console.log(users);
       }).joining(function (user) {// console.log(user.name);
       }).leaving(function (user) {//console.log(user.name);

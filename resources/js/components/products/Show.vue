@@ -68,9 +68,9 @@ export default {
 
 
     onMounted(() => {
-      // setInterval(() => {
-      //   // console.log(props.service.id);
-      // }, 3000)
+      setInterval(() => {
+        getCurrentBid()
+      }, 3000)
 
       Echo.join(`bid.${props.service.id}`)
         .here((users) => {
@@ -125,12 +125,13 @@ export default {
           store.commit("setCurrentBid", res.data.current_bid);
           store.commit("setNumberOfBidders", res.data.number_of_bids);
         })
-        .catch(() => { });
+        .catch(() => {
+
+        });
     }
 
     return {
       placeBid,
-
       walletBalance,
       currentBid,
       getWalletBalance,
