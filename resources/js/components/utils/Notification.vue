@@ -16,13 +16,14 @@
           </div>
         </div>
 
-        <button @click="cancel" class="mfp-close mt-1 me-1 rounded-circle"><i class="bi bi-x-lg "></i></button>
+        <button @click="cancel" role="button" class="mfp-close mt-1 me-1 rounded-circle"><i
+            class="bi bi-x-lg "></i></button>
       </div>
     </div>
   </transition>
 </template>
 <script>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 
 export default {
   props: ["data"],
@@ -34,6 +35,12 @@ export default {
       props.data.active = false
       console.log(true)
     }
+
+    onMounted(() => {
+      setInterval(() => {
+        props.data.active = false
+      }, 4000)
+    })
 
     return {
       cancel,

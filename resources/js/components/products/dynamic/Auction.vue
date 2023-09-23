@@ -47,7 +47,7 @@
                 Current Bid: <strong>{{ $filters.formatNumber(currentBid) }}</strong>
               </div>
               <div>
-                [ {{ number_of_bidders }} bids ] 90
+                [ {{ number_of_bidders }} bids ]
               </div>
             </div>
 

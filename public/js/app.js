@@ -26631,6 +26631,11 @@ __webpack_require__.r(__webpack_exports__);
       console.log(true);
     }
 
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(function () {
+      setInterval(function () {
+        props.data.active = false;
+      }, 4000);
+    });
     return {
       cancel: cancel,
       close: close,
@@ -28477,7 +28482,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* TEXT */
   ), _hoisted_15])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Current Bid: "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("strong", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$filters.formatNumber($setup.currentBid)), 1
   /* TEXT */
-  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, " [ " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.number_of_bidders) + " bids ] 90 ", 1
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, " [ " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.number_of_bidders) + " bids ] ", 1
   /* TEXT */
   )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
@@ -29265,6 +29270,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         onClick: _cache[0] || (_cache[0] = function () {
           return $setup.cancel && $setup.cancel.apply($setup, arguments);
         }),
+        role: "button",
         "class": "mfp-close mt-1 me-1 rounded-circle"
       }, _hoisted_8)], 2
       /* CLASS */
