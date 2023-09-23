@@ -103,7 +103,7 @@ export default {
           };
 
           makePost(postData)
-            .then((res) => { })
+            .then((res) => { loading.value = falses })
             .catch((error) => {
               message.value = "Your money has been addedd";
               setTimeout(() => {

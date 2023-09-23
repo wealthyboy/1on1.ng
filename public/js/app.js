@@ -25579,7 +25579,9 @@ __webpack_require__.r(__webpack_exports__);
             post_server_error: post_server_error,
             method: "post"
           };
-          makePost(postData).then(function (res) {})["catch"](function (error) {
+          makePost(postData).then(function (res) {
+            loading.value = falses;
+          })["catch"](function (error) {
             message.value = "Your money has been addedd";
             setTimeout(function () {
               message.value = null;
