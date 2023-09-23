@@ -145,7 +145,7 @@ class AuctionsController extends DataTable
             $auction->categories()->sync($request->category_id);
         }
 
-        dispatch(new CheckForWinnerOfAuction($auction))->delay($auction->end_date);
+        // dispatch(new CheckForWinnerOfAuction($auction))->delay($auction->end_date);
 
         return redirect()->route($this->indexRoute);
     }
@@ -161,7 +161,7 @@ class AuctionsController extends DataTable
         $auction->end_date = $request->end_date;
 
         if ($auction->isDirty('end_date')) {
-            CheckForWinnerOfAuction::dispatch($auction);
+            //  CheckForWinnerOfAuction::dispatch($auction);
         }
 
         $this->builder->find($id)->update($data);

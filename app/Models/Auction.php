@@ -94,9 +94,9 @@ class Auction extends Model
         return [
             "Id" => '#' . $auction->id,
             "Name" => optional($auction)->name,
-            "Recipient's full name" =>  optional($auction)->fullname(),
-            "Recipient's email" =>  $auction->recipient_email,
-            "Recipient's phone" =>  $auction->recipient_phone,
+            "Recipient's full name" => optional($auction)->fullname(),
+            "Recipient's email" => $auction->recipient_email,
+            "Recipient's phone" => $auction->recipient_phone,
             "Type" => $auction->type,
             "Event Date" => $auction->event_date,
             "Comment" => $auction->comment,

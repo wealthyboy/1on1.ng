@@ -26053,6 +26053,7 @@ __webpack_require__.r(__webpack_exports__);
       console.log(true);
       store.commit("setCurrentBid", bid.current_bid);
       store.commit("setNumberOfBidders", bid.number_of_bids);
+      store.commit("setIsBidExpired", bid.expired);
       setInterval(function () {
         getCurrentBid();
       }, 5000); //   Echo.join(`bid.${props.service.id}`)
@@ -26176,7 +26177,8 @@ __webpack_require__.r(__webpack_exports__);
     var _useGetters = (0,vuex_composition_helpers__WEBPACK_IMPORTED_MODULE_6__.useGetters)(["currentBid", "walletBalance", "number_of_bidders", "isBidExpired"]),
         currentBid = _useGetters.currentBid,
         walletBalance = _useGetters.walletBalance,
-        number_of_bidders = _useGetters.number_of_bidders;
+        number_of_bidders = _useGetters.number_of_bidders,
+        isBidExpired = _useGetters.isBidExpired;
 
     var _useActions = (0,vuex_composition_helpers__WEBPACK_IMPORTED_MODULE_6__.useActions)(["getWalletBalance"]),
         getWalletBalance = _useActions.getWalletBalance;
@@ -26216,6 +26218,7 @@ __webpack_require__.r(__webpack_exports__);
       bid: bid,
       text: text,
       walletBalance: walletBalance,
+      isBidExpired: isBidExpired,
       currentBid: currentBid,
       loading: loading,
       message: message,
@@ -28373,7 +28376,7 @@ var _hoisted_8 = {
 };
 var _hoisted_9 = {
   key: 0,
-  "class": "alert alert-warning",
+  "class": "alert alert-info",
   role: "alert"
 };
 var _hoisted_10 = {
@@ -28466,9 +28469,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     srcset: ""
   }, null, 8
   /* PROPS */
-  , _hoisted_5)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.service.name), 1
+  , _hoisted_5)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.service.name) + " uuu " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.isBidExpired), 1
   /* TEXT */
-  ), _ctx.isBidExpired ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_9, " A simple warning alert—check it out! ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End  "), !_ctx.isBidExpired ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_10, [_hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Event Date: "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("strong", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.service.ev_date), 1
+  ), $setup.isBidExpired ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_9, " Biding has expired ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End  "), !$setup.isBidExpired ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_10, [_hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Event Date: "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("strong", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.service.ev_date), 1
   /* TEXT */
   )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .price-box "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Time Left: "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("strong", null, [$props.service.days_left ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.service.days_left + 'd'), 1
   /* TEXT */

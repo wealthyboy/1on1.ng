@@ -89,6 +89,7 @@ export default {
       console.log(true)
       store.commit("setCurrentBid", bid.current_bid);
       store.commit("setNumberOfBidders", bid.number_of_bids);
+      store.commit("setIsBidExpired", bid.expired);
       setInterval(() => {
         getCurrentBid()
       }, 5000)

@@ -10,10 +10,10 @@
 
 
         <div class="product-single-details mt-xs-3">
-          <h1 class="product-title">{{ service.name }}</h1>
+          <h1 class="product-title">{{ service.name }} uuu {{ isBidExpired }}</h1>
 
-          <div v-if="isBidExpired" class="alert alert-warning" role="alert">
-            A simple warning alert—check it out!
+          <div v-if="isBidExpired" class="alert alert-info" role="alert">
+            Biding has expired
           </div>
 
           <!-- End  -->
@@ -136,7 +136,7 @@ export default {
     const rules = bidRules(bid);
     const v$ = useVuelidate(rules, bid);
 
-    const { currentBid, walletBalance, number_of_bidders } = useGetters([
+    const { currentBid, walletBalance, number_of_bidders, isBidExpired } = useGetters([
       "currentBid",
       "walletBalance",
       "number_of_bidders",
@@ -181,6 +181,7 @@ export default {
       bid,
       text,
       walletBalance,
+      isBidExpired,
       currentBid,
       loading,
       message,

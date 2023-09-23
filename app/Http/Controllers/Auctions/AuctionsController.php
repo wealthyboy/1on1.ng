@@ -66,7 +66,6 @@ class AuctionsController extends Controller
         $faqs = Faq::all();
         $user = $request->user();
         $bid = Bid::getCurrentBid($auction, $user);
-
         return view('products.auction', compact('bid', 'faqs', 'categories', 'user', 'auction'));
     }
 }

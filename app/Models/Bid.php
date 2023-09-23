@@ -31,6 +31,7 @@ class Bid extends Model
         $data['number_of_bids'] = self::numsize($auction->bids->count());
         $data['bidder'] = $bidder->id;
         $data['auction_id'] = $auction->id;
+        $data['expired'] = $auction->end_date >= now() ? false : true;
         return $data;
     }
 
