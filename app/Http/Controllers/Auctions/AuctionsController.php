@@ -67,8 +67,6 @@ class AuctionsController extends Controller
         $user = $request->user();
         $bid = Bid::getCurrentBid($auction, $user);
 
-        dd(true);
-
         return view('products.auction', compact('bid', 'faqs', 'categories', 'user', 'auction'));
     }
 }
