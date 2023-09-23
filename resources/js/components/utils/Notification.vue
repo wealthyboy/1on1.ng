@@ -33,7 +33,6 @@ export default {
 
     function cancel() {
       props.data.active = false
-      console.log(true)
     }
 
     onMounted(() => {
