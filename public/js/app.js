@@ -26048,6 +26048,7 @@ __webpack_require__.r(__webpack_exports__);
     }
 
     (0,vue__WEBPACK_IMPORTED_MODULE_3__.onMounted)(function () {
+      console.log(true);
       store.commit("setCurrentBid", bid.current_bid);
       store.commit("setNumberOfBidders", bid.number_of_bids);
       setInterval(function () {

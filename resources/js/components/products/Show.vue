@@ -86,7 +86,7 @@ export default {
 
 
     onMounted(() => {
-
+      console.log(true)
       store.commit("setCurrentBid", bid.current_bid);
       store.commit("setNumberOfBidders", bid.number_of_bids);
       setInterval(() => {
