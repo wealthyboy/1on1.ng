@@ -81,27 +81,26 @@ class WalletsController extends Table
      */
     public function store(Request $request)
     {
+        try {
+            $user = $request->user();
+            $input = $request->input();
+            $wallet = new Wallet;
+            $wallet->amount = $input['amount'];
+            $wallet->user_id = $user->id;
+            $wallet->status = 'Added';
+            $wallet->save();
 
-        $user = $request->user();
-        $input = $request->all();
-        $wallet = new Wallet;
-        $wallet->amount = $input['amount'];
-        $wallet->user_id = $user->id;
-        $wallet->status = 'Added';
-        $wallet->save();
+            $wallet_balence = WalletBalance::firstOrNew([
+                'user_id' => $user->id
+            ]);
 
-        $balance = WalletBalance::where('user_id', $user->id)->first();
+            $wallet_balence->amount += $input['amount'];
+            $wallet_balence->save();
 
-        if (null !== $balance) {
-            $balance->amount = $balance->balance +  $input['amount'];
-            $balance->save();
-        } else {
-            $balance = new WalletBalance;
-            $balance->amount = $input['amount'];
-            $balance->user_id = $user->id;
-            $balance->save();
+            return response($wallet_balence, 200);
+        } catch (\Throwable $th) {
+            throw $th;
         }
-        return response($balance, 200);
     }
 
     /**

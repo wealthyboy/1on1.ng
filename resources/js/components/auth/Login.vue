@@ -1,70 +1,32 @@
 <template>
-
-  <message :message="message" />
-  <form
-    action=""
-    class="mb-0"
-    method="post"
-    @submit.prevent="login"
-  >
+  <message :error="errorMessage" :message="message" />
+  <form action="" class="mb-0" method="post" @submit.prevent="login">
 
     <div class="form-floating mb-3">
-      <general-input
-        :error="v$.email"
-        v-model="form.email"
-        id="email"
-        name="Email"
-        type="email"
-      />
+      <general-input :error="v$.email" v-model="form.email" id="email" name="Email" type="email" />
     </div>
 
     <div class="form-floating">
-      <general-input
-        id="password"
-        :error="v$.password"
-        v-model="form.password"
-        name="Password"
-        type="password"
-      />
+      <general-input id="password" :error="v$.password" v-model="form.password" name="Password" type="password" />
 
     </div>
 
     <div class="d-flex justify-content-between align-items-center ">
       <div class="mb-3 form-check">
-        <input
-          type="checkbox"
-          class="form-check-input"
-          id="rememberme"
-        >
+        <input type="checkbox" class="form-check-input" id="rememberme">
 
-        <label
-          class="form-check-label mt-"
-          role="button"
-          for="rememberme"
-        >Remember me</label>
+        <label class="form-check-label mt-" role="button" for="rememberme">Remember me</label>
       </div>
-      <div class="text-right "><a
-          href="#"
-          @click.prevent="change('forgetPassword')"
-          class="color--primary bold"
-        >Forget your password?</a></div>
+      <div class="text-right "><a href="#" @click.prevent="change('forgetPassword')" class="color--primary bold">Forget
+          your password?</a></div>
     </div>
 
-    <general-button
-      type="submit"
-      :text="text"
-      class="btn btn-dark w-100"
-      :loading="loading"
-    />
+    <general-button type="submit" :text="text" class="btn btn-dark w-100" :loading="loading" />
 
   </form>
   <div class="text-center mt-3">
     <p class="form-group col-12">
-      Dont have an account yet? <a
-        @click.prevent="change('register')"
-        href="#"
-        class="color--primary bold"
-      >Create One</a>
+      Dont have an account yet? <a @click.prevent="change('register')" href="#" class="color--primary bold">Create One</a>
     </p>
   </div>
   <div class="text-center  border-top  py-3">
@@ -72,10 +34,7 @@
       By logging in, you agree to our
     </div>
     <div class="form-group col-12">
-      Dont have an account yet? <a
-        href="/terms"
-        class="color--primary bold"
-      >Terms of Service</a>
+      Dont have an account yet? <a href="/terms" class="color--primary bold">Terms of Service</a>
     </div>
   </div>
 </template>
@@ -102,6 +61,7 @@ export default {
   setup(p, { emit }) {
     const loading = ref(false);
     const post_server_error = ref(false);
+    const errorMessage = ref(false)
 
     const text = ref("Submit");
     const message = ref(null);
@@ -140,12 +100,13 @@ export default {
         })
         .catch((error) => {
           message.value = "We could not find your data in our system";
+          errorMessage.value = true
           setTimeout(() => {
             message.value = null;
           }, 3000);
         });
     }
-    return { form, v$, login, text, loading, message, change };
+    return { errorMessage, form, v$, login, text, loading, message, change };
   },
 };
 </script>

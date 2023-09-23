@@ -25317,6 +25317,7 @@ __webpack_require__.r(__webpack_exports__);
     var emit = _ref.emit;
     var loading = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(false);
     var post_server_error = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(false);
+    var errorMessage = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(false);
     var text = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)("Submit");
     var message = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(null);
     var form = (0,vue__WEBPACK_IMPORTED_MODULE_2__.reactive)({
@@ -25353,6 +25354,7 @@ __webpack_require__.r(__webpack_exports__);
         window.location.href = res.data.url;
       })["catch"](function (error) {
         message.value = "We could not find your data in our system";
+        errorMessage.value = true;
         setTimeout(function () {
           message.value = null;
         }, 3000);
@@ -25360,6 +25362,7 @@ __webpack_require__.r(__webpack_exports__);
     }
 
     return {
+      errorMessage: errorMessage,
       form: form,
       v$: v$,
       login: login,
@@ -25565,26 +25568,23 @@ __webpack_require__.r(__webpack_exports__);
         callback: function callback(response) {
           var new_balnce = parseInt(walletBalance.value) + parseInt(form.amount);
           store.commit("setWalletBalance", new_balnce);
-          console.log(walletBalance.value);
           error.value = false;
-          message.value = "Your money has been addedd"; // const postData = {
-          //   url: "/wallets",
-          //   data: form,
-          //   loading,
-          //   needsValidation: true,
-          //   error: this.v$.$error,
-          //   post_server_error: post_server_error,
-          //   method: "post",
-          // };
-          // makePost(postData)
-          //   .then((res) => {})
-          //   .catch((error) => {
-          //     message.value = "We could not find your data in our system";
-          //     setTimeout(() => {
-          //       message.value = null;
-          //     }, 3000);
-          //   });
-
+          message.value = "Your money has been addedd";
+          var postData = {
+            url: "/wallets",
+            data: form,
+            loading: loading,
+            needsValidation: false,
+            error: null,
+            post_server_error: post_server_error,
+            method: "post"
+          };
+          makePost(postData).then(function (res) {})["catch"](function (error) {
+            message.value = "Your money has been addedd";
+            setTimeout(function () {
+              message.value = null;
+            }, 3000);
+          });
           emit("wallet:funded", new_balnce);
         },
         onClose: function onClose() {}
@@ -25663,7 +25663,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     message: String,
-    error: Boolean
+    error: {
+      type: Boolean,
+      "default": false
+    }
   }
 });
 
@@ -25992,7 +25995,8 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     service: Object,
     user: Object,
-    auction: Boolean
+    auction: Boolean,
+    bid: Object
   },
   components: {
     ShoutOut: _dynamic_ShoutOut__WEBPACK_IMPORTED_MODULE_0__["default"],
@@ -26005,13 +26009,15 @@ __webpack_require__.r(__webpack_exports__);
     var store = (0,vuex__WEBPACK_IMPORTED_MODULE_7__.useStore)();
     var loading = (0,vue__WEBPACK_IMPORTED_MODULE_3__.ref)(false);
     var new_bid = (0,vue__WEBPACK_IMPORTED_MODULE_3__.ref)(false);
+    var bid = props.bid;
     var notification = (0,vue__WEBPACK_IMPORTED_MODULE_3__.ref)({
       active: false
     });
 
-    var _useGetters = (0,vuex_composition_helpers__WEBPACK_IMPORTED_MODULE_4__.useGetters)(["currentBid", "walletBalance", "number_of_bidders"]),
+    var _useGetters = (0,vuex_composition_helpers__WEBPACK_IMPORTED_MODULE_4__.useGetters)(["currentBid", "walletBalance", "number_of_bidders", "isBidExpired"]),
         currentBid = _useGetters.currentBid,
         walletBalance = _useGetters.walletBalance,
+        isBidExpired = _useGetters.isBidExpired,
         number_of_bidders = _useGetters.number_of_bidders;
 
     var _useActions = (0,vuex_composition_helpers__WEBPACK_IMPORTED_MODULE_4__.useActions)(["getWalletBalance", "makePost"]),
@@ -26019,39 +26025,53 @@ __webpack_require__.r(__webpack_exports__);
         makePost = _useActions.makePost;
 
     function getCurrentBid() {
-      axios__WEBPACK_IMPORTED_MODULE_6___default().get("/bids/" + props.service.id).then(function (res) {
-        store.commit("setCurrentBid", res.data.current_bid);
-        store.commit("setNumberOfBidders", res.data.number_of_bids);
-      })["catch"](function () {});
+      if (!isBidExpired.value) {
+        axios__WEBPACK_IMPORTED_MODULE_6___default().get("/bids/" + props.service.id, {
+          params: {
+            bids: number_of_bidders.value
+          }
+        }).then(function (response) {
+          var res = response.data;
+          store.commit("setCurrentBid", res.current_bid);
+          store.commit("setNumberOfBidders", res.number_of_bids);
+          store.commit("setIsBidExpired", res.expired);
+
+          if (res.new_bid && res.shouldBeNotified) {
+            notification.value = {
+              active: true,
+              message: "A new bid has been placed",
+              error: false
+            };
+          }
+        })["catch"](function () {});
+      }
     }
 
     (0,vue__WEBPACK_IMPORTED_MODULE_3__.onMounted)(function () {
+      store.commit("setCurrentBid", bid.current_bid);
+      store.commit("setNumberOfBidders", bid.number_of_bids);
       setInterval(function () {
         getCurrentBid();
-      }, 3000);
-      Echo.join("bid.".concat(props.service.id)).here(function (users) {// console.log(users);
-      }).joining(function (user) {// console.log(user.name);
-      }).leaving(function (user) {//console.log(user.name);
-      }).error(function (error) {
-        console.error(error);
-      }).listen(".bid.added", function (res) {
-        console.log(res);
-        store.commit("setCurrentBid", res.current_bid);
-        store.commit("setNumberOfBidders", res.number_of_bids); // notification.value = {
-        //   active: true,
-        //   message: "A new bid has been placed",
-        //   error: false,
-        // };
-        // setTimeout(() => {
-        //   notification.value = {
-        //     active: true,
-        //     message: "A new bid has been placed",
-        //     error: false,
-        //   };
-        // }, 4000);
-      });
-      getWalletBalance();
-      getCurrentBid();
+      }, 5000); //   Echo.join(`bid.${props.service.id}`)
+      //     .here((users) => {
+      //       //console.log(users);
+      //     })
+      //     .joining((user) => {
+      //       // console.log(user.name);
+      //     })
+      //     .leaving((user) => {
+      //       //console.log(user.name);
+      //     })
+      //     .error((error) => {
+      //       console.error(error);
+      //     })
+      //     .listen(".bid.added", (res) => {
+      //       console.log(res);
+      //       store.commit("setCurrentBid", res.current_bid);
+      //       store.commit("setNumberOfBidders", res.number_of_bids);
+      //     });
+      //getWalletBalance();
+      //getCurrentBid();
     });
 
     function placeBid(data) {
@@ -26067,7 +26087,18 @@ __webpack_require__.r(__webpack_exports__);
       makePost(postData).then(function (res) {
         store.commit("setCurrentBid", res.data.current_bid);
         store.commit("setNumberOfBidders", res.data.number_of_bids);
-      })["catch"](function () {});
+        notification.value = {
+          active: true,
+          message: "Your bid has been placed",
+          error: false
+        };
+      })["catch"](function () {
+        notification.value = {
+          active: true,
+          message: "Your placement failed",
+          error: true
+        };
+      });
     }
 
     return {
@@ -26139,7 +26170,7 @@ __webpack_require__.r(__webpack_exports__);
     var rules = (0,_utils_ValidationRules__WEBPACK_IMPORTED_MODULE_5__.bidRules)(bid);
     var v$ = (0,_vuelidate_core__WEBPACK_IMPORTED_MODULE_0__.useVuelidate)(rules, bid);
 
-    var _useGetters = (0,vuex_composition_helpers__WEBPACK_IMPORTED_MODULE_6__.useGetters)(["currentBid", "walletBalance", "number_of_bidders"]),
+    var _useGetters = (0,vuex_composition_helpers__WEBPACK_IMPORTED_MODULE_6__.useGetters)(["currentBid", "walletBalance", "number_of_bidders", "isBidExpired"]),
         currentBid = _useGetters.currentBid,
         walletBalance = _useGetters.walletBalance,
         number_of_bidders = _useGetters.number_of_bidders;
@@ -26592,14 +26623,17 @@ __webpack_require__.r(__webpack_exports__);
   props: ["data"],
   setup: function setup(props) {
     var close = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(false);
+    var config = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(props.data);
 
     function cancel() {
-      close.value = true;
+      props.data.active = false;
+      console.log(true);
     }
 
     return {
       cancel: cancel,
-      close: close
+      close: close,
+      config: config
     };
   }
 });
@@ -27419,10 +27453,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_general_button = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("general-button");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_message, {
+    error: $setup.errorMessage,
     message: $setup.message
   }, null, 8
   /* PROPS */
-  , ["message"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
+  , ["error", "message"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
     action: "",
     "class": "mb-0",
     method: "post",
@@ -27793,11 +27828,11 @@ var _hoisted_1 = {
   "class": "modal-body"
 };
 var _hoisted_2 = {
-  "class": "fs-4"
+  "class": "fs-6"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return $props.message ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([[$props.error === true ? 'alert-danger' : 'alert-success'], "alert alert-rounded"])
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([[$props.error === true ? 'alert-danger' : 'alert-success'], "alert alert-rounded text-sm"])
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.message), 1
   /* TEXT */
   )], 2
@@ -28329,24 +28364,32 @@ var _hoisted_7 = {
 var _hoisted_8 = {
   "class": "product-title"
 };
+var _hoisted_9 = {
+  key: 0,
+  "class": "alert alert-warning",
+  role: "alert"
+};
+var _hoisted_10 = {
+  key: 1
+};
 
-var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr", {
+var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr", {
   "class": "short-divider"
 }, null, -1
 /* HOISTED */
 );
 
-var _hoisted_10 = {
+var _hoisted_12 = {
   "class": "-box mb-1"
 };
-var _hoisted_11 = {
+var _hoisted_13 = {
   "class": "d-flex justify-content-between mb-1"
 };
-var _hoisted_12 = {
+var _hoisted_14 = {
   key: 0
 };
 
-var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "fs-6"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
   "data-bs-toggle": "modal",
@@ -28358,23 +28401,23 @@ var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
-var _hoisted_14 = {
+var _hoisted_16 = {
   "class": "d-flex justify-content-between mb-2"
 };
-var _hoisted_15 = {
+var _hoisted_17 = {
   "class": "row g-0"
 };
-var _hoisted_16 = {
+var _hoisted_18 = {
   "class": "col-md-3 col-3"
 };
-var _hoisted_17 = {
+var _hoisted_19 = {
   key: 0,
   "class": "text text-danger"
 };
-var _hoisted_18 = {
+var _hoisted_20 = {
   "class": "col-md-9 col-9"
 };
-var _hoisted_19 = {
+var _hoisted_21 = {
   key: 1,
   "data-bs-toggle": "modal",
   "data-bs-target": "#main-modal",
@@ -28382,19 +28425,19 @@ var _hoisted_19 = {
   type: "button",
   id: "button-addon2"
 };
-var _hoisted_20 = {
+var _hoisted_22 = {
   id: "emailHelp",
   "class": "form-text"
 };
 
-var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", null, "Fund your wallet", -1
+var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", null, "Fund your wallet", -1
 /* HOISTED */
 );
 
-var _hoisted_22 = {
+var _hoisted_24 = {
   "class": "row h-100 d-flex align-items-center justify-content-center mx-2 mt-2"
 };
-var _hoisted_23 = {
+var _hoisted_25 = {
   style: {
     "height": "200px"
   },
@@ -28418,19 +28461,19 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* PROPS */
   , _hoisted_5)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.service.name), 1
   /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .ratings-container "), _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Event Date: "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("strong", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.service.ev_date), 1
+  ), _ctx.isBidExpired ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_9, " A simple warning alert—check it out! ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End  "), !_ctx.isBidExpired ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_10, [_hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Event Date: "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("strong", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.service.ev_date), 1
   /* TEXT */
-  )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .price-box "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Time Left: "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("strong", null, [$props.service.days_left ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.service.days_left + 'd'), 1
+  )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .price-box "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Time Left: "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("strong", null, [$props.service.days_left ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.service.days_left + 'd'), 1
   /* TEXT */
   )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.service.time_left + 'h'), 1
   /* TEXT */
   )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Wallet Balance: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$filters.formatNumber($setup.walletBalance) || '0.00') + " ", 1
   /* TEXT */
-  ), _hoisted_13])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Current Bid: "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("strong", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$filters.formatNumber($setup.currentBid)), 1
+  ), _hoisted_15])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Current Bid: "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("strong", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$filters.formatNumber($setup.currentBid)), 1
   /* TEXT */
   )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, " [ " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.number_of_bidders) + " bids ] ", 1
   /* TEXT */
-  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
       return $setup.bid.amount = $event;
@@ -28441,7 +28484,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     })
   }, null, 544
   /* HYDRATE_EVENTS, NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.bid.amount]]), $setup.error ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("small", _hoisted_17, "Enter a valid amount ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [$setup.walletBalance >= $props.service.min_bid ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.bid.amount]]), $setup.error ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("small", _hoisted_19, "Enter a valid amount ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [$setup.walletBalance >= $props.service.min_bid ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
     key: 0,
     "class": "btn btn-outline-secondary w-100 rounded-0",
     type: "button",
@@ -28449,17 +28492,17 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onClick: _cache[2] || (_cache[2] = function () {
       return $setup.handleBid && $setup.handleBid.apply($setup, arguments);
     })
-  }, "Place Bid")) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", _hoisted_19, "Place Bid"))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, "Enter " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$filters.formatNumber($props.service.min_bid)) + " or more", 1
+  }, "Place Bid")) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", _hoisted_21, "Place Bid"))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, "Enter " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$filters.formatNumber($props.service.min_bid)) + " or more", 1
   /* TEXT */
-  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_modal, null, {
+  )])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_modal, null, {
     header: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 1on1 ")];
     }),
     title: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_21];
+      return [_hoisted_23];
     }),
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_wallet, {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_wallet, {
         "onWallet:funded": $setup.getWallet,
         user: $props.user
       }, null, 8
@@ -29166,7 +29209,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  key: 0,
   "class": "minipopup-area"
 };
 var _hoisted_2 = {
@@ -29197,26 +29239,35 @@ var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 
 var _hoisted_8 = [_hoisted_7];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return $props.data.active && !$setup.close ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
-      'active': $props.data.active,
-      'bg-danger text-white': $props.data.error
-    }, "minipopup-box"]),
-    style: {
-      "top": "0px"
-    }
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.data.error ? "Error " : "Success"), 1
-  /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.data.message), 1
-  /* TEXT */
-  )])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-    onClick: _cache[0] || (_cache[0] = function () {
-      return $setup.cancel && $setup.cancel.apply($setup, arguments);
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Transition, {
+    name: "alert"
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
+          'active': $props.data.active,
+          'bg-danger text-white': $props.data.error
+        }, "minipopup-box"]),
+        style: {
+          "top": "0px"
+        }
+      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.data.error ? "Error " : "Success"), 1
+      /* TEXT */
+      ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.data.message), 1
+      /* TEXT */
+      )])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+        onClick: _cache[0] || (_cache[0] = function () {
+          return $setup.cancel && $setup.cancel.apply($setup, arguments);
+        }),
+        "class": "mfp-close mt-1 me-1 rounded-circle"
+      }, _hoisted_8)], 2
+      /* CLASS */
+      )])];
     }),
-    "class": "mfp-close mt-1 me-1 rounded-circle"
-  }, _hoisted_8)], 2
-  /* CLASS */
-  )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true);
+    _: 1
+    /* STABLE */
+
+  });
 }
 
 /***/ }),
@@ -30079,6 +30130,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default_shipping": () => (/* binding */ default_shipping),
 /* harmony export */   "errors": () => (/* binding */ errors),
 /* harmony export */   "images": () => (/* binding */ images),
+/* harmony export */   "isBidExpired": () => (/* binding */ isBidExpired),
 /* harmony export */   "loading": () => (/* binding */ loading),
 /* harmony export */   "locations": () => (/* binding */ locations),
 /* harmony export */   "loggedIn": () => (/* binding */ loggedIn),
@@ -30181,6 +30233,9 @@ var pmeta = function pmeta(state) {
 var currentBid = function currentBid(state) {
   return state.currentBid;
 };
+var isBidExpired = function isBidExpired(state) {
+  return state.isBidExpired;
+};
 var number_of_bidders = function number_of_bidders(state) {
   return state.number_of_bidders;
 };
@@ -30241,6 +30296,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "setDefaultShipping": () => (/* binding */ setDefaultShipping),
 /* harmony export */   "setFormErrors": () => (/* binding */ setFormErrors),
 /* harmony export */   "setImages": () => (/* binding */ setImages),
+/* harmony export */   "setIsBidExpired": () => (/* binding */ setIsBidExpired),
 /* harmony export */   "setMessage": () => (/* binding */ setMessage),
 /* harmony export */   "setMeta": () => (/* binding */ setMeta),
 /* harmony export */   "setNotification": () => (/* binding */ setNotification),
@@ -30279,6 +30335,9 @@ var Loading = function Loading(state, trueOrFalse) {
 };
 var setReviewsMeta = function setReviewsMeta(state, meta) {
   state.reviewsMeta = meta;
+};
+var setIsBidExpired = function setIsBidExpired(state, trueOrFalse) {
+  state.isBidExpired = trueOrFalse;
 };
 var setShowForm = function setShowForm(state, trueOrFalse) {
   state.showForm = trueOrFalse;
@@ -30372,7 +30431,8 @@ __webpack_require__.r(__webpack_exports__);
   meta: null,
   currentBid: 0,
   number_of_bidders: 0,
-  wallet_balance: 0
+  wallet_balance: 0,
+  isBidExpired: false
 });
 
 /***/ }),

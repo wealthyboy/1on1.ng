@@ -25,11 +25,12 @@ class Bid extends Model
     public static function getCurrentBid(Auction $auction, User $user)
     {
         $data = [];
-        $data['current_bid'] = null !== $auction->bids ? $auction->bids()->orderBy('id', 'desc')->sum('price') + $auction->bid_start_price : $auction->bid_start_price;
+        $bid = $auction->bids();
+        $bidder = $bid->latest()->first();
+        $data['current_bid'] = null !== $auction->bids ? $bid->orderBy('id', 'desc')->sum('price') + $auction->bid_start_price : $auction->bid_start_price;
         $data['number_of_bids'] = self::numsize($auction->bids->count());
-        $data['bidder'] = $user->id;
+        $data['bidder'] = $bidder->id;
         $data['auction_id'] = $auction->id;
-
         return $data;
     }
 

@@ -1,102 +1,74 @@
 <template>
-
-  <div
-    v-if="!reg_message"
-    class="container"
-  >
+  <div v-if="!reg_message" class="container">
     <div class="row">
       <div class="col-lg-7 ">
         <div class="image">
-          <img
-            :src="service.image_to_show"
-            class="img-fluid"
-            alt=""
-            srcset=""
-          >
+          <img :src="service.image_to_show" class="img-fluid" alt="" srcset="">
         </div>
       </div>
       <div class="col-lg-5">
 
+
         <div class="product-single-details mt-xs-3">
           <h1 class="product-title">{{ service.name }}</h1>
 
-          <!-- End .ratings-container -->
-          <hr class="short-divider">
-          <div class="-box mb-1">
-            <div>
-              Event Date: <strong>{{ service.ev_date }}</strong>
-            </div>
-          </div>
-          <!-- End .price-box -->
-
-          <div class="d-flex justify-content-between mb-1">
-            <div>
-              Time Left:
-              <strong>
-                <span v-if="service.days_left"> {{ service.days_left + 'd'}} </span>
-                {{ service.time_left + 'h'}}
-              </strong>
-            </div>
-
-            <div>
-              Wallet Balance: {{ $filters.formatNumber(walletBalance) || '0.00' }}
-              <span class="fs-6"> <a
-                  data-bs-toggle="modal"
-                  data-bs-target="#main-modal"
-                  class=" w-100 rounded-0"
-                  href="#"
-                  id=""
-                >Fund your wallet</a></span>
-            </div>
+          <div v-if="isBidExpired" class="alert alert-warning" role="alert">
+            A simple warning alert—check it out!
           </div>
 
-          <div class="d-flex justify-content-between mb-2">
-            <div>
-              Current Bid: <strong>{{ $filters.formatNumber(currentBid) }}</strong>
+          <!-- End  -->
+          <div v-if="!isBidExpired">
+            <hr class="short-divider">
+            <div class="-box mb-1">
+              <div>
+                Event Date: <strong>{{ service.ev_date }}</strong>
+              </div>
             </div>
-            <div>
-              [ {{number_of_bidders}} bids ]
+            <!-- End .price-box -->
+
+            <div class="d-flex justify-content-between mb-1">
+              <div>
+                Time Left:
+                <strong>
+                  <span v-if="service.days_left"> {{ service.days_left + 'd' }} </span>
+                  {{ service.time_left + 'h' }}
+                </strong>
+              </div>
+
+              <div>
+                Wallet Balance: {{ $filters.formatNumber(walletBalance) || '0.00' }}
+                <span class="fs-6"> <a data-bs-toggle="modal" data-bs-target="#main-modal" class=" w-100 rounded-0"
+                    href="#" id="">Fund your wallet</a></span>
+              </div>
+            </div>
+
+            <div class="d-flex justify-content-between mb-2">
+              <div>
+                Current Bid: <strong>{{ $filters.formatNumber(currentBid) }}</strong>
+              </div>
+              <div>
+                [ {{ number_of_bidders }} bids ]
+              </div>
+            </div>
+
+            <div class="row g-0">
+              <div class="col-md-3 col-3">
+                <input type="text" v-model="bid.amount" class="form-control rounded-0" @input="clearError">
+                <small v-if="error" class="text text-danger">Enter a valid amount </small>
+
+              </div>
+              <div class="col-md-9 col-9">
+                <button v-if="walletBalance >= service.min_bid" class="btn btn-outline-secondary w-100 rounded-0"
+                  type="button" id="button-addon2" @click="handleBid">Place Bid</button>
+
+                <button v-else data-bs-toggle="modal" data-bs-target="#main-modal"
+                  class="btn btn-outline-secondary w-100 rounded-0" type="button" id="button-addon2">Place Bid</button>
+              </div>
+              <div id="emailHelp" class="form-text">Enter {{ $filters.formatNumber(service.min_bid) }} or more</div>
+
             </div>
           </div>
 
-          <div class="row g-0">
-            <div class="col-md-3 col-3">
-              <input
-                type="text"
-                v-model="bid.amount"
-                class="form-control rounded-0"
-                @input="clearError"
-              >
-              <small
-                v-if="error"
-                class="text text-danger"
-              >Enter a valid amount </small>
-
-            </div>
-            <div class="col-md-9 col-9">
-              <button
-                v-if="walletBalance >= service.min_bid"
-                class="btn btn-outline-secondary w-100 rounded-0"
-                type="button"
-                id="button-addon2"
-                @click="handleBid"
-              >Place Bid</button>
-
-              <button
-                v-else
-                data-bs-toggle="modal"
-                data-bs-target="#main-modal"
-                class="btn btn-outline-secondary w-100 rounded-0"
-                type="button"
-                id="button-addon2"
-              >Place Bid</button>
-            </div>
-            <div
-              id="emailHelp"
-              class="form-text"
-            >Enter {{ $filters.formatNumber(service.min_bid) }} or more</div>
-
-          </div>
 
           <modal>
             <template v-slot:header>
@@ -109,14 +81,8 @@
 
             <div class="row h-100  d-flex align-items-center justify-content-center   mx-2 mt-2">
 
-              <div
-                style="height: 200px;"
-                class="form-floating mx-2 mt-2"
-              >
-                <wallet
-                  @wallet:funded="getWallet"
-                  :user="user"
-                />
+              <div style="height: 200px;" class="form-floating mx-2 mt-2">
+                <wallet @wallet:funded="getWallet" :user="user" />
               </div>
             </div>
 
@@ -126,10 +92,7 @@
       </div>
     </div>
 
-    <description
-      :description="service.description"
-      :schedules="service.schedules"
-    />
+    <description :description="service.description" :schedules="service.schedules" />
   </div>
   <template v-if="reg_message">
     <complete :message="reg_message" />
@@ -177,6 +140,7 @@ export default {
       "currentBid",
       "walletBalance",
       "number_of_bidders",
+      "isBidExpired"
     ]);
 
     const { getWalletBalance } = useActions(["getWalletBalance"]);

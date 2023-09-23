@@ -26,5 +26,6 @@ export default {
     currentBid: 0,
     number_of_bidders: 0,
     wallet_balance: 0,
+    isBidExpired: false
 
 }

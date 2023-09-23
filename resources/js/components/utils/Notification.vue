@@ -1,32 +1,25 @@
 <template>
-  <div
-    v-if="(data.active && !close)"
-    class="minipopup-area"
-  >
-    <div
-      :class="{'active': data.active, 'bg-danger text-white':  data.error}"
-      class="minipopup-box "
-      style="top: 0px;"
-    >
-      <div class="product">
+  <transition name="alert">
+    <div class="minipopup-area">
+      <div :class="{ 'active': data.active, 'bg-danger text-white': data.error }" class="minipopup-box "
+        style="top: 0px;">
+        <div class="product">
 
-        <div class="product-detail">
-          <div class="d-flex">
-            <i class="fa fa-bell fs-4 align-self-center"></i>
-            <div class="content ms-3">
-              <div>{{ data.error ? "Error " : "Success" }}</div>
-              <p>{{ data.message }}</p>
+          <div class="product-detail">
+            <div class="d-flex">
+              <i class="fa fa-bell fs-4 align-self-center"></i>
+              <div class="content ms-3">
+                <div>{{ data.error ? "Error " : "Success" }}</div>
+                <p>{{ data.message }}</p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <button
-        @click="cancel"
-        class="mfp-close mt-1 me-1 rounded-circle"
-      ><i class="bi bi-x-lg "></i></button>
+        <button @click="cancel" class="mfp-close mt-1 me-1 rounded-circle"><i class="bi bi-x-lg "></i></button>
+      </div>
     </div>
-  </div>
+  </transition>
 </template>
 <script>
 import { ref } from "vue";
@@ -35,13 +28,17 @@ export default {
   props: ["data"],
   setup(props) {
     const close = ref(false);
+    const config = ref(props.data);
+
     function cancel() {
-      close.value = true;
+      props.data.active = false
+      console.log(true)
     }
 
     return {
       cancel,
       close,
+      config,
     };
   },
 };

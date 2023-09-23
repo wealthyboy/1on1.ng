@@ -10,7 +10,6 @@
   <template v-if="service.type == 'master_class'">
     <master-class :user="user" :service="service" />
   </template>
-
   <notification :data="notification" />
 </template>
 <script>
@@ -28,6 +27,7 @@ export default {
     service: Object,
     user: Object,
     auction: Boolean,
+    bid: Object,
   },
   components: {
     ShoutOut,
@@ -40,14 +40,16 @@ export default {
     const store = useStore();
     const loading = ref(false);
     const new_bid = ref(false);
+    let bid = props.bid
     const notification = ref({
       active: false,
     });
 
-    const { currentBid, walletBalance, number_of_bidders } = useGetters([
+    const { currentBid, walletBalance, isBidExpired, number_of_bidders } = useGetters([
       "currentBid",
       "walletBalance",
       "number_of_bidders",
+      "isBidExpired"
     ]);
 
     const { getWalletBalance, makePost } = useActions([
@@ -56,57 +58,62 @@ export default {
     ]);
 
     function getCurrentBid() {
-      axios
-        .get("/bids/" + props.service.id)
-        .then((res) => {
-          store.commit("setCurrentBid", res.data.current_bid);
-          store.commit("setNumberOfBidders", res.data.number_of_bids);
-        })
-        .catch(() => { });
+
+      if (!isBidExpired.value) {
+
+        axios
+          .get("/bids/" + props.service.id, {
+            params: { bids: number_of_bidders.value }
+          })
+          .then((response) => {
+            let res = response.data
+            store.commit("setCurrentBid", res.current_bid);
+            store.commit("setNumberOfBidders", res.number_of_bids);
+            store.commit("setIsBidExpired", res.expired)
+            if (res.new_bid && res.shouldBeNotified) {
+              notification.value = {
+                active: true,
+                message: "A new bid has been placed",
+                error: false,
+              };
+            }
+
+          })
+          .catch(() => { });
+      }
     }
 
 
 
     onMounted(() => {
+
+      store.commit("setCurrentBid", bid.current_bid);
+      store.commit("setNumberOfBidders", bid.number_of_bids);
       setInterval(() => {
         getCurrentBid()
-      }, 3000)
+      }, 5000)
 
-      Echo.join(`bid.${props.service.id}`)
-        .here((users) => {
-          // console.log(users);
-        })
-        .joining((user) => {
-          // console.log(user.name);
-        })
-        .leaving((user) => {
-          //console.log(user.name);
-        })
-        .error((error) => {
-          console.error(error);
-        })
-        .listen(".bid.added", (res) => {
-          console.log(res);
-          store.commit("setCurrentBid", res.current_bid);
-          store.commit("setNumberOfBidders", res.number_of_bids);
+      //   Echo.join(`bid.${props.service.id}`)
+      //     .here((users) => {
+      //       //console.log(users);
+      //     })
+      //     .joining((user) => {
+      //       // console.log(user.name);
+      //     })
+      //     .leaving((user) => {
+      //       //console.log(user.name);
+      //     })
+      //     .error((error) => {
+      //       console.error(error);
+      //     })
+      //     .listen(".bid.added", (res) => {
+      //       console.log(res);
+      //       store.commit("setCurrentBid", res.current_bid);
+      //       store.commit("setNumberOfBidders", res.number_of_bids);
+      //     });
 
-          // notification.value = {
-          //   active: true,
-          //   message: "A new bid has been placed",
-          //   error: false,
-          // };
-
-          // setTimeout(() => {
-          //   notification.value = {
-          //     active: true,
-          //     message: "A new bid has been placed",
-          //     error: false,
-          //   };
-          // }, 4000);
-        });
-
-      getWalletBalance();
-      getCurrentBid();
+      //getWalletBalance();
+      //getCurrentBid();
     });
 
     function placeBid(data) {
@@ -124,9 +131,19 @@ export default {
         .then((res) => {
           store.commit("setCurrentBid", res.data.current_bid);
           store.commit("setNumberOfBidders", res.data.number_of_bids);
+
+          notification.value = {
+            active: true,
+            message: "Your bid has been placed",
+            error: false,
+          };
         })
         .catch(() => {
-
+          notification.value = {
+            active: true,
+            message: "Your placement failed",
+            error: true,
+          };
         });
     }
 

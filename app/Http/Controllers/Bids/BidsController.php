@@ -70,6 +70,9 @@ class BidsController extends Table
         $user = $request->user();
         $auction = Auction::find($auction_id);
         $data = Bid::getCurrentBid($auction, $user);
+        $data['new_bid'] = data_get($data, 'number_of_bids') > $request->bids ? true : false;
+        $data['expired'] = false;
+        $data['shouldBeNotified'] = data_get($data, 'bidder') !== $user->id ? true : false;
         return response()->json($data);
     }
 
@@ -94,12 +97,11 @@ class BidsController extends Table
 
             //Send emails
             $delay = now()->addMinutes(5);
-            Notification::send($users, (new NotificationsNewBid($auction))->delay($delay));
+            //  Notification::send($users, (new NotificationsNewBid($auction))->delay($delay));
 
             return response()->json($data);
         } catch (\Throwable $th) {
-            //throw $th;
-
+            throw $th;
         }
     }
 }

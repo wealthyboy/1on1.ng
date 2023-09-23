@@ -109,6 +109,9 @@ export const currentBid = (state) => {
     return state.currentBid
 }
 
+export const isBidExpired = (state) => {
+    return state.isBidExpired
+}
 
 export const number_of_bidders = (state) => {
     return state.number_of_bidders

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auctions;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\AuctionCollection;
 use App\Models\Auction;
+use App\Models\Bid;
 use App\Models\Category;
 use App\Models\Faq;
 use Carbon\Carbon;
@@ -64,7 +65,8 @@ class AuctionsController extends Controller
         $categories = Category::with('parent')->orderBy('name', 'asc')->get();
         $faqs = Faq::all();
         $user = $request->user();
-        // dd(now()->addMinutes(10));
-        return view('products.auction', compact('faqs', 'categories', 'user', 'auction'));
+        $bid = Bid::getCurrentBid($auction, $user);
+
+        return view('products.auction', compact('bid', 'faqs', 'categories', 'user', 'auction'));
     }
 }

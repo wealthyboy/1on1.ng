@@ -1,39 +1,18 @@
 <template>
+  <message :message="message" :error="error" />
 
-  <message
-    :message="message"
-    :error="error"
-  />
-
-  <form
-    action=""
-    class="mb-0"
-    method="post"
-    @submit.prevent="fund"
-  >
+  <form action="" class="mb-0" method="post" @submit.prevent="fund">
 
     <div class="form-floating mb-3">
-      <general-input
-        :error="v$.amount"
-        v-model="form.amount"
-        id="wallet"
-        name="Wallet"
-        type="wallet"
-      />
+      <general-input :error="v$.amount" v-model="form.amount" id="wallet" name="Wallet" type="wallet" />
     </div>
 
-    <general-button
-      type="submit"
-      :text="text"
-      class="btn btn-dark w-100 mb-3"
-      :loading="loading"
-    />
+    <general-button type="submit" :text="text" class="btn btn-dark w-100 mb-3" :loading="loading" />
 
   </form>
-
 </template>
   
-  <script>
+<script>
 import { useVuelidate } from "@vuelidate/core";
 import axios from "axios";
 import { onMounted, reactive, ref } from "vue";
@@ -108,35 +87,32 @@ export default {
           ],
         },
         callback: function (response) {
-          let new_balnce =
-            parseInt(walletBalance.value) + parseInt(form.amount);
-
+          let new_balnce = parseInt(walletBalance.value) + parseInt(form.amount);
           store.commit("setWalletBalance", new_balnce);
-          console.log(walletBalance.value);
 
           error.value = false;
           message.value = "Your money has been addedd";
-          // const postData = {
-          //   url: "/wallets",
-          //   data: form,
-          //   loading,
-          //   needsValidation: true,
-          //   error: this.v$.$error,
-          //   post_server_error: post_server_error,
-          //   method: "post",
-          // };
+          const postData = {
+            url: "/wallets",
+            data: form,
+            loading,
+            needsValidation: false,
+            error: null,
+            post_server_error: post_server_error,
+            method: "post",
+          };
 
-          // makePost(postData)
-          //   .then((res) => {})
-          //   .catch((error) => {
-          //     message.value = "We could not find your data in our system";
-          //     setTimeout(() => {
-          //       message.value = null;
-          //     }, 3000);
-          //   });
+          makePost(postData)
+            .then((res) => { })
+            .catch((error) => {
+              message.value = "Your money has been addedd";
+              setTimeout(() => {
+                message.value = null;
+              }, 3000);
+            });
           emit("wallet:funded", new_balnce);
         },
-        onClose: function () {},
+        onClose: function () { },
       });
       handler.openIframe();
     }

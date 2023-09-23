@@ -10,7 +10,7 @@
 </nav>
 
 <section id="main-content" class="py-2">
-    <show-products :user="{{ $user }}" :service="{{ $auction }}" :auction="true" />
+    <show-products :bid="{{ collect($bid) }}" :user="{{ $user }}" :service="{{ $auction }}" :auction="true" />
 </section>
 
 @include('_partials.faqs')

@@ -36,6 +36,10 @@ export const setReviewsMeta = (state, meta) => {
     state.reviewsMeta = meta;
 }
 
+export const setIsBidExpired = (state, trueOrFalse) => {
+    state.isBidExpired = trueOrFalse;
+}
+
 
 export const setShowForm = (state, trueOrFalse) => {
     state.showForm = trueOrFalse;
