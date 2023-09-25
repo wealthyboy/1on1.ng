@@ -83,6 +83,7 @@ class ServicesController extends Controller
         $service->load('shout_out_types', 'celebrity', 'schedules');
         //dd($service->bids()->orderBy('id', 'desc')->sum('price'));
         $user = $request->user();
-        return view('products.show', compact('categories', 'faqs', 'user', 'service'));
+        $all_categories = 'All ' . $service->slug;
+        return view('products.show', compact('all_categories', 'categories', 'faqs', 'user', 'service'));
     }
 }
