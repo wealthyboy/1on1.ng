@@ -67,6 +67,10 @@
     --on-theme-radio-dis-border: none;
     --on-theme-select-menu-bg: #191c21;
     --on-theme-select-menu-border: #272c33;
+
+    --on-color-primary-default: var(--mc-color-primary-500);
+    --on-color-primary-hover: var(--mc-color-primary-600);
+    --on-color-primary-pressed: var(--mc-color-primary-700);
 }
 
 body {
@@ -78,6 +82,12 @@ body {
 
 nav {
     background-color: var(--on-theme-background) !important;
+}
+
+.btn-primary {
+    background-color: var(--on-color-primary-default);
+    border-color: var(--on-color-primary-default);
+    color: #fff;
 }
 
 .form-control[readonly] {

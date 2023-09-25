@@ -32,7 +32,7 @@
       @foreach( $categories as $category)
       <div class="row">
          <div class="col-lg-6">
-            <h2 class="mc-text-h2 mc-my-2 d-inline-block">Trending {{ $category->name }}</h2>
+            <h2 class="mc-text-h2 mc-my-2 d-inline-block text-white">Trending {{ $category->name }}</h2>
             <span></span>
          </div>
       </div>
