@@ -40,7 +40,10 @@
             <div class="">
                <a href="{{ $auction->url }}">
                   <div class="card card-background">
-                     <img src="{{ optional($auction->celebrity)->image }}" alt="" srcset="">
+                     <div class="card-image">
+
+                        <img src="{{ optional($auction->celebrity)->image }}" alt="" srcset="">
+                     </div>
                      <div class="card-body pt-12">
                         <h4 class="tex">{{ $auction->name }}</h4>
                         <div class="price">{{ $auction->latest_price }}</div>
