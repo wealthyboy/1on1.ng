@@ -19497,6 +19497,11 @@ nav {
   bottom: 75.25rem;
 }
 
+.card-image {
+  height: 399px;
+  overflow: hidden;
+}
+
 div#au-slider {
   height: 650px;
   overflow: hidden;

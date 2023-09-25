@@ -94,6 +94,11 @@ nav {
     bottom: 75.25rem;
 }
 
+.card-image {
+    height: 399px;
+    overflow: hidden;
+}
+
 div#au-slider {
     height: 650px;
     overflow: hidden;
@@ -101,6 +106,10 @@ div#au-slider {
 
 .form-control[readonly] {
     background-color: #fff;
+}
+
+label {
+    color: #000 !important;
 }
 
 .nounderline {
