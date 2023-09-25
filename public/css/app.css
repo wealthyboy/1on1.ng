@@ -19497,6 +19497,11 @@ nav {
   bottom: 75.25rem;
 }
 
+div#au-slider {
+  height: 650px;
+  overflow: hidden;
+}
+
 .form-control[readonly] {
   background-color: #fff;
 }
