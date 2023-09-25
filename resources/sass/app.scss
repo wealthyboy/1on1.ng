@@ -7,6 +7,79 @@
 @import '~bootstrap/scss/bootstrap';
 @import './media.css';
 @import './utilities.css';
+
+@font-face {
+    font-family: AutofactorMedium;
+    src: url(../fonts/sohne-schmal-dreiviertelfett.woff2);
+    font-weight: bold;
+}
+
+
+.mc-theme-dark,
+:root {
+    color: #ffffff;
+    --on-theme-background: #000;
+    --on-theme-text: #fff;
+    --on-theme-text-hr-span-after: hsla(0, 0%, 100%, .3);
+    --on-theme-border-contrast: hsla(0, 0%, 100%, .5);
+    --on-theme-border-contrast-hover: #fff;
+    --on-theme-applepay-border: none;
+    --on-theme-badge-bg: #fff;
+    --on-theme-badge-text: #000;
+    --on-theme-badge-dim-bg: #272c33;
+    --on-theme-badge-dim-text: #fff;
+    --on-theme-carousel-dot: #596170;
+    --on-theme-carousel-dot-active: #fff;
+    --on-theme-carousel-arrow-bg: #272c33;
+    --on-theme-carousel-arrow-bg-hover: #31333b;
+    --on-theme-carousel-arrow: #949aa4;
+    --on-theme-carousel-arrow-hover: #fff;
+    --on-theme-dropdown-backdrop: rgba(0, 0, 0, .9);
+    --on-theme-dropdown-border: #272c33;
+    --on-theme-dropdown-bg: #191c21;
+    --on-theme-dropdown-shadow: #000;
+    --on-theme-dropdown-hover-bg: #272c33;
+    --on-theme-tooltip-bg: #272c33;
+    --on-theme-tooltip-border: #596170;
+    --on-theme-tooltip-arrow: #596170;
+    --on-theme-tooltip-arrow-after: #272c33;
+    --on-theme-checkbox-bg: #191c21;
+    --on-theme-checkbox-border: #949aa4;
+    --on-theme-checkbox-checked: #fff;
+    --on-theme-checkbox-active-border: #596170;
+    --on-theme-checkbox-focused: #949aa4;
+    --on-theme-checkbox-dis-bg: #f3f3f3;
+    --on-theme-checkbox-dis-border: #dbdde1;
+    --on-theme-checkbox-dis-active-border: #272c33;
+    --on-theme-form-bg: #191c21;
+    --on-theme-form-border: #272c33;
+    --on-theme-form-elem-color: #fff;
+    --on-theme-form-elem-placehold-color: hsla(0, 0%, 100%, .5);
+    --on-theme-form-dis-bg: #272c33;
+    --on-theme-form-dis-border: none;
+    --on-theme-form-dis-active: none;
+    --on-theme-form-dis-elem: hsla(0, 0%, 100%, .5);
+    --on-theme-form-append: hsla(0, 0%, 100%, .3);
+    --on-theme-radio-bg: #191c21;
+    --on-theme-radio-border: #272c33;
+    --on-theme-radio-checked: #fff;
+    --on-theme-radio-dis-bg: var(--mc-theme-radio-bg);
+    --on-theme-radio-dis-border: none;
+    --on-theme-select-menu-bg: #191c21;
+    --on-theme-select-menu-border: #272c33;
+}
+
+body {
+    margin: 0;
+    color: var(--bs-body-color);
+    text-align: var(--bs-body-text-align);
+    background-color: var(--on-theme-background);
+}
+
+nav {
+    background-color: var(--on-theme-background) !important;
+}
+
 .form-control[readonly] {
     background-color: #fff;
 }
@@ -71,12 +144,12 @@ button.owl-prev {
 button.owl-next,
 button.owl-prev,
 button.raised {
-    background-color: #fff!important;
-    box-shadow: 0 2px .25rem 0 rgba(0, 11, 38, .2)!important;
-    color: #342c27!important;
-    height: 2.5rem!important;
-    min-height: 2rem!important;
-    width: 2.5rem!important;
+    background-color: #fff !important;
+    box-shadow: 0 2px .25rem 0 rgba(0, 11, 38, .2) !important;
+    color: #342c27 !important;
+    height: 2.5rem !important;
+    min-height: 2rem !important;
+    width: 2.5rem !important;
     border-radius: 50%;
 }
 

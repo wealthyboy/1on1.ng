@@ -10,7 +10,7 @@
 
 
         <div class="product-single-details mt-xs-3">
-          <h1 class="product-title">{{ service.name }} uuu {{ isBidExpired }}</h1>
+          <h1 class="product-title">{{ service.name }} </h1>
 
           <div v-if="isBidExpired" class="alert alert-info" role="alert">
             Biding has expired
@@ -31,7 +31,7 @@
                 Time Left:
                 <strong>
                   <span v-if="service.days_left"> {{ service.days_left + 'd' }} </span>
-                  {{ service.time_left + 'h' }}
+                  {{ service.time_left + 'h' }} more
                 </strong>
               </div>
 

@@ -33,7 +33,7 @@
         <!-- -------- START HEADER 3 w/ image on background ------- -->
 
         <header>
-            <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <nav class="navbar navbar-expand-md navbar-dark fixed-top ">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="/">
                         <img src="https://1on1.ng/images/logo/one.ng.PNG" width="100" height="50" alt="">

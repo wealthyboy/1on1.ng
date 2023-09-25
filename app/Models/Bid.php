@@ -29,7 +29,7 @@ class Bid extends Model
         $bidder = $bid->latest()->first();
         $data['current_bid'] = null !== $auction->bids ? $bid->orderBy('id', 'desc')->sum('price') + $auction->bid_start_price : $auction->bid_start_price;
         $data['number_of_bids'] = self::numsize($auction->bids->count());
-        $data['bidder'] = $bidder->id;
+        $data['bidder'] = optional($bidder)->id;
         $data['auction_id'] = $auction->id;
         $data['expired'] = $auction->end_date >= now() ? false : true;
         return $data;

@@ -45,7 +45,7 @@ class NewsLetterController extends Controller
      */
     public function store(Request $request, NewsLetter $newsletter)
     {
-        wewewwe
+
         $this->validate($request, [
             'email' => 'required|email|unique:news_letters',
         ]);
