@@ -19493,6 +19493,10 @@ nav {
   color: #fff;
 }
 
+.carousel-caption {
+  bottom: 75.25rem;
+}
+
 .form-control[readonly] {
   background-color: #fff;
 }
