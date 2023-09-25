@@ -23,8 +23,6 @@
 
                </div>
             </div>
-
-
          </div>
       </div>
 
@@ -59,7 +57,9 @@
             <div class="{{ $category->services->count() > 4 ? '' : 'col-md-3 col-6'}}">
                <a href="{{ $service->url }}">
                   <div class="card card-background">
-                     <img src="{{ optional($service->celebrity)->image }}" alt="" srcset="">
+                     <div class="card-image">
+                        <img src="{{ optional($service->celebrity)->image }}" alt="" srcset="">
+                     </div>
                      <div class="card-body pt-12">
                         <h4 class="tex">{{ $service->name }}</h4>
                         <div class="price">₦{{ $service->latest_price }}</div>
