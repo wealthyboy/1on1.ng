@@ -19511,6 +19511,10 @@ div#au-slider {
   background-color: #fff;
 }
 
+label {
+  color: #000 !important;
+}
+
 .nounderline {
   text-decoration: none !important;
 }
