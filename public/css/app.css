@@ -19419,11 +19419,6 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
-@font-face {
-  font-family: AutofactorMedium;
-  src: url(/fonts/sohne-schmal-dreiviertelfett.woff2?d250677f3f18f4f64da7af95f520659a);
-  font-weight: bold;
-}
 .mc-theme-dark,
 :root {
   color: #ffffff;
