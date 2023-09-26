@@ -19419,6 +19419,21 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+@font-face {
+  font-family: heading1;
+  src: url(/fonts/GalaxiePolaris-Medium.otf?a8ca1f4431192caf8f3d5da4c5d112d7);
+  font-weight: bold;
+}
+@font-face {
+  font-family: heading2;
+  src: url(/fonts/GalaxiePolaris-Bold.otf?7c15b7c83a3f9d9c7b31b4c8238ca99b);
+  font-weight: bold;
+}
+@font-face {
+  font-family: heading3;
+  src: url(/fonts/GalaxiePolaris-Heavy.otf?7f7ae8dc07c6bc85baadaa479a54f64a);
+  font-weight: bold;
+}
 .mc-theme-dark,
 :root {
   color: #ffffff;
@@ -19481,6 +19496,7 @@ body {
   color: var(--bs-body-color);
   text-align: var(--bs-body-text-align);
   background-color: var(--on-theme-background);
+  font-family: "Nunito", sans-serif;
 }
 
 nav {
@@ -19511,12 +19527,31 @@ div#au-slider {
   background-color: #fff;
 }
 
+.form-floating > label {
+  color: #000 !important;
+}
+
 label {
   color: #000 !important;
 }
 
 .nounderline {
   text-decoration: none !important;
+}
+
+h6,
+.h6,
+h5,
+.h5,
+h4,
+.h4,
+h3,
+.h3,
+h2,
+.h2,
+h1,
+.h1 {
+  font-family: Heading1;
 }
 
 .section-elements .icon-box {

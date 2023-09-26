@@ -8,11 +8,23 @@
 @import './media.css';
 @import './utilities.css';
 
-// @font-face {
-//     font-family: AutofactorMedium;
-//     src: url(../fonts/sohne-schmal-dreiviertelfett.woff2);
-//     font-weight: bold;
-// }
+@font-face {
+    font-family: heading1;
+    src: url(../fonts/GalaxiePolaris-Medium.otf);
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: heading2;
+    src: url(../fonts/GalaxiePolaris-Bold.otf);
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: heading3;
+    src: url(../fonts/GalaxiePolaris-Heavy.otf);
+    font-weight: bold;
+}
 
 
 .mc-theme-dark,
@@ -78,6 +90,7 @@ body {
     color: var(--bs-body-color);
     text-align: var(--bs-body-text-align);
     background-color: var(--on-theme-background);
+    font-family: "Nunito", sans-serif;
 }
 
 nav {
@@ -118,6 +131,21 @@ label {
 
 .nounderline {
     text-decoration: none !important
+}
+
+h6,
+.h6,
+h5,
+.h5,
+h4,
+.h4,
+h3,
+.h3,
+h2,
+.h2,
+h1,
+.h1 {
+    font-family: Heading1;
 }
 
 .section-elements .icon-box {
