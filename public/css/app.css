@@ -19554,6 +19554,31 @@ h1,
   font-family: Heading1;
 }
 
+.bold-1 {
+  font-family: heading1 !important;
+}
+
+.bold-2 {
+  font-family: heading2 !important;
+}
+
+.bold-3 {
+  font-family: heading3 !important;
+}
+
+.content-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  transition: 0.5s ease;
+  background: rgb(0, 0, 0);
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+}
+
 .section-elements .icon-box {
   display: block;
   box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1);

@@ -63,10 +63,11 @@
                      <div class="card-image">
                         <img src="{{ optional($service->celebrity)->image }}" alt="" srcset="">
                      </div>
-                     <div class="card-body pt-12">
-                        <h4 class="tex">{{ $service->name }}</h4>
-                        <div class="price">₦{{ $service->latest_price }}</div>
-
+                     <div class="card-body content-overlay pt-12">
+                        <div class="content-title">
+                           <h4 class="tex">{{ $service->name }}</h4>
+                           <div class="price">₦{{ $service->latest_price }}</div>
+                        </div>
                      </div>
                   </div>
                </a>
