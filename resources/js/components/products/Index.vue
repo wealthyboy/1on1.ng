@@ -3,34 +3,21 @@
 
     <div class="col-md-3  d-none d-lg-block d-md-block d-xl-block">
       <ul class="list-group list-unstyled">
-        <filters
-          @send:link="getLink"
-          v-for="category in categories"
-          :key="category.id"
-          :category="category"
-        />
+        <filters @send:link="getLink" v-for="category in categories" :key="category.id" :category="category" />
       </ul>
     </div>
     <div class="col-md-9">
 
       <loader :loading="loading" />
 
-      <div
-        v-if="!loading &&  services.length"
-        class="row"
-      >
-        <div
-          v-for="service in services"
-          :key="service.id"
-          class="col-lg-4 mb-2"
-        >
+      <div v-if="!loading && services.length" class="row">
+        <div v-for="service in services" :key="service.id" class="col-lg-4 mb-2">
           <a :href="service.url">
             <div class="card card-background">
-              <img
-                :src="service.celebrity.image"
-                alt=""
-                srcset=""
-              >
+              <div class="card-image">
+
+                <img :src="service.celebrity.image" alt="" srcset="">
+              </div>
 
               <div class="card-body pt-12">
                 <h4 class="tex">{{ service.name }} <i class="fa-solid fa-empty-set"></i>
@@ -44,7 +31,7 @@
         </div>
       </div>
 
-      <template v-if="!loading &&  !services.length">
+      <template v-if="!loading && !services.length">
         <empty :message="'No contents for your query'" />
       </template>
 
@@ -54,7 +41,6 @@
       <div class="d-flex"></div>
     </div> -->
   </div>
-
 </template>
 
 <script>

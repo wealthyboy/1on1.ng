@@ -2,9 +2,9 @@
   <!-- Modal -->
 
   <template v-if="page.login">
-    <div class="col-md-4 mt-5 ">
+    <div class="col-md-4 mt-5 text-black">
       <div class="content-header text-center">
-        <h1>Welcome</h1>
+        <h1 class="">Welcome</h1>
         <p>Sign in to enjoy our service</p>
       </div>
       <login @switched="changeUi" />
@@ -13,7 +13,7 @@
   </template>
 
   <template v-if="page.forgetPassword">
-    <div class="col-md-4 mt-5 ">
+    <div class="col-md-4 mt-5 text-black">
       <div class="content-header text-center">
         <h1>F</h1>
         <p></p>
@@ -24,7 +24,7 @@
   </template>
 
   <template v-if="page.register">
-    <div class="col-md-5 mt-5 ">
+    <div class="col-md-5 mt-5  text-black">
       <div class="content-header text-center">
         <h1>Welcome</h1>
         <p>Sign up to keep track </p>
@@ -32,7 +32,6 @@
       <register @switched="changeUi" />
     </div>
   </template>
-
 </template>
 
 <script>
