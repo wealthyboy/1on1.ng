@@ -44,7 +44,7 @@
 
                         <img src="{{ optional($auction->celebrity)->image }}" alt="" srcset="">
                      </div>
-                     <div class="card-body pt-12">
+                     <div class="card-body content-overlay pt-12">
                         <h4 class="tex">{{ $auction->name }}</h4>
                         <div class="price">{{ $auction->latest_price }}</div>
 
