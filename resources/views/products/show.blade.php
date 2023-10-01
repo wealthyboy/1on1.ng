@@ -10,7 +10,7 @@
     </ol>
 </nav>
 
-<section id="main-content" class="py-2">
+<section id="main-content" class="py-2 text-white">
     <show-products :user="{{ $user }}" :service="{{ $service }}" />
 </section>
 
