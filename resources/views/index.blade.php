@@ -10,8 +10,8 @@
          <div class="col-12 col-lg-6">
             <div class="mc-mb-6 mc-mb-md-9 mc-mb-lg-0">
                <div class="">
-                  <h1 class="text-white">Gain New Skills, Meet Your Favorite Celeb</h1>
-                  <p class="mc-text-large text-secondary">Unlimited access to all. </p>
+                  <h1 class="text-white text-white fs-3">Gain New Skills, Meet Your Favorite Celeb</h1>
+                  <p class="text-secondary">Unlimited access to all. </p>
                </div>
             </div>
          </div>
