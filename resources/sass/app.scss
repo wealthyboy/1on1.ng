@@ -198,6 +198,28 @@ h1,
     border: none !important;
 }
 
+.accordion-item {
+    border: none !important;
+    background: var(--mc-color-neutral-900);
+}
+
+
+
+.accordion-flush .accordion-item .accordion-button {
+    border-radius: 0;
+}
+
+.accordion-item:first-of-type .accordion-button {
+    border-top-left-radius: calc(0.25rem - 1px);
+    border-top-right-radius: calc(0.25rem - 1px);
+}
+
+.accordion-button:not(.collapsed) {
+    box-shadow: none;
+    background: var(--mc-color-neutral-900) !important;
+    color: #fff;
+}
+
 
 .on-bg-neutral-900 {
     background: var(--on-color-neutral-900) !important;

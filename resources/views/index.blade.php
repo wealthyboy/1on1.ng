@@ -43,7 +43,7 @@
                      </div>
                      <div class="card-body  on-bg-neutral-900  pt-12">
                         <div class="text-white">
-                           <h4 class="text-white mb-4 text-capitalize">{{ $auction->name }}</h4>
+                           <h5 class="mb-3 text-white">{{ $auction->name }}</h5>
                            <div class="price">{{ $auction->latest_price }}</div>
                         </div>
 
@@ -64,7 +64,7 @@
                      </div>
                      <div class="card-body  on-bg-neutral-900  pt-12">
                         <div class="text-white">
-                           <h4 class="mb-4">{{ $service->name }}</h4>
+                           <h5 class="mb-3">{{ $service->name }}</h5>
                            <div class="price">₦{{ $service->latest_price }}</div>
                         </div>
                      </div>
