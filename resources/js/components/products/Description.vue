@@ -12,7 +12,6 @@
         <li class="text-secondary" v-for="schedule in schedules" :key="schedule.id"> Date: {{ schedule.starts_at }} - {{
           schedule.ends_at }} |
           Time: {{ schedule.start_time }} - {{ schedule.end_time }}</li>
-
       </ul>
     </div>
   </div>

@@ -44,8 +44,8 @@
 
                         <img src="{{ optional($auction->celebrity)->image }}" alt="" srcset="">
                      </div>
-                     <div class="card-body content-overlay pt-12">
-                        <div class="content-title">
+                     <div class="card-body  pt-12">
+                        <div class="text-black">
                            <h4 class="tex">{{ $auction->name }}</h4>
                            <div class="price">{{ $auction->latest_price }}</div>
                         </div>
@@ -65,8 +65,8 @@
                      <div class="card-image">
                         <img src="{{ optional($service->celebrity)->image }}" alt="" srcset="">
                      </div>
-                     <div class="card-body content-overlay pt-12">
-                        <div class="content-title">
+                     <div class="card-body  pt-12">
+                        <div class="text-black">
                            <h4 class="tex">{{ $service->name }}</h4>
                            <div class="price">₦{{ $service->latest_price }}</div>
                         </div>
@@ -80,7 +80,7 @@
       </div>
 
 
-      <div class="row">
+      <div class="row text-white">
          <div class="col-lg-12  mx-auto  text-center">
             <button type="button" class="btn bg-gradient-primary mt-3">Read more</button>
          </div>
