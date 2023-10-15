@@ -2,9 +2,9 @@
   <!-- Modal -->
 
   <template v-if="page.login">
-    <div class="col-md-4 mt-5 text-black">
+    <div class="col-md-4 mt-5 ">
       <div class="content-header text-center">
-        <h1 class="">Welcome</h1>
+        <h1 class="text-black">Welcome</h1>
         <p>Sign in to enjoy our service</p>
       </div>
       <login @switched="changeUi" />
@@ -26,8 +26,8 @@
   <template v-if="page.register">
     <div class="col-md-5 mt-5  text-black">
       <div class="content-header text-center">
-        <h1>Welcome</h1>
-        <p>Sign up to keep track </p>
+        <h1 class="text-black">Welcome</h1>
+        <p class="text-black">Sign up to keep track </p>
       </div>
       <register @switched="changeUi" />
     </div>

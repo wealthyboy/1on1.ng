@@ -8,13 +8,11 @@
 
     <div class="form-floating">
       <general-input id="password" :error="v$.password" v-model="form.password" name="Password" type="password" />
-
     </div>
 
     <div class="d-flex justify-content-between align-items-center ">
       <div class="mb-3 form-check">
         <input type="checkbox" class="form-check-input" id="rememberme">
-
         <label class="form-check-label mt-" role="button" for="rememberme">Remember me</label>
       </div>
       <div class="text-right "><a href="#" @click.prevent="change('forgetPassword')" class="color--primary bold">Forget
@@ -26,7 +24,8 @@
   </form>
   <div class="text-center mt-3">
     <p class="form-group col-12">
-      Dont have an account yet? <a @click.prevent="change('register')" href="#" class="color--primary bold">Create One</a>
+      Dont have an account yet? <a @click.prevent="change('register')" href="#"
+        class="color--primary text-black bold-2">Create One</a>
     </p>
   </div>
   <div class="text-center  border-top  py-3">
@@ -34,7 +33,7 @@
       By logging in, you agree to our
     </div>
     <div class="form-group col-12">
-      Dont have an account yet? <a href="/terms" class="color--primary bold">Terms of Service</a>
+      Dont have an account yet? <a href="/terms" class="color--primary text-black bold  bold-2">Terms of Service</a>
     </div>
   </div>
 </template>

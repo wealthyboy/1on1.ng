@@ -3,81 +3,32 @@
     <form @submit.prevent="register">
       <div class="row">
         <div class="mb-3 col-6">
-          <label
-            for="first_name"
-            class="form-label"
-          >First Name</label>
-          <input
-            type="text"
-            v-model="form.first_name"
-            class="form-control"
-            id="first_name"
-          >
+          <label for="first_name" class="form-label">First Name</label>
+          <input type="text" v-model="form.first_name" class="form-control" id="first_name">
         </div>
         <div class="mb-3 col-6">
-          <label
-            for="LastName"
-            class="form-label"
-          >Last Name</label>
-          <input
-            type="text"
-            v-model="form.last_name"
-            class="form-control"
-            id="LastName"
-          >
+          <label for="LastName" class="form-label">Last Name</label>
+          <input type="text" v-model="form.last_name" class="form-control" id="LastName">
         </div>
       </div>
       <div class="mb-3">
-        <label
-          for="email_address"
-          class="form-label"
-        >Email address</label>
-        <input
-          type="email"
-          v-model="form.email"
-          class="form-control"
-          id="email_address"
-        >
+        <label for="email_address" class="form-label">Email address</label>
+        <input type="email" v-model="form.email" class="form-control" id="email_address">
       </div>
       <div class="mb-3">
-        <label
-          for="password"
-          class="form-label"
-        >Password</label>
-        <input
-          type="password"
-          v-model="form.password"
-          class="form-control"
-          id="password"
-        >
+        <label for="password" class="form-label">Password</label>
+        <input type="password" v-model="form.password" class="form-control" id="password">
       </div>
       <div class="mb-3">
-        <label
-          for="Confirm_Password"
-          class="form-label"
-        >Confirm Password</label>
-        <input
-          type="password"
-          v-model="form.password_confirmation"
-          class="form-control"
-          id="Confirm_Password"
-        >
+        <label for="Confirm_Password" class="form-label">Confirm Password</label>
+        <input type="password" v-model="form.password_confirmation" class="form-control" id="Confirm_Password">
       </div>
-      <general-button
-        class="btn  w-100 text-center btn-primary"
-        :type="submit"
-        :loading="loading"
-        :text="text"
-      />
+      <general-button class="btn  w-100 text-center btn-primary" :type="submit" :loading="loading" :text="text" />
 
     </form>
     <div class="text-center mt-3">
       <p class="form-group col-12">
-        Already have an account yet? <a
-          @click.prevent="change('login')"
-          href="#"
-          class="color--primary bold"
-        >Login</a>
+        Already have an account yet? <a @click.prevent="change('login')" href="#" class="color--primary bold-2">Login</a>
       </p>
     </div>
     <div class="text-center  border-top  py-3">
@@ -85,10 +36,7 @@
         By Registering , you agree to our
       </div>
       <div class="form-group col-12">
-        Dont have an account yet? <a
-          href="/register"
-          class="color--primary bold"
-        >Terms of Service</a>
+        Dont have an account yet? <a href="/register" class="color--primary bold-2">Terms of Service</a>
       </div>
     </div>
   </div>
