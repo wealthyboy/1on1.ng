@@ -11,16 +11,16 @@
                     @foreach($categories as $category)
                     @if($category->faqs->count())
 
-                    <h3 class="mt-4">{{ $category->name }}</h3>
+                    <h3 class="mt-4 text-white">{{ $category->name }}</h3>
                     @foreach($category->faqs as $faq)
 
-                    <div class="accordion-item">
+                    <div class="accordion-item mb-1">
                         <h2 class="accordion-header" id="flush-headingOne{{ $faq->id }}{{ $category->id }}">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne{{ $faq->id }}{{ $category->id }}" aria-expanded="false" aria-controls="flush-collapseOne{{ $faq->id }}{{ $category->id }}">
+                            <button class="text-white accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne{{ $faq->id }}{{ $category->id }}" aria-expanded="false" aria-controls="flush-collapseOne{{ $faq->id }}{{ $category->id }}">
                                 {{ $faq->name }}
                             </button>
                         </h2>
-                        <div id="flush-collapseOne{{ $faq->id }}{{ $category->id }}" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlush">
+                        <div id="flush-collapseOne{{ $faq->id }}{{ $category->id }}" class="accordion-collapse collapse text-white text-left" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlush">
                             <div class="accordion-body"> {{ $faq->description }}</div>
                         </div>
                     </div>
