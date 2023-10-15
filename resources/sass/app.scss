@@ -79,6 +79,7 @@
     --on-theme-radio-dis-border: none;
     --on-theme-select-menu-bg: #191c21;
     --on-theme-select-menu-border: #272c33;
+    --on-color-neutral-900: #222326;
 
     --on-color-primary-default: var(--mc-color-primary-500);
     --on-color-primary-hover: var(--mc-color-primary-600);
@@ -97,6 +98,17 @@ nav {
     background-color: var(--on-theme-background) !important;
 }
 
+.filter .list-group-item {
+    background-color: #000 !important;
+    border: none !important;
+}
+
+.filter .list-group-item-action:hover,
+.filter .list-group-item-action:focus {
+    color: rgba(108, 117, 125) !important;
+}
+
+
 .btn-primary {
     background-color: var(--on-color-primary-default);
     border-color: var(--on-color-primary-default);
@@ -108,8 +120,17 @@ nav {
 }
 
 .card-image {
-    height: 399px;
+    height: 382px;
     overflow: hidden;
+}
+
+.card-image img {
+    transition: transform .5s ease;
+}
+
+/* [3] Finally, transforming the image when container gets hovered */
+.card-image:hover img {
+    transform: scale(1.2);
 }
 
 div#au-slider {
@@ -119,6 +140,11 @@ div#au-slider {
 
 .form-control[readonly] {
     background-color: #fff;
+}
+
+.form-floating>.form-control,
+.form-floating>.form-select {
+    height: auto !important;
 }
 
 .form-floating>label {
@@ -155,6 +181,31 @@ h1,
 
 .bold-2 {
     font-family: heading2 !important;
+}
+
+.table-responsive tr:nth-child(even) {
+    background: var(--on-color-neutral-900) !important;
+}
+
+.table> :not(caption)>*>* {
+    padding: 0.9rem 0.5rem;
+    border-bottom-width: 0px !important;
+}
+
+.current .page-link,
+.page-link {
+    background-color: #000 !important;
+    border: none !important;
+}
+
+
+.on-bg-neutral-900 {
+    background: var(--on-color-neutral-900) !important;
+}
+
+a {
+    color: #fff !important;
+    text-decoration: none !important;
 }
 
 .bold-3 {
@@ -339,6 +390,25 @@ button.mfp-close {
     cursor: pointer;
     border: 0;
 }
+
+
+@media screen and (max-width: 600px) {
+    .card-image {
+        height: 225px;
+    }
+
+    div#au-slider {
+        height: 487px;
+        overflow: hidden;
+    }
+
+    .carousel-caption {
+        bottom: 0;
+    }
+}
+
+
+
 
 // button.owl-next {
 //     right: 0;

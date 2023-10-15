@@ -79,13 +79,13 @@ class Auction extends Model
 
     public function getEvDateAttribute()
     {
-        return $this->event_date->format('Y-M-D');
+        return optional($this->event_date)->format('Y-M-D');
     }
 
 
     public function getDaysLeftAttribute()
     {
-        return $this->start_date->diffInDays($this->end_date);
+        return optional($this->start_date)->diffInDays($this->end_date);
     }
 
 

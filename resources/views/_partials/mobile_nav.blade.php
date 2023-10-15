@@ -7,7 +7,7 @@
 
                     Menu
                 </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <ul class="dropdown-menu filter" aria-labelledby="dropdownMenuButton1">
 
                     @foreach($nav as $key => $n)
                     <li>

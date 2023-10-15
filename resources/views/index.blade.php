@@ -16,11 +16,9 @@
             </div>
          </div>
          <div class="col-12 col-lg-5 offset-lg-1">
-
             <div class="row justify-content-center p-0">
                <div class="">
                   <news-letter />
-
                </div>
             </div>
          </div>
@@ -39,14 +37,13 @@
             @foreach( $category->auctions as $auction)
             <div class="">
                <a href="{{ $auction->url }}">
-                  <div class="card card-background">
+                  <div class="card border-0 card-background ">
                      <div class="card-image">
-
                         <img src="{{ optional($auction->celebrity)->image }}" alt="" srcset="">
                      </div>
-                     <div class="card-body  pt-12">
-                        <div class="text-black">
-                           <h4 class="tex">{{ $auction->name }}</h4>
+                     <div class="card-body  on-bg-neutral-900  pt-12">
+                        <div class="text-white">
+                           <h4 class="text-white mb-4 text-capitalize">{{ $auction->name }}</h4>
                            <div class="price">{{ $auction->latest_price }}</div>
                         </div>
 
@@ -61,13 +58,13 @@
             @foreach( $category->services as $service)
             <div class="{{ $category->services->count() > 4 ? '' : 'col-md-3 col-6'}}">
                <a href="{{ $service->url }}">
-                  <div class="card card-background">
+                  <div class="card shadow-lg card-background border-0">
                      <div class="card-image">
-                        <img src="{{ optional($service->celebrity)->image }}" alt="" srcset="">
+                        <img src="{{ optional($service->celebrity)->image }}" alt="" class="img-fluid" srcset="">
                      </div>
-                     <div class="card-body  pt-12">
-                        <div class="text-black">
-                           <h4 class="tex">{{ $service->name }}</h4>
+                     <div class="card-body  on-bg-neutral-900  pt-12">
+                        <div class="text-white">
+                           <h4 class="mb-4">{{ $service->name }}</h4>
                            <div class="price">₦{{ $service->latest_price }}</div>
                         </div>
                      </div>
@@ -82,7 +79,7 @@
 
       <div class="row text-white">
          <div class="col-lg-12  mx-auto  text-center">
-            <button type="button" class="btn bg-gradient-primary mt-3">Read more</button>
+            <a href="/" class="btn bg-gradient-primary mt-3 text-white border">Read more</a>
          </div>
       </div>
       @endforeach

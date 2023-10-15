@@ -8,42 +8,22 @@
       </p>
     </template>
 
-    <form
-      v-if="!message"
-      @submit.prevent="signUp"
-      class="row justify-content-center justify-content-lg-start no-gutters"
-    >
+    <form v-if="!message" @submit.prevent="signUp" class="row justify-content-center justify-content-lg-start no-gutters">
 
-      <div class="row g-0">
-        <div class="col-md-9 col-8"><input
-            type="email"
-            placeholder="Email"
-            v-model="form.email"
-            class="form-control rounded-0"
-          ></div>
+      <div class="row g-0 px-2">
+        <div class="col-md-9 col-8"><input type="email" placeholder="Email" v-model="form.email"
+            class="form-control rounded-0"></div>
         <div class="col-md-3 col-4">
-          <button
-            class="btn btn-outline-secondary w-100 rounded-0"
-            type="submit"
-          >
-            <span
-              v-if="submitting"
-              class="spinner-border spinner-border-sm"
-              role="status"
-              aria-hidden="true"
-            ></span>
+          <button class="btn btn-outline-secondary w-100 rounded-0" type="submit">
+            <span v-if="submitting" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
 
             Subscribe
           </button>
         </div>
       </div>
-      <p class="mc-text-x-small text-white mt-2">By sharing your email, you agree to our <a
-          class="mc-text--link"
-          href="/terms"
-        >Terms of Service</a> and <a
-          class="mc-text--link"
-          href="https://privacy.masterclass.com"
-        >Privacy Policy.</a></p>
+      <p class="mc-text-x-small text-secondary mt-2">By sharing your email, you agree to our <a class="mc-text--link"
+          href="/terms">Terms of Service</a> and <a class="mc-text--link" href="https://privacy.masterclass.com">Privacy
+          Policy.</a></p>
     </form>
     <notification :data="n" />
 

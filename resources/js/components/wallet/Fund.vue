@@ -1,32 +1,19 @@
 <template>
-
-  <button
-    data-bs-toggle="modal"
-    data-bs-target="#main-modal"
-    class="btn btn-outline-secondary w-100 rounded-0"
-    type="button"
-    id="button-addon2"
-  >Fund your wallet</button>
+  <button data-bs-toggle="modal" data-bs-target="#main-modal" class="btn btn-outline-secondary w-100 rounded-0 text-black"
+    type="button" id="button-addon2">Fund your wallet</button>
 
   <modal>
     <template v-slot:header>
-      AutofactorNg
+      1on1
     </template>
 
     <template v-slot:title>
-      <h2>Fund your wallet</h2>
+      <h2 class="text-black">Fund your wallet</h2>
     </template>
 
     <div class="row h-100  d-flex align-items-center justify-content-center   mx-2 mt-2">
-
-      <div
-        style="height: 200px;"
-        class="form-floating mx-2 mt-2"
-      >
-        <wallet
-          @wallet:funded="refresh"
-          :user="user"
-        />
+      <div style="height: 200px;" class="form-floating mx-2 mt-2">
+        <wallet @wallet:funded="refresh" :user="user" />
       </div>
     </div>
 

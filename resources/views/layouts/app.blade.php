@@ -53,7 +53,7 @@
 
                             @foreach( $global_categories as $category)
                             <li class="nav-item dropdown dropdown-hover mx-2">
-                                <a href="{{ $category->link() }}" class="nav-link ps-2 d-flex text-white cursor-pointer align-items-center" id="dropdownMenuAccount" data-bs-toggle="dropdown" aria-expanded="false" role="button">
+                                <a href="{{ $category->link() }}" class="nav-link  text-black ps-2 d-flex text-white cursor-pointer align-items-center" id="dropdownMenuAccount" data-bs-toggle="dropdown" aria-expanded="false" role="button">
                                     {{ $category->name }}
                                     @if( $category->children->count())
                                     <i class="bi bi-chevron-down arrow ms-auto ms-md-2"></i>
@@ -65,12 +65,12 @@
                                     <div class=" d-lg-flex">
                                         <ul class="list-group w-100">
                                             <li class="nav-item list-group-item border-0 p-0">
-                                                <a href="{{ optional($category->parent)->link() }}" class="dropdown-item border-radius-md  ps-3 d-flex align-items-center mb-1">
+                                                <a href="{{ optional($category->parent)->link() }}" class=" text-black  dropdown-item border-radius-md  ps-3 d-flex align-items-center mb-1">
                                                     <span>All {{ optional($category->parent)->name }}</span>
                                                 </a>
                                             </li>
                                             <li class="nav-item list-group-item border-0 p-0">
-                                                <a href="{{ $category->link() }}" class="dropdown-item border-radius-md ps-3 d-flex align-items-center mb-1">
+                                                <a href="{{ $category->link() }}" class=" text-black  dropdown-item border-radius-md ps-3 d-flex align-items-center mb-1">
                                                     <span> {{ $category->name }}</span>
                                                 </a>
                                             </li>
@@ -104,15 +104,15 @@
                                         <ul class="list-group">
                                             @foreach($nav as $key => $n)
                                             <li class="nav-item list-group-item border-0 p-0">
-                                                <a href="{{ $n['link'] }}" class="dropdown-item py-2 ps-3 border-radius-md"> <i class="{{ $n['icon'] }}">{{ $n['iconText'] }}</i>
+                                                <a href="{{ $n['link'] }}" class="text-black dropdown-item py-2 ps-3 border-radius-md"> <i class="{{ $n['icon'] }}">{{ $n['iconText'] }}</i>
                                                     {{ $key }} </a>
                                             </li>
                                             @endforeach
 
                                             <li class="nav-item list-group-item border-0 p-0">
 
-                                                <a href="#" class="dropdown-item py-2 ps-3 border-radius-md" onclick="event.preventDefault();
-                                                    document.getElementById('logout-form').submit();" class="list-group-item list-group-item-action bold text-uppercase p-4">
+                                                <a href="#" onclick="event.preventDefault();
+                                                    document.getElementById('logout-form').submit();" class="dropdown-item py-2 ps-3 border-radius-md text-black">
                                                     <i class="bi bi-box-arrow-right"></i>
                                                     Logout
                                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -148,7 +148,7 @@
             <auth-modal />
         </main>
 
-        <div class="py-3 subscribe  bg-dark">
+        <div class="py-3 subscribe  on-bg-neutral-900">
             <div class="container">
                 <div class="row justify-content-center align-items-center no-gutters">
                     <div class="col-12 col-lg-6">
@@ -171,7 +171,7 @@
                 </div>
             </div>
         </div>
-        <footer class="footer py-5  bg-dark font2">
+        <footer class="footer py-5  on-bg-neutral-900 font2">
 
             <div class="container">
                 <div class="footer-middle">

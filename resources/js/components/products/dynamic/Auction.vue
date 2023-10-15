@@ -9,7 +9,7 @@
       <div class="col-lg-5">
 
 
-        <div class="product-single-details mt-xs-3">
+        <div class="text-white mt-xs-3">
           <h1 class="product-title">{{ service.name }} </h1>
 
           <div v-if="isBidExpired" class="alert alert-info" role="alert">
@@ -37,8 +37,9 @@
 
               <div>
                 Wallet Balance: {{ $filters.formatNumber(walletBalance) || '0.00' }}
-                <span class="fs-6"> <a data-bs-toggle="modal" data-bs-target="#main-modal" class=" w-100 rounded-0"
-                    href="#" id="">Fund your wallet</a></span>
+                <span class="fs-6">
+                  <a data-bs-toggle="modal" data-bs-target="#main-modal" class=" w-100 rounded-0 text-secondary" href="#"
+                    id="">[ Fund your wallet ]</a></span>
               </div>
             </div>
 
