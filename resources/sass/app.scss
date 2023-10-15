@@ -216,7 +216,7 @@ h1,
 
 .accordion-button:not(.collapsed) {
     box-shadow: none;
-    background: var(--mc-color-neutral-900) !important;
+    background: var(--on-color-neutral-900) !important;
     color: #fff;
 }
 
@@ -264,7 +264,6 @@ a {
 }
 
 .accordion-button {
-    background-color: #000 !important;
     color: #ffffff !important;
 }
 
