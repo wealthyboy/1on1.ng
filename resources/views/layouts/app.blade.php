@@ -32,7 +32,7 @@
     <meta property="og:url" content="https://1on1.ng">
     <meta property="og:title" content=" 1on1">
     <meta property="og:type" content="website">
-    <meta property="og:description" content="{{ isset($page_meta_description) ? $page_meta_description : $system_settings->meta_description }}">
+    <meta property="og:description" content="{{ isset($page_meta_description) ? $page_meta_description :optional( $system_settings)->meta_description }}">
     <meta property="og:image:alt" content="">
     <meta name="twitter:site" content="@1on1">
     <meta name="twitter:card" content="summary_large_image">
