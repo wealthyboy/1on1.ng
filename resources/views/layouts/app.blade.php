@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="utf-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CSRF Token -->
@@ -20,6 +21,24 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <!-- CSS Files -->
 
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/images/favicon_io/favicon-32x32.png">
+    <link rel="shortcut icon" type="image/x-icon" href="/images/favicon_io/favicon.ico">
+    <link rel="icon" href="/images/favicon_io/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="/images/favicon_io/favicon-96x96.png">
+    <!-- Main CSS File -->
+
+    <meta property="og:site_name" content="Autofactorng Co">
+    <meta property="og:url" content="https://1on1.ng">
+    <meta property="og:title" content=" 1on1">
+    <meta property="og:type" content="website">
+    <meta property="og:description" content="{{ isset($page_meta_description) ? $page_meta_description : $system_settings->meta_description }}">
+    <meta property="og:image:alt" content="">
+    <meta name="twitter:site" content="@1on1">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ isset($page_meta_description) ? $page_meta_description : $system_settings->meta_description }}">
+    <meta name="twitter:description" content="{{ isset($page_meta_description) ? $page_meta_description : $system_settings->meta_description }}">
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
 
@@ -32,7 +51,6 @@
 <body>
     <div id="app">
         <!-- -------- START HEADER 3 w/ image on background ------- -->
-
         <header>
             <nav class="navbar navbar-expand-md navbar-dark fixed-top ">
                 <div class="container-fluid">
@@ -188,7 +206,7 @@
                                 <ul class="links text-white list-unstyled">
                                     @foreach($link->children as $link)
                                     <li>
-                                        <a class=" text-white" href="{{ $link->link }}">
+                                        <a class="text-white" href="{{ $link->link }}">
                                             {{ $link->name }}
                                         </a>
                                     </li>
@@ -227,7 +245,7 @@
                                             <svg width="2em" height="2em" viewBox="0 0 24 24" fill="none" aria-hidden="true" class="mc-icon mc-icon--3 mc-opacity--muted mc-mr-4" role="img">
                                                 <path d="M19.117 4H4.877A.883.883 0 004 4.883v14.24a.883.883 0 00.883.877h7.664v-6.187h-2.08V11.39h2.08V9.61c0-2.066 1.263-3.2 3.106-3.2a16.73 16.73 0 011.862.096v2.166h-1.28c-1 0-1.193.48-1.193 1.176v1.542h2.398l-.32 2.423h-2.08V20h4.077a.883.883 0 00.883-.883V4.877A.883.883 0 0019.117 4z" fill="currentColor"></path>
                                             </svg>
-                                            <span class="mc-text--bare-link">Facebook</span>
+                                            <span class="mc">Facebook</span>
                                         </a>
                                     </li>
                                     <li class="mb-2">

@@ -21,7 +21,7 @@
                             </button>
                         </h2>
                         <div id="flush-collapseOne{{ $faq->id }}{{ $category->id }}" class="accordion-collapse collapse text-white text-left" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlush">
-                            <div class="accordion-body"> {{ $faq->description }}</div>
+                            <div class="accordion-body text-sencondary"> {{ $faq->description }}</div>
                         </div>
                     </div>
                     @endforeach

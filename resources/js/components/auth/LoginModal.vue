@@ -16,7 +16,7 @@
           <input type="checkbox" class="form-check-input" id="exampleCheck1">
           <label class="form-check-label" for="exampleCheck1">Remember me</label>
         </div>
-        <div class="text-right "><a @click.prevent="change('forgetPassword')" href="#" class="color--primary bold">Forget
+        <div class="text-right "><a @click.prevent="change('forgetPassword')" href="#" class="text-black bold-2">Forget
             your password?</a></div>
       </div>
       <button type="submit" class="btn  w-100 text-center btn-primary">Submit</button>
@@ -24,7 +24,7 @@
     <div class="text-center mt-3">
       <p class="form-group col-12">
         Dont have an account yet? <a @click.prevent="change('register')" href="#"
-          class="color--primary bold text-black">Create One</a>
+          class="text-black bold-2 text-black">Create One</a>
       </p>
     </div>
     <div class="text-center  border-top  py-3">
