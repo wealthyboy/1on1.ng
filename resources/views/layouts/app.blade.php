@@ -36,7 +36,7 @@
     <meta property="og:image:alt" content="">
     <meta name="twitter:site" content="@1on1">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="{{ isset($page_meta_description) ? $page_meta_description : optional( $system_settings)s->meta_description }}">
+    <meta name="twitter:title" content="{{ isset($page_meta_description) ? $page_meta_description : optional( $system_settings)->meta_description }}">
     <meta name="twitter:description" content="{{ isset($page_meta_description) ? $page_meta_description : optional( $system_settings)->meta_description }}">
 
     <!-- Fonts -->
