@@ -309,34 +309,4 @@
 @stop
 @section('inline-scripts')
 
-jQuery(function() {
-$('.owl-carousel').owlCarousel({
-loop: true,
-margin: 5,
-nav: true,
-dots: true,
-items: 2,
-navText: [
-'<i class="bi bi-arrow-left-circle-fill"></i>',
-'<i class="bi bi-arrow-right-circle-fill"></i>',
-],
-responsive: { 576: { items: 2 }, 992: { items: 4 } }
-});
-
-
-$('.service-carousel').owlCarousel({
-loop: true,
-margin: 10,
-nav: true,
-dots: true,
-center: false,
-navText: [
-'<i class="bi bi-arrow-left-circle-fill"></i>',
-'<i class="bi bi-arrow-right-circle-fill"></i>',
-],
-responsive: { 576: { items: 3 }, 992: { items: 4 } }
-});
-
-
-})
 @stop
