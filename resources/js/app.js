@@ -6,8 +6,14 @@
 
 require('./bootstrap');
 
-
-require("../../node_modules/owl.carousel/dist/owl.carousel.min.js");
+import("../../public/js/owl.carousel.min.js")
+import("../../public/js/jquery.countTo.min.js")
+import("../../public/js/jquery.countTo.min.js")
+import("../../public/js/jquery.magnific-popup.min.js")
+import("../../public/rev/js/rbtools.min.js")
+import("../../public/rev/js/rs6.min.js")
+import("../../public/js/rev-custom.js")
+import("../../public/js/custom.js")
 
 
 window.Vue = require('vue');

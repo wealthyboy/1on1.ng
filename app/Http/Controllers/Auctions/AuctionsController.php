@@ -32,10 +32,8 @@ class AuctionsController extends Controller
      */
     public function index(Request $request, Category $category)
     {
-        // broadcast(new Test());
 
         $categories = Category::with('parent')->orderBy('name', 'asc')->get();
-
         $auctions = Auction::whereHas('categories', function (Builder  $builder) use ($category) {
             $builder->where('categories.name', $category->name);
         })->whereDate('end_date', ">=", now())
