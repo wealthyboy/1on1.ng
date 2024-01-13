@@ -37,7 +37,6 @@
     <div id="pq-loading">
         <div id="pq-loading-center">
             <img src="https://1on1.ng/images/logo/one.ng.PNG" width="100" height="50" alt="loading">
-
         </div>
     </div>
     <!--Loading-->
