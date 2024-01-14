@@ -18,7 +18,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // broadcast(new \App\Events\NewBid(auth()->user()));
         $sliders = Banner::where('type', 'slider')->orderBy('sort_order', 'asc')->get();
         $faqs = Faq::all();
         $categories = Category::featured()->get();
@@ -26,7 +25,6 @@ class HomeController extends Controller
         $auctions->load('celebrity');
         $shoutouts = Category::where('name', 'Shout-Outs')->get();
         $shoutouts->load('celebrity');
-
         return view('index', compact('sliders', 'faqs', 'auctions', 'categories', 'shoutouts'));
     }
 }
