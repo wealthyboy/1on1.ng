@@ -166,7 +166,8 @@
                             <div class="pq-subscribe-form">
                                 <div class="row align-items-center">
                                     <div class="col-lg-8 col-md-8 p-lg-0">
-                                        <input type="text" class="mb-md-0" placeholder="Your Email Address">
+                                        <news-letter />
+
                                     </div>
                                     <div class="col-lg-4 col-md-4 p-lg-0">
                                         <a href="index-5.html#" class="pq-button">
@@ -183,7 +184,10 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-12 align-self-center">
-                            <span class="pq-copyright">Copyright 2022 Millennium All Rights Reserved.</span>
+                            <p class="footer-copyright py-3 text-white pr-4 mb-0">© {{ config('app.name') }}. {{ date('Y') }}. All Rights Reserved</p>
+                            @if ( auth()->check() && auth()->user()->isAdmin() )
+                            <p class="footer-copyright mx-3"><a target="_blank" href="/admin">Go to Admin</a></p>
+                            @endif
                         </div>
                     </div>
                 </div>

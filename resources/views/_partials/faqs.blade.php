@@ -1,43 +1,44 @@
 @if($faqs->count())
-<section class="py-5">
+
+
+<!-- <faq-start> -->
+<section class="faq">
     <div class="container">
         <div class="row">
-            <div class="col-md-10   mx-auto  text-center">
-                <div class="content-header">
-                    <h3 class="mt-4">Frequently asked questions</h3>
+            <div class="col-xl-8 mt-xl-0 mt-4 ps-xl-3 col-md-8 offset-md-2">
+                @foreach($categories as $category)
+                @if($category->faqs->count())
+                <div class="pq-1 text-center">
+                    <h6 class="pq-section-title">{{ $category->name }}</h6>
                 </div>
-                <div class="accordion accordion-flush" id="accordionFlush">
-
-                    @foreach($categories as $category)
-                    @if($category->faqs->count())
-
-                    <h3 class="mt-4 text-white">{{ $category->name }}</h3>
+                <div class="pq-accordion-block mt-4">
                     @foreach($category->faqs as $faq)
 
-                    <div class="accordion-item mb-1">
-                        <h2 class="accordion-header" id="flush-headingOne{{ $faq->id }}{{ $category->id }}">
-                            <button class="text-white accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne{{ $faq->id }}{{ $category->id }}" aria-expanded="false" aria-controls="flush-collapseOne{{ $faq->id }}{{ $category->id }}">
+                    <div class="pq-accordion-box 1 pq-active">
+                        <div class="pq-ad-title">
+                            <h4 class="ad-title-text">
                                 {{ $faq->name }}
-                            </button>
-                        </h2>
-                        <div id="flush-collapseOne{{ $faq->id }}{{ $category->id }}" class="accordion-collapse collapse text-white text-left" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlush">
-                            <div class="accordion-body text-sencondary"> {{ $faq->description }}</div>
+
+                                <i aria-hidden="true" class="ion ion-ios-arrow-down active"></i><i aria-hidden="true" class="ion ion-ios-arrow-up inactive"></i>
+                            </h4>
+                        </div>
+                        <div class="pq-accordion-details">
+                            <p class="pq-detail-text"> {{ $faq->description }} </p>
                         </div>
                     </div>
                     @endforeach
 
-                    @endif
-
-
-                    @endforeach
-
-
-
-
 
                 </div>
+
+                @endif
+
+
+                @endforeach
             </div>
         </div>
     </div>
 </section>
+<!-- <faq-end> -->
+
 @endif

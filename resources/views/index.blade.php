@@ -21,13 +21,13 @@
                         <div class="pq-portfoliobox-1">
                             <div class="pq-portfolio-block">
                                 <div class="pq-portfolio-img  ">
-                                    <img decoding="async" src="images/beer/1.jpg" alt="">
+                                    <img decoding="async" src="{{ optional($auction->celebrity)->image }}" alt="">
                                     <div class="pq-portfolio-info">
                                         <div class="pq-portfolio-info-content">
                                             <div class="pq-portfolio-link">
                                                 <a href="">wine</a>
                                             </div>
-                                            <h5><a href="portfolio-single.html">Delicious</a></h5>
+                                            <h5><a href="{{ $auction->url }}">Delicious</a></h5>
                                         </div>
                                     </div>
                                 </div>
@@ -153,76 +153,10 @@
 <!-- Menu -->
 @endif
 
-<!-- <faq-start> -->
-<section class="faq">
-    <div class="container">
-        <div class="row">
-            <div class="col-xl-8 mt-xl-0 mt-4 ps-xl-3 col-md-8 offset-md-2">
-                <div class="pq-1 text-center">
-                    <h6 class="pq-section-title">Asked questions</h6>
-                </div>
-                <div class="pq-accordion-block mt-4">
-                    <div class="pq-accordion-box 1 pq-active">
-                        <div class="pq-ad-title">
-                            <h4 class="ad-title-text">
-                                How Can Improve My Health ?
-                                <i aria-hidden="true" class="ion ion-ios-arrow-down active"></i><i aria-hidden="true" class="ion ion-ios-arrow-up inactive"></i>
-                            </h4>
-                        </div>
-                        <div class="pq-accordion-details">
-                            <p class="pq-detail-text"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo. </p>
-                        </div>
-                    </div>
-                    <div class="pq-accordion-box 2">
-                        <div class="pq-ad-title">
-                            <h6 class="ad-title-text">
-                                More Information About Weight Loss Program ?
-                                <i aria-hidden="true" class="ion ion-ios-arrow-down active"></i><i aria-hidden="true" class="ion ion-ios-arrow-up inactive"></i>
-                            </h6>
-                        </div>
-                        <div class="pq-accordion-details">
-                            <p class="pq-detail-text"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo. </p>
-                        </div>
-                    </div>
-                    <div class="pq-accordion-box 3 ">
-                        <div class="pq-ad-title">
-                            <h6 class="ad-title-text">
-                                Do Your Products Contain Nutrition ?
-                                <i aria-hidden="true" class="ion ion-ios-arrow-down active"></i><i aria-hidden="true" class="ion ion-ios-arrow-up inactive"></i>
-                            </h6>
-                        </div>
-                        <div class="pq-accordion-details">
-                            <p class="pq-detail-text"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo. </p>
-                        </div>
-                    </div>
-                    <div class="pq-accordion-box 4">
-                        <div class="pq-ad-title">
-                            <h4 class="ad-title-text">
-                                Nutritionist Provides a Full Range of Services ?
-                                <i aria-hidden="true" class="ion ion-ios-arrow-down active"></i><i aria-hidden="true" class="ion ion-ios-arrow-up inactive"></i>
-                            </h4>
-                        </div>
-                        <div class="pq-accordion-details">
-                            <p class="pq-detail-text"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo. </p>
-                        </div>
-                    </div>
-                    <div class="pq-accordion-box 5">
-                        <div class="pq-ad-title">
-                            <h4 class="ad-title-text">
-                                how to follow nutrition plan ?
-                                <i aria-hidden="true" class="ion ion-ios-arrow-down active"></i><i aria-hidden="true" class="ion ion-ios-arrow-up inactive"></i>
-                            </h4>
-                        </div>
-                        <div class="pq-accordion-details" style="display: none;">
-                            <p class="pq-detail-text"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo. </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- <faq-end> -->
+@include('_partials.faqs')
+
+
+
 
 @stop
 @section('inline-scripts')
