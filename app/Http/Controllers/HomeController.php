@@ -22,9 +22,8 @@ class HomeController extends Controller
         $faqs = Faq::all();
         $categories = Category::featured()->get();
         $auctions = Category::where('name', 'Auctions')->get();
-        $auctions->load('celebrity');
         $shoutouts = Category::where('name', 'Shout-Outs')->get();
-        $shoutouts->load('celebrity');
+
         return view('index', compact('sliders', 'faqs', 'auctions', 'categories', 'shoutouts'));
     }
 }
