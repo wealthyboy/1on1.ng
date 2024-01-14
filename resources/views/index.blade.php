@@ -134,10 +134,10 @@
                         <div class="pq-food-price-content">
                             <div class="pq-food-price-top">
                                 <div class="pq-food-price-title">
-                                    <h5 class="pq-food-title">{{ $auction->name }}</h5>
+                                    <h5 class="pq-food-title">{{ $shoutout->name }}</h5>
                                 </div>
                                 <div class="pq-food-price-line"> </div>
-                                <div class="pq-food-price-main">{{ $auction->latest_price }}</div>
+                                <div class="pq-food-price-main">{{ $shoutout->latest_price }}</div>
                             </div>
                         </div>
                     </div>
