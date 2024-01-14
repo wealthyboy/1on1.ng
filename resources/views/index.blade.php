@@ -160,7 +160,7 @@
                 </div>
             </div>
             @foreach( $shoutout->services as $shoutout)
-            <div class="col-lg-6">
+            <div class="col-lg-6 mb-3">
                 <div class="pq-food-price-wrapper pq-style-1  ">
                     <div class="pq-food-price-item">
 
