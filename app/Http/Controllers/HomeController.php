@@ -21,6 +21,7 @@ class HomeController extends Controller
         $sliders = Banner::where('type', 'slider')->orderBy('sort_order', 'asc')->get();
         $faqs = Faq::all();
         $categories = Category::featured()->get();
+        dd($categories);
         $auctions = Category::where('name', 'Auctions')->get();
         $shoutouts = Category::where('name', 'Shout-Outs')->get();
 
