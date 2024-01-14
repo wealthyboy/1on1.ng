@@ -163,8 +163,12 @@
             <div class="col-lg-6">
                 <div class="pq-food-price-wrapper pq-style-1  ">
                     <div class="pq-food-price-item">
+
                         <div class="pq-food-price-hoverimg">
-                            <img decoding="async" src="{{ optional($shoutout->celebrity)->image }}" alt="">
+                            <img decoding="async" src="{{ optional($shoutout->celebrity)->image }}" alt="menu">
+                        </div>
+                        <div class="pq-food-price-img">
+                            <img decoding="async" src="{{ optional($shoutout->celebrity)->image }}" alt="menu">
                         </div>
 
                         <div class="pq-food-price-content">
