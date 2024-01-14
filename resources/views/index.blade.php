@@ -15,7 +15,7 @@
             </div>
             <div class="col-lg-12 p-0">
                 <div class="owl-carousel owl-loaded owl-drag" data-dots="false" data-nav="true" data-desk_num="4" data-lap_num="3" data-tab_num="2" data-mob_num="1" data-mob_sm="1" data-autoplay="false" data-loop="true" data-margin="10">
-                    @foreach( $category->auctions as $auction)
+                    @foreach( $auction->auctions as $auction)
 
                     <div class="item">
                         <div class="pq-portfoliobox-1">
@@ -113,7 +113,7 @@
 </section>
 <!-- Popup -->
 
-@if ($shoutouts->count())
+@if ($shoutout->count())
 <!-- Menu -->
 <section class="menu pq-bg-dark-color">
     <div class="container">
@@ -123,7 +123,7 @@
                     <h5 class="pq-section-title">Trending Shoutouts</h5>
                 </div>
             </div>
-            @foreach( $category->shout_outs as $shoutout)
+            @foreach( $shoutout->shout_outs as $shoutout)
             <div class="col-lg-6">
                 <div class="pq-food-price-wrapper pq-style-1  ">
                     <div class="pq-food-price-item">
