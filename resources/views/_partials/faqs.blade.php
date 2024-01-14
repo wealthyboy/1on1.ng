@@ -13,7 +13,7 @@
                 </div>
                 <div class="pq-accordion-block mt-4">
                     @foreach($category->faqs as $key => $faq)
-                    <div class="pq-accordion-box {{$key}} pq-active">
+                    <div class="pq-accordion-box {{$key}} {{$key === 0 ? 'pq-active' : ''}} ">
                         <div class="pq-ad-title">
                             <h4 class="ad-title-text">
                                 {{ $faq->name }}
