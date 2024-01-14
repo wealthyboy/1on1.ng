@@ -2,6 +2,45 @@
 
 @section('content')
 
+<div id="carouselExampleDark" class="carousel carousel-dark slide">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+        <div class="carousel-item active" data-bs-interval="10000">
+            <img src="" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>First slide label</h5>
+                <p>Some representative placeholder content for the first slide.</p>
+            </div>
+        </div>
+        <div class="carousel-item" data-bs-interval="2000">
+            <img src="..." class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Second slide label</h5>
+                <p>Some representative placeholder content for the second slide.</p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="..." class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Third slide label</h5>
+                <p>Some representative placeholder content for the third slide.</p>
+            </div>
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
 
 
 <!-- Portfolio -->
@@ -16,18 +55,17 @@
             <div class="col-lg-12 p-0">
                 <div class="owl-carousel owl-loaded owl-drag" data-dots="false" data-nav="true" data-desk_num="4" data-lap_num="3" data-tab_num="2" data-mob_num="1" data-mob_sm="1" data-autoplay="false" data-loop="true" data-margin="10">
                     @foreach( $auction->auctions as $auction)
-
                     <div class="item">
                         <div class="pq-portfoliobox-1">
                             <div class="pq-portfolio-block">
-                                <div class="pq-portfolio-img  ">
+                                <div class="pq-portfolio-img">
                                     <img src="{{ optional($auction->celebrity)->image }}" alt="">
                                     <div class="pq-portfolio-info">
                                         <div class="pq-portfolio-info-content">
                                             <div class="pq-portfolio-link">
-                                                <a href="">wine</a>
+                                                <a href="{{ $auction->url }}">{{ $auction->name }}</a>
                                             </div>
-                                            <h5><a href="{{ $auction->url }}">Delicious</a></h5>
+                                            <h5><a href="{{ $auction->url }}">{{ $auction->latest_price }}</a></h5>
                                         </div>
                                     </div>
                                 </div>
@@ -35,11 +73,6 @@
                         </div>
                     </div>
                     @endforeach
-
-
-
-
-
                 </div>
             </div>
         </div>
@@ -65,8 +98,10 @@
                 <div class="pq-dark-section-side-right">
                 </div>
                 <div class="pq-section-title-style-1">
-                    <span class="pq-section-sub-title">About Us</span>
-                    <h5 class="pq-section-title">Enjoy An Exceptional Drink of Wine</h5>
+                    <span class="pq-section-sub-title">Master Class</span>
+                    <h5 class="pq-section-title">
+                        LEARN FROM THE BEST, BE YOUR BEST.
+                    </h5>
                 </div>
                 <div class="pq-advance-tab pq-about-tab">
 
@@ -74,29 +109,30 @@
                         <div class="pq-advance-tab-content tab-pane fade show active" id="advance-nav-0" role="tabpanel" aria-labelledby="advance-nav-home-0">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don’t look even slightly believable.</p>
+                                    <p>TMeet the world's best.
+                                        New class.</p>
                                     <ul class="pq-list-check">
                                         <li>
                                             <i class="ion ion-ios-checkmark-outline"></i>
-                                            <span>Lorem is dummy text of the printing and typesettiry</span>
+                                            <span>Food</span>
                                         </li>
                                         <li>
                                             <i class="ion ion-ios-checkmark-outline"></i>
-                                            <span>There are many variations of passages</span>
+                                            <span>Celebrity</span>
                                         </li>
                                         <li>
                                             <i class="ion ion-ios-checkmark-outline"></i>
-                                            <span>It is a long established fact that a reader will be distracted</span>
+                                            <span>Music</span>
                                         </li>
                                         <li>
                                             <i class="ion ion-ios-checkmark-outline"></i>
-                                            <span>Various versions have evolved over the years</span>
+                                            <span>Business</span>
                                         </li>
                                     </ul>
                                     <a class="pq-button pq-button-flat pq-mt-30 rounded" href="/">
                                         <div class="pq-button-block rounded">
                                             <span class="pq-button-line-left"></span>
-                                            <span class="pq-button-text">Read More</span>
+                                            <span class="pq-button-text">All Classes</span>
                                             <span class="pq-button-line-right"></span>
                                         </div>
                                     </a>

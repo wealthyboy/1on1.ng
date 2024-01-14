@@ -120,10 +120,10 @@
                                 </div>
                             </div>
                             <div class="pq-btn-container">
-                                <a href="booking-table.html" class="pq-button rounded">
+                                <a data-bs-toggle="modal" href="#" role="button" data-bs-target="#auth-modal" class="pq-button rounded">
                                     <div class="pq-button-block">
                                         <span class="pq-button-line-left"></span>
-                                        <span class="pq-button-text">Book a table</span>
+                                        <span class="pq-button-text">Sign Up</span>
                                         <span class="pq-button-line-right"></span>
                                     </div>
                                 </a>
