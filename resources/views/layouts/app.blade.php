@@ -48,36 +48,7 @@
 
         <!-- Header -->
         <header id="pq-header" class="pq-header-default">
-            <div class="pq-top-header">
-                <div class="container">
-                    <div class="row flex-row-reverse">
-                        <div class="col-md-6 text-right">
-                            <div class="pq-header-social text-right">
-                                <ul>
-                                    <li><a href="index-5.html#"><i class="fab fa-facebook-f"></i></a></li>
-                                    <li><a href="index-5.html#"><i class="fab fa-instagram"></i></a></li>
-                                    <li><a href="index-5.html#"><i class="fab fa-twitter"></i></a></li>
-                                    <li><a href="index-5.html#"><i class="fab fa-linkedin-in"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="pq-header-contact ">
-                                <ul>
-                                    <li>
-                                        <a href="tel:+1800001658"><i class="fas fa-phone"></i>
-                                            <span> +1800-001-658</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="mailto:peacefulqode@gmail.com"><i class="fas fa-envelope"></i><span>peacefulqode@gmail.com</span></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
             <div class="pq-bottom-header">
                 <div class="container">
                     <div class="row">
@@ -174,11 +145,7 @@
                                             <news-letter />
 
                                         </div>
-                                        <div class="col-lg-4 col-md-4 p-lg-0">
-                                            <a href="index-5.html#" class="pq-button">
-                                                <span class="pq-button-text">Subscribe</span>
-                                            </a>
-                                        </div>
+
                                     </div>
                                 </div>
                             </div>
