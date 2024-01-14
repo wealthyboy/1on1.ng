@@ -18,10 +18,11 @@
                     @foreach( $auctions as $auction)
 
                     <div class="item">
+                        {{$auction}}
                         <div class="pq-portfoliobox-1">
                             <div class="pq-portfolio-block">
                                 <div class="pq-portfolio-img  ">
-                                    <img decoding="async" src="{{ optional($auction->celebrity)->image }}" alt="">
+                                    <img src="{{ optional($auction->celebrity)->image }}" alt="">
                                     <div class="pq-portfolio-info">
                                         <div class="pq-portfolio-info-content">
                                             <div class="pq-portfolio-link">
