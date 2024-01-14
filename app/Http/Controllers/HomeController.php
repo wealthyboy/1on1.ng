@@ -23,7 +23,7 @@ class HomeController extends Controller
         $categories = Category::featured()->get();
         $auction = Category::where('name', 'Auctions')->first();
         $shoutout = Category::where('name', 'Shout-Outs')->first();
-        dd($shoutout);
+        dd($shoutout->shout_outs);
         return view('index', compact('sliders', 'faqs', 'auction', 'categories', 'shoutout'));
     }
 }
