@@ -12,13 +12,11 @@
                     <h6 class="pq-section-title">{{ $category->name }}</h6>
                 </div>
                 <div class="pq-accordion-block mt-4">
-                    @foreach($category->faqs as $faq)
-
-                    <div class="pq-accordion-box 1 pq-active">
+                    @foreach($category->faqs as $key => $faq)
+                    <div class="pq-accordion-box {{$key}} pq-active">
                         <div class="pq-ad-title">
                             <h4 class="ad-title-text">
                                 {{ $faq->name }}
-
                                 <i aria-hidden="true" class="ion ion-ios-arrow-down active"></i><i aria-hidden="true" class="ion ion-ios-arrow-up inactive"></i>
                             </h4>
                         </div>
@@ -27,8 +25,6 @@
                         </div>
                     </div>
                     @endforeach
-
-
                 </div>
 
                 @endif
