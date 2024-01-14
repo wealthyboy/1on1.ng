@@ -159,9 +159,8 @@
                     <h5 class="pq-section-title">Trending Shoutouts</h5>
                 </div>
             </div>
-            @foreach( $shoutout->shout_outs as $shoutout)
+            @foreach( $shoutout->services as $shoutout)
             <div class="col-lg-6">
-                {{$shoutout}}
                 <div class="pq-food-price-wrapper pq-style-1  ">
                     <div class="pq-food-price-item">
                         <div class="pq-food-price-hoverimg">
