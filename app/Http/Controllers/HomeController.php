@@ -6,6 +6,7 @@ use App\Models\Banner;
 use App\Models\Category;
 use App\Models\Faq;
 use App\Models\Service;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +24,9 @@ class HomeController extends Controller
         $categories = Category::featured()->get();
         $auction = Category::where('name', 'Auctions')->first();
         $shoutout = Category::where('name', 'Shout-Outs')->first();
+        return view('underconstruction.index', compact('sliders', 'faqs', 'auction', 'categories', 'shoutout'));
+
+
         return view('index', compact('sliders', 'faqs', 'auction', 'categories', 'shoutout'));
     }
 }
